@@ -1,23 +1,31 @@
 /* Our CSS values that we'll use in the rest of our styling */
 :root {
-  --main-bg-color: #69F7BE;
-  --main-text-color: #373fff;
+  --main-bg-color: #694DFF;
+  --main-text-color: #2800FF;
 }
 
 @font-face {
-    font-family: HK Grotesk;
-    src: url("https://cdn.glitch.com/a9975ea6-8949-4bab-addb-8a95021dc2da%2FHKGrotesk-Regular.otf?v=1602782380076") format("opentype");
+  font-family: HK Grotesk;
+  src: url("https://cdn.glitch.com/a9975ea6-8949-4bab-addb-8a95021dc2da%2FHKGrotesk-Regular.otf?v=1602782380076")
+    format("opentype");
 }
 
 @font-face {
-    font-family: HK Grotesk;
-    font-weight: bold;
-    src: url("https://cdn.glitch.com/a9975ea6-8949-4bab-addb-8a95021dc2da%2FHKGrotesk-Bold.otf?v=1602782484249") format("opentype");
+  font-family: HK Grotesk;
+  font-weight: bold;
+  src: url("https://cdn.glitch.com/a9975ea6-8949-4bab-addb-8a95021dc2da%2FHKGrotesk-Bold.otf?v=1602782484249")
+    format("opentype");
 }
 
 body {
   font-family: HK Grotesk;
   background-color: var(--main-bg-color);
+}
+
+/* Reset margin and padding on our titles */
+h1 {
+  margin: 0;
+  padding: 0;
 }
 
 .title {
@@ -51,7 +59,7 @@ body {
 
 .btn--remix {
   font-family: HK Grotesk;
-  padding: .5rem .75rem;
+  padding: 0.5rem 0.75rem;
   font-size: 1.1rem;
   line-height: 1rem;
   font-weight: 500;
@@ -65,10 +73,9 @@ body {
 }
 
 .btn--remix img {
-  margin-right: .75rem;
+  margin-right: 0.75rem;
 }
 
 .illustration {
-  max-width: 100%;
-
+  max-width: 60%;
 }
