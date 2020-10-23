@@ -11,12 +11,18 @@ fastify.register(require('fastify-static'), {
   prefix: '/', // optional: default '/'
 })
 
-// Declare a route
+// Our home page route, this pulls from public/index.html
+// but you don't have to send a html, or even have a webpage!
 fastify.get("/", function(request, reply) {
   return reply.sendFile('index.html')
 });
 
-// Run the server!
+// Our API route, fastify automatically turns it to JSON
+fastify.get("/api/flavors", function(request, reply) {
+  reply.send({ hello: 'world' })
+});
+
+// Run the server and report out to the logs
 fastify.listen(process.env.PORT, function(err, address) {
   if (err) {
     fastify.log.error(err);
