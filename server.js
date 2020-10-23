@@ -1,7 +1,15 @@
+const path = require('path')
+
 // Require the framework and instantiate it
 const fastify = require("fastify")({
   logger: true
 });
+
+// Setup our static files
+fastify.register(require('fastify-static'), {
+  root: path.join(__dirname, 'public'),
+  prefix: '/public/', // optional: default '/'
+})
 
 // Declare a route
 fastify.get("/", function(request, reply) {
