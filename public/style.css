@@ -1,56 +1,74 @@
-/* this file is loaded by index.html and styles the page */
+/* Our CSS values that we'll use in the rest of our styling */
+:root {
+  --main-bg-color: #69F7BE;
+  --main-text-color: #373fff;
+}
 
-* {
-  box-sizing: border-box;
+@font-face {
+    font-family: HK Grotesk;
+    src: url("https://cdn.glitch.com/a9975ea6-8949-4bab-addb-8a95021dc2da%2FHKGrotesk-Regular.otf?v=1602782380076") format("opentype");
+}
+
+@font-face {
+    font-family: HK Grotesk;
+    font-weight: bold;
+    src: url("https://cdn.glitch.com/a9975ea6-8949-4bab-addb-8a95021dc2da%2FHKGrotesk-Bold.otf?v=1602782484249") format("opentype");
 }
 
 body {
-  font-family: sans-serif;
-  margin: 2em 1em;
-  line-height: 1.5em;
+  font-family: HK Grotesk;
+  background-color: var(--main-bg-color);
 }
 
-h1 {
-  font-style: italic;
-  color: #373fff;
-  max-width: calc(100% - 5rem);
-  line-height: 1.1;
+.title {
+  color: var(--main-text-color);
+  font-family: HK Grotesk;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 164px;
+  line-height: 105%;
 }
 
-form {
-  background-color: #eee;
+.wrapper {
+  min-height: 95vh;
   display: grid;
-  grid-gap: 1em;
-  padding: 1em;
-  max-width: 40ch;
+  place-items: center;
 }
 
-input {
-  border: 1px solid silver;
-  display: block;
-  font-size: 16px;
-  margin-bottom: 10px;
-  padding: 5px;
-  width: 100%;
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
 }
 
-form button {
-  background-color: #bbbbf2;
-  border: 2px solid currentColor;
-  border-radius: .25em;
+/* Our remix on glitch button + grid for other actions */
+.remix {
+  display: grid;
+  place-items: end;
+}
+
+.btn--remix {
+  font-family: HK Grotesk;
+  padding: .5rem .75rem;
+  font-size: 1.1rem;
+  line-height: 1rem;
+  font-weight: 500;
+  align-items: center;
+  display: inline-flex;
   cursor: pointer;
-  font-size: inherit;
-  line-height: 1.4em;
-  padding: 0.25em 1em;
-  max-width: 20ch;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 4px;
 }
 
-form button:hover {
-  background-color: lavender;
+.btn--remix img {
+  margin-right: .75rem;
 }
 
-footer {
-  margin-top: 3em;
-  padding-top: 1.5em;
-  border-top: 1px solid lightgrey;
+.illustration {
+  max-width: 100%;
+
 }

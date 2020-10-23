@@ -8,12 +8,12 @@ const fastify = require("fastify")({
 // Setup our static files
 fastify.register(require('fastify-static'), {
   root: path.join(__dirname, 'public'),
-  prefix: '/public/', // optional: default '/'
+  prefix: '/', // optional: default '/'
 })
 
 // Declare a route
 fastify.get("/", function(request, reply) {
-  reply.send({ hello: "world" });
+  return reply.sendFile('index.html')
 });
 
 // Run the server!
