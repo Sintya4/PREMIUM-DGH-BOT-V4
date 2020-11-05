@@ -1,7 +1,36 @@
-/* Our CSS values that we'll use in the rest of our styling */
+/* Our default values set for mobile */
 :root {
-  --main-bg-color: #BDC9FF;
-  --main-text-color: #2800FF;
+  --color-bg: #FFFFA0;
+  --color-text-main: #2800FF;
+  --wrapper-height: 87vh;
+  --image-max-width: 300px;
+  --image-margin: 3rem;
+
+}
+
+/* Tablet portrait */
+@media (min-width: 768px) {
+  :root {
+    --wrapper-height: 87vh;
+    --image-max-width: 400px;
+    --image-margin: 5rem;
+  }
+}
+
+/* Tablet Landscape */
+@media (min-width: 1024px) {
+  :root {
+    --wrapper-height: 87vh;
+    --image-max-width: 500px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1280px) {
+  :root {
+    --wrapper-height: 87vh;
+    --image-max-width: 500px;
+  }
 }
 
 @font-face {
@@ -19,28 +48,24 @@
 
 body {
   font-family: HK Grotesk;
-  background-color: var(--main-bg-color);
-}
-
-/* Reset margin and padding on our titles */
-h1 {
-  margin: 0;
-  padding: 0;
+  background-color: var(--color-bg);
 }
 
 .title {
-  color: var(--main-text-color);
+  color: var(--color-text-main);
   font-family: HK Grotesk;
   font-style: normal;
   font-weight: bold;
-  font-size: 164px;
+  font-size: 120px;
   line-height: 105%;
 }
 
 .wrapper {
-  min-height: 95vh;
+  min-height: var(--wrapper-height);
   display: grid;
   place-items: center;
+  margin-left: 2rem;
+  margin-top: 3rem;
 }
 
 .content {
@@ -48,18 +73,21 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+}
+
+/* Navigation grid */
+.navigation {
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* Our remix on glitch button + grid for other actions */
-.remix {
-  display: grid;
-  place-items: end;
-}
-
 .btn--remix {
   font-family: HK Grotesk;
-  padding: 0.5rem 0.75rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
   font-size: 1.1rem;
   line-height: 1rem;
   font-weight: 500;
@@ -72,10 +100,26 @@ h1 {
   border-radius: 4px;
 }
 
-.btn--remix img {
-  margin-right: 0.75rem;
+.btn--remix:hover {
+  background-color: #D0FFF1;
 }
 
-.illustration {
-  max-width: 60%;
+.btn--remix img {
+  margin-right: 0.5rem;
 }
+
+.btn--remix {
+  margin-right: 1rem;
+}
+
+/* Very light scaling for our illustration */
+.illustration {
+  max-width: 100%;
+  max-height: var(--image-max-width);
+  margin-top: var(--image-margin);
+}
+
+
+/*
+  Add hover state to the buttons!! oops
+*/
