@@ -1,6 +1,6 @@
 /* Our default values set for mobile */
 :root {
-  --color-bg: #FFFFA0;
+  --color-bg: #9480FF;
   --color-text-main: #2800FF;
   --wrapper-height: 87vh;
   --image-max-width: 300px;
@@ -98,6 +98,8 @@ body {
   border: 1px solid #000000;
   box-sizing: border-box;
   border-radius: 4px;
+  color: #000;
+  text-decoration: none;
 }
 
 .btn--remix:hover {
