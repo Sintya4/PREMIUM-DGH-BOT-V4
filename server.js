@@ -17,6 +17,7 @@ fastify.get("/", function(request, reply) {
   return reply.sendFile('index.html')
 });
 
+
 // Our API route, fastify automatically turns it to JSON
 fastify.get("/api/flavors", function(request, reply) {
   reply.send({ hello: 'world' })
