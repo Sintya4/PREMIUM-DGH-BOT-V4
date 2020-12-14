@@ -31,4 +31,4 @@ Find out more [about Glitch](https://glitch.com/about).
 
 
 ## WIP / Scratch
-- Should use the 
+- Should use the glitch API to grab information about username

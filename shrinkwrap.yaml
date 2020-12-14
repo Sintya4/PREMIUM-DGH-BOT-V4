@@ -1,78 +1,8 @@
 dependencies:
-  '@octokit/core': 3.2.4
   express: 4.17.1
   fastify: 3.7.0
   fastify-static: 3.3.0
 packages:
-  /@octokit/auth-token/2.4.4:
-    dependencies:
-      '@octokit/types': 6.1.1
-    dev: false
-    resolution:
-      integrity: sha512-LNfGu3Ro9uFAYh10MUZVaT7X2CnNm2C8IDQmabx+3DygYIQjs9FwzFAHN/0t6mu5HEPhxcb1XOuxdpY82vCg2Q==
-  /@octokit/core/3.2.4:
-    dependencies:
-      '@octokit/auth-token': 2.4.4
-      '@octokit/graphql': 4.5.8
-      '@octokit/request': 5.4.12
-      '@octokit/types': 6.1.1
-      before-after-hook: 2.1.0
-      universal-user-agent: 6.0.0
-    dev: false
-    resolution:
-      integrity: sha512-d9dTsqdePBqOn7aGkyRFe7pQpCXdibSJ5SFnrTr0axevObZrpz3qkWm7t/NjYv5a66z6vhfteriaq4FRz3e0Qg==
-  /@octokit/endpoint/6.0.10:
-    dependencies:
-      '@octokit/types': 6.1.1
-      is-plain-object: 5.0.0
-      universal-user-agent: 6.0.0
-    dev: false
-    resolution:
-      integrity: sha512-9+Xef8nT7OKZglfkOMm7IL6VwxXUQyR7DUSU0LH/F7VNqs8vyd7es5pTfz9E7DwUIx7R3pGscxu1EBhYljyu7Q==
-  /@octokit/graphql/4.5.8:
-    dependencies:
-      '@octokit/request': 5.4.12
-      '@octokit/types': 6.1.1
-      universal-user-agent: 6.0.0
-    dev: false
-    resolution:
-      integrity: sha512-WnCtNXWOrupfPJgXe+vSmprZJUr0VIu14G58PMlkWGj3cH+KLZEfKMmbUQ6C3Wwx6fdhzVW1CD5RTnBdUHxhhA==
-  /@octokit/openapi-types/2.0.0:
-    dev: false
-    resolution:
-      integrity: sha512-J4bfM7lf8oZvEAdpS71oTvC1ofKxfEZgU5vKVwzZKi4QPiL82udjpseJwxPid9Pu2FNmyRQOX4iEj6W1iOSnPw==
-  /@octokit/request-error/2.0.4:
-    dependencies:
-      '@octokit/types': 6.1.1
-      deprecation: 2.3.1
-      once: 1.4.0
-    dev: false
-    resolution:
-      integrity: sha512-LjkSiTbsxIErBiRh5wSZvpZqT4t0/c9+4dOe0PII+6jXR+oj/h66s7E4a/MghV7iT8W9ffoQ5Skoxzs96+gBPA==
-  /@octokit/request/5.4.12:
-    dependencies:
-      '@octokit/endpoint': 6.0.10
-      '@octokit/request-error': 2.0.4
-      '@octokit/types': 6.1.1
-      deprecation: 2.3.1
-      is-plain-object: 5.0.0
-      node-fetch: 2.6.1
-      once: 1.4.0
-      universal-user-agent: 6.0.0
-    dev: false
-    resolution:
-      integrity: sha512-MvWYdxengUWTGFpfpefBBpVmmEYfkwMoxonIB3sUGp5rhdgwjXL1ejo6JbgzG/QD9B/NYt/9cJX1pxXeSIUCkg==
-  /@octokit/types/6.1.1:
-    dependencies:
-      '@octokit/openapi-types': 2.0.0
-      '@types/node': 14.14.13
-    dev: false
-    resolution:
-      integrity: sha512-btm3D6S7VkRrgyYF31etUtVY/eQ1KzrNRqhFt25KSe2mKlXuLXJilglRC6eDA2P6ou94BUnk/Kz5MPEolXgoiw==
-  /@types/node/14.14.13:
-    dev: false
-    resolution:
-      integrity: sha512-vbxr0VZ8exFMMAjCW8rJwaya0dMCDyYW2ZRdTyjtrCvJoENMpdUHOT/eTzvgyA5ZnqRZ/sI0NwqAxNHKYokLJQ==
   /abstract-logging/2.0.1:
     dev: false
     resolution:
@@ -122,10 +52,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
-  /before-after-hook/2.1.0:
-    dev: false
-    resolution:
-      integrity: sha512-IWIbu7pMqyw3EAJHzzHbWa85b6oud/yfKYg5rqB5hNE8CeMi3nX+2C2sj0HswfblST86hpVEOAb9x34NZd6P7A==
   /body-parser/1.19.0:
     dependencies:
       bytes: 3.1.0
@@ -216,10 +142,6 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha1-m81S4UwJd2PnSbJ0xDRu0uVgtak=
-  /deprecation/2.3.1:
-    dev: false
-    resolution:
-      integrity: sha512-xmHIy4F3scKVwMsQ4WnVaS8bHOx0DmVwRywosKhaILI0ywMDWPtBSku2HNxRvF7jtwDRsoEwYQSfbxj8b7RlJQ==
   /destroy/1.0.4:
     dev: false
     resolution:
@@ -477,12 +399,6 @@ packages:
       node: '>= 0.10'
     resolution:
       integrity: sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==
-  /is-plain-object/5.0.0:
-    dev: false
-    engines:
-      node: '>=0.10.0'
-    resolution:
-      integrity: sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q==
   /json-schema-traverse/0.4.1:
     dev: false
     resolution:
@@ -558,12 +474,6 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
-  /node-fetch/2.6.1:
-    dev: false
-    engines:
-      node: 4.x || >=6.0.0
-    resolution:
-      integrity: sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
   /on-finished/2.3.0:
     dependencies:
       ee-first: 1.1.1
@@ -808,10 +718,6 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==
-  /universal-user-agent/6.0.0:
-    dev: false
-    resolution:
-      integrity: sha512-isyNax3wXoKaulPDZWHQqbmIx1k2tb9fb3GGDBRxCscfYV2Ch7WxPArBsFEG8s/safwXTT7H4QGhaIkTp9447w==
   /unpipe/1.0.0:
     dev: false
     engines:
@@ -848,7 +754,6 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
-  '@octokit/core': ^3.2.4
   express: ^4.17.1
   fastify: ^3.5.1
   fastify-static: ^3.2.1
