@@ -8,8 +8,8 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "fastify": "^3.5.1",
-    "fastify-static": "^3.2.1"
+    "fastify": "^3.9.2",
+    "fastify-static": "^3.3.0"
   },
   "engines": {
     "node": "12.x"
