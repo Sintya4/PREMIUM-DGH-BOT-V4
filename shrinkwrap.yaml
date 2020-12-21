@@ -1,6 +1,6 @@
 dependencies:
   express: 4.17.1
-  fastify: 3.7.0
+  fastify: 3.9.2
   fastify-static: 3.3.0
 packages:
   /abstract-logging/2.0.1:
@@ -42,9 +42,9 @@ packages:
   /avvio/7.2.0:
     dependencies:
       archy: 1.0.0
-      debug: 4.2.0
-      fastq: 1.8.0
-      queue-microtask: 1.2.0
+      debug: 4.3.1
+      fastq: 1.10.0
+      queue-microtask: 1.2.2
     dev: false
     resolution:
       integrity: sha512-KtC63UyZARidAoIV8wXutAZnDIbZcXBqLjTAhZOX+mdMZBQCh5il/15MvCvma1178nhTwvN2D0TOAdiKG1MpUA==
@@ -122,14 +122,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==
-  /debug/4.2.0:
+  /debug/4.3.1:
     dependencies:
       ms: 2.1.2
     dev: false
     engines:
       node: '>=6.0'
     resolution:
-      integrity: sha512-IX2ncY78vDTjZMFUdmsvIRFY2Cf4FnD0wRs+nQwJU8Lu99/tPFdb0VybiiMTPe3I6rQmwsqQqRBvxU+bZ/I8sg==
+      integrity: sha512-doEwdvm4PCeK4K3RQN2ZC2BYUBaxwLARCqZmMjtF8a51J2Rb0xpVloFRnCODwqjpwnAoao4pelN8l3RJdv3gRQ==
   /deepmerge/4.2.2:
     dev: false
     engines:
@@ -215,16 +215,16 @@ packages:
     dev: false
     resolution:
       integrity: sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==
-  /fast-json-stringify/2.2.9:
+  /fast-json-stringify/2.3.0:
     dependencies:
       ajv: 6.12.6
       deepmerge: 4.2.2
-      string-similarity: 4.0.2
+      string-similarity: 4.0.3
     dev: false
     engines:
       node: '>= 10.0.0'
     resolution:
-      integrity: sha512-O8YmNoc7LnfSafVaTfa1yXVFT4UMsi/N7cYcNZw6w5D5tltyu6XGXvH45mvWfsrcFoSK+H0q0exGXsUqC18z/g==
+      integrity: sha512-dZoqs1Wto6ktiIrvDC2buWAVSTGtwKTLHH3pTGzP+KHL1J3owFEQDVVJrYoGxD2CeiWB5N07WL/AUHX0WiFv4w==
   /fast-redact/3.0.0:
     dev: false
     engines:
@@ -256,35 +256,35 @@ packages:
     dev: false
     resolution:
       integrity: sha512-s1EQguBw/9qtc1p/WTY4eq9WMRIACkj+HTcOIK1in4MV5aFaQC9ZCIt0dJ7pr5bIf4lPpHvAtP2ywpTNgs7hqw==
-  /fastify/3.7.0:
+  /fastify/3.9.2:
     dependencies:
       abstract-logging: 2.0.1
       ajv: 6.12.6
       avvio: 7.2.0
-      fast-json-stringify: 2.2.9
+      fast-json-stringify: 2.3.0
       fastify-error: 0.2.0
       fastify-warning: 0.2.0
-      find-my-way: 3.0.4
+      find-my-way: 3.0.5
       flatstr: 1.0.12
-      light-my-request: 4.2.1
-      pino: 6.7.0
+      light-my-request: 4.4.1
+      pino: 6.8.0
       proxy-addr: 2.0.6
       readable-stream: 3.6.0
       rfdc: 1.1.4
       secure-json-parse: 2.1.0
-      semver: 7.3.2
+      semver: 7.3.4
       tiny-lru: 7.0.6
     dev: false
     engines:
       node: '>=10.16.0'
     resolution:
-      integrity: sha512-xmiR1TOSNXXNHfEvBwhWlyj158q59vZkPLIKQ71f7qJG5QMPqCbeYUUFRaDKTaLFhRqmLLFprBpJsO5nbSMiPQ==
-  /fastq/1.8.0:
+      integrity: sha512-8VEf4l6a2tdtrYQQwgT9Zh2/OvOgE4Sf6cDNMduAnKZ44CXrT0tXuH/uQkXuxqMAW27ZOy4jeexBl8CFaECntg==
+  /fastq/1.10.0:
     dependencies:
       reusify: 1.0.4
     dev: false
     resolution:
-      integrity: sha512-SMIZoZdLh/fgofivvIkmknUXyPnvxRE3DhtZ5Me3Mrsk5gyPL42F0xr51TdRXskBxHfMp+07bcYzfsYEsSQA9Q==
+      integrity: sha512-NL2Qc5L3iQEsyYzweq7qfgy5OtXCmGzGvhElGEd/SoFWEMOEczNh5s5ocaF01HDetxz+p8ecjNPA6cZxxIHmzA==
   /finalhandler/1.1.2:
     dependencies:
       debug: 2.6.9
@@ -299,7 +299,7 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha512-aAWcW57uxVNrQZqFXjITpW3sIUQmHGG3qSb9mUah9MgMC4NeWhNOlNjXEYq3HjRAvL6arUviZGGJsBg6z0zsWA==
-  /find-my-way/3.0.4:
+  /find-my-way/3.0.5:
     dependencies:
       fast-decode-uri-component: 1.0.1
       safe-regex2: 2.0.0
@@ -308,7 +308,7 @@ packages:
     engines:
       node: '>=10'
     resolution:
-      integrity: sha512-Trl/mNAVvTgCpo9ox6yixkwiZUvecKYUQZoAuMCBACsgGqv+FbWe+jE5sBA5+U8LIWrJk/cw8zPV53GPrjTnsw==
+      integrity: sha512-FweGg0cv1sBX8z7WhvBX5B5AECW4Zdh/NiB38Oa0qwSNIyPgRBCl/YjxuZn/rz38E/MMBHeVKJ22i7W3c626Gg==
   /flatstr/1.0.12:
     dev: false
     resolution:
@@ -403,7 +403,7 @@ packages:
     dev: false
     resolution:
       integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==
-  /light-my-request/4.2.1:
+  /light-my-request/4.4.1:
     dependencies:
       ajv: 6.12.6
       cookie: 0.4.1
@@ -412,7 +412,15 @@ packages:
       set-cookie-parser: 2.4.6
     dev: false
     resolution:
-      integrity: sha512-33FZvX/418IEy0sXldsLiJifbS/ruttcVveTbbZ8sQVR2VSFPA39hBu/iF/hVkt/1V0N7CdTQg4jiiVPdGgW8A==
+      integrity: sha512-FDNRF2mYjthIRWE7O8d/X7AzDx4otQHl4/QXbu3Q/FRwBFcgb+ZoDaUd5HwN53uQXLAiw76osN+Va0NEaOW6rQ==
+  /lru-cache/6.0.0:
+    dependencies:
+      yallist: 4.0.0
+    dev: false
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   /media-typer/0.3.0:
     dev: false
     engines:
@@ -508,7 +516,7 @@ packages:
     dev: false
     resolution:
       integrity: sha512-wXqbqSrIhE58TdrxxlfLwU9eDhrzppQDvGhBEr1gYbzzM4KKo3Y63gSjiDXRKLVS2UOXdPNR2v+KnQgNrs+xUg==
-  /pino/6.7.0:
+  /pino/6.8.0:
     dependencies:
       fast-redact: 3.0.0
       fast-safe-stringify: 2.0.7
@@ -519,7 +527,7 @@ packages:
     dev: false
     hasBin: true
     resolution:
-      integrity: sha512-vPXJ4P9rWCwzlTJt+f0Ni4THc3DWyt8iDDCO4edQ8narTu6hnpzdXu8FqeSJCGndl1W6lfbYQUQihUO54y66Lw==
+      integrity: sha512-nxq+6Jr7m0cMjYFBoTRw3bco14omZ/SQCheAHz9GVwdkbUrzKhgT+gSI/ql2Mnsca0QQKgpB/ACWhjxE4JsX3Q==
   /proxy-addr/2.0.5:
     dependencies:
       forwarded: 0.1.2
@@ -550,10 +558,10 @@ packages:
       node: '>=0.6'
     resolution:
       integrity: sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
-  /queue-microtask/1.2.0:
+  /queue-microtask/1.2.2:
     dev: false
     resolution:
-      integrity: sha512-J95OVUiS4b8qqmpqhCodN8yPpHG2mpZUPQ8tDGyIY0VhM+kBHszOuvsMJVGNQ1OH2BnTFbqz45i+2jGpDw9H0w==
+      integrity: sha512-dB15eXv3p2jDlbOiNLyMabYg1/sXvppd8DP2J3EOCQ0AkuSXCW2tP7mnVouVLJKgUMY6yP0kcQDVpLCN13h4Xg==
   /quick-format-unescaped/4.0.1:
     dev: false
     resolution:
@@ -628,13 +636,15 @@ packages:
     dev: false
     resolution:
       integrity: sha512-TcZvGMMy9vodEFSse30lWinkj+JgOBvPn8wRItpQRSayhc+4ssDs335uklkfvQQJgL/WvmHLVj4Ycv2s7QCQMg==
-  /semver/7.3.2:
+  /semver/7.3.4:
+    dependencies:
+      lru-cache: 6.0.0
     dev: false
     engines:
       node: '>=10'
     hasBin: true
     resolution:
-      integrity: sha512-OrOb32TeeambH6UrhtShmF7CRDqhL6/5XpPNp2DuRH6+9QLw/orhp72j87v8Qa1ScDkvrrBNpZcDejAirJmfXQ==
+      integrity: sha512-tCfb2WLjqFAtXn4KEdxIhalnRtoKFN7nAwj0B3ZXCbQloV2tq5eDbcTmT68JJD3nRJq24/XgxtQKFIpQdtvmVw==
   /send/0.17.1:
     dependencies:
       debug: 2.6.9
@@ -687,10 +697,10 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow=
-  /string-similarity/4.0.2:
+  /string-similarity/4.0.3:
     dev: false
     resolution:
-      integrity: sha512-eCsPPyoQBgY4TMpVD6DVfO7pLrimUONriaO4Xjp3WPUW0YnNLqdHgRj23xotLlqrL90eJhBeq3zdAJf2mQgfBQ==
+      integrity: sha512-QEwJzNFCqq+5AGImk5z4vbsEPTN/+gtyKfXBVLBcbPBRPNganZGfQnIuf9yJ+GiwSnD65sT8xrw/uwU1Q1WmfQ==
   /string_decoder/1.3.0:
     dependencies:
       safe-buffer: 5.2.1
@@ -750,10 +760,14 @@ packages:
     dev: false
     resolution:
       integrity: sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
+  /yallist/4.0.0:
+    dev: false
+    resolution:
+      integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   express: ^4.17.1
-  fastify: ^3.5.1
-  fastify-static: ^3.2.1
+  fastify: ^3.9.2
+  fastify-static: ^3.3.0
