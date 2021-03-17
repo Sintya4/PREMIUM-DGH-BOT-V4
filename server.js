@@ -1,4 +1,5 @@
-const path = require('path')
+const path = require("path");
+const flavors = require("./src/api/flavors");
 
 // Require the framework and instantiate it
 const fastify = require("fastify")({
@@ -6,22 +7,18 @@ const fastify = require("fastify")({
 });
 
 // Setup our static files
-fastify.register(require('fastify-static'), {
-  root: path.join(__dirname, 'public'),
-  prefix: '/', // optional: default '/'
-})
+fastify.register(require("fastify-static"), {
+  root: path.join(__dirname, "public"),
+  prefix: "/" // optional: default '/'
+});
 
 // Our home page route, this pulls from public/index.html
 // but you don't have to send a html, or even have a webpage!
 fastify.get("/", function(request, reply) {
-  return reply.sendFile('index.html')
+  return reply.sendFile("index.html");
 });
 
-
-// Our API route, fastify automatically turns it to JSON
-fastify.get("/api/flavors", function(request, reply) {
-  reply.send({ hello: 'world' })
-});
+fastify.get("/api/flavors", flavors);
 
 // Run the server and report out to the logs
 fastify.listen(process.env.PORT, function(err, address) {
