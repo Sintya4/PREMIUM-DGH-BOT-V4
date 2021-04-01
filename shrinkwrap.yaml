@@ -1,8 +1,21 @@
 dependencies:
   express: 4.17.1
-  fastify: 3.9.2
-  fastify-static: 3.3.0
+  fastify: 3.14.1
+  fastify-static: 4.0.1
 packages:
+  /@fastify/forwarded/1.0.0:
+    dev: false
+    engines:
+      node: '>= 10'
+    resolution:
+      integrity: sha512-VoO+6WD0aRz8bwgJZ8pkkxjq7o/782cQ1j945HWg0obZMgIadYW3Pew0+an+k1QL7IPZHM3db5WF6OP6x4ymMA==
+  /@fastify/proxy-addr/3.0.0:
+    dependencies:
+      '@fastify/forwarded': 1.0.0
+      ipaddr.js: 2.0.0
+    dev: false
+    resolution:
+      integrity: sha512-ty7wnUd/GeSqKTC2Jozsl5xGbnxUnEFC0On2/zPv/8ixywipQmVZwuWvNGnBoitJ2wixwVqofwXNua8j6Y62lQ==
   /abstract-logging/2.0.1:
     dev: false
     resolution:
@@ -21,7 +34,7 @@ packages:
       fast-deep-equal: 3.1.3
       fast-json-stable-stringify: 2.1.0
       json-schema-traverse: 0.4.1
-      uri-js: 4.4.0
+      uri-js: 4.4.1
     dev: false
     resolution:
       integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==
@@ -39,15 +52,15 @@ packages:
       node: '>=8.0.0'
     resolution:
       integrity: sha512-kNOjDqAh7px0XWNI+4QbzoiR/nTkHAWNud2uvnJquD1/x5a7EQZMJT0AczqK0Qn67oY/TTQ1LbUKajZpp3I9tQ==
-  /avvio/7.2.0:
+  /avvio/7.2.1:
     dependencies:
       archy: 1.0.0
       debug: 4.3.1
-      fastq: 1.10.0
-      queue-microtask: 1.2.2
+      fastq: 1.11.0
+      queue-microtask: 1.2.3
     dev: false
     resolution:
-      integrity: sha512-KtC63UyZARidAoIV8wXutAZnDIbZcXBqLjTAhZOX+mdMZBQCh5il/15MvCvma1178nhTwvN2D0TOAdiKG1MpUA==
+      integrity: sha512-b+gox68dqD6c3S3t+bZBKN6rYbVWdwpN12sHQLFTiacDT2rcq7fm07Ww+IKt/AvAkyCIe1f5ArP1bC/vAlx97A==
   /balanced-match/1.0.0:
     dev: false
     resolution:
@@ -215,16 +228,17 @@ packages:
     dev: false
     resolution:
       integrity: sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==
-  /fast-json-stringify/2.3.0:
+  /fast-json-stringify/2.5.3:
     dependencies:
       ajv: 6.12.6
       deepmerge: 4.2.2
-      string-similarity: 4.0.3
+      rfdc: 1.3.0
+      string-similarity: 4.0.4
     dev: false
     engines:
       node: '>= 10.0.0'
     resolution:
-      integrity: sha512-dZoqs1Wto6ktiIrvDC2buWAVSTGtwKTLHH3pTGzP+KHL1J3owFEQDVVJrYoGxD2CeiWB5N07WL/AUHX0WiFv4w==
+      integrity: sha512-wOE0YeqnhwOPqaZNvRxsgnq8Puc2vAQIlxSlcpRUInm0yf4+H/YqQ8ijBmzkUg384p0JBzjR9XBNkU5jLWSCwQ==
   /fast-redact/3.0.0:
     dev: false
     engines:
@@ -235,56 +249,57 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Utm6CdzT+6xsDk2m8S6uL8VHxNwI6Jub+e9NYTcAms28T84pTa25GJQV9j0CY0N1rM8hK4x6grpF2BQf+2qwVA==
-  /fastify-error/0.2.0:
+  /fastify-error/0.3.0:
     dev: false
     resolution:
-      integrity: sha512-zabxsBatj59ROG0fhP36zNdc5Q1/eYeH9oSF9uvfrurZf8/JKfrJbMcIGrLpLWcf89rS6L91RHWm20A/X85hcA==
+      integrity: sha512-Jm2LMTB5rsJqlS1+cmgqqM9tTs0UrlgYR7TvDT3ZgXsUI5ib1NjQlqZHf+tDK5tVPdFGwyq02wAoJtyYIRSiFA==
   /fastify-plugin/3.0.0:
     dev: false
     resolution:
       integrity: sha512-ZdCvKEEd92DNLps5n0v231Bha8bkz1DjnPP/aEz37rz/q42Z5JVLmgnqR4DYuNn3NXAO3IDCPyRvgvxtJ4Ym4w==
-  /fastify-static/3.3.0:
+  /fastify-static/4.0.1:
     dependencies:
+      content-disposition: 0.5.3
       fastify-plugin: 3.0.0
       glob: 7.1.6
       readable-stream: 3.6.0
       send: 0.17.1
     dev: false
     resolution:
-      integrity: sha512-NaaeGWz25TmCYTGR8z90rhpfCuQqxDJauMC7fUTaswtxkM5CUmGGpwInm5/A55qfn9MbUQbPOWtWwSvhY73xHg==
+      integrity: sha512-Mjt0My8Gf/nzJqIDai9rz3HsxH4RAJeMGMIPmf40lGMFKAv4SbRiKJ2cmteXoKHrFGPeGxwMq0gXfixwueV8wA==
   /fastify-warning/0.2.0:
     dev: false
     resolution:
       integrity: sha512-s1EQguBw/9qtc1p/WTY4eq9WMRIACkj+HTcOIK1in4MV5aFaQC9ZCIt0dJ7pr5bIf4lPpHvAtP2ywpTNgs7hqw==
-  /fastify/3.9.2:
+  /fastify/3.14.1:
     dependencies:
+      '@fastify/proxy-addr': 3.0.0
       abstract-logging: 2.0.1
       ajv: 6.12.6
-      avvio: 7.2.0
-      fast-json-stringify: 2.3.0
-      fastify-error: 0.2.0
+      avvio: 7.2.1
+      fast-json-stringify: 2.5.3
+      fastify-error: 0.3.0
       fastify-warning: 0.2.0
-      find-my-way: 3.0.5
+      find-my-way: 4.1.0
       flatstr: 1.0.12
       light-my-request: 4.4.1
-      pino: 6.8.0
-      proxy-addr: 2.0.6
+      pino: 6.11.2
       readable-stream: 3.6.0
-      rfdc: 1.1.4
-      secure-json-parse: 2.1.0
-      semver: 7.3.4
+      rfdc: 1.3.0
+      secure-json-parse: 2.3.2
+      semver: 7.3.5
       tiny-lru: 7.0.6
     dev: false
     engines:
       node: '>=10.16.0'
     resolution:
-      integrity: sha512-8VEf4l6a2tdtrYQQwgT9Zh2/OvOgE4Sf6cDNMduAnKZ44CXrT0tXuH/uQkXuxqMAW27ZOy4jeexBl8CFaECntg==
-  /fastq/1.10.0:
+      integrity: sha512-9hoK1vvopsUJnUJpge90t8PZIqNQhGM54yDrd2veCZLkxh8eipnaHrXe2+f7tIt6UScUZ92JZQavxFGB4HX7xA==
+  /fastq/1.11.0:
     dependencies:
       reusify: 1.0.4
     dev: false
     resolution:
-      integrity: sha512-NL2Qc5L3iQEsyYzweq7qfgy5OtXCmGzGvhElGEd/SoFWEMOEczNh5s5ocaF01HDetxz+p8ecjNPA6cZxxIHmzA==
+      integrity: sha512-7Eczs8gIPDrVzT+EksYBcupqMyxSHXXrHOLRRxU2/DicV8789MRBRR8+Hc2uWzUupOs4YS4JzBmBxjjCVBxD/g==
   /finalhandler/1.1.2:
     dependencies:
       debug: 2.6.9
@@ -299,16 +314,17 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha512-aAWcW57uxVNrQZqFXjITpW3sIUQmHGG3qSb9mUah9MgMC4NeWhNOlNjXEYq3HjRAvL6arUviZGGJsBg6z0zsWA==
-  /find-my-way/3.0.5:
+  /find-my-way/4.1.0:
     dependencies:
       fast-decode-uri-component: 1.0.1
+      fast-deep-equal: 3.1.3
       safe-regex2: 2.0.0
       semver-store: 0.3.0
     dev: false
     engines:
       node: '>=10'
     resolution:
-      integrity: sha512-FweGg0cv1sBX8z7WhvBX5B5AECW4Zdh/NiB38Oa0qwSNIyPgRBCl/YjxuZn/rz38E/MMBHeVKJ22i7W3c626Gg==
+      integrity: sha512-UBD94MdO6cBi6E97XA0fBA9nwqw+xG5x1TYIPHats33gEi/kNqy7BWHAWx8QHCQQRSU5Txc0JiD8nzba39gvMQ==
   /flatstr/1.0.12:
     dev: false
     resolution:
@@ -393,12 +409,12 @@ packages:
       node: '>= 0.10'
     resolution:
       integrity: sha512-M4Sjn6N/+O6/IXSJseKqHoFc+5FdGJ22sXqnjTpdZweHK64MzEPAyQZyEU3R/KRv2GLoa7nNtg/C2Ev6m7z+eA==
-  /ipaddr.js/1.9.1:
+  /ipaddr.js/2.0.0:
     dev: false
     engines:
-      node: '>= 0.10'
+      node: '>= 10'
     resolution:
-      integrity: sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==
+      integrity: sha512-S54H9mIj0rbxRIyrDMEuuER86LdlgUg9FSeZ8duQb6CUG2iRrA36MYVQBSprTF/ZeAwvyQ5mDGuNvIPM0BIl3w==
   /json-schema-traverse/0.4.1:
     dev: false
     resolution:
@@ -409,7 +425,7 @@ packages:
       cookie: 0.4.1
       fastify-warning: 0.2.0
       readable-stream: 3.6.0
-      set-cookie-parser: 2.4.6
+      set-cookie-parser: 2.4.8
     dev: false
     resolution:
       integrity: sha512-FDNRF2mYjthIRWE7O8d/X7AzDx4otQHl4/QXbu3Q/FRwBFcgb+ZoDaUd5HwN53uQXLAiw76osN+Va0NEaOW6rQ==
@@ -512,22 +528,22 @@ packages:
     dev: false
     resolution:
       integrity: sha1-32BBeABfUi8V60SQ5yR6G/qmf4w=
-  /pino-std-serializers/2.5.0:
+  /pino-std-serializers/3.2.0:
     dev: false
     resolution:
-      integrity: sha512-wXqbqSrIhE58TdrxxlfLwU9eDhrzppQDvGhBEr1gYbzzM4KKo3Y63gSjiDXRKLVS2UOXdPNR2v+KnQgNrs+xUg==
-  /pino/6.8.0:
+      integrity: sha512-EqX4pwDPrt3MuOAAUBMU0Tk5kR/YcCM5fNPEzgCO2zJ5HfX0vbiH9HbJglnyeQsN96Kznae6MWD47pZB5avTrg==
+  /pino/6.11.2:
     dependencies:
       fast-redact: 3.0.0
       fast-safe-stringify: 2.0.7
       flatstr: 1.0.12
-      pino-std-serializers: 2.5.0
+      pino-std-serializers: 3.2.0
       quick-format-unescaped: 4.0.1
-      sonic-boom: 1.3.0
+      sonic-boom: 1.4.1
     dev: false
     hasBin: true
     resolution:
-      integrity: sha512-nxq+6Jr7m0cMjYFBoTRw3bco14omZ/SQCheAHz9GVwdkbUrzKhgT+gSI/ql2Mnsca0QQKgpB/ACWhjxE4JsX3Q==
+      integrity: sha512-bmzxwbrIPxQUlAuMkF4PWVErUGERU4z37HazlhflKFg08crsNE3fACGN6gPwg5xtKOK47Ux5cZm8YCuLV4wWJg==
   /proxy-addr/2.0.5:
     dependencies:
       forwarded: 0.1.2
@@ -537,15 +553,6 @@ packages:
       node: '>= 0.10'
     resolution:
       integrity: sha512-t/7RxHXPH6cJtP0pRG6smSr9QJidhB+3kXu0KgXnbGYMgzEnUxRQ4/LDdfOwZEMyIh3/xHb8PX3t+lfL9z+YVQ==
-  /proxy-addr/2.0.6:
-    dependencies:
-      forwarded: 0.1.2
-      ipaddr.js: 1.9.1
-    dev: false
-    engines:
-      node: '>= 0.10'
-    resolution:
-      integrity: sha512-dh/frvCBVmSsDYzw6n926jv974gddhkFPfiN8hPOi30Wax25QZyZEGveluCgliBnqmuM+UJmBErbAUFIoDbjOw==
   /punycode/2.1.1:
     dev: false
     engines:
@@ -558,10 +565,10 @@ packages:
       node: '>=0.6'
     resolution:
       integrity: sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
-  /queue-microtask/1.2.2:
+  /queue-microtask/1.2.3:
     dev: false
     resolution:
-      integrity: sha512-dB15eXv3p2jDlbOiNLyMabYg1/sXvppd8DP2J3EOCQ0AkuSXCW2tP7mnVouVLJKgUMY6yP0kcQDVpLCN13h4Xg==
+      integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
   /quick-format-unescaped/4.0.1:
     dev: false
     resolution:
@@ -606,10 +613,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==
-  /rfdc/1.1.4:
+  /rfdc/1.3.0:
     dev: false
     resolution:
-      integrity: sha512-5C9HXdzK8EAqN7JDif30jqsBzavB7wLpaubisuQIGHWf2gUXSpzy6ArX/+Da8RjFpagWsCn+pIgxTMAmKw9Zug==
+      integrity: sha512-V2hovdzFbOi77/WajaSMXk2OLm+xNIeQdMMuB7icj7bk6zi2F8GGAxigcnDFpJHbNyNcgyJDiP+8nOrY5cZGrA==
   /safe-buffer/5.1.2:
     dev: false
     resolution:
@@ -628,15 +635,15 @@ packages:
     dev: false
     resolution:
       integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
-  /secure-json-parse/2.1.0:
+  /secure-json-parse/2.3.2:
     dev: false
     resolution:
-      integrity: sha512-GckO+MS/wT4UogDyoI/H/S1L0MCcKS1XX/vp48wfmU7Nw4woBmb8mIpu4zPBQjKlRT88/bt9xdoV4111jPpNJA==
+      integrity: sha512-4oUSFU0w2d8/XQb7NO9dbMYyp/hxIwZPcZcGAlAAEziMRHs+NbUcx2Z5dda/z8o+avyQ8gpuYnTMlGh8SVwg9g==
   /semver-store/0.3.0:
     dev: false
     resolution:
       integrity: sha512-TcZvGMMy9vodEFSse30lWinkj+JgOBvPn8wRItpQRSayhc+4ssDs335uklkfvQQJgL/WvmHLVj4Ycv2s7QCQMg==
-  /semver/7.3.4:
+  /semver/7.3.5:
     dependencies:
       lru-cache: 6.0.0
     dev: false
@@ -644,7 +651,7 @@ packages:
       node: '>=10'
     hasBin: true
     resolution:
-      integrity: sha512-tCfb2WLjqFAtXn4KEdxIhalnRtoKFN7nAwj0B3ZXCbQloV2tq5eDbcTmT68JJD3nRJq24/XgxtQKFIpQdtvmVw==
+      integrity: sha512-PoeGJYh8HK4BTO/a9Tf6ZG3veo/A7ZVsYrSA6J8ny9nb3B1VrpkuN+z9OE5wfE5p6H4LchYZsegiQgbJD94ZFQ==
   /send/0.17.1:
     dependencies:
       debug: 2.6.9
@@ -676,31 +683,31 @@ packages:
       node: '>= 0.8.0'
     resolution:
       integrity: sha512-JMrvUwE54emCYWlTI+hGrGv5I8dEwmco/00EvkzIIsR7MqrHonbD9pO2MOfFnpFntl7ecpZs+3mW+XbQZu9QCg==
-  /set-cookie-parser/2.4.6:
+  /set-cookie-parser/2.4.8:
     dev: false
     resolution:
-      integrity: sha512-mNCnTUF0OYPwYzSHbdRdCfNNHqrne+HS5tS5xNb6yJbdP9wInV0q5xPLE0EyfV/Q3tImo3y/OXpD8Jn0Jtnjrg==
+      integrity: sha512-edRH8mBKEWNVIVMKejNnuJxleqYE/ZSdcT8/Nem9/mmosx12pctd80s2Oy00KNZzrogMZS5mauK2/ymL1bvlvg==
   /setprototypeof/1.1.1:
     dev: false
     resolution:
       integrity: sha512-JvdAWfbXeIGaZ9cILp38HntZSFSo3mWg6xGcJJsd+d4aRMOqauag1C63dJfDw7OaMYwEbHMOxEZ1lqVRYP2OAw==
-  /sonic-boom/1.3.0:
+  /sonic-boom/1.4.1:
     dependencies:
       atomic-sleep: 1.0.0
       flatstr: 1.0.12
     dev: false
     resolution:
-      integrity: sha512-4nX6OYvOYr6R76xfQKi6cZpTO3YSWe/vd+QdIfoH0lBy0MnPkeAbb2rRWgmgADkXUeCKPwO1FZAKlAVWAadELw==
+      integrity: sha512-LRHh/A8tpW7ru89lrlkU4AszXt1dbwSjVWguGrmlxE7tawVmDBlI1PILMkXAxJTwqhgsEeTHzj36D5CmHgQmNg==
   /statuses/1.5.0:
     dev: false
     engines:
       node: '>= 0.6'
     resolution:
       integrity: sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow=
-  /string-similarity/4.0.3:
+  /string-similarity/4.0.4:
     dev: false
     resolution:
-      integrity: sha512-QEwJzNFCqq+5AGImk5z4vbsEPTN/+gtyKfXBVLBcbPBRPNganZGfQnIuf9yJ+GiwSnD65sT8xrw/uwU1Q1WmfQ==
+      integrity: sha512-/q/8Q4Bl4ZKAPjj8WerIBJWALKkaPRfrvhfF8k/B23i4nzrlRj2/go1m90In7nG/3XDSbOo0+pu6RvCTM9RGMQ==
   /string_decoder/1.3.0:
     dependencies:
       safe-buffer: 5.2.1
@@ -734,12 +741,12 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha1-sr9O6FFKrmFltIF4KdIbLvSZBOw=
-  /uri-js/4.4.0:
+  /uri-js/4.4.1:
     dependencies:
       punycode: 2.1.1
     dev: false
     resolution:
-      integrity: sha512-B0yRTzYdUCCn9n+F4+Gh4yIDtMQcaJsmYBDsTSG8g/OejKBodLQ2IHfN3bM7jUsRXndopT7OIXWdYqc1fjmV6g==
+      integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==
   /util-deprecate/1.0.2:
     dev: false
     resolution:
@@ -769,5 +776,5 @@ shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   express: ^4.17.1
-  fastify: ^3.9.2
-  fastify-static: ^3.3.0
+  fastify: ^3.14.0
+  fastify-static: ^4.0.0
