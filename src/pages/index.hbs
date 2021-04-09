@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{{seo.title}}</title>
+    
+    <!-- meta tags for SEO and social sharing -->
+    <link rel="canonical" href="{{seo.url}}">
+    <meta name="description" content="{{seo.description}}">
+    <meta property="og:title" content="{{seo.title}}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{seo.url}}">
+    <meta property="og:description" content="{{seo.description}}">
+    <meta property="og:image" content="{{seo.image}}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="{{seo.url}}">
+    <meta name="twitter:title" content="{{seo.title}}">
+    <meta name="twitter:description" content="{{seo.description}}">
+    <meta name="twitter:image" content="{{seo.image}}">
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- if we've set a custom color (search or random) we change title text color with this style block -->
+    {{#if color}}
+    <style>
+      .title {
+        color: {{color}};
+      }
+    </style>
+    {{/if}}    
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="content">
+        <div class="title">Hey, Node!</div>
+        
+        <!-- add text indicating that we've changed color OR had an error -->
+        {{#if color}}
+          <div class="color-info">Now available in <b>{{color}}</b>!</div>
+        {{/if}}  
+        {{#if colorError}}
+          <div class="color-info">Hmm. Couldn't find <b>"{{colorError}}"</b>. <a href="?randomize=go">Try a random color?</a></div>
+        {{/if}}  
+        
+        <img
+          src="illustration.svg"
+          class="illustration"
+          alt="Javascript logo"
+        />
+        
+        <div>
+          <!-- the "what's your favorite color?" form -->
+          <form class="color-search" method="post">
+              <label for="color">
+                What's your favorite color?
+                <input id="color" name="color" required="required" type="text">
+              </label>
+
+            <button type="submit">Submit</button>
+          </form>
+          
+          <!-- this randomize link communicates with the server using a querystring instead of a form post -->
+          <a href="?randomize=go">Pick a random color for me</a>
+        </div>
+      </div>
+    </div>
+    <nav class="navigation">
+      <a
+        href="https://glitch.com/edit/#!/remix/glitch-hello-node"
+        class="btn--remix"
+      >
+        <img
+          src="https://cdn.glitch.com/a9975ea6-8949-4bab-addb-8a95021dc2da%2FLogo_Color.svg?v=1602781328576"
+        />
+        Remix on Glitch
+      </a>
+    </nav>
+
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script src="https://button.glitch.me/button.js" defer></script>
+  </body>
+</html>

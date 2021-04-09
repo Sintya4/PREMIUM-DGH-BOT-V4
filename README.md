@@ -1,34 +1,30 @@
-# hello-express
+# Hello Node
 
-A server that serves a webpage, its resources, and some data
+[Node.js](https://nodejs.org/en/about/) is a popular runtime that lets you run JavaScript on the server instead of in a browser. This project uses the [Fastify](https://www.fastify.io/) framework to explore basic templating with [Handlebars](https://handlebarsjs.com/) and submitting data using forms and querystrings.
 
+## What's in this project?
 
-## Your Project
+← `README.md`: That’s this file, where you can tell people what your cool website does and how you built it.
 
-On the front-end,
+← `public/style.css`: The styling rules for your pages and posts.
 
-- Edit `views/index.html` to change the content of the webpage
-- `public/client.js` is the javacript that runs when you load the webpage
-- `public/style.css` is the styles for `views/index.html`
-- Drag in `assets`, like images or music, to add them to your project
+← `server.js`: The main server script for your new site.
 
-On the back-end,
+← `src/`: This folder holds the main template for your site along with some basic data files.
 
-- your app starts at `server.js`
-- add frameworks and packages in `package.json`
-- safely store app secrets in `.env` (nobody can see this but you and people you invite)
+### Working in the `src/` folder 📁
 
-Click `Show` in the header to see your app live. Updates to your code will instantly deploy.
+← `src/pages/index.hbs`: This is the main page template for your site.
 
+← `src/colors.json`: A collection of CSS color names. We use this to pick a random color, and to match searches against color names.
 
-## Made by [Glitch](https://glitch.com/)
+← `src/seo.json`: When you're ready to share your new site or add a custom domain, change SEO/meta settings in here.
 
-**Glitch** is the friendly community where you'll build the app of your dreams. Glitch lets you instantly create, remix, edit, and host an app, bot or site, and you can invite collaborators or helpers to simultaneously edit code with you.
+![Glitch](https://cdn.glitch.com/a9975ea6-8949-4bab-addb-8a95021dc2da%2FLogo_Color.svg?v=1602781328576)
 
-Find out more [about Glitch](https://glitch.com/about).
+## You built this with Glitch!
 
-( ᵔ ᴥ ᵔ )
+[Glitch](https://glitch.com) is a friendly community where millions of people come together to build web apps and websites.
 
-
-## WIP / Scratch
-- Should use the glitch API to grab information about username
+- Need more help? [Check out our Help Center](https://help.glitch.com/) for answers to any common questions.
+- Ready to make it official? [Become a paid Glitch member](https://glitch.com/pricing) to boost your app with private sharing, more storage and memory, domains and more.
