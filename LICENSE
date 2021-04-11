@@ -1,8 +1,7 @@
 The LICENSE file for any project gives credit to the creator/author of the 
 project, copyright information for the project, and the legal terms under 
-which it's being shared. Easy version? This is us using an MIT license to say
-"we wrote this and you can do whatever you want with it."
-
+which it's being shared. In other words, this is us using an MIT license to
+say "we wrote this and you can do whatever you want with it."
 
 ******************************************************************************
 
@@ -25,3 +24,23 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+
+
+******************************************************************************
+
+THIRD-PARTY SOFTWARE
+
+
+1. fastify: 
+2. fastify-formbody: 
+3. fastify-static: 
+4. handlebars: 
+5. point-of-view: 
+
+
+*****************************************************************************
+START: fastify
+URL: 
+*****************************************************************************
