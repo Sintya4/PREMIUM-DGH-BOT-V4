@@ -1,12 +1,3 @@
-/* Our default values set for mobile */
-:root {
-  --color-bg: #9480FF;
-  --color-text-main: #2800FF;
-  --wrapper-height: 87vh;
-  --image-max-width: 300px;
-  --image-margin: 3rem;
-
-}
 /******************************************************************************
 START Glitch hello-app default styles
 
@@ -17,11 +8,12 @@ to this section's matching END comment to see page-specific styles.
 ******************************************************************************/
 /* Our default values set as CSS variables */
 :root {
-  --color-bg: #D7F5EF;
+  --color-bg: #9480FF;
   --color-text-main: #2800FF;
   --color-primary: #AFECE0;
-  --wrapper-height: 85vh;
-  --image-max-width: 320px;
+  --wrapper-height: 87vh;
+  --image-max-width: 300px;
+  --image-margin: 3rem;
   --font-family: "HK Grotesk";
   --font-family-header: "HK Grotesk";
 }
@@ -144,39 +136,6 @@ body {
   justify-content: flex-end;
 }
 
-/* Our remix on glitch button + grid for other actions */
-.btn--remix {
-  font-family: HK Grotesk;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  font-size: 1.1rem;
-  line-height: 1rem;
-  font-weight: 500;
-  align-items: center;
-  display: inline-flex;
-  cursor: pointer;
-  background: #FFFFFF;
-  border: 1px solid #000000;
-  box-sizing: border-box;
-  border-radius: 4px;
-  color: #000;
-  text-decoration: none;
-}
-
-.btn--remix:hover {
-  background-color: #D0FFF1;
-}
-
-.btn--remix img {
-  margin-right: 0.5rem;
-}
-
-.btn--remix {
-  margin-right: 1rem;
-}
-
 /* Very light scaling for our illustration */
 .illustration {
   max-width: 100%;
@@ -185,7 +144,7 @@ body {
 }
 
 /* our custom color indicator */
-div.color-info {
+.color-info {
   color: #ffffff;
   margin-bottom: 1.5rem;
 }
