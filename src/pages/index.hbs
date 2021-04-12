@@ -24,7 +24,7 @@
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css" />
 
-    <!-- this is a handlebars IF statement, checking for a custom "color" variable set in server.js -->
+    <!-- this is a handlebars IF statement, checking for a custom "color" parameter set in server.js -->
     {{#if color}} 
     <style>
       .title {
@@ -36,6 +36,7 @@
   <body>
     <div class="wrapper">
       <div class="content">
+        <!-- this is the start of content for our page -->
         <h1 class="title">Hey, Node!</h1>
         
         <!-- add text indicating that we've changed color OR had an error -->

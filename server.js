@@ -1,6 +1,6 @@
 const path = require("path");
 
-// Require the framework and instantiate it
+// Require the fastify framework and instantiate it
 const fastify = require("fastify")({
   logger: true
 });
@@ -29,8 +29,11 @@ if (seo.url === "glitch-default") {
 
 // Our home page route, this pulls from src/pages/index.hbs
 fastify.get("/", function(request, reply) {
+  // params is an object we'll pass to our handlebars template
   let params = { seo: seo };
+  // check and see if someone asked for a random color
   if (request.query.randomize) {
+    // we need to load our color data file, pick one at random, and add it to the params
     const colors = require("./src/colors.json");
     const allColors = Object.keys(colors);
     let currentColor = allColors[(allColors.length * Math.random()) << 0];
@@ -43,20 +46,27 @@ fastify.get("/", function(request, reply) {
   reply.view("/src/pages/index.hbs", params);
 });
 
-// A route to handle form submissions and output the main page with custom colors
+// A POST route to handle and react to form submissions 
 fastify.post("/", function(request, reply) {
   let params = { seo: seo };
+  // the request.body.color is posted with a form submission
   let color = request.body.color;
+  // if it's not empty, let's try to find the color
   if (color) {
+    // load our color data file
     const colors = require("./src/colors.json");
+    // take our form submission, remove whitespace, and convert to lowercase
     color = color.toLowerCase().replace(/\s/g, "");
+    // now we see if that color is a key in our colors object
     if (colors[color]) {
+      // found one!
       params = {
         color: colors[color],
         colorError: null,
         seo: seo
       };
     } else {
+      // try again.
       params = {
         colorError: request.body.color,
         seo: seo
