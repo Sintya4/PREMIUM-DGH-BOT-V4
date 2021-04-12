@@ -119,8 +119,7 @@ body {
   display: grid;
   place-items: center;
   margin-left: 2rem;
-  margin-top: 3rem;
-  max-width: 900px;
+  margin-top: 0;
 }
 
 .content {
