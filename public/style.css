@@ -104,6 +104,22 @@ body {
   background-color: var(--color-bg);
 }
 
+/* Page structure */
+.wrapper {
+  min-height: var(--wrapper-height);
+  display: grid;
+  place-items: center;
+  margin-left: 2rem;
+  margin-top: 0;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Title h1 style */
 .title {
   color: var(--color-text-main);
   font-family: HK Grotesk;
@@ -112,27 +128,6 @@ body {
   font-size: 120px;
   line-height: 105%;
   margin-bottom: 1.5rem;
-}
-
-.wrapper {
-  min-height: var(--wrapper-height);
-  display: grid;
-  place-items: center;
-  margin-left: 2rem;
-  margin-top: 0;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Navigation grid */
-.navigation {
-  display: flex;
-  justify-content: flex-end;
 }
 
 /* Very light scaling for our illustration */

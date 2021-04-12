@@ -24,8 +24,8 @@
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css" />
 
-    <!-- if we've set a custom color (search or random) we change title text color with this style block -->
-    {{#if color}}
+    <!-- this is a handlebars IF statement, checking for a custom "color" variable set in server.js -->
+    {{#if color}} 
     <style>
       .title {
         color: {{color}};
@@ -68,6 +68,7 @@
         />
       </div>
     </div>
+    <!-- the footer holds our remix button — you can use it for structure or cut it out ✂ -->
     <footer class="footer">
       <div class="links"></div>
       <a
