@@ -58,6 +58,7 @@ body {
   font-weight: bold;
   font-size: 120px;
   line-height: 105%;
+  margin-bottom: 1.5rem;
 }
 
 .wrapper {
@@ -125,4 +126,5 @@ body {
 /* our custom color indicator */
 div.color-info {
   color: #ffffff;
+  margin-bottom: 1.5rem;
 }
