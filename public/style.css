@@ -80,7 +80,7 @@ a:not(.btn--remix):visited {
   font-style: normal;
   font-weight: normal;
   font-size: 1.1rem;
-  color: #000;
+  color: #000000;
   text-decoration: none;
   border-style: none;
 }
@@ -138,11 +138,14 @@ body {
 }
 
 /* Styles for our custom color form and its results */
-.color-info {
-  color: #ffffff;
-  margin-bottom: 1.5rem;
+.color-form {
+  color: #000;
   width: 80%;
   max-width: var(--image-max-width);
+}
+.color-form a:not(.btn--remix) {
+  font-weight: bold;
+  color: var(--color-text-main);
 }
 form {
   margin: 0.75rem 0;

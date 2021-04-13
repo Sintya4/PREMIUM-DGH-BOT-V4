@@ -42,10 +42,15 @@
         <div class="color-form">
           <!-- add text indicating that we've changed color OR had an error -->
           {{#if color}}
-            <div class="color-info">Now available in <b>{{color}}</b>!</div>
+            <p class="color-info">
+              Now available in <b>{{color}}</b>!
+            </p>
           {{/if}}  
           {{#if colorError}}
-            <div class="color-info">Hmm. Couldn't find <b>"{{colorError}}"</b>. <a href="?randomize=go">Try a random color?</a></div>
+            <p class="color-info">
+              Hmm. Couldn't find <b>"{{colorError}}"</b>. 
+              <a href="?randomize=go">Try a random color?</a>
+            </p>
           {{/if}}  
           
           <!-- the "what's your favorite color?" form sends a POST to the server, check server.js to see how it works -->
