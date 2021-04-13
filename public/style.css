@@ -162,5 +162,6 @@ button, input {
   padding: 0.5rem 1rem;
 }
 label {
+  color: #000000;
   font-weight: bold;
 }
