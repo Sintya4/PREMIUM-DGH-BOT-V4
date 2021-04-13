@@ -137,8 +137,15 @@ body {
   margin-top: var(--image-margin);
 }
 
-/* our custom color indicator */
+/* Styles for our custom color form and its results */
 .color-info {
   color: #ffffff;
   margin-bottom: 1.5rem;
+}
+form {
+  margin: 0.75rem 0;
+}
+button, input {
+  font-family: inherit;
+  font-size: 100%;
 }

@@ -39,27 +39,27 @@
         <!-- this is the start of content for our page -->
         <h1 class="title">Hello Node!</h1>
         
-        <!-- add text indicating that we've changed color OR had an error -->
-        {{#if color}}
-          <div class="color-info">Now available in <b>{{color}}</b>!</div>
-        {{/if}}  
-        {{#if colorError}}
-          <div class="color-info">Hmm. Couldn't find <b>"{{colorError}}"</b>. <a href="?randomize=go">Try a random color?</a></div>
-        {{/if}}  
-        
-        <div>
-          <!-- the "what's your favorite color?" form -->
+        <div class="color-form">
+          <!-- add text indicating that we've changed color OR had an error -->
+          {{#if color}}
+            <div class="color-info">Now available in <b>{{color}}</b>!</div>
+          {{/if}}  
+          {{#if colorError}}
+            <div class="color-info">Hmm. Couldn't find <b>"{{colorError}}"</b>. <a href="?randomize=go">Try a random color?</a></div>
+          {{/if}}  
+          
+          <!-- the "what's your favorite color?" form sends a POST to the server, check server.js to see how it works -->
           <form class="color-search" method="post">
               <label for="color">
-                What's your favorite color?
+                What's your favorite color?<br>
                 <input id="color" name="color" required="required" type="text">
               </label>
 
             <button type="submit">Submit</button>
           </form>
           
-          <!-- this randomize link communicates with the server using a querystring instead of a form post -->
-          <a href="?randomize=go">Pick a random color for me</a>
+          <!-- this randomize link communicates with the server (server.js) using a querystring and GET request instead of a form POST -->
+          Can't decide? <a href="?randomize=go">Use a random color!</a>
         </div>
         
         <img
