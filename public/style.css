@@ -8,8 +8,8 @@ to this section's matching END comment to see page-specific styles.
 ******************************************************************************/
 /* Our default values set as CSS variables */
 :root {
-  --color-bg: #9986FF;
-  --color-text-main: #2000CC;
+  --color-bg: #FEC1EE;
+  --color-text-main: #000000;
   --color-primary: #AFECE0;
   --wrapper-height: 87vh;
   --image-max-width: 300px;
@@ -142,7 +142,6 @@ body {
   margin-top: -1.5rem;
 }
 .color-form {
-  color: #000;
   width: 80%;
   max-width: var(--image-max-width);
 }
