@@ -138,6 +138,9 @@ body {
 }
 
 /* Styles for our custom color form and its results */
+.color-info {
+  margin-top: -1.5rem;
+}
 .color-form {
   color: #000;
   width: 80%;
@@ -158,4 +161,7 @@ button, input {
   box-sizing: border-box;
   border-radius: 4px;
   padding: 0.5rem 1rem;
+}
+label {
+  font-weight: bold;
 }

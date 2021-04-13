@@ -55,6 +55,7 @@
           <!-- our default paragraph/message -->
           {{#unless colorError}}
             {{#unless color}}
+            <!-- There are fancier ways to do this, but nesting two "#unless" statements sets up a "if these are both missing..." condition -->
             <p>
               Learn about communication with a server by talking about color.
             </p>
@@ -64,7 +65,12 @@
           <!-- the "what's your favorite color?" form sends a POST to the server, check server.js to see how it works -->
           <form class="color-search" method="post">
               <label for="color">
-                What's your favorite color?<br>
+                <!-- we use the handlebars "#if" statement so the form can adapt to its situation -->
+                {{#if color}}
+                  Try another color?<br>
+                {{else}}
+                  What's your favorite color?<br>
+                {{/if}}
                 <input id="color" name="color" required="required" type="text">
               </label>
 
