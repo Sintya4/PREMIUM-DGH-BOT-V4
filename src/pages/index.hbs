@@ -38,20 +38,28 @@
       <div class="content" role="main">
         <!-- this is the start of content for our page -->
         <h1 class="title">Hello Node!</h1>
+        <!-- add text indicating that we've changed color OR had an error -->
+        {{#if color}}
+          <p class="color-info">
+            Now available in <b>{{color}}</b>!
+          </p>
+        {{/if}}  
+        {{#if colorError}}
+          <p class="color-info">
+            Hmm. Couldn't find <b>"{{colorError}}"</b>. 
+            <a href="?randomize=go">Try a random color?</a>
+          </p>
+        {{/if}}
         
         <div class="color-form">
-          <!-- add text indicating that we've changed color OR had an error -->
-          {{#if color}}
-            <p class="color-info">
-              Now available in <b>{{color}}</b>!
+          <!-- our default paragraph/message -->
+          {{#unless colorError}}
+            {{#unless color}}
+            <p>
+              Learn about communication with a server by talking about color.
             </p>
-          {{/if}}  
-          {{#if colorError}}
-            <p class="color-info">
-              Hmm. Couldn't find <b>"{{colorError}}"</b>. 
-              <a href="?randomize=go">Try a random color?</a>
-            </p>
-          {{/if}}
+            {{/unless}}
+          {{/unless}}
           
           <!-- the "what's your favorite color?" form sends a POST to the server, check server.js to see how it works -->
           <form class="color-search" method="post">
