@@ -148,11 +148,20 @@ body {
 .color-form a:not(.btn--remix) {
   font-weight: bold;
   color: var(--color-text-main);
+  margin-top: 8px;
+}
+.color-form button {
+  margin-top: 8px;
+}
+.color-form button:hover {
+  cursor: pointer;
+  box-shadow: -8px 4px 20px #9BE7D8;
 }
 form {
   margin: 0.75rem 0;
 }
-button, input {
+button,
+input {
   font-family: inherit;
   font-size: 100%;
   background: #FFFFFF;
