@@ -141,6 +141,8 @@ body {
 .color-info {
   color: #ffffff;
   margin-bottom: 1.5rem;
+  width: 80%;
+  max-width: var(--image-max-width);
 }
 form {
   margin: 0.75rem 0;
