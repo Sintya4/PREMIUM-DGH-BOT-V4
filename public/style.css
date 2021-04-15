@@ -121,6 +121,10 @@ body {
   justify-content: left;
 }
 
+p {
+  font-size: 1.25rem;
+}
+
 /* Title h1 style */
 .title {
   color: #2800FF;
@@ -133,15 +137,22 @@ body {
 }
 
 /* Very light scaling for our illustration */
+.illo-container {
+  display: flex;
+  justify-content: flex-end;
+}
 .illustration {
   max-width: 100%;
-  max-height: 200px;
-  margin-top: 0;
+  max-height: 150px;
+  margin-top: 1rem;
 }
 
 /* Styles for our custom color form and its results */
 .color-info {
-  
+  margin-left: 5px;
+}
+.color-search {
+  margin-top: 3rem;
 }
 .color-form {
   width: 90%;
