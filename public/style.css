@@ -133,10 +133,16 @@ body {
 }
 
 /* Very light scaling for our illustration */
+.illo-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .illustration {
-  max-width: 100%;
+  max-width: 200px;
   max-height: var(--image-max-width);
-  margin-top: var(--image-margin);
+  margin-top: 1rem;
+  margin-right: 2rem;
 }
 
 /* Styles for our custom color form and its results */
