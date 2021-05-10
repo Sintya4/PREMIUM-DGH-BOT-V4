@@ -2,7 +2,8 @@ const path = require("path");
 
 // Require the fastify framework and instantiate it
 const fastify = require("fastify")({
-  logger: true
+  // set this to true for detailed logging:
+  logger: false
 });
 
 // Setup our static files
@@ -82,5 +83,6 @@ fastify.listen(process.env.PORT, function(err, address) {
     fastify.log.error(err);
     process.exit(1);
   }
+  console.log(`Your app is listening on ${address}`);
   fastify.log.info(`server listening on ${address}`);
 });
