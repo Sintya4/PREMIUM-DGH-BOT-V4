@@ -1,24 +1,45 @@
-# Hello Node
+# Hello Node!
 
-[Node.js](https://nodejs.org/en/about/) is a popular runtime that lets you run JavaScript on the server instead of in a browser. This project uses the [Fastify](https://www.fastify.io/) framework to explore basic templating with [Handlebars](https://handlebarsjs.com/) and submitting data using forms and querystrings.
+This project includes a Node.js server script and a web page that connects to it. The front-end page presents a form the visitor can use to submit a color name, sending the submitted value to the back-end API running on the server. The server returns info to the page that allows it to update the display with the chosen color. 🎨
+
+[Node.js](https://nodejs.org/en/about/) is a popular runtime that lets you run server-side JavaScript. This project uses the [Fastify](https://www.fastify.io/) framework and explores basic templating with [Handlebars](https://handlebarsjs.com/).
 
 ## What's in this project?
 
 ← `README.md`: That’s this file, where you can tell people what your cool website does and how you built it.
 
-← `public/style.css`: The styling rules for your pages and posts.
+← `public/style.css`: The styling rules for the pages in your site.
 
-← `server.js`: The main server script for your new site.
+← `server.js`: The **Node.js** server script for your new site. The JavaScript defines the endpoints in the site back-end, one to return the homepage and one to update with the submitted color. Each one sends data to a Handlebars template which builds these parameter values into the web page the visitor sees.
 
-← `src/`: This folder holds the main template for your site along with some basic data files.
+← `package.json`: The NPM packages for your project's dependencies.
 
-### Working in the `src/` folder 📁
+← `src/`: This folder holds the site template along with some basic data files.
 
-← `src/pages/index.hbs`: This is the main page template for your site.
+← `src/pages/index.hbs`: This is the main page template for your site. The template receives parameters from the server script, which it includes in the page HTML. The page sends the user submitted color value in the body of a request, or as a query parameter to choose a random color.
 
-← `src/colors.json`: A collection of CSS color names. We use this to pick a random color, and to match searches against color names.
+← `src/colors.json`: A collection of CSS color names. We use this in the server script to pick a random color, and to match searches against color names.
 
 ← `src/seo.json`: When you're ready to share your new site or add a custom domain, change SEO/meta settings in here.
+
+## Next steps 🚀
+
+Let's keep track of the submitted favorites using an array. First add this code near the top of `server.js`:
+
+```js
+const favorites = [];
+```
+
+In the `POST` route, inside the `if(color)` block, add this code to save the submitted value to the array, and write it to the console:
+
+```js
+favorites.push(color);
+console.log(favorites);
+```
+
+Click __Tools__ > __Logs__ at the bottom of Glitch to see the log statement in action when you submit new colors through the form.
+
+Clearly this is not a robust data storage approach and won't persist for long! Your Node apps can use a variety of databases, like [SQLite](https://glitch.com/~hello-sqlite) and [Airtable](https://glitch.com/~airtable-guestbook-starter).
 
 ![Glitch](https://cdn.glitch.com/a9975ea6-8949-4bab-addb-8a95021dc2da%2FLogo_Color.svg?v=1602781328576)
 

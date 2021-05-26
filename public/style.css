@@ -188,3 +188,14 @@ label {
   color: #000000;
   font-weight: bold;
 }
+
+/* Instructions */
+.instructions {
+  margin: 1rem auto 0;
+}
+.instructions p {
+  font-size: 1rem;
+}
+h2 {
+  color: #2800FF;
+}
