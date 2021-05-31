@@ -14,11 +14,9 @@ client.on("message", message => {
     return message.channel.send(`Pong ${client.ws.ping}`); //it will return message
   }
   if (message.content === "hi") {
-    const now = Date.now();
-    const expirationTime = "30000";
-      const timeLeft = (expirationTime - now) / 1000;
+   var callTime = (new Date()).getTime();
       return message.channel.send(
-        `please wait ${timeLeft} more second(s) before reusing the \`hai\` command.`
+        `please wait ${10-((new Date()).getTime() - callTime )} more second(s) before reusing the \`hai\` command.`
       );
     }
 });
