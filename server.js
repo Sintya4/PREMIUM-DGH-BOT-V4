@@ -193,8 +193,8 @@ client.on("message", async message => {
   let command =
     client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
   if (!command) return;
-  
-let status = db.get(`afkstatus_${message.guild.id}_${message.author.id}`);
+
+  let status = db.get(`afkstatus_${message.guild.id}_${message.author.id}`);
   let reason;
   if (status === true) {
     db.set(`afkstatus_${message.guild.id}_${message.author.id}`, false);
@@ -222,7 +222,7 @@ let status = db.get(`afkstatus_${message.guild.id}_${message.author.id}`);
       }
     }
   }
-  
+
   if (command.enabled === false) {
     const embed = new Discord.MessageEmbed()
       .setDescription(`This command is disabled.`)
@@ -429,8 +429,6 @@ client.on("message", async message => {
   let Prefix = await await client.data.get(`Prefix_${message.guild.id}`);
   if (!Prefix) Prefix = Default_Prefix;
   if (message.content.startsWith(Prefix + "setlang")) return;
-   if(!language){return message.channel.send("}
-
   let translate = require("@k3rn31p4nic/google-translate-api");
   let language = await client.data.get(`LANG_${message.guild.id}`);
   const cchann = await client.data.get(`chatbot_${message.guild.id}`);
@@ -447,7 +445,7 @@ client.on("message", async message => {
     let data = await fetch(
       `https://api.affiliateplus.xyz/api/chatbot?message=${encodeURIComponent(
         message.content
-      )}&botname=${client.user.username}&ownername=lmon`
+      )}&botname=${client.user.username}&ownername=dgh`
     ).then(res => res.json());
     const translated = await translate(data.message, {
       to: language
