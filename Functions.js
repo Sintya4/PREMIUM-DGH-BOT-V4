@@ -1,7 +1,7 @@
 //I WILL BE BACK AFTER 5 min
 const ytdl = require('ytdl-core');
 const { MessageEmbed } = require("discord.js")
-const { QUEUE_LIMIT, COLOR } = require("../config.json");
+const { QUEUE_LIMIT, COLOR } = require("./config.js");
 const yes = ['yes', 'y', 'ye', 'yea', 'correct'];
 const no = ['no', 'n', 'nah', 'nope', 'fuck off'];
 

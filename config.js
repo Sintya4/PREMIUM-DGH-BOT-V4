@@ -1,4 +1,4 @@
-exports.Token = 'NzkwOTM3MDI0OTQxMTI5NzU5.X-H3gQ.CVvgcHpK5bnE0TbF5A4mIqjazs8'; //Bot Token - Important
+exports.Token = 'NzkwOTM3MDI0OTQxMTI5NzU5.X-H3gQ.D463oUvtRY5Gp5x-TCqpVCwZp0s'; //Bot Token - Important
 exports.Owner = '767726828311543820'; //Bot Owner ID - Important
 exports.Developer = '740947753135243354'; //Bot Dev ID - Important
 exports.Default_Prefix = '!'; //Bot Default Prefix (Examples: A!, !)- Important
