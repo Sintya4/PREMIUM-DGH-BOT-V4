@@ -8,7 +8,7 @@ client.on("messageReactionRemove", async (reaction, user) => {
   if (!guild.me.hasPermission("MANAGE_ROLES")) return;
   const member = guild.members.cache.get(user.id);
   if (!member) return;
-const data = client.db.get(`reactions_${guild.id}_${reaction.message.id}`)
+const data = await client.data.get(`reactions_${guild.id}_${reaction.message.id}`)
   if (!data) return;
   const reaction3 = data.find(
     (r) => r.emoji === reaction.emoji.toString()

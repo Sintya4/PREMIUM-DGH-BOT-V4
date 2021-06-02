@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = async client => {
   client.on("messageReactionAdd", async (reaction, user) => {
     let { guild } = reaction.message;
-    let chx = client.db.get(`starboard_${guild.id}`);
+    let chx = await client.data.get(`starboard_${guild.id}`);
     if (chx === null) return;
     const starboard = client.channels.cache.get(chx);
     if (!starboard) return;
@@ -59,7 +59,7 @@ module.exports = async client => {
 
   client.on("messageReactionRemove", async (reaction, user) => {
     let { guild } = reaction.message;
-    let chx = client.db.get(`starboard_${guild.id}`);
+    let chx = await client.data.get(`starboard_${guild.id}`);
     if (chx === null) return;
     const starboard = client.channels.cache.get(chx);
     if (!starboard) return;

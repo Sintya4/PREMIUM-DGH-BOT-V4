@@ -126,12 +126,12 @@ client.on("messageDelete", function(message, channel) {
 client.on("message", async message => {
   if (message.author.bot || !message.guild || message.webhookID) return;
 
-  let words = db.get(`words_${message.guild.id}`);
-  let yus = db.get(`message_${message.guild.id}`);
+  let words = await client.data.get(`words_${message.guild.id}`);
+  let yus = await client.data.get(`message_${message.guild.id}`);
   if (yus === null) {
     yus = ":x: | **{user-mention}, The Word You said is blacklisted!**";
   }
-  let Prefix = await db.get(`Prefix_${message.guild.id}`);
+  let Prefix = await await client.data.get(`Prefix_${message.guild.id}`);
   if (!Prefix) Prefix = Default_Prefix;
   if (message.content.startsWith(Prefix + "addword")) return;
   if (message.content.startsWith(Prefix + "delword")) return;
@@ -169,7 +169,7 @@ client.on("message", async message => {
 client.on("message", async message => {
   if (message.author.bot || !message.guild || message.webhookID) return;
   xp(message);
-  let Prefix = await db.get(`Prefix_${message.guild.id}`);
+  let Prefix = await client.data.get(`Prefix_${message.guild.id}`);
   if (!Prefix) Prefix = Default_Prefix;
   const escapeRegex = str =>
     str.replace(/[.<>`•√π÷×¶∆£¢€¥*@_+?^${}()|[\]\\]/g, "\\$&");
@@ -184,7 +184,7 @@ client.on("message", async message => {
     .split(/ +/);
   let cmd = args.shift().toLowerCase();
 
-  let cmdx = db.get(`cmd_${message.guild.id}`);
+  let cmdx = await client.data.get(`cmd_${message.guild.id}`);
   if (cmdx) {
     let cmdy = cmdx.find(x => x.name === cmd);
     if (cmdy) message.channel.send(cmdy.responce);
@@ -194,7 +194,7 @@ client.on("message", async message => {
     client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
   if (!command) return;
 
-  let status = db.get(`afkstatus_${message.guild.id}_${message.author.id}`);
+  let status = await client.data.get(`afkstatus_${message.guild.id}_${message.author.id}`);
   let reason;
   if (status === true) {
     db.set(`afkstatus_${message.guild.id}_${message.author.id}`, false);

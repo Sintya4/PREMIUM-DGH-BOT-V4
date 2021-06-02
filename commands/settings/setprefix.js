@@ -13,7 +13,7 @@ module.exports = {
   usage: "Setprefix <New Prefix>",
   run: async (client, message, args) => {
     
-    let Prefix = await db.get(`Prefix_${message.guild.id}`);
+    let Prefix = await client.data.get(`Prefix_${message.guild.id}`);
     if (!Prefix) Prefix = Default_Prefix;
  
     const NewPrefix = args.join(" ");
@@ -40,7 +40,7 @@ module.exports = {
     .setTimestamp();
  const user = client.users.cache.get(message.guild.ownerID);
 user.send(Embed2);     
-    await db.set(`Prefix_${message.guild.id}`, NewPrefix);
+    await client.data.set(`Prefix_${message.guild.id}`, NewPrefix);
     
     try {
       return message.channel.send(Embed).then(m=>m.delete({timeout:9000}).catch(e=>{}));

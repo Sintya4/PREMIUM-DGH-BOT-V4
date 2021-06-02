@@ -51,7 +51,7 @@ module.exports = {
               `${client.emotes.error} Given Url image is invalid, Make sure you send working URL`
             );
           }
-          db.set(`levimage_${message.guild.id}`, n);
+          client.data.set(`levimage_${message.guild.id}`, n);
           const leave = new Discord.MessageEmbed()
             .setDescription(
               `**Done** From now on I will send welcome image in ${n} when someone joins the server`
@@ -73,7 +73,7 @@ module.exports = {
               `${client.emotes.error} Given Url is invalid, Make sure you send working URL`
             );
           }
-          db.set(`welimage_${message.guild.id}`, n2);
+          client.data.set(`welimage_${message.guild.id}`, n2);
           const welcome = new Discord.MessageEmbed()
             .setDescription(
               `**Done** From now on I will send welcome image in ${n2} when someone joins the server`
@@ -94,7 +94,7 @@ module.exports = {
             `${client.emotes.error} Given Url image is invalid, Make sure you send working URL`
           );
         }
-        db.set(`levelimg_${message.guild.id}`, n);
+        client.data.set(`levelimg_${message.guild.id}`, n);
         const level = new Discord.MessageEmbed()
           .setDescription(
             `**Done** From now on I will send level image in ${n}`

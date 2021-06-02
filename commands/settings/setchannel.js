@@ -9,7 +9,7 @@ module.exports = {
   description: "Set the channel",
   botPermission: ['VIEW_CHANNEL','EMBED_LINKS','ATTACH_FILES','MANAGE_CHANNELS','MANAGE_GUILD'],
   authorPermission: ['VIEW_CHANNEL','EMBED_LINKS','ATTACH_FILES','MANAGE_CHANNELS','MANAGE_GUILD'],
- run: (client, message, args) => {
+ run: async (client, message, args) => {
     const channel = message.mentions.channels.first();
     const [key, ...value] = args;
     switch (key) {
@@ -32,7 +32,7 @@ module.exports = {
               `${client.emotes.error}Pls Give Invalid channel... Try again...`
             );
           }
-          db.set(`levchannel_${message.guild.id}`, channel.id);
+          client.data.set(`levchannel_${message.guild.id}`, channel.id);
           const leave = new Discord.MessageEmbed()
             .setDescription(
               `**Done** From now on I will send welcome message in ${channel} when someone leaves the server`
@@ -48,7 +48,7 @@ module.exports = {
               `${client.emotes.error}Pls Give Invalid channel... Try again...`
             );
           }
-          db.set(`chatbot_${message.guild.id}`, channel.id);
+          client.data.set(`chatbot_${message.guild.id}`, channel.id);
           const chat = new Discord.MessageEmbed()
             .setDescription(
               `**Done** From now on I will send Chatbot in ${channel}`
@@ -64,7 +64,7 @@ module.exports = {
               `${client.emotes.error}Pls Give Invalid channel... Try again...`
             );
           }
-          db.set(`starboard_${message.guild.id}`, channel.id);
+          client.data.set(`starboard_${message.guild.id}`, channel.id);
           const chat = new Discord.MessageEmbed()
             .setDescription(
               `**Done** From now on I will send Starboard in ${channel}`
@@ -80,7 +80,7 @@ module.exports = {
               `${client.emotes.error}Pls Give Invalid channel... Try again...`
             );
           }
-          db.set(`welchannel_${message.guild.id}`, channel.id);
+          client.data.set(`welchannel_${message.guild.id}`, channel.id);
           const welcome = new Discord.MessageEmbed()
             .setDescription(
               `**Done** From now on I will send welcome message in ${channel} when someone joins the server`
@@ -96,7 +96,7 @@ module.exports = {
               `${client.emotes.error}Pls Give Invalid channel... Try again...`
             );
           }
-          db.set(`reports_${message.guild.id}`, channel.id);
+          client.data.set(`reports_${message.guild.id}`, channel.id);
           const welcome = new Discord.MessageEmbed()
             .setDescription(
               `**Done** From now on I will send reports member in ${channel}`
@@ -113,7 +113,7 @@ module.exports = {
               `${client.emotes.error}Pls Give Invalid channel... Try again...`
             );
           }
-          db.set(`levelch_${message.guild.id}`, channel.id);
+          client.data.set(`levelch_${message.guild.id}`, channel.id);
           const welcome = new Discord.MessageEmbed()
             .setDescription(
               `**Done** From now on I will send level up in ${channel}`
@@ -125,7 +125,7 @@ module.exports = {
       case "modlog": {
         const bot = client;
         if (!args[0]) {
-          let b = db.fetch(`modlog_${message.guild.id}`);
+          let b = await client.data.fetch(`modlog_${message.guild.id}`);
           let channelName = message.guild.channels.cache.get(b);
           if (message.guild.channels.cache.has(b)) {
             return message.channel.send(
@@ -147,7 +147,7 @@ module.exports = {
           return message.channel.send("**Please Enter A Valid Text Channel!**");
 
         try {
-          let a = db.fetch(`modlog_${message.guild.id}`);
+          let a = await client.data.fetch(`modlog_${message.guild.id}`);
 
           if (channel.id === a) {
             return message.channel.send(
@@ -158,7 +158,7 @@ module.exports = {
               .get(message.guild.id)
               .channels.cache.get(channel.id)
               .send("**Modlog Channel Set!**");
-            db.set(`modlog_${message.guild.id}`, channel.id);
+            client.data.set(`modlog_${message.guild.id}`, channel.id);
 
             message.channel.send(
               `**Modlog Channel Has Been Set Successfully in \`${channel.name}\`!**`

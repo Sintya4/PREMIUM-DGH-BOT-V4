@@ -16,7 +16,7 @@ module.exports = {
   permission: "",
   bot: ["MANAGE_CHANNELS", "VIEW_CHANNEL", "MANAGE_ROLES"],
   run: async (client, message, args) => {
-    const strat = db.get(`ticket_${message.guild.id}`);
+    const strat = await client.data.get(`ticket_${message.guild.id}`);
     const cc = await message.guild.channels
       .create(`Ticket_${numbers}`, {
         parent: strat.id,
@@ -100,7 +100,7 @@ module.exports = {
             });
           }
         });
-        let chan = db.fetch(`modlog_${message.guild.id}`);
+        let chan = await client.data.fetch(`modlog_${message.guild.id}`);
         if (chan == null) return;
 
         if (!chan) return;

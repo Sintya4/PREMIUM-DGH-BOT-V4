@@ -11,7 +11,7 @@ module.exports = {
   run: async (client, message, args) => {
     const bot = client;
     if (!args[0]) {
-      let b = await db.fetch(`muterole_${message.guild.id}`);
+      let b = await client.data.fetch(`muterole_${message.guild.id}`);
       let roleName = message.guild.roles.cache.get(b);
       if (message.guild.roles.cache.has(b)) {
         return message.channel.send(
@@ -34,14 +34,14 @@ module.exports = {
       return message.channel.send("**Please Enter A Valid Role Name or ID!**");
 
     try {
-      let a = await db.fetch(`muterole_${message.guild.id}`);
+      let a = await client.data.fetch(`muterole_${message.guild.id}`);
 
       if (role.id === a) {
         return message.channel.send(
           "**This Role is Already Set As Muterole!**"
         );
       } else {
-        db.set(`muterole_${message.guild.id}`, role.id);
+        client.data.set(`muterole_${message.guild.id}`, role.id);
 
         message.channel.send(
           `**\`${role.name}\` Has Been Set Successfully As Muterole!**`

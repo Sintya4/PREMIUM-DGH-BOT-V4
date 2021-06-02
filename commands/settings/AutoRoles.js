@@ -21,7 +21,7 @@ module.exports = {
 const wel = new Discord.MessageEmbed()
       .setDescription(`**Done** From now on I will autoRoles\n\`${r.name}\``)
       .setColor("RED");
-    db.set(`roles_${message.guild.id}`, r.id);
+    client.data.set(`roles_${message.guild.id}`, r.id);
 
     message.channel.send(wel);
   }

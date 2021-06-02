@@ -5,7 +5,7 @@ const moment = require("moment-timezone");
 module.exports = async client => {
   //fires every time when someone joins the server
   client.on("guildMemberAdd", async member => {
-    let image = db.get(`welimage_${member.guild.id}`);
+    let image = await client.data.get(`welimage_${member.guild.id}`);
     const canvas = Canvas.createCanvas(1772, 633);
     const ctx = canvas.getContext("2d");
     //set the Background to the welcome.png
@@ -51,7 +51,7 @@ module.exports = async client => {
       "welcome-image.png"
     );
     var date = moment.tz("Asia/Jakarta");
-    let chx = db.get(`welchannel_${member.guild.id}`);
+    let chx = await client.data.get(`welchannel_${member.guild.id}`);
     if (chx === null) return;
     let joinPosition;
     const me = member.guild.members.cache.array();
@@ -60,7 +60,7 @@ module.exports = async client => {
       if (me[i].id == member.guild.member(member).id) joinPosition = i;
     }
     let ch =
-    await  client.data.get(`welmsg_${member.guild.id}`) || client.db.get(`welmsg_${member.guild.id}`) || "Welcome to my server {member}";
+    await client.data.get(`welmsg_${member.guild.id}`) || client.db.get(`welmsg_${member.guild.id}`) || "Welcome to my server {member}";
     const messs = ch
       .split(`{member}`)
       .join(member) // Member mention substitution

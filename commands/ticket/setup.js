@@ -23,7 +23,7 @@ module.exports = {
       return message.channel.send(
         "Unicron doesn't have permissions to that channel, please give Unicron access to that channel for this to work and try again...Exiting Setup"
       );
-    db.set(`ticket_${message.guild.id}`, channel);
+    client.data.set(`ticket_${message.guild.id}`, channel);
     return message.channel.send(
       `Ticket System Category has been set to \`${channel.name}\`.`
     );

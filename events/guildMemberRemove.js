@@ -4,7 +4,7 @@ const db = require("quick.db");
 const moment = require("moment");
 module.exports = async client => {
   client.on("guildMemberRemove", async member => {
-    let image = db.get(`levimage_${member.guild.id}`);
+    let image = await client.data.get(`levimage_${member.guild.id}`);
     const canvas = Canvas.createCanvas(1772, 633);
     const ctx = canvas.getContext("2d");
     //set the Background to the welcome.png
@@ -50,7 +50,7 @@ module.exports = async client => {
       "welcome-image.png"
     );
     var date = moment.tz("Asia/Jakarta");
-    let chx = db.get(`levchannel_${member.guild.id}`);
+    let chx = await client.data.get(`levchannel_${member.guild.id}`);
     let c = await client.data.get(`levmsg_${member.guild.id}`) || client.db.get(`levmsg_${member.guild.id}`) || "Good bye {member}";
     let ch = c
       .split(`{member}`)
