@@ -2,7 +2,6 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const { Client } = require("discord.js");
 const db = require("quick.db");
-const colors = require("colors");
 const format = require(`humanize-duration`);
 const ms = require("pretty-ms");
 const canvacord = require("canvacord");
@@ -14,7 +13,7 @@ const client = new Client({
 });
 const Discord4Bots = require("discord4bots");
 const dbl = new Discord4Bots("yhiJwowjQneauWvPaZnDfGHY", client);
-const { Database } = require("quickmongo")
+const { Database } = require("quickmongo");
 require("./reply"); //<message.inlineReply>
 const {
   Default_Prefix,
@@ -41,7 +40,7 @@ let { awaitReply } = require("./Functions.js");
 client.emotes = client.config.emojis;
 client.db = require("quick.db");
 client.data = new Database(mongodb);
-client.data2 =  client.data;
+client.data2 = client.data;
 client.discord = require("discord.js");
 client.resolveUser = resolveUser;
 client.awaitReply = awaitReply;
@@ -49,7 +48,7 @@ client.random = getRandomString;
 client.send = send;
 client.count = emo;
 client.text = text;
-require('./index.js');
+require("./index.js");
 /*
 function importData() {
     const data = db.all();
@@ -61,10 +60,10 @@ function importData() {
 client.data.on("ready", () => importData());
 */
 client.on("ready", async () => {
-     let users = 0;
-            client.guilds.cache.forEach(x =>{
-               users+= x.memberCount
-             })
+  let users = 0;
+  client.guilds.cache.forEach(x => {
+    users += x.memberCount;
+  });
   dbl.serverCount();
   console.clear();
   console.log(`Bot Is Ready To Go!\nTag: ${client.user.tag}`);
@@ -503,8 +502,8 @@ function send(content, message, color) {
     embed: { description: content, color: color }
   });
 }
-function emo(count){
-	const mapping = {
+function emo(count) {
+  const mapping = {
     " ": "  ",
     "0": ":zero:",
     "1": ":one:",
@@ -517,18 +516,25 @@ function emo(count){
     "8": ":eight:",
     "9": ":nine:"
   };
-let coun = count.split("").map(c => mapping[c] || c).join("")
+  let coun = count
+    .split("")
+    .map(c => mapping[c] || c)
+    .join("");
   return coun;
 }
-function text(text){
-const emojified = `${text}`.toLowerCase().split('').map(letter => {
-			if (/[a-z]/g.test(letter)) {
-				return `:regional_indicator_${letter}: `;
-			}
-			
-			return letter;
-		}).join('');
-	return emojified;	
+function text(text) {
+  const emojified = `${text}`
+    .toLowerCase()
+    .split("")
+    .map(letter => {
+      if (/[a-z]/g.test(letter)) {
+        return `:regional_indicator_${letter}: `;
+      }
+
+      return letter;
+    })
+    .join("");
+  return emojified;
 }
 function resolveUser(search) {
   if (!search || typeof search !== "string") return null;

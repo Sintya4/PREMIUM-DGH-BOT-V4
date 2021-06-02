@@ -25,7 +25,6 @@
     "colors": "^1.4.0",
     "common-tags": "^1.8.0",
     "covidapi": "^0.4.3",
-    "cun": "https://github.com/Sintya4/discord4bots",
     "discord-canvas": "^1.3.2",
     "discord-giveaways": "^4.4.3",
     "discord-webhook-node": "^1.1.8",
