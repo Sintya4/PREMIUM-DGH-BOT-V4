@@ -429,6 +429,7 @@ client.on("message", async message => {
   let Prefix = await await client.data.get(`Prefix_${message.guild.id}`);
   if (!Prefix) Prefix = Default_Prefix;
   if (message.content.startsWith(Prefix + "setlang")) return;
+   if(!language){return message.channel.send("}
 
   let translate = require("@k3rn31p4nic/google-translate-api");
   let language = await client.data.get(`LANG_${message.guild.id}`);
@@ -449,7 +450,7 @@ client.on("message", async message => {
       )}&botname=${client.user.username}&ownername=lmon`
     ).then(res => res.json());
     const translated = await translate(data.message, {
-      to: language || "english"
+      to: language
     });
     message.inlineReply(translated.text);
     message.channel.stopTyping();

@@ -60,7 +60,7 @@ module.exports = {
             .replace(/vanity_url/ig, `${client.emotes.success}Vanity Link`)
             .replace(/verified/ig, `${client.emotes.success}Verified`)
             .replace(/vip_regions/ig, `${client.emotes.success}VIP Regions`)
-            .replace(/welcome_screen_enabled/ig, `${client.emotes.success}Welcome Screen Enabled`)
+            .replace(/welcome_screen_enabled/ig, `${client.emotes.success}Welcome Screen Enabled`) || "None"
 
     let guildCreatedAt = moment(message.guild.createdAt).format("lll");
     let guildCreatedAtFromNow = moment(
