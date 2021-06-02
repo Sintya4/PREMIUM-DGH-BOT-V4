@@ -10,7 +10,7 @@ module.exports = {
     embed.setThumbnail(message.guild.iconURL());
     embed.setFooter(message.author.tag, message.author.displayAvatarURL());
     embed.setColor("GREEN");
-    let words = client.db.get(`words_${message.guild.id}`);
+    let words = await client.data.get(`words_${message.guild.id}`);
     if (words && words.length) {
       let array = [];
       words.forEach(x => {

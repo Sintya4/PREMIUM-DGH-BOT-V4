@@ -9,7 +9,7 @@ module.exports = {
   usage: "level [user]",
   category: "misc",
   botPermission: ["MANAGE_GUILD"],
-  run: (client, message, args) => {
+  run: async (client, message, args) => {
     let user;
     if (!args.length) {
       // Display info about the calling user
@@ -22,9 +22,12 @@ module.exports = {
       return message.channel.send(":x: Unable to find this person!");
     }
     let m = user;
-    let image = db.get(`levelimg_${message.guild.id}`);
-    var level = db.get(`guild_${message.guild.id}_level_${user.user.id}`) || 0;
-    const coins = db
+    let image = await client.data.get(`levelimg_${message.guild.id}`);
+    var level =
+      (await client.data.get(
+        `guild_${message.guild.id}_level_${user.user.id}`
+      )) || 0;
+    const coins = await client.data
       .all()
       .filter(data => data.ID.startsWith(`guild_${message.guild.id}_xp_`))
       .sort((a, b) => b.data - a.data);
@@ -33,9 +36,11 @@ module.exports = {
         .map(m => m.ID)
         .indexOf(`guild_${message.guild.id}_level_${message.author.id}`) + 1 ||
       "N/A";
-    let xp = db.get(`guild_${message.guild.id}_xp_${user.user.id}`) || 0;
+    let xp =
+      (await client.data.get(`guild_${message.guild.id}_xp_${user.user.id}`)) ||
+      0;
     var xpNeeded = level * 100;
-    let every = db
+    let every = await client.data
       .all()
       .filter(i => i.ID.startsWith(`guild_${message.guild.id}_xptotal_`))
       .sort((a, b) => b.data - a.data);
@@ -57,7 +62,7 @@ module.exports = {
       .setAvatar(user.user.displayAvatarURL({ format: "png" }))
       .setCurrentXP(xp)
       .setRequiredXP(xpNeeded || 100)
-      .setStatus(user.user.presence.status, true ,5)
+      .setStatus(user.user.presence.status, true, 5)
       .setProgressBar("#00FFFF", "COLOR")
       .setUsername(user.user.username, color)
       .setDiscriminator(user.user.discriminator)

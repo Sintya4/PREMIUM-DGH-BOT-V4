@@ -68,7 +68,7 @@ module.exports = {
       });
     }
     await msg.react(args[3]);
-    client.db.push(`reactions_${message.guild.id}_${msg.id}`, {
+    client.data.push(`reactions_${message.guild.id}_${msg.id}`, {
       emoji: args[3],
       roleId: role.id
     });

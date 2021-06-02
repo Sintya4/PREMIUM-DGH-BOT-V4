@@ -5,7 +5,7 @@ module.exports = {
   botPermission: ["VIEW_CHANNEL", "MANAGE_GUILD"],
   category: "anti-swear",
   run: async (client, message, args) => {
-    let pog = client.db.get(`words_${message.guild.id}`);
+    let pog = await client.data.get(`words_${message.guild.id}`);
     let word = args[0];
     if (!word) {
       let embed = new Discord.MessageEmbed()
@@ -40,7 +40,7 @@ module.exports = {
       word: word,
       author: message.author.tag
     };
-    client.db.push(`words_${message.guild.id}`, yes);
+    client.data.push(`words_${message.guild.id}`, yes);
     let embed = new Discord.MessageEmbed();
     embed.setAuthor(message.guild.name, message.guild.iconURL());
     embed.setTitle("Success");

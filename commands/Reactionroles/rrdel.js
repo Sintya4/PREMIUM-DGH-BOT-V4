@@ -46,7 +46,7 @@ module.exports = {
     if (!emoji && !emojis.includes(args[3]))
       return message.channel.send(":x: | **Specify a valid Emoji**");
 
-    let pog = client.db.get(`reactions_${message.guild.id}_${msg.id}`);
+    let pog = await client.data.get(`reactions_${message.guild.id}_${msg.id}`);
 
     if (pog) {
       let data = pog.find(x => x.emoji === args[3]);
@@ -69,7 +69,7 @@ module.exports = {
       var filter = pog.filter(x => {
         return x !== null && x;
       });
-      client.db.set(`reactions_${message.guild.id}_${msg.id}`, filter);
+      client.data.set(`reactions_${message.guild.id}_${msg.id}`, filter);
       let embed2 = new Discord.MessageEmbed();
       embed2.setAuthor(message.author.tag, message.author.displayAvatarURL());
       embed2.setDescription(`**The Reaction Role has been deleted!** `);

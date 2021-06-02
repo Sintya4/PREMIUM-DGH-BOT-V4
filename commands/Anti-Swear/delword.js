@@ -9,7 +9,7 @@ module.exports = {
       return message.channel.send(
         ":x: | **You dont have permissions to use this Command!**"
       );
-    let pog = client.db.get(`words_${message.guild.id}`);
+    let pog = await client.data.get(`words_${message.guild.id}`);
     let word = args[0];
     if (!word) {
       let embed = new Discord.MessageEmbed()
@@ -48,7 +48,7 @@ module.exports = {
       var filter = pog.filter(x => {
         return x != null && x != "";
       });
-      client.db.set(`words_${message.guild.id}`, filter);
+      client.data.set(`words_${message.guild.id}`, filter);
       let embed = new Discord.MessageEmbed();
       embed.setAuthor(message.author.tag, message.author.displayAvatarURL());
       embed.setDescription(`**The word has been deleted!** `);

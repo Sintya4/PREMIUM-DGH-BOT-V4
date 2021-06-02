@@ -9,7 +9,7 @@ module.exports = {
     if (!msg) {
       return message.channel.send("Provide a message.")
     }
-    client.db.set(`message_${message.guild.id}`, msg)
+    client.data.set(`message_${message.guild.id}`, msg)
     let embed = new Discord.MessageEmbed()
     embed.setTitle("Message Set!")
     embed.setFooter(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
