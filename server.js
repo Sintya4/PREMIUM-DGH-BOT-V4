@@ -437,9 +437,8 @@ client.on("message", async message => {
 
 client.on("message", async message => {
   if (message.author.bot || !message.guild || message.webhookID) return;
-  let enambed = await client.data.get(``);
-  if(!enambed == 0) return;
-  if(enambed == 0) return;
+  let enambed = await client.data.get(`nqn_${message.guild.id}`);
+  if(!enambed) return;
   let Prefix = await client.data.get(`Prefix_${message.guild.id}`);
   if (!Prefix) Prefix = Default_Prefix;
   if (message.content.startsWith(Prefix + "react")) return;
