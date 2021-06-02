@@ -193,37 +193,26 @@ client.on("message", async message => {
   let command =
     client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
   if (!command) return;
-
-  let status = await client.data.get(
-    `afkstatus_${message.guild.id}_${message.author.id}`
-  );
+  
+let status = db.get(`afkstatus_${message.guild.id}_${message.author.id}`);
   let reason;
   if (status === true) {
-    client.data.set(
-      `afkstatus_${message.guild.id}_${message.author.id}`,
-      false
-    );
-    client.data.delete(`afk_${message.guild.id}_${message.author.id}`);
+    db.set(`afkstatus_${message.guild.id}_${message.author.id}`, false);
+    db.delete(`afk_${message.guild.id}_${message.author.id}`);
     message.member.setNickname(message.author.username).catch(err => {});
     return message.reply(`**Welcome Back**`);
   }
   if (message.mentions.users.size) {
-    let mentions = message.mentions.users.filter(mention => mention.id !== message.author.id);
- 
+    let mentions = message.mentions.users;
+    mentions = mentions.filter(mention => mention.id !== message.author.id);
     if (mentions.size) {
-      let victim = mentions.find(
-        async mention =>
-          await client.data.get(`afk_${message.guild.id}_${mention.id}`)
+      let victim = mentions.find(mention =>
+        db.get(`afk_${message.guild.id}_${mention.id}`)
       );
-      
       if (victim) {
-        status = await client.data.get(
-          `afkstatus_${message.guild.id}_${victim.id}`
-        );
-        reason = await client.data.get(`afk_${message.guild.id}_${victim.id}`);
-        let time = await client.data.get(
-          `time_${message.guild.id}_${victim.id}`
-        );
+        status = db.get(`afkstatus_${message.guild.id}_${victim.id}`);
+        reason = db.get(`afk_${message.guild.id}_${victim.id}`);
+        let time = db.get(`time_${message.guild.id}_${victim.id}`);
         time = Date.now() - time;
         return message.reply(
           `**${victim.username} is currently AFK - ${reason} - ${format(
@@ -233,7 +222,7 @@ client.on("message", async message => {
       }
     }
   }
-
+  
   if (command.enabled === false) {
     const embed = new Discord.MessageEmbed()
       .setDescription(`This command is disabled.`)
