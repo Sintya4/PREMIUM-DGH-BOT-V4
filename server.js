@@ -411,6 +411,9 @@ client.on("message", async message => {
 //<Chat Bot>
 client.on("message", async message => {
   if (message.author.bot || !message.guild || message.webhookID) return;
+  let translate = require("@k3rn31p4nic/google-translate-api");
+  let language = await client.data.get(`LANG_${message.guild.id}`)
+const translated = await translate(toTranslate, { to: language });
   const cchann = await client.data.get(`chatbot_${message.guild.id}`);
   if (cchann === null) return;
   if (!cchann) return;
@@ -429,6 +432,7 @@ client.on("message", async message => {
     )
       .then(res => res.json())
       .then(data => {
+      
         message.inlineReply(data.message);
       });
     message.channel.stopTyping();
