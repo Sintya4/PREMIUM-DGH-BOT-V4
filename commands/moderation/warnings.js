@@ -8,13 +8,13 @@ module.exports = {
   botPermission: ["ADMINISTRATOR"],
   authorPermission: ["ADMINISTRATOR"],
   arga: true,
-  run: (client, message, args) => {
+  run: async(client, message, args) => {
     const user = message.mentions.members.first() || message.author;
 
-    let warnings = db.get(`warnings_${message.guild.id}_${user.id}`);
+    let warnings = await client.data.get(`warnings_${message.guild.id}_${user.id}`);
 
     if (warnings === null) warnings = 0;
 
-    message.channel.send(`${user} have **${warnings}** warning(s)`);
+    client.send(`${user} have **${warnings}** warning(s)`, message);
   }
 };

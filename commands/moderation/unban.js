@@ -53,7 +53,7 @@ module.exports = {
       }
     } catch {}
 
-    let channel = .fetch(`modlog_${message.guild.id}`);
+    let channel = await client.data.fetch(`modlog_${message.guild.id}`);
     if (!channel) return;
 
     let embed = new MessageEmbed()

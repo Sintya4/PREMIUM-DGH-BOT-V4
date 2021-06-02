@@ -23,7 +23,7 @@ module.exports = {
     let reason = args.slice(1).join(" ");
 
     let muterole;
-    let dbmute = await db.fetch(`muterole_${message.guild.id}`);
+    let dbmute = await client.data.fetch(`muterole_${message.guild.id}`);
     let muteerole = message.guild.roles.cache.find(r => r.name === "Muted");
 
     if (!message.guild.roles.cache.has(dbmute)) {
@@ -32,7 +32,7 @@ module.exports = {
       muterole = message.guild.roles.cache.get(dbmute);
     }
 
-    let rolefetched = db.fetch(`muteeid_${message.guild.id}_${mutee.id}`);
+    let rolefetched = await client.data.fetch(`muteeid_${message.guild.id}_${mutee.id}`);
     if (!rolefetched) return;
 
     if (!muterole)
@@ -62,7 +62,7 @@ module.exports = {
       .setDescription(`${mutee.user.username} was successfully unmuted.`);
     message.channel.send(sembed);
 
-    let channel = db.fetch(`modlog_${message.guild.id}`);
+    let channel = await client.data.fetch(`modlog_${message.guild.id}`);
     if (!channel) return;
 
     let embed = new MessageEmbed()

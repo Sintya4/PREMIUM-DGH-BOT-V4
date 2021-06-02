@@ -40,18 +40,18 @@ module.exports = {
       );
     }
 
-    let warnings = db.get(`warnings_${message.guild.id}_${user.id}`);
+    let warnings = await client.data.get(`warnings_${message.guild.id}_${user.id}`);
 
-    if (warnings === 3) {
+ /*   if (warnings === 3) {
       return message.channel.send(
         `${
           message.mentions.users.first().username
         } already reached his/her limit with 3 warnings`
       );
-    }
+    }*/
 
     if (warnings === null) {
-      db.set(`warnings_${message.guild.id}_${user.id}`, 1);
+      client.data.set(`warnings_${message.guild.id}_${user.id}`, 1);
       user.send(
         `You have been warned in **${message.guild.name}** for ${reason}`
       );
@@ -61,7 +61,7 @@ module.exports = {
         }** for ${reason}`
       );
     } else if (warnings !== null) {
-      db.add(`warnings_${message.guild.id}_${user.id}`, 1);
+      client.data.add(`warnings_${message.guild.id}_${user.id}`, 1);
       user.send(
         `You have been warned in **${message.guild.name}** for ${reason}`
       );
@@ -71,7 +71,7 @@ module.exports = {
         }** for ${reason}`
       );
     }
-    let channel = db.fetch(`modlog_${message.guild.id}`);
+    let channel = await client.data.fetch(`modlog_${message.guild.id}`);
     if (!channel) return;
 
     let embed = new MessageEmbed()
