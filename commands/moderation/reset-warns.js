@@ -32,7 +32,7 @@ module.exports = {
       return message.channel.send("Bot are not allowed to have warnings");
     }
 
-    let warnings = db.get(`warnings_${message.guild.id}_${user.id}`);
+    let warnings = await client.data.get(`warnings_${message.guild.id}_${user.id}`);
 
     if (warnings === null) {
       return message.channel.send(
@@ -40,7 +40,7 @@ module.exports = {
       );
     }
 
-    db.delete(`warnings_${message.guild.id}_${user.id}`);
+    client.data.delete(`warnings_${message.guild.id}_${user.id}`);
     user.send(
       `Your all warnings are reseted by ${message.author.username} from ${message.guild.name}`
     );

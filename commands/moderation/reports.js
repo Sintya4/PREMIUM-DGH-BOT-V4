@@ -22,7 +22,7 @@ module.exports = {
         );
       }
       let Avatar = User.displayAvatarURL();
-      let Channel = db.get(`reports_${message.guild.id}`);
+      let Channel = await client.data.get(`reports_${message.guild.id}`);
       if (!Channel)
         return message.channel.send(
           `Sorry there is no channel that I specified.\nPlease Settings first`

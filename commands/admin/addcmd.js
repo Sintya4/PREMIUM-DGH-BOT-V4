@@ -6,7 +6,7 @@ module.exports = {
   args: true,
   authorPermission: ["MANAGE_MESSAGES"],
   botPermission: ["MANAGE_MESSAGES"],
-  run: (client, message, args) => {
+  run: async (client, message, args) => {
     let cmdname = args[0];
     if (!cmdname)
       return message.channel.send(
@@ -17,7 +17,7 @@ module.exports = {
       return message.channel.send(
         `:x: You have to give command cmd responce, \`addcmd <cmd_name> <cmd_responce>\``
       );
-    let database = client.db.get(`cmd_${message.guild.id}`);
+    let database = await client.data.get(`cmd_${message.guild.id}`);
     if (database && database.find(x => x.name === cmdname.toLowerCase()))
       return message.channel.send(
         ":x: This command name is already added in guild custom commands."
@@ -26,7 +26,7 @@ module.exports = {
       name: cmdname.toLowerCase(),
       responce: cmdresponce
     };
-    client.db.push(`cmd_${message.guild.id}`, data);
+    client.data.push(`cmd_${message.guild.id}`, data);
     return message.channel.send(
       "Added **" + cmdname.toLowerCase() + "** as a custom command in guild."
     );

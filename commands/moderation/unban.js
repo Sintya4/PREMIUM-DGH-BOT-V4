@@ -53,7 +53,7 @@ module.exports = {
       }
     } catch {}
 
-    let channel = db.fetch(`modlog_${message.guild.id}`);
+    let channel = .fetch(`modlog_${message.guild.id}`);
     if (!channel) return;
 
     let embed = new MessageEmbed()

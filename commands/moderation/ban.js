@@ -59,7 +59,7 @@ module.exports = {
           .setDescription(`**${banMember.user.username}** has been banned`);
         message.channel.send(sembed2);
       }
-      let channel = db.fetch(`modlog_${message.guild.id}`);
+      let channel = await client.data.fetch(`modlog_${message.guild.id}`);
       if (channel == null) return;
 
       if (!channel) return;

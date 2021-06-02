@@ -6,7 +6,7 @@ module.exports = {
   args: true,
    authorPermission: ["MANAGE_MESSAGES"],
   botPermission: ["MANAGE_MESSAGES"],
- run: (client, message, args) => {
+ run: async (client, message, args) => {
     let cmdname = args[0];
 
     if (!cmdname)
@@ -14,7 +14,7 @@ module.exports = {
         ":x: Gimm me commmand name, `delcmd <cmd_name>`"
       );
 
-    let database = client.db.get(`cmd_${message.guild.id}`);
+    let database = await client.data.get(`cmd_${message.guild.id}`);
 
     if (database) {
       let data = database.find(x => x.name === cmdname.toLowerCase());
@@ -29,7 +29,7 @@ module.exports = {
         return x != null && x != "";
       });
 
-      client.db.set(`cmd_${message.guild.id}`, filter);
+      client.data.set(`cmd_${message.guild.id}`, filter);
       return message.channel.send(`Deleted the **${cmdname}** Command!`);
     } else {
       return message.channel.send(

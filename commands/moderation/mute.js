@@ -40,7 +40,7 @@ module.exports = {
         .map(r => r.id);
 
       let muterole;
-      let dbmute = await db.fetch(`muterole_${message.guild.id}`);
+      let dbmute = await client.data.fetch(`muterole_${message.guild.id}`);
       let muteerole = message.guild.roles.cache.find(r => r.name === "Muted");
 
       if (!message.guild.roles.cache.has(dbmute)) {
@@ -74,7 +74,7 @@ module.exports = {
       if (mutee.roles.cache.has(muterole.id))
         return message.channel.send("**User Is Already Muted!**");
 
-      db.set(`muteeid_${message.guild.id}_${mutee.id}`, userRoles);
+      client.data.set(`muteeid_${message.guild.id}_${mutee.id}`, userRoles);
       try {
         mutee.roles.set([muterole.id]).then(() => {
           mutee
@@ -103,7 +103,7 @@ module.exports = {
         message.channel.send(sembed2);
       }
 
-      let channel = db.fetch(`modlog_${message.guild.id}`);
+      let channel = await client.data.fetch(`modlog_${message.guild.id}`);
       if (!channel) return;
 
       let embed = new MessageEmbed()

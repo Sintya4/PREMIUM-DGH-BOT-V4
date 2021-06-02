@@ -10,7 +10,7 @@ module.exports = {
   authorPermission: ["KICK_MEMBERS"],
   botPermission: ["KICK_MEMBERS"],
   args: true,
-  run: (client, message, args) => {
+  run: async(client, message, args) => {
     try {
       const bot = client;
       if (!args[0]) return message.channel.send("**Enter A User To Kick!**");
@@ -64,7 +64,7 @@ module.exports = {
           .setDescription(`**${kickMember.user.username}** has been kicked`);
         message.channel.send(sembed2);
       }
-      let channel = db.fetch(`modlog_${message.guild.id}`);
+      let channel = await client.data.fetch(`modlog_${message.guild.id}`);
       if (!channel) return;
 
       const embed = new MessageEmbed()
