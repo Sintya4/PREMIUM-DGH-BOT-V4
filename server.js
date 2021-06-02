@@ -197,8 +197,8 @@ client.on("message", async message => {
   let status = await client.data.get(`afkstatus_${message.guild.id}_${message.author.id}`);
   let reason;
   if (status === true) {
-    db.set(`afkstatus_${message.guild.id}_${message.author.id}`, false);
-    db.delete(`afk_${message.guild.id}_${message.author.id}`);
+     client.data.set(`afkstatus_${message.guild.id}_${message.author.id}`, false);
+     client.data.delete(`afk_${message.guild.id}_${message.author.id}`);
     message.member.setNickname(message.author.username).catch(err => {});
     return message.reply(`**Welcome Back**`);
   }
@@ -207,12 +207,12 @@ client.on("message", async message => {
     mentions = mentions.filter(mention => mention.id !== message.author.id);
     if (mentions.size) {
       let victim = mentions.find(mention =>
-        db.get(`afk_${message.guild.id}_${mention.id}`)
-      );
+      client.data.get(`afk_${message.guild.id}_${mention.id}`)
+   );
       if (victim) {
-        status = db.get(`afkstatus_${message.guild.id}_${victim.id}`);
-        reason = db.get(`afk_${message.guild.id}_${victim.id}`);
-        let time = db.get(`time_${message.guild.id}_${victim.id}`);
+        status = await client.data.get(`afkstatus_${message.guild.id}_${victim.id}`);
+        reason = await client.data.get(`afk_${message.guild.id}_${victim.id}`);
+        let time = await client.data.get(`time_${message.guild.id}_${victim.id}`);
         time = Date.now() - time;
         return message.reply(
           `**${victim.username} is currently AFK - ${reason} - ${format(
@@ -343,29 +343,29 @@ client.on("message", async message => {
     client.error(error);
   }
 });
-function xp(message) {
+ async function xp(message) {
   if (message.author.bot || !message.guild || message.webhookID) return;
   const randomnumber = Math.floor(Math.random() * 10) + 15;
-  db.add(`guild_${message.guild.id}_xp_${message.author.id}`, randomnumber);
-  db.get(`guild_${message.guild.id}_xptotal_${message.guild.id}`, randomnumber);
+  client.data.add(`guild_${message.guild.id}_xp_${message.author.id}`, randomnumber);
+  await client.data.get(`guild_${message.guild.id}_xptotal_${message.guild.id}`, randomnumber);
   var level =
-    db.get(`guild_${message.guild.id}_level_${message.author.id}`) || 1;
-  var xp = db.get(`guild_${message.guild.id}_xp_${message.author.id}`);
+    await client.data.get(`guild_${message.guild.id}_level_${message.author.id}`) || 1;
+  var xp = await client.data.get(`guild_${message.guild.id}_xp_${message.author.id}`);
   var xpNeeded = level * 100;
   if (xpNeeded < xp) {
-    var newLevel = db.add(
+    var newLevel = client.data.add(
       `guild_${message.guild.id}_level_${message.author.id}`,
       1
     );
 
-    db.subtract(`guild_${message.guild.id}_xp_${message.author.id}`, xpNeeded);
+    await client.data.subtract(`guild_${message.guild.id}_xp_${message.author.id}`, xpNeeded);
     if (message.guild.id === message.guild.id) {
-      let channel_id = db.get(`levelch_${message.guild.id}`);
+      let channel_id = await client.data.get(`levelch_${message.guild.id}`);
       let user = message.author;
       if (channel_id === null) return;
       let levelchannel = client.channels.cache.get(channel_id);
-      let image = db.get(`levelimg_${message.guild.id}`);
-      var rank = db.get(`guild_${message.guild.id}_xptotal_${user.id}`);
+      let image = await client.data.get(`levelimg_${message.guild.id}`);
+      var rank = await client.data.get(`guild_${message.guild.id}_xptotal_${user.id}`);
       let color = message.member.displayHexColor;
 
       if (color == "#000000") color = message.member.hoistRole.hexColor;
@@ -411,7 +411,7 @@ function xp(message) {
 //<Chat Bot>
 client.on("message", async message => {
   if (message.author.bot || !message.guild || message.webhookID) return;
-  const cchann = client.db.get(`chatbot_${message.guild.id}`);
+  const cchann = await client.data.get(`chatbot_${message.guild.id}`);
   if (cchann === null) return;
   if (!cchann) return;
   const sender = client.channels.cache.get(cchann);
@@ -437,7 +437,10 @@ client.on("message", async message => {
 
 client.on("message", async message => {
   if (message.author.bot || !message.guild || message.webhookID) return;
-  let Prefix = await db.get(`Prefix_${message.guild.id}`);
+  let enambed = await client.data.get(``);
+  if(!enambed == 0) return;
+  if(enambed == 0) return;
+  let Prefix = await client.data.get(`Prefix_${message.guild.id}`);
   if (!Prefix) Prefix = Default_Prefix;
   if (message.content.startsWith(Prefix + "react")) return;
   let msg = message.content;
