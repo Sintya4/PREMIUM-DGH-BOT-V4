@@ -76,7 +76,8 @@
     "wio.db": "^4.0.20",
     "youtube-sr": "^2.0.5",
     "ytdl-core": "^4.1.5",
-    "ytsr": "^3.5.0"
+    "ytsr": "^3.5.0",
+    "@k3rn31p4nic/google-translate-api": "^1.1.1"
   },
   "engines": {
     "node": "12.x"
