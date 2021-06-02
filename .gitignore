@@ -6,6 +6,8 @@ config.j
 json.sqlite
 .json
 database.json
+data
+
 
 
 
