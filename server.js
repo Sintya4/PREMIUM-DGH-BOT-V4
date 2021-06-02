@@ -435,8 +435,12 @@ async function xp(message) {
 //<Chat Bot>
 client.on("message", async message => {
   if (message.author.bot || !message.guild || message.webhookID) return;
+  let Prefix = await await client.data.get(`Prefix_${message.guild.id}`);
+  if (!Prefix) Prefix = Default_Prefix;
+  if (message.content.startsWith(Prefix + "setlang")) return;
+
   let translate = require("@k3rn31p4nic/google-translate-api");
-  let language = (await client.data.get(`LANG_${message.guild.id}`));
+  let language = await client.data.get(`LANG_${message.guild.id}`);
   const cchann = await client.data.get(`chatbot_${message.guild.id}`);
   if (cchann === null) return;
   if (!cchann) return;
@@ -453,7 +457,9 @@ client.on("message", async message => {
         message.content
       )}&botname=${client.user.username}&ownername=lmon`
     ).then(res => res.json());
-    const translated = await translate(data.message, { to: language || "english" });
+    const translated = await translate(data.message, {
+      to: language || "english"
+    });
     message.inlineReply(translated.text);
     message.channel.stopTyping();
   }
