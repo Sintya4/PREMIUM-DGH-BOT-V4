@@ -442,35 +442,18 @@ client.on("message", async message => {
       .replace(/@(here)/gi, "here");
     message.channel.stopTyping();
     message.channel.startTyping();
-    fetch(
+
+    let data = await fetch(
       `https://api.affiliateplus.xyz/api/chatbot?message=${encodeURIComponent(
         message.content
       )}&botname=${client.user.username}&ownername=dgh`
-    )
-      .then(res => res.json())
-      .then(async data => {
-        const translated = await translate(data.message, {
-          to: language || "english"
-        }).cathe(c => console(.log);
-        message.inlineReply(translated.text);
-        message.channel.stopTyping();
-      });
-  } else if (message.channel.name == sender.name) {
-    if (message.author.bot) return;
-    message.content = message.content
-      .replace(/@(everyone)/gi, "everyone")
-      .replace(/@(here)/gi, "here");
-    message.channel.stopTyping();
-    message.channel.startTyping();
-    fetch(
-      `https://api.affiliateplus.xyz/api/chatbot?message=${encodeURIComponent(
-        message.content
-      )}&botname=${client.user.username}&ownername=lmon`
-    )
-      .then(res => res.json())
-      .then(data => {
-        message.inlineReply(data.message);
-      });
+    ).then(res => res.json());
+
+    const translated = await translate(data.message, {
+      to: language || "english"
+    });
+
+    message.inlineReply(translated.text);
     message.channel.stopTyping();
   }
 });
