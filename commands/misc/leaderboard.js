@@ -7,7 +7,7 @@ module.exports = {
   botPermission: ["MANAGE_GUILD"],
 
   run: async (client, message, args) => {
-    const coins = await client.data
+    const coins = await client.db
       .all()
       .filter(data => data.ID.startsWith(`guild_${message.guild.id}_xp_`))
       .sort((a, b) => b.data - a.data);

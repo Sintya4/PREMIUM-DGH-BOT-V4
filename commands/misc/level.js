@@ -24,10 +24,10 @@ module.exports = {
     let m = user;
     let image = await client.data.get(`levelimg_${message.guild.id}`);
     var level =
-      (await client.data.get(
+      (await client.db.get(
         `guild_${message.guild.id}_level_${user.user.id}`
       )) || 0;
-    const coins = await client.data
+    const coins = client.db
       .all()
       .filter(data => data.ID.startsWith(`guild_${message.guild.id}_xp_`))
       .sort((a, b) => b.data - a.data);
@@ -37,10 +37,10 @@ module.exports = {
         .indexOf(`guild_${message.guild.id}_level_${message.author.id}`) + 1 ||
       "N/A";
     let xp =
-      (await client.data.get(`guild_${message.guild.id}_xp_${user.user.id}`)) ||
+      (await client.db.get(`guild_${message.guild.id}_xp_${user.user.id}`)) ||
       0;
     var xpNeeded = level * 100;
-    let every = await client.data
+    let every = await client.db
       .all()
       .filter(i => i.ID.startsWith(`guild_${message.guild.id}_xptotal_`))
       .sort((a, b) => b.data - a.data);

@@ -346,26 +346,26 @@ client.on("message", async message => {
  async function xp(message) {
   if (message.author.bot || !message.guild || message.webhookID) return;
   const randomnumber = Math.floor(Math.random() * 10) + 15;
-  client.data.add(`guild_${message.guild.id}_xp_${message.author.id}`, randomnumber);
-  await client.data.get(`guild_${message.guild.id}_xptotal_${message.guild.id}`, randomnumber);
+  client.db.add(`guild_${message.guild.id}_xp_${message.author.id}`, randomnumber);
+  await client.db.get(`guild_${message.guild.id}_xptotal_${message.guild.id}`, randomnumber);
   var level =
-    await client.data.get(`guild_${message.guild.id}_level_${message.author.id}`) || 1;
-  var xp = await client.data.get(`guild_${message.guild.id}_xp_${message.author.id}`);
+    await client.db.get(`guild_${message.guild.id}_level_${message.author.id}`) || 1;
+  var xp = await client.db.get(`guild_${message.guild.id}_xp_${message.author.id}`);
   var xpNeeded = level * 100;
   if (xpNeeded < xp) {
-    var newLevel = client.data.add(
+    var newLevel = client.db.add(
       `guild_${message.guild.id}_level_${message.author.id}`,
       1
     );
 
-    await client.data.subtract(`guild_${message.guild.id}_xp_${message.author.id}`, xpNeeded);
+    await client.db.subtract(`guild_${message.guild.id}_xp_${message.author.id}`, xpNeeded);
     if (message.guild.id === message.guild.id) {
       let channel_id = await client.data.get(`levelch_${message.guild.id}`);
       let user = message.author;
       if (channel_id === null) return;
       let levelchannel = client.channels.cache.get(channel_id);
       let image = await client.data.get(`levelimg_${message.guild.id}`);
-      var rank = await client.data.get(`guild_${message.guild.id}_xptotal_${user.id}`);
+      var rank = await client.db.get(`guild_${message.guild.id}_xptotal_${user.id}`);
       let color = message.member.displayHexColor;
 
       if (color == "#000000") color = message.member.hoistRole.hexColor;
