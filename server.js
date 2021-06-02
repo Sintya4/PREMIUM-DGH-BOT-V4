@@ -208,12 +208,14 @@ client.on("message", async message => {
     return message.reply(`**Welcome Back**`);
   }
   if (message.mentions.users.size) {
-    let mentions = message.mentions.users;
-    mentions = mentions.filter(mention => mention.id !== message.author.id);
+    let mentions = message.mentions.users.filter(mention => mention.id !== message.author.id);
+ 
     if (mentions.size) {
-      let victim = mentions.find(mention =>
-        client.data.get(`afk_${message.guild.id}_${mention.id}`)
+      let victim = mentions.find(
+        async mention =>
+          await client.data.get(`afk_${message.guild.id}_${mention.id}`)
       );
+      
       if (victim) {
         status = await client.data.get(
           `afkstatus_${message.guild.id}_${victim.id}`
