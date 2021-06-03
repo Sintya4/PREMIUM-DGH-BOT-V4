@@ -10,7 +10,7 @@ module.exports = {
     const channel = message.mentions.channels.first();
     
     let pog = await client.data.get(`youtuber_${message.guild.id}`);
-    let api = args[0].replace("https://youtube.com/c/","").replace("/","");
+    let api = args[0]//.replace("https://youtube.com/c/","").replace("/","");
     if (!api) {
       let embed = new Discord.MessageEmbed()
         .setTitle("Error")
