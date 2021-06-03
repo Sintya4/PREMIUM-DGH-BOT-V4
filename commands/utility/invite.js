@@ -11,13 +11,13 @@ module.exports = {
   cooldown: 5,
   run: async (client, message, args) => {
     message.delete();
-    const Invite = `https://discord.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=9&redirect_uri=https%3A%2F%2Fdiscord.gg%2FrZ2Qa5wWFV`;
+    const Invite = `https://discord.com/oauth2/authorize?client_id=849903077690572800&scope=bot&permissions=9&redirect_uri=https%3A%2F%2Fdiscord.gg%2FrZ2Qa5wWFV`;
     let image = `https://discordapp.com/api/guilds/${Server_ID}/embed.png?style=banner3`;
     const Embed = new Discord.MessageEmbed()
       .setColor("GREEN")
       .setTitle("🙏Thanks🙏")
       .addField("Invite Me", `[Click Me](${Invite})`)
-      .addField("Vote",`[Click Me](https://infinitybotlist.com/bots/790937024941129759/)`)
+      .addField("Vote",`[Click Me](https://discord4bots.tk/bot/849903077690572800/)`)
       .addField("Support Server", `[Click Me](${Support})`)
       .addField("Dashboard", `[Click Me](${Dashboard})`)
       .addField("Owner", `<@${Owner}>`)
