@@ -78,7 +78,8 @@
     "ytdl-core": "^4.1.5",
     "ytsr": "^3.5.0",
     "@k3rn31p4nic/google-translate-api": "^1.1.1",
-    "@postor/google-translate-api": "^1.1.3"
+    "@postor/google-translate-api": "^1.1.3",
+    "youtube-notification": "^1.1.0"
   },
   "engines": {
     "node": "12.x"

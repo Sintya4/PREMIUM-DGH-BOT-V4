@@ -64,6 +64,7 @@ dependencies:
   util: 0.12.4
   weather-js: 2.0.0
   wio.db: 4.0.21
+  youtube-notification: 1.1.0
   youtube-sr: 2.0.5
   ytdl-core: 4.8.2
   ytsr: 3.5.0
@@ -1450,6 +1451,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
+  /axios/0.19.2:
+    dependencies:
+      follow-redirects: 1.5.10
+    deprecated: 'Critical security vulnerability fixed in v0.21.1. For more information, see https://github.com/axios/axios/pull/3410'
+    dev: false
+    resolution:
+      integrity: sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
   /axios/0.21.1:
     dependencies:
       follow-redirects: 1.14.1
@@ -3064,6 +3072,14 @@ packages:
       node: '>=4.0'
     resolution:
       integrity: sha512-HWqDgT7ZEkqRzBvc2s64vSZ/hfOceEol3ac/7tKwzuvEyWx3/4UegXh5oBOIotkGsObyk3xznnSRVADBgWSQVg==
+  /follow-redirects/1.5.10:
+    dependencies:
+      debug: 3.1.0
+    dev: false
+    engines:
+      node: '>=4.0'
+    resolution:
+      integrity: sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==
   /foreach/2.0.5:
     dev: false
     resolution:
@@ -6848,6 +6864,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-PRU7gJrJaXv3q3yQZ/+/X6KBswZiaQ+zOmdprZcouPYtQgvNU35i+68M4b1ZHLZtYFT5QObFLV+ZkmJYcwKdiw==
+  /youtube-notification/1.1.0:
+    dependencies:
+      axios: 0.19.2
+      express: 4.17.1
+      xml2js: 0.4.23
+    dev: false
+    resolution:
+      integrity: sha512-0v2lQqLWrKK1p6hSiWwGRcBxiEsczrqpam7fhNgSfskHERXSG8HYZrkk7MY+0SabKPV9bROZabCAyOtSqgkiYA==
   /youtube-sr/2.0.5:
     dependencies:
       node-fetch: 2.6.1
@@ -6965,6 +6989,7 @@ specifiers:
   util: ^0.12.3
   weather-js: ^2.0.0
   wio.db: ^4.0.20
+  youtube-notification: ^1.1.0
   youtube-sr: ^2.0.5
   ytdl-core: ^4.1.5
   ytsr: ^3.5.0
