@@ -7,7 +7,9 @@ const ms = require("pretty-ms");
 const canvacord = require("canvacord");
 const mongoose = require("mongoose");
 const { MessageEmbed } = require("discord.js");
-const client = new Client({
+let {Token } = require("./config.js")
+for (const token of Token) { 
+ const client = new Client({
   disableEveryone: "everyone",
   partials: ["REACTION", "MESSAGE", "CHANNEL"]
 });
@@ -30,8 +32,7 @@ const fetch = require("node-fetch");
 setInterval(async () => {
   await fetch("https://indecisive-lumbar-cuckoo.glitch.me/");
 }, 2400);
-for (const token of Token) { 
- 
+
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 const cooldowns = new Discord.Collection();
@@ -51,22 +52,12 @@ client.send = send;
 client.count = emo;
 client.text = text;
 require("./index.js");
-/*
-function importData() {
-    const data = db.all();
-    client.data.import(data).then(() => {
-        console.log("Done!");
-    });    
-}
 
-client.data.on("ready", () => importData());
-*/
 client.on("ready", async () => {
   let users = 0;
   client.guilds.cache.forEach(x => {
     users += x.memberCount;
   });
-  dbl.serverCount();
   console.clear();
   console.log(`Bot Is Ready To Go!\nTag: ${client.user.tag}`);
   client.user
