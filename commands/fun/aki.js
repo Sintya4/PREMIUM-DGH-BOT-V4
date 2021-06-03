@@ -64,7 +64,7 @@ module.exports = {
          const msg = await message.channel.send(new MessageEmbed()
             .setTitle(`${message.author.username}, Question ${aki.currentStep + 1}`)
             .setColor("RANDOM")
-            .setDescription(`**${aki.question}**\n${aki.answers.map((x, i) => `${x} | ${emojis[i]}`).join("\n")}`));
+            .setDescription(`**${aki.question}**\n${aki.answers.map((x, i) => `${x} | ${emojis[i]}`).join("\n")}\n process${aki.progress}`));
         for (let emoji of emojis) await msg.react(emoji).catch(console.error);
         const collector = msg.createReactionCollector((reaction, user) => emojis.includes(reaction.emoji.name) && user.id === message.author.id, { time: 60000 * 6 });
         collector.on("collect", async (reaction, user) => {
