@@ -43,7 +43,7 @@ module.exports = {
     }
     let yes = {
       api: api,
-      channel: channel
+      channel: channel.id
     };
     client.data.push(`youtuber_${message.guild.id}`, yes);
     let embed = new Discord.MessageEmbed();

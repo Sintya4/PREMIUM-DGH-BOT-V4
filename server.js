@@ -158,6 +158,21 @@ client.on("message", async message => {
   }
 });
 
+//YOUTUBE STUDIO BY SINTYA
+ 
+  const YouTubeNotifier = require('youtube-notification');
+  const notifier = new YouTubeNotifier({
+  hubCallback: 'https://indecisive-lumbar-cuckoo.glitch.me/yt',
+  secret: 'JOIN_MY_SERVER_OR_DIE'
+});
+
+  let w = await client.data.get(`words_${message.guild.id}`);
+  if (w === null) return;
+  let channel_id = w.channel;
+  let api = w.api;
+  
+  
+
 //<SETUP>
 client.on("message", async message => {
   if (message.author.bot || !message.guild || message.webhookID) return;

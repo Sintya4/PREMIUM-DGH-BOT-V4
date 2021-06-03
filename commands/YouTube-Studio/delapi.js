@@ -26,13 +26,13 @@ module.exports = {
       });
     }
     if (pog) {
-      let data = pog.find(x => x.word.toLowerCase() === word.toLowerCase());
+      let data = pog.find(x => x.api === api);
       let No = new Discord.MessageEmbed();
       No.setAuthor(
         message.author.tag,
         message.author.displayAvatarURL({ dynamic: true })
       );
-      No.setDescription(`:x: | **Word Not Found**`);
+      No.setDescription(`:x: | **API CHANNEL Not Found**`);
       No.setColor("#FF0000");
       No.setFooter(
         message.guild.name,
@@ -48,10 +48,10 @@ module.exports = {
       var filter = pog.filter(x => {
         return x != null && x != "";
       });
-      client.data.set(`words_${message.guild.id}`, filter);
+      client.data.set(`youtuber_${message.guild.id}`, filter);
       let embed = new Discord.MessageEmbed();
       embed.setAuthor(message.author.tag, message.author.displayAvatarURL());
-      embed.setDescription(`**The word has been deleted!** `);
+      embed.setDescription(`**The API CHANNEL has been deleted!** `);
       embed.setFooter(
         message.guild.name,
         message.guild.iconURL()
@@ -62,7 +62,7 @@ module.exports = {
     } else {
       let embed = new Discord.MessageEmbed();
       embed.setAuthor(message.author.tag, message.author.displayAvatarURL());
-      embed.setDescription(`:x: | **The word was not found!**`);
+      embed.setDescription(`:x: | **The API CHANNEL was not found!**`);
       embed.setFooter(
         message.guild.name,
         message.guild.iconURL()
