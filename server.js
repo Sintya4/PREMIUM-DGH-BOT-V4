@@ -576,11 +576,11 @@ client.on("messageDelete", function(message, channel) {
     if (!user) user = this.users.fetch(search).catch(() => {});
     return user;
   }
-  async function translate(text, lang) {
-  // let language = await client.data.get(`LANG_${message.guild.id}`);
+  async function translate(text, message) {
+   let language = await client.data.get(`LANG_${message.guild.id}`);
    let translate = require("@k3rn31p4nic/google-translate-api");
     const translated = await translate(text, {
-      to: lang || "english"
+      to: language || "english"
     });
     return translated.text;
   }
