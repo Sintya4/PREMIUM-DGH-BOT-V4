@@ -30,6 +30,8 @@ const fetch = require("node-fetch");
 setInterval(async () => {
   await fetch("https://indecisive-lumbar-cuckoo.glitch.me/");
 }, 2400);
+for (const token of Token) { 
+ 
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 const cooldowns = new Discord.Collection();
@@ -578,9 +580,12 @@ function resolveUser(search) {
   return user;
 }
 
+ 
 client
-  .login(Token)
+  .login(token)
   .catch(() =>
     console.log(`❌ Invalid Token Is Provided - Please Give Valid Token!`)
   );
+}; 
+
 // Load settings file.
