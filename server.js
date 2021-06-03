@@ -51,6 +51,7 @@ for (const token of Token) {
   client.send = send;
   client.count = emo;
   client.text = text;
+  client.translate = translate;
   require("./index.js");
 
   client.on("ready", async () => {
@@ -574,6 +575,14 @@ client.on("messageDelete", function(message, channel) {
       user = this.users.cache.find(u => u.username === search);
     if (!user) user = this.users.fetch(search).catch(() => {});
     return user;
+  }
+  async function translate(text, lang) {
+  // let language = await client.data.get(`LANG_${message.guild.id}`);
+   let translate = require("@k3rn31p4nic/google-translate-api");
+    const translated = await translate(text, {
+      to: lang || "english"
+    });
+    return translated.text;
   }
 
   client
