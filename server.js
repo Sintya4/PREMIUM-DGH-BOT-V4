@@ -159,40 +159,6 @@ client.on("messageDelete", function(message, channel) {
         .then(m => m.delete({ timeout: 5000 }).catch(e => {}));
     }
   });
-
-  //YOUTUBE STUDIO BY SINTYA
-
-  const YouTubeNotifier = require("youtube-notification");
-  const notifier = new YouTubeNotifier({
-    hubCallback: "https://indecisive-lumbar-cuckoo.glitch.me/yt",
-    secret: "JOIN_MY_SERVER_OR_DIE"
-  });
-
-  let Channel = [];
-
-  notifier.on("notified", async data => {
-    console.log("New Video");
-    let w = await client.data.get(`youtuber_${data.guild.id}`);
-    if (w === null) return;
-    let channel_id = w.channel;
-
-    let api = w.api;
-    Channel.push = api;
-
-    client.channels.cache
-      .get(channel_id)
-      .send(
-        `**${data.channel.name}** baru saja mengupload video baru :v - **${data.video.link}** @everyone!`
-      );
-  });
-
-  notifier.subscribe(Channel);
-
-  const express = require("express");
-  const app = express();
-
-  app.use("/yt", notifier.listener());
-
   //<SETUP>
   client.on("message", async message => {
     if (message.author.bot || !message.guild || message.webhookID) return;
