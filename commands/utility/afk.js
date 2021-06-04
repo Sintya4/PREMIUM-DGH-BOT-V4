@@ -7,7 +7,7 @@ module.exports = {
   switch (status) {
     case true:
     db.set(`afkstatus_${message.author.id}`, false);
-    message.reply(`**Your afk has been removed.**`);
+ //   message.reply(`**Your afk has been removed.**`);
       break;
     case false:
     let reason;
