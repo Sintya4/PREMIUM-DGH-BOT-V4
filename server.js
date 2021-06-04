@@ -167,13 +167,13 @@ client.on("messageDelete", function(message, channel) {
       db.set(`afkstatus_${message.guild.id}_${message.author.id}`, false);
       db.delete(`afk_${message.guild.id}_${message.author.id}`);
       message.member.setNickname(message.author.username).catch(err => {});
-      return message.reply(`**Welcome Back**`);
+      return client.send(`**Welcome Back ${message.author}**`, message);
     }
     if (status(message.content) === true) {
       db.set(`afkstatus_${message.guild.id}_${message.author.id}`, false);
       db.delete(`afk_${message.guild.id}_${message.author.id}`);
       message.member.setNickname(message.author.username).catch(err => {});
-      return message.reply(`**Welcome Back**`);
+      return client.send(`**Welcome Back ${message.author}**`, message);
     }
     if (message.mentions.users.size) {
       let mentions = message.mentions.users;
@@ -187,15 +187,16 @@ client.on("messageDelete", function(message, channel) {
           reason = db.get(`afk_${message.guild.id}_${victim.id}`);
           let time = db.get(`time_${message.guild.id}_${victim.id}`);
           time = Date.now() - time;
-          return message.reply(
+          return client.send(
             `**${victim.username} is currently AFK - ${reason} - ${format(
               time
-            )} ago**`
+            )} ago**`,
+            message
           );
         }
       }
     }
-  }); 
+  });
   //<SETUP>
   client.on("message", async message => {
     if (message.author.bot || !message.guild || message.webhookID) return;
