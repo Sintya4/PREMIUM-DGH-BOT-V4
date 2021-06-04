@@ -160,6 +160,42 @@ client.on("messageDelete", function(message, channel) {
         .then(m => m.delete({ timeout: 5000 }).catch(e => {}));
     }
   });
+  client.on("message", async message => {
+    let status = db.get(`afkstatus_${message.guild.id}_${message.author.id}`);
+    let reason;
+    if (status === true) {
+      db.set(`afkstatus_${message.guild.id}_${message.author.id}`, false);
+      db.delete(`afk_${message.guild.id}_${message.author.id}`);
+      message.member.setNickname(message.author.username).catch(err => {});
+      return message.reply(`**Welcome Back**`);
+    }
+    if (status(message.content) === true) {
+      db.set(`afkstatus_${message.guild.id}_${message.author.id}`, false);
+      db.delete(`afk_${message.guild.id}_${message.author.id}`);
+      message.member.setNickname(message.author.username).catch(err => {});
+      return message.reply(`**Welcome Back**`);
+    }
+    if (message.mentions.users.size) {
+      let mentions = message.mentions.users;
+      mentions = mentions.filter(mention => mention.id !== message.author.id);
+      if (mentions.size) {
+        let victim = mentions.find(mention =>
+          db.get(`afk_${message.guild.id}_${mention.id}`)
+        );
+        if (victim) {
+          status = db.get(`afkstatus_${message.guild.id}_${victim.id}`);
+          reason = db.get(`afk_${message.guild.id}_${victim.id}`);
+          let time = db.get(`time_${message.guild.id}_${victim.id}`);
+          time = Date.now() - time;
+          return message.reply(
+            `**${victim.username} is currently AFK - ${reason} - ${format(
+              time
+            )} ago**`
+          );
+        }
+      }
+    }
+  }); 
   //<SETUP>
   client.on("message", async message => {
     if (message.author.bot || !message.guild || message.webhookID) return;
@@ -188,35 +224,6 @@ client.on("messageDelete", function(message, channel) {
     let command =
       client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
     if (!command) return;
-
-    let status = db.get(`afkstatus_${message.guild.id}_${message.author.id}`);
-    let reason;
-    if (status === true) {
-      db.set(`afkstatus_${message.guild.id}_${message.author.id}`, false);
-      db.delete(`afk_${message.guild.id}_${message.author.id}`);
-      message.member.setNickname(message.author.username).catch(err => {});
-      return message.reply(`**Welcome Back**`);
-    }
-    if (message.mentions.users.size) {
-      let mentions = message.mentions.users;
-      mentions = mentions.filter(mention => mention.id !== message.author.id);
-      if (mentions.size) {
-        let victim = mentions.find(mention =>
-          db.get(`afk_${message.guild.id}_${mention.id}`)
-        );
-        if (victim) {
-          status = db.get(`afkstatus_${message.guild.id}_${victim.id}`);
-          reason = db.get(`afk_${message.guild.id}_${victim.id}`);
-          let time = db.get(`time_${message.guild.id}_${victim.id}`);
-          time = Date.now() - time;
-          return message.reply(
-            `**${victim.username} is currently AFK - ${reason} - ${format(
-              time
-            )} ago**`
-          );
-        }
-      }
-    }
 
     if (command.enabled === false) {
       const embed = new Discord.MessageEmbed()
@@ -577,8 +584,8 @@ client.on("messageDelete", function(message, channel) {
     return user;
   }
   async function translate(text, message) {
-   let language = await client.data.get(`LANG_${message.guild.id}`);
-   let translate = require("@k3rn31p4nic/google-translate-api");
+    let language = await client.data.get(`LANG_${message.guild.id}`);
+    let translate = require("@k3rn31p4nic/google-translate-api");
     const translated = await translate(text, {
       to: language || "english"
     });
