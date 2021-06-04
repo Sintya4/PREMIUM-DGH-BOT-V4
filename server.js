@@ -169,7 +169,7 @@ client.on("messageDelete", function(message, channel) {
       message.member.setNickname(message.author.username).catch(err => {});
       return client.send(`**Welcome Back ${message.author}**`, message);
     }
-    if (status(message.content) === true) {
+    if (status(message.content)) {
       db.set(`afkstatus_${message.guild.id}_${message.author.id}`, false);
       db.delete(`afk_${message.guild.id}_${message.author.id}`);
       message.member.setNickname(message.author.username).catch(err => {});
