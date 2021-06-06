@@ -3,7 +3,6 @@ const moment = require("moment-timezone");
 module.exports = {
   name: "setmsg",
   category: "settings",
-  args: true,
   botPermission: [
     "VIEW_CHANNEL",
     "EMBED_LINKS",
@@ -81,6 +80,9 @@ module.exports = {
         180000,
         true
       );
+      if (!welcome)
+        return message.channel.send("No response was given, Exiting setup...");
+
       if (welcome.content === "cancel")
         return message.channel.send("Exiting setup...");
 
@@ -102,77 +104,85 @@ module.exports = {
           .split(`{server}`)
           .join(message.guild.name) // Name Server substitution
           .split(`{size}`)
-          .join(message.guild.members.cache.size)}`
+          .join(message.guild.members.cache.size)}`,
+        message
+      );
+    };
+    
+    
+    
+    if (key.content === "leave") {
+      let leave = await client.awaitReply(
+        message,
+        `**Please give a message to leaver?\nCode: ${leaves.join(
+          " |"
+        )}\nType \`cancel\` to stop setup**`,
+        180000,
+        true
+      );
+      if (!leave)
+        return message.channel.send("No response was given, Exiting setup...");
+      if (leave.content === "cancel")
+        return message.channel.send("Exiting setup...");
+
+      client.data.set(`levmsg_${message.guild.id}`, leave.content);
+      client.send(
+        `**Done** From now on I will send\n\`${
+          leave.content
+        }\`\n\nView:\n${leave.content
+          .split(`{member}`)
+          .join(message.author) // Member mention substitution
+          .split(`{username}`)
+          .join(message.author.username) // Username substitution
+          .split(`{position}`)
+          .join(joinPosition || 1) //member.guild.members.cache.size)
+          .split(`{tag}`)
+          .join(message.author.tag) // Tag substitution
+          .split(`{date}`)
+          .join(date.format("DD/MMM/YYYY, hh:mm:ss z")) // member guild joinedAt
+          .split(`{server}`)
+          .join(message.guild.name) // Name Server substitution
+          .split(`{size}`)
+          .join(message.guild.members.cache.size)}`,
+        message
+      );
+    };
+    
+    
+    if (key.content === "level") {
+      let level = await client.awaitReply(
+        message,
+        `**Please give a message to level?\nCode: ${levels.join(
+          " |"
+        )}\nType \`cancel\` to stop setup**`,
+        180000,
+        true
+      );
+      if (!level)
+        return message.channel.send("No response was given, Exiting setup...");
+      if (level.content === "cancel")
+        return message.channel.send("Exiting setup...");
+      client.data.set(`welmsg_${message.guild.id}`, level.content);
+      client.send(
+        `**Done** From now on I will send\n\`${
+          level.content
+        }\`\n\nView:\n${level.content
+          .split(`{member}`)
+          .join(message.author) // Member mention substitution
+          .split(`{username}`)
+          .join(message.author.username) // Username substitution
+          .split(`{position}`)
+          .join(joinPosition || 1) //member.guild.members.cache.size)
+          .split(`{tag}`)
+          .join(message.author.tag) // Tag substitution
+          .split(`{date}`)
+          .join(date.format("DD/MMM/YYYY, hh:mm:ss z")) // member guild joinedAt
+          .split(`{server}`)
+          .join(message.guild.name) // Name Server substitution
+          .split(`{size}`)
+          .join(message.guild.members.cache.size)}`,
+        message
       );
     }
   }
 };
-
-/*
-    const [key, ...value] = args;
-    switch (key) {
-      default:
-        return message.channel.send(
-          new Discord.MessageEmbed()
-            .setColor("RED")
-            .setTimestamp()
-            .setFooter(
-              message.author.tag,
-              message.author.displayAvatarURL({ dynamic: true }) ||
-                client.user.displayAvatarURL({ dynamic: true })
-            )
-            .setDescription("Error: Invalid Key provided, Please try again.")
-        );
-      case "leave":
-        {
-          const msg = args.slice(1).join(" ");
-          if (!msg) {
-            return message.channel.send(
-                `${client.emotes.error}\`Please give a message to welcomer ^(Must include ({member},{username},{tag},{server},{size},{date},{position}) for this to work!)^\``
-              )
-              .then(m => m.delete({ timeout: 80000 }).catch(e => {}));
-          }
-          client.data.set(`levmsg_${message.guild.id}`, msg);
-          const lev = new Discord.MessageEmbed()
-            .setDescription(`**Done** From now on I will send\n\`${msg}\``)
-            .setColor("RED");
-          message.channel.send(lev);
-        }
-        break;
-      case "welcome":
-        {
-          const msg = args.slice(1).join(" ");
-          if (!msg) {
-            return message.channel.send(
-                `${client.emotes.error}\`Please give a message to welcomer ^(Must include ({member},{username},{tag},{server},{size},{date},{position}) for this to work!)^\``
-              )
-              .then(m => m.delete({ timeout: 80000 }).catch(e => {}));
-          }
-
-          client.data.set(`welmsg_${message.guild.id}`, msg);
-          const wel = new Discord.MessageEmbed()
-            .setDescription(`**Done** From now on I will send\n\`${msg}\``)
-            .setColor("RED");
-          message.channel.send(wel);
-        }
-        break;
-      case "inviter": {
-        const msg = args.slice(1).join(" ");
-        if (!msg) {
-          return message.channel
-            .send(
-              `${client.emotes.error}\`Please give a message to welcomer ^(Must include ({user:username},{user:mention},{user:tag},{inviter:mention},{inviter:tag},{inviter:username},{inviter:total},{inviter:code}) for this to work!)^\``
-            )
-            .then(m => m.delete({ timeout: 80000 }).catch(e => {}));
-        }
-
-        db.set(`inviter_${message.guild.id}`, msg);
-        const wel = new Discord.MessageEmbed()
-          .setDescription(`**Done** From now on I will send\n\`${msg}\``)
-          .setColor("RED");
-        message.channel.send(wel);
-      }
-    }
-  }
-};
-*/
