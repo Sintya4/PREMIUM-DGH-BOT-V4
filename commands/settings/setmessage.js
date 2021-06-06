@@ -6,13 +6,24 @@ module.exports = {
   name: "setmsg",
   category: "settings",
   args: true,
-  
- botPermission: ['VIEW_CHANNEL','EMBED_LINKS','ATTACH_FILES','MANAGE_CHANNELS','MANAGE_GUILD'],
+  botPermission: ['VIEW_CHANNEL','EMBED_LINKS','ATTACH_FILES','MANAGE_CHANNELS','MANAGE_GUILD'],
   authorPermission: ['VIEW_CHANNEL','EMBED_LINKS','ATTACH_FILES','MANAGE_CHANNELS','MANAGE_GUILD'],
-   usage: "setmsg <key // welcome/leave> <msg>",
+  usage: "setmsg <key // welcome/leave> <msg>",
   description: "Set the welcome",
   run: (client, message, args) => {
-    //    const channel = message.mentions.channels.first();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    }}
+    /*
     const [key, ...value] = args;
     switch (key) {
       default:
@@ -79,3 +90,4 @@ module.exports = {
     }
   }
 };
+*/
