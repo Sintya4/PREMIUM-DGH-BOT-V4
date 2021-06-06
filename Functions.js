@@ -1,10 +1,10 @@
 //I WILL BE BACK AFTER 5 min
 const ytdl = require('ytdl-core');
-const { MessageEmbed } = require("discord.js")
+const { MessageEmbed, Client } = require("discord.js")
 const { QUEUE_LIMIT, COLOR } = require("./config.js");
 const yes = ['yes', 'y', 'ye', 'yea', 'correct'];
 const no = ['no', 'n', 'nah', 'nope', 'fuck off'];
-const 
+
 const format = require(`humanize-duration`);
 module.exports = {
   async play(song, message) {
@@ -67,7 +67,7 @@ async awaitReply(message, question, limit = 60000, obj = false) {
         const filter = m => m.author.id === message.author.id;
       let con = await message.channel.send({
       embed: { description: question, color: "BLUE","footer": {
-    "text": `Time: ${client.format(limit)}`
+    "text": `Time: ${format(limit)}`
   } }
     })
         try {

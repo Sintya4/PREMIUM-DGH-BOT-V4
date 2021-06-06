@@ -22,6 +22,9 @@ module.exports = {
   description: "Set the welcome",
   run: async (client, message, args) => {
     let keys = ["welcome", "leave", "level"];
+    let welcomes = ["{member}","{username}","{tag}","{server}","{size}","{date}","{position}"];
+    let leaves = ["{member}","{username}","{tag}","{server}","{size}","{date}","{position}"];
+    let levels = ["{member}","{username}","{tag}","{server}","{level}","{","{xp}","{up_xp}"];
     const key = await client.awaitReply(
       message,
       `**Choose what settings you want?\nKey: ${keys.join(
@@ -30,13 +33,26 @@ module.exports = {
       180000,
       true
     );
-
     if (!key)
-      return message.channel.send("No response was given, Exiting setup..."); //Stops execution if no response
+      return message.channel.send("No response was given, Exiting setup...");
     if (key.content === "cancel")
-      return message.channel.send("Exiting setup..."); //Stops execution if command cancel is run
+      return message.channel.send("Exiting setup...");
+
+    
+    //Setup
+    if (key.content === "welcome") {
+      let welcome = await client.awaitReply(
+        message,
+        `**Choose what settings you want?\nKey: ${welcomes.join(
+          " |"
+        )}\nType \`cancel\` to stop setup**`,
+        180000,
+        true
+      );
+    }
   }
 };
+
 /*
     const [key, ...value] = args;
     switch (key) {
