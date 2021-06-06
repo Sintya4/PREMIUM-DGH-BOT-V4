@@ -24,6 +24,7 @@ module.exports = {
         `Emoji Has Been Added! | Name : ${name ||
           `${name}`} | Preview : [Click Me](${emoji})`
       );
+    message.delete()
     return message.channel.send(Added);
   }
 };

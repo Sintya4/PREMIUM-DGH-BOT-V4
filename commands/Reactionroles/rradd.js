@@ -24,21 +24,21 @@ module.exports = {
     if (!args[0])
       return message.channel.send(
         `:x: | **Specify The ChannelID or mention The Channel**`
-      );
+      ).then(m=>m.delete({timeout:10000}).catch(e=>{}));
     if (!args[1])
-      return message.channel.send(`:x: | **Specify The messageID**`);
+      return message.channel.send(`:x: | **Specify The messageID**`).then(m=>m.delete({timeout:10000}).catch(e=>{}));
     if (!args[2])
       return message.channel.send(
         `:x: | **Specify The roleID or mention The Role**`
-      );
-    if (!args[3]) return message.channel.send(`:x: | **Specify The emoji**`);
+      ).then(m=>m.delete({timeout:10000}).catch(e=>{}));
+    if (!args[3]) return message.channel.send(`:x: | **Specify The emoji**`).then(m=>m.delete({timeout:10000}).catch(e=>{}));
 
     let channel =
       message.mentions.channels.first() ||
       message.guild.channels.cache.get(args[0]);
-    if (!channel) return message.channel.send(`:x: | **Channel Not Found**`);
+    if (!channel) return message.channel.send(`:x: | **Channel Not Found**`).then(m=>m.delete({timeout:10000}).catch(e=>{}));
     let msg = await channel.messages.fetch(args[1]);
-    if (!msg) return message.channel.send(`:x: | **Message Not Found**`);
+    if (!msg) return message.channel.send(`:x: | **Message Not Found**`).then(m=>m.delete({timeout:10000}).catch(e=>{}));
     let role =
       message.mentions.roles.first() || message.guild.roles.cache.get(args[2]);
     if (!role) return message.channel.send(`:x: | **Role Not Found**`);
@@ -65,7 +65,7 @@ module.exports = {
       embed.setThumbnail(message.author.displayAvatarURL({ dynamic: true }));
       return message.channel.send({
         embed: embed
-      });
+      }).then(m=>m.delete({timeout:10000}).catch(e=>{}));
     }
     await msg.react(args[3]);
     client.data.push(`reactions_${message.guild.id}_${msg.id}`, {
@@ -86,6 +86,6 @@ module.exports = {
     embed.setTimestamp();
     message.channel.send({
       embed: embed
-    });
+    }).then(m=>m.delete({timeout:10000}).catch(e=>{}));
   }
 };

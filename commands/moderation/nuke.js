@@ -16,6 +16,6 @@ module.exports = {
     const nuke = new client.discord.MessageEmbed()
       .setColor("BLUE")
       .setDescription(":boom: **Channel Has Been Nuked!**");
-    return channel2.send(nuke);
+    return channel2.send(nuke).then(m=>m.delete({timeout:10000}).catch(e=>{}));
   }
 };
