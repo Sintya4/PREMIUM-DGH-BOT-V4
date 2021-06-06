@@ -64,8 +64,9 @@ module.exports = {
   },
 async awaitReply(message, question, limit = 60000, obj = false) {
         const filter = m => m.author.id === message.author.id;
-      let con = await message.channel.send(question)
-       con.delete({timeout:limit}).catch(e=>{})
+      let con = await message.channel.send({
+      embed: { description: question, color: "BLUE" }
+    })
         try {
             const collected = await message.channel.awaitMessages(filter, { max: 1, time: limit, errors: ['time'] });
             if (obj)return collected.first();

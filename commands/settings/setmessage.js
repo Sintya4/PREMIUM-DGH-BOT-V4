@@ -10,8 +10,26 @@ module.exports = {
   authorPermission: ['VIEW_CHANNEL','EMBED_LINKS','ATTACH_FILES','MANAGE_CHANNELS','MANAGE_GUILD'],
   usage: "setmsg <key // welcome/leave> <msg>",
   description: "Set the welcome",
-  run: (client, message, args) => {
+  run: async(client, message, args) => {
+      let keys = [
+        "welcome",
+        "leave",
+        "level"
+      ]
     
+    
+      const key = await client.awaitReply(
+      message,
+      `**Choose what settings you want?\nKey: ${keys.join(" |")}\nType cancel  setup**`,
+      180000,
+      true
+    );
+    
+    if (!key)
+      return message.channel.send("No response was given, Exiting setup..."); //Stops execution if no response
+    if (key.content === "cancel")
+      return message.channel.send("Exiting setup..."); //Stops execution if command cancel is run
+
     
     
     
