@@ -1,47 +1,43 @@
 const Discord = require("discord.js");
 
-const db = require("quick.db");
-
 module.exports = {
   name: "setmsg",
   category: "settings",
   args: true,
-  botPermission: ['VIEW_CHANNEL','EMBED_LINKS','ATTACH_FILES','MANAGE_CHANNELS','MANAGE_GUILD'],
-  authorPermission: ['VIEW_CHANNEL','EMBED_LINKS','ATTACH_FILES','MANAGE_CHANNELS','MANAGE_GUILD'],
-  usage: "setmsg <key // welcome/leave> <msg>",
+  botPermission: [
+    "VIEW_CHANNEL",
+    "EMBED_LINKS",
+    "ATTACH_FILES",
+    "MANAGE_CHANNELS",
+    "MANAGE_GUILD"
+  ],
+  authorPermission: [
+    "VIEW_CHANNEL",
+    "EMBED_LINKS",
+    "ATTACH_FILES",
+    "MANAGE_CHANNELS",
+    "MANAGE_GUILD"
+  ],
+  usage: "setmsg <welcome/leave/level> <msg>",
   description: "Set the welcome",
-  run: async(client, message, args) => {
-      let keys = [
-        "welcome",
-        "leave",
-        "level"
-      ]
-    
-    
-      const key = await client.awaitReply(
+  run: async (client, message, args) => {
+    let keys = ["welcome", "leave", "level"];
+    const key = await client.awaitReply(
       message,
-      `**Choose what settings you want?\nKey: ${keys.join(" |")}\nType cancel  setup**`,
+      `**Choose what settings you want?\nKey: ${keys.join(
+        " |"
+      )}\nType \`cancel\` to stop setup**`,
       180000,
       true
     );
-    
+
     if (!key)
       return message.channel.send("No response was given, Exiting setup..."); //Stops execution if no response
     if (key.content === "cancel")
       return message.channel.send("Exiting setup..."); //Stops execution if command cancel is run
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    }}
-    /*
+  }
+};
+/*
     const [key, ...value] = args;
     switch (key) {
       default:

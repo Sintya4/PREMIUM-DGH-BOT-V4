@@ -4,6 +4,7 @@ const { MessageEmbed } = require("discord.js")
 const { QUEUE_LIMIT, COLOR } = require("./config.js");
 const yes = ['yes', 'y', 'ye', 'yea', 'correct'];
 const no = ['no', 'n', 'nah', 'nope', 'fuck off'];
+const format = require(`humanize-duration`);
 
 module.exports = {
   async play(song, message) {
@@ -65,7 +66,9 @@ module.exports = {
 async awaitReply(message, question, limit = 60000, obj = false) {
         const filter = m => m.author.id === message.author.id;
       let con = await message.channel.send({
-      embed: { description: question, color: "BLUE" }
+      embed: { description: question, color: "BLUE","footer": {
+    "text": `Time: `
+  } }
     })
         try {
             const collected = await message.channel.awaitMessages(filter, { max: 1, time: limit, errors: ['time'] });
