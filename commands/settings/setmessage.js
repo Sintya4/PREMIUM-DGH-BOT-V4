@@ -20,6 +20,7 @@ module.exports = {
   usage: "setmsg <welcome/leave> <msg>",
   description: "Set the welcome",
   run: async (client, message, args) => {
+    message.delete();
     let keys = ["welcome", "leave"];
     let welcomes = [
       "{member}",
@@ -66,14 +67,14 @@ module.exports = {
     );
     if (!key)
       return message.channel.send("No response was given, Exiting setup...");
-    if (key.content.toLowerCase() === "cancel")
+    if (key.content === "cancel")
       return message.channel.send("Exiting setup...");
-    if (!keys.includes(args[0].toLowerCase())) {
+    if (!keys.includes(key.content)) {
       client.send("Error: Invalid Key provided, Please try again.", message);
     }
 
     //Setup
-    if (key.content.toLowerCase() === "welcome") {
+    if (key.content === "welcome") {
       let welcome = await client.awaitReply(
         message,
         `**Please give a message to welcomer?\nCode: ${welcomes.join(
@@ -85,7 +86,7 @@ module.exports = {
       if (!welcome)
         return message.channel.send("No response was given, Exiting setup...");
 
-      if (welcome.content.toLowerCase() === "cancel")
+      if (welcome.content === "cancel")
         return message.channel.send("Exiting setup...");
 
       client.data.set(`welmsg_${message.guild.id}`, welcome.content);
@@ -111,7 +112,7 @@ module.exports = {
       );
     }
 
-    if (key.content.toLowerCase() === "leave") {
+    if (key.content === "leave") {
       let leave = await client.awaitReply(
         message,
         `**Please give a message to leaver?\nCode: ${leaves.join(
@@ -122,7 +123,7 @@ module.exports = {
       );
       if (!leave)
         return message.channel.send("No response was given, Exiting setup...");
-      if (leave.content.toLowerCase() === "cancel")
+      if (leave.content === "cancel")
         return message.channel.send("Exiting setup...");
 
       client.data.set(`levmsg_${message.guild.id}`, leave.content);
