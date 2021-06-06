@@ -17,10 +17,10 @@ module.exports = {
     "MANAGE_CHANNELS",
     "MANAGE_GUILD"
   ],
-  usage: "setmsg <welcome/leave/level> <msg>",
+  usage: "setmsg <welcome/leave> <msg>",
   description: "Set the welcome",
   run: async (client, message, args) => {
-    let keys = ["welcome", "leave", "level"];
+    let keys = ["welcome", "leave"];
     let welcomes = [
       "{member}",
       "{username}",
@@ -45,7 +45,6 @@ module.exports = {
       "{tag}",
       "{server}",
       "{level}",
-      "{orl_level}",
       "{xp}",
       "{orl_xp}"
     ];
@@ -67,11 +66,14 @@ module.exports = {
     );
     if (!key)
       return message.channel.send("No response was given, Exiting setup...");
-    if (key.content === "cancel")
+    if (key.content.toLowerCase() === "cancel")
       return message.channel.send("Exiting setup...");
+    if (!keys.includes(args[0].toLowerCase())) {
+      client.send("Error: Invalid Key provided, Please try again.", message);
+    }
 
     //Setup
-    if (key.content === "welcome") {
+    if (key.content.toLowerCase() === "welcome") {
       let welcome = await client.awaitReply(
         message,
         `**Please give a message to welcomer?\nCode: ${welcomes.join(
@@ -83,7 +85,7 @@ module.exports = {
       if (!welcome)
         return message.channel.send("No response was given, Exiting setup...");
 
-      if (welcome.content === "cancel")
+      if (welcome.content.toLowerCase() === "cancel")
         return message.channel.send("Exiting setup...");
 
       client.data.set(`welmsg_${message.guild.id}`, welcome.content);
@@ -107,11 +109,9 @@ module.exports = {
           .join(message.guild.members.cache.size)}`,
         message
       );
-    };
-    
-    
-    
-    if (key.content === "leave") {
+    }
+
+    if (key.content.toLowerCase() === "leave") {
       let leave = await client.awaitReply(
         message,
         `**Please give a message to leaver?\nCode: ${leaves.join(
@@ -122,7 +122,7 @@ module.exports = {
       );
       if (!leave)
         return message.channel.send("No response was given, Exiting setup...");
-      if (leave.content === "cancel")
+      if (leave.content.toLowerCase() === "cancel")
         return message.channel.send("Exiting setup...");
 
       client.data.set(`levmsg_${message.guild.id}`, leave.content);
@@ -146,10 +146,10 @@ module.exports = {
           .join(message.guild.members.cache.size)}`,
         message
       );
-    };
-    
-    
-    if (key.content === "level") {
+    }
+    //Soon
+/*
+    if (key.content.toLowerCase() === "level") {
       let level = await client.awaitReply(
         message,
         `**Please give a message to level?\nCode: ${levels.join(
@@ -160,9 +160,9 @@ module.exports = {
       );
       if (!level)
         return message.channel.send("No response was given, Exiting setup...");
-      if (level.content === "cancel")
+      if (level.content.toLowerCase() === "cancel")
         return message.channel.send("Exiting setup...");
-      client.data.set(`welmsg_${message.guild.id}`, level.content);
+      client.data.set(`lvlmsg_${message.guild.id}`, level.content);
       client.send(
         `**Done** From now on I will send\n\`${
           level.content
@@ -171,18 +171,18 @@ module.exports = {
           .join(message.author) // Member mention substitution
           .split(`{username}`)
           .join(message.author.username) // Username substitution
-          .split(`{position}`)
-          .join(joinPosition || 1) //member.guild.members.cache.size)
           .split(`{tag}`)
           .join(message.author.tag) // Tag substitution
-          .split(`{date}`)
-          .join(date.format("DD/MMM/YYYY, hh:mm:ss z")) // member guild joinedAt
           .split(`{server}`)
-          .join(message.guild.name) // Name Server substitution
-          .split(`{size}`)
-          .join(message.guild.members.cache.size)}`,
+          .join(message.guild.name)
+          .split(`{xp}`)
+          .join("100")
+          .split(`{orl_xp}`)
+          .join("0")
+          .split(`{level}`)
+          .join("1")}`,
         message
       );
-    }
+    }*/
   }
 };
