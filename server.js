@@ -51,7 +51,7 @@ for (const token of Token) {
   client.send = send;
   client.count = emo;
   client.text = text;
-  client.format = format;
+  client.format = formating;
   client.translate = translate;
   require("./index.js");
 
@@ -587,7 +587,7 @@ client.on("messageDelete", function(message, channel) {
     if (!user) user = this.users.fetch(search).catch(() => {});
     return user;
   }
- function format(ms) {
+ function formating(ms) {
   let days, daysms, hours, hoursms, minutes, minutesms, sec;
   days = Math.floor(ms / (24 * 60 * 60 * 1000));
   daysms = ms % (24 * 60 * 60 * 1000);
@@ -599,15 +599,16 @@ client.on("messageDelete", function(message, channel) {
 
   return (
     days +
-    " days, " +
+    " Days, " +
     hours +
-    " hours, " +
+    " Hours, " +
     minutes +
-    " minutes, " +
+    " Minutes, " +
     sec +
-    " seconds."
+    " Seconds."
   );
-} async function translate(text, message) {
+}
+  async function translate(text, message) {
     let language = await client.data.get(`LANG_${message.guild.id}`);
     let translate = require("@k3rn31p4nic/google-translate-api");
     const translated = await translate(text, {
