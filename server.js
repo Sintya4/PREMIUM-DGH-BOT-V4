@@ -39,7 +39,17 @@ for (const token of Token) {
   client.queue = new Map();
   client.vote = new Map();
   client.config = require("./emoji/emojis");
-  let { awaitReply } = require("./Functions.js");
+  let {
+    awaitReply,
+    resolveUser,
+    getRandomString,
+    send,
+    emo,
+    text,
+    randomNumber,
+    formating,
+    translate
+  } = require("./Functions.js"); //Files
   client.emotes = client.config.emojis;
   client.db = require("quick.db");
   client.data = new Database(mongodb);
@@ -198,7 +208,7 @@ client.on("messageDelete", function(message, channel) {
         }
       }
     }
- });
+  });
   //<SETUP>
   client.on("message", async message => {
     if (message.author.bot || !message.guild || message.webhookID) return;
@@ -227,7 +237,7 @@ client.on("messageDelete", function(message, channel) {
     let command =
       client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
     if (!command) return;
-   
+
     if (command.enabled === false) {
       const embed = new Discord.MessageEmbed()
         .setDescription(`This command is disabled.`)
@@ -238,7 +248,7 @@ client.on("messageDelete", function(message, channel) {
     }
     if (command.premium === false) {
       let server = client.guilds.cache.get(Server_ID);
-      if(!server) return;
+      if (!server) return;
       if (!server.members.cache.find(r => r.id === message.author.id)) {
         const embed = new Discord.MessageEmbed()
           .setDescription(

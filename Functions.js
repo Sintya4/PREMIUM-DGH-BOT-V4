@@ -4,7 +4,9 @@ const { MessageEmbed, Client } = require("discord.js")
 const { QUEUE_LIMIT, COLOR } = require("./config.js");
 const yes = ['yes', 'y', 'ye', 'yea', 'correct'];
 const no = ['no', 'n', 'nah', 'nope', 'fuck off'];
-
+const { Database } = require("quickmongo");
+let { mongodb } = require("./config.js");
+let database = new Database(mongodb);
 const format = require(`humanize-duration`);
 module.exports = {
   async play(song, message) {
@@ -195,7 +197,7 @@ async awaitReply(message, question, limit = 60000, obj = false) {
   );
 },
  async translate(text, message) {
-    let language = await client.data.get(`LANG_${message.guild.id}`);
+    let language = await database.get(`LANG_${message.guild.id}`);
     let translate = require("@k3rn31p4nic/google-translate-api");
     const translated = await translate(text, {
       to: language || "english"
