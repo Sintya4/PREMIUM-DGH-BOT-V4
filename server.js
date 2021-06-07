@@ -64,8 +64,14 @@ for (const token of Token) {
   client.format = formating;
   client.translate = translate;
   require("./index.js");
-
+  require("./logger")(client);
   client.on("ready", async () => {
+    await mongoose.connect(mongodb, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+      useCreateIndex: true
+    });
     let users = 0;
     client.guilds.cache.forEach(x => {
       users += x.memberCount;
@@ -83,6 +89,19 @@ for (const token of Token) {
       .then(console.log)
       .catch(console.error);
   });
+
+  mongoose.connection.on("connected", () => {
+    console.log("Mongoose has successfully connected!");
+  });
+  // send msg if successfull connection to mongodb
+  mongoose.connection.on("err", err => {
+    console.error(`Mongoose connection error: \n${err.stack}`);
+  });
+  // send msg if error on connection
+  mongoose.connection.on("disconnected", () => {
+    console.warn("Mongoose connection lost");
+  });
+  //send msg if connection lost to mongodb
 
   const { readdirSync } = require("fs");
   readdirSync("./commands/").forEach(dir => {
@@ -390,12 +409,12 @@ client.on("messageDelete", function(message, channel) {
       );
       if (message.guild.id === message.guild.id) {
         let channel_id = await client.data.get(`levelch_${message.guild.id}`);
-        if(!channel_id){
-        message.channel.send(
-          `${message.author}, You Have Leveled Up To Level **${newLevel}**`
-        );
-      }
-      let user = message.author;
+        if (!channel_id) {
+          message.channel.send(
+            `${message.author}, You Have Leveled Up To Level **${newLevel}**`
+          );
+        }
+        let user = message.author;
         let levelchannel = client.channels.cache.get(channel_id);
         let image = await client.data.get(`levelimg_${message.guild.id}`);
         var rank = await client.db.get(
@@ -439,8 +458,8 @@ client.on("messageDelete", function(message, channel) {
 
           levelchannel.send(EmbedLevel);
         });
-     
-    } }
+      }
+    }
   }
   //<Chat Bot>
   client.on("message", async message => {

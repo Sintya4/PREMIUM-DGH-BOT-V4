@@ -5,7 +5,7 @@ module.exports = {
   name: "setchannel",
   category: "settings",
   args: true,
-  usage: "setchannel <key //welcome/leave/report/level/modlog/chat-bot/starboard> <channel>",
+  usage: "setchannel <key //welcome/leave/report/level/modlog/modlogserver/chat-bot/starboard> <channel>",
   description: "Set the channel",
   botPermission: ['VIEW_CHANNEL','EMBED_LINKS','ATTACH_FILES','MANAGE_CHANNELS','MANAGE_GUILD'],
   authorPermission: ['VIEW_CHANNEL','EMBED_LINKS','ATTACH_FILES','MANAGE_CHANNELS','MANAGE_GUILD'],
@@ -121,6 +121,67 @@ module.exports = {
             .setColor("RED");
           message.channel.send(welcome).then(m=>m.delete({timeout:5000}).catch(e=>{}));
         }
+        break;
+      case "modlogserver":
+        {
+     const channel = await message.mentions.channels.first();
+    const guild1 = message.guild;
+    let webhookid;
+    let webhooktoken;
+    await channel
+      .createWebhook(guild1.name, {
+        avatar: guild1.iconURL({ format: "png" })
+      })
+      .then(webhook => {
+        webhookid = webhook.id;
+        webhooktoken = webhook.token;
+      });
+   
+    if (!channel)
+      return message.channel
+        .send(
+          "I cannot find that channel. Please mention a channel within this server."
+        )// if the user do not mention a channel
+        .then(m => m.delete({ timeout: 5000 }));
+    
+    await Guild.findOne(//will find data from database
+      {
+        guildID: message.guild.id
+      },
+      async (err, guild) => {
+        if (err) console.error(err);
+        if (!guild) {// what the bot should do if there is no data found for the server
+          const newGuild = new Guild({
+            _id: mongoose.Types.ObjectId(),
+            guildID: message.guild.id,
+            guildName: message.guild.name,
+            logChannelID: channel.id,
+            webhookid: webhookid,
+            webhooktoken: webhooktoken
+          });
+
+          await newGuild
+            .save() //save the data to database(mongodb)
+            .then(result => console.log(result))
+            .catch(err => console.error(err));
+
+          return message.channel.send(
+            `The log channel has been set to ${channel}`
+          );
+        } else {
+          guild
+            .updateOne({ //if data is found then update it with new one
+              logChannelID: channel.id,
+              webhooktoken: webhooktoken,
+              webhookid: webhookid
+            })
+            .catch(err => console.error(err));
+
+          return message.channel.send(
+            `The log channel has been updated to ${channel}`
+          );
+        }
+      }
         break;
       case "modlog": {
         const bot = client;
