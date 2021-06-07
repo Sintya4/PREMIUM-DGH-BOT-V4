@@ -390,8 +390,12 @@ client.on("messageDelete", function(message, channel) {
       );
       if (message.guild.id === message.guild.id) {
         let channel_id = await client.data.get(`levelch_${message.guild.id}`);
-        let user = message.author;
-        if (channel_id === null) return;
+        if(!channel_id){
+        message.channel.send(
+          `${message.author}, You Have Leveled Up To Level **${newLevel}**`
+        );
+      }
+      let user = message.author;
         let levelchannel = client.channels.cache.get(channel_id);
         let image = await client.data.get(`levelimg_${message.guild.id}`);
         var rank = await client.db.get(
@@ -435,12 +439,8 @@ client.on("messageDelete", function(message, channel) {
 
           levelchannel.send(EmbedLevel);
         });
-      } else {
-        message.channel.send(
-          `${message.author}, You Have Leveled Up To Level **${newLevel}**`
-        );
-      }
-    }
+     
+    } }
   }
   //<Chat Bot>
   client.on("message", async message => {
