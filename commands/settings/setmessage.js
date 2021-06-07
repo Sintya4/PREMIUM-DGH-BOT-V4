@@ -21,7 +21,7 @@ module.exports = {
   description: "Set the welcome",
   run: async (client, message, args) => {
     message.delete();
-    let keys = ["welcome", "leave"];
+    let keys = ["welcome", "leave","anti-swear"];
     let welcomes = [
       "{member}",
       "{username}",
@@ -49,6 +49,12 @@ module.exports = {
       "{xp}",
       "{orl_xp}"
     ];
+    let wards = [
+      "{user-mention}",
+      "{server-name}",
+      "{user-tag}",
+      "{user-username}"
+     ];
     var date = moment.tz("Asia/Jakarta");
     let joinPosition;
     const me = message.guild.members.cache.array();
@@ -148,6 +154,29 @@ module.exports = {
         message
       );
     }
+    if (key.content === "anti-swear") {
+      let words = await client.awaitReply(
+        message,
+        `**Please give a message to Warning Anti-swear?\nCode: ${wards.join(
+          " |"
+        )}\nType \`cancel\` to stop setup**`,
+        180000,
+        true
+      );
+      if (!words)
+        return message.channel.send("No response was given, Exiting setup...");
+      if (words.content === "cancel")
+        return message.channel.send("Exiting setup...");
+
+     client.data.set(`message_${message.guild.id}`, words.content )
+     client.send(
+        `**Done** From now on I will send\n\`${
+          words.content
+        }\`\n\nView:\n${words.content
+        .split("{user-mention}").join("<@"+message.author.id+">").split("{server-name}").join(message.guild.name).split("{user-tag}").join(message.author.tag).split("{user-username}").join(message.author.username)}`,
+        message
+      );
+ } 
     //Soon
 /*
     if (key.content.toLowerCase() === "level") {
