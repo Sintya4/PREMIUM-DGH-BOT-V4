@@ -15,7 +15,8 @@ module.exports = {
     "EMBED_LINKS",
     "ATTACH_FILES",
     "MANAGE_CHANNELS",
-    "MANAGE_GUILD"
+    "MANAGE_GUILD",
+    "MANAGE_WEBHOOKS"
   ],
   authorPermission: [
     "VIEW_CHANNEL",
