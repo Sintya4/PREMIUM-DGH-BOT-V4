@@ -434,10 +434,10 @@ async function send_log(c, guild, color, title, description, thumb) {
       .setDescription(description ? description.substr(0, 2048) : "\u200b")
       .setTitle(title ? title.substr(0, 256) : "\u200b")
       .setTimestamp()
-      .setThumbnail(thumb ? thumb : guild.iconURL({ format: "png" }))
+      .setThumbnail(thumb ? thumb : guild.iconURL())
       .setFooter(
-        guild.name + " | powered by: milrato.eu & Modified by ShinchanOP",
-        guild.iconURL({ format: "png" })
+        guild.name,
+        guild.iconURL()
       );
     //GET THE CHANNEL
     const guilddb = await Guild.findOne(
@@ -459,8 +459,8 @@ async function send_log(c, guild, color, title, description, thumb) {
         guilddb.webhooktoken
       );
       hook.send({
-        username: guild.name,
-        avatarURL: guild.iconURL({ format: "png" }),
+        username: c.user.username,
+        avatarURL: c.user.avatarURL(),
         embeds: [LogEmbed]
       });
     } catch {

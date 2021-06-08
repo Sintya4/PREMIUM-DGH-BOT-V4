@@ -1,15 +1,30 @@
 const Discord = require("discord.js");
 const db = require("quick.db");
+const Guild = require("../../models/log"); //require our log model
+const mongoose = require("mongoose");
 
 module.exports = {
   name: "setchannel",
   category: "settings",
   args: true,
-  usage: "setchannel <key //welcome/leave/report/level/modlog/modlogserver/chat-bot/starboard> <channel>",
+  usage:
+    "setchannel <key //welcome/leave/report/level/modlog/modlogserver/chat-bot/starboard> <channel>",
   description: "Set the channel",
-  botPermission: ['VIEW_CHANNEL','EMBED_LINKS','ATTACH_FILES','MANAGE_CHANNELS','MANAGE_GUILD'],
-  authorPermission: ['VIEW_CHANNEL','EMBED_LINKS','ATTACH_FILES','MANAGE_CHANNELS','MANAGE_GUILD'],
- run: async (client, message, args) => {
+  botPermission: [
+    "VIEW_CHANNEL",
+    "EMBED_LINKS",
+    "ATTACH_FILES",
+    "MANAGE_CHANNELS",
+    "MANAGE_GUILD"
+  ],
+  authorPermission: [
+    "VIEW_CHANNEL",
+    "EMBED_LINKS",
+    "ATTACH_FILES",
+    "MANAGE_CHANNELS",
+    "MANAGE_GUILD"
+  ],
+  run: async (client, message, args) => {
     const channel = message.mentions.channels.first();
     const [key, ...value] = args;
     switch (key) {
@@ -38,7 +53,9 @@ module.exports = {
               `**Done** From now on I will send welcome message in ${channel} when someone leaves the server`
             )
             .setColor("RED");
-          message.channel.send(leave).then(m=>m.delete({timeout:5000}).catch(e=>{}));
+          message.channel
+            .send(leave)
+            .then(m => m.delete({ timeout: 5000 }).catch(e => {}));
         }
         break;
       case "chat-bot":
@@ -54,7 +71,9 @@ module.exports = {
               `**Done** From now on I will send Chatbot in ${channel}`
             )
             .setColor("RED");
-          message.channel.send(chat).then(m=>m.delete({timeout:5000}).catch(e=>{}));
+          message.channel
+            .send(chat)
+            .then(m => m.delete({ timeout: 5000 }).catch(e => {}));
         }
         break;
       case "starboard":
@@ -70,7 +89,9 @@ module.exports = {
               `**Done** From now on I will send Starboard in ${channel}`
             )
             .setColor("RED");
-          message.channel.send(chat).then(m=>m.delete({timeout:5000}).catch(e=>{}));
+          message.channel
+            .send(chat)
+            .then(m => m.delete({ timeout: 5000 }).catch(e => {}));
         }
         break;
       case "welcome":
@@ -86,7 +107,9 @@ module.exports = {
               `**Done** From now on I will send welcome message in ${channel} when someone joins the server`
             )
             .setColor("RED");
-          message.channel.send(welcome).then(m=>m.delete({timeout:5000}).catch(e=>{}));
+          message.channel
+            .send(welcome)
+            .then(m => m.delete({ timeout: 5000 }).catch(e => {}));
         }
         break;
       case "report":
@@ -102,7 +125,9 @@ module.exports = {
               `**Done** From now on I will send reports member in ${channel}`
             )
             .setColor("RED");
-          message.channel.send(welcome).then(m=>m.delete({timeout:5000}).catch(e=>{}));
+          message.channel
+            .send(welcome)
+            .then(m => m.delete({ timeout: 5000 }).catch(e => {}));
         }
 
         break;
@@ -119,69 +144,76 @@ module.exports = {
               `**Done** From now on I will send level up in ${channel}`
             )
             .setColor("RED");
-          message.channel.send(welcome).then(m=>m.delete({timeout:5000}).catch(e=>{}));
+          message.channel
+            .send(welcome)
+            .then(m => m.delete({ timeout: 5000 }).catch(e => {}));
         }
         break;
       case "modlogserver":
         {
-     const channel = await message.mentions.channels.first();
-    const guild1 = message.guild;
-    let webhookid;
-    let webhooktoken;
-    await channel
-      .createWebhook(guild1.name, {
-        avatar: guild1.iconURL({ format: "png" })
-      })
-      .then(webhook => {
-        webhookid = webhook.id;
-        webhooktoken = webhook.token;
-      });
-   
-    if (!channel)
-      return message.channel
-        .send(
-          "I cannot find that channel. Please mention a channel within this server."
-        )// if the user do not mention a channel
-        .then(m => m.delete({ timeout: 5000 }));
-    
-    await Guild.findOne(//will find data from database
-      {
-        guildID: message.guild.id
-      },
-      async (err, guild) => {
-        if (err) console.error(err);
-        if (!guild) {// what the bot should do if there is no data found for the server
-          const newGuild = new Guild({
-            _id: mongoose.Types.ObjectId(),
-            guildID: message.guild.id,
-            guildName: message.guild.name,
-            logChannelID: channel.id,
-            webhookid: webhookid,
-            webhooktoken: webhooktoken
-          });
-
-          await newGuild
-            .save() //save the data to database(mongodb)
-            .then(result => console.log(result))
-            .catch(err => console.error(err));
-
-          return message.channel.send(
-            `The log channel has been set to ${channel}`
-          );
-        } else {
-          guild
-            .updateOne({ //if data is found then update it with new one
-              logChannelID: channel.id,
-              webhooktoken: webhooktoken,
-              webhookid: webhookid
+          const channel = await message.mentions.channels.first();
+          const guild1 = message.guild;
+          let webhookid;
+          let webhooktoken;
+          await channel
+            .createWebhook(guild1.name, {
+              avatar: guild1.iconURL({ format: "png" })
             })
-            .catch(err => console.error(err));
+            .then(webhook => {
+              webhookid = webhook.id;
+              webhooktoken = webhook.token;
+            });
 
-          return message.channel.send(
-            `The log channel has been updated to ${channel}`
+          if (!channel)
+            return message.channel
+              .send(
+                "I cannot find that channel. Please mention a channel within this server."
+              ) // if the user do not mention a channel
+              .then(m => m.delete({ timeout: 5000 }));
+
+          await Guild.findOne(
+            //will find data from database
+            {
+              guildID: message.guild.id
+            },
+            async (err, guild) => {
+              if (err) console.error(err);
+              if (!guild) {
+                // what the bot should do if there is no data found for the server
+                const newGuild = new Guild({
+                  _id: mongoose.Types.ObjectId(),
+                  guildID: message.guild.id,
+                  guildName: message.guild.name,
+                  logChannelID: channel.id,
+                  webhookid: webhookid,
+                  webhooktoken: webhooktoken
+                });
+
+                await newGuild
+                  .save() //save the data to database(mongodb)
+                  .then(result => console.log(result))
+                  .catch(err => console.error(err));
+
+                return message.channel.send(
+                  `The log channel has been set to ${channel}`
+                );
+              } else {
+                guild
+                  .updateOne({
+                    //if data is found then update it with new one
+                    logChannelID: channel.id,
+                    webhooktoken: webhooktoken,
+                    webhookid: webhookid
+                  })
+                  .catch(err => console.error(err));
+
+                return message.channel.send(
+                  `The log channel has been updated to ${channel}`
+                );
+              }
+            }
           );
         }
-      }
         break;
       case "modlog": {
         const bot = client;
@@ -221,9 +253,11 @@ module.exports = {
               .send("**Modlog Channel Set!**");
             client.data.set(`modlog_${message.guild.id}`, channel.id);
 
-            message.channel.send(
-              `**Modlog Channel Has Been Set Successfully in \`${channel.name}\`!**`
-            ).then(m=>m.delete({timeout:5000}).catch(e=>{}));
+            message.channel
+              .send(
+                `**Modlog Channel Has Been Set Successfully in \`${channel.name}\`!**`
+              )
+              .then(m => m.delete({ timeout: 5000 }).catch(e => {}));
           }
         } catch {
           return message.channel.send(
