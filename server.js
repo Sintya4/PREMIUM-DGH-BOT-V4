@@ -190,6 +190,79 @@ client.on("messageDelete", function(message, channel) {
         .then(m => m.delete({ timeout: 5000 }).catch(e => {}));
     }
   });
+
+  let Levels = require("discord-xp");
+  Levels.setURL(mongodb); //can be putten in .env too and then imported//Add this to your main file (example: index.js or main.js)
+  client.on("message", async message => {
+    if (message.author.bot === true) return;
+    const randomXp = Math.floor(Math.random() * 34) + 1;
+    const hasLeveledUp = await Levels.appendXp(
+      message.author.id,
+      message.guild.id,
+      randomXp
+    );
+    if (hasLeveledUp) {
+      const User = await Levels.fetch(message.author.id, message.guild.id);
+      let channel_id = await client.data.get(`levelch_${message.guild.id}`);
+      if (channel_id === null)
+        return message.reply(`You Have Leveled Up To Level **${User.level}**`);
+
+      let image = await client.data.get(`levelimg_${message.guild.id}`);
+      let user = message.author;
+      let levelchannel = client.channels.cache.get(channel_id);
+      let color = message.member.displayHexColor;
+      if (color == "#000000") color = message.member.hoistRole.hexColor;
+      const neededXp = Levels.xpFor(parseInt(User.level) + 1);
+
+      const ran = new canvacord.Rank()
+        .setAvatar(user.displayAvatarURL({ dynamic: false, format: "png" }))
+        .setCurrentXP(User.xp)
+        .setRequiredXP(neededXp)
+        .setLevel(User.level)
+        .setRank(0, "a", false)
+        .setStatus(user.presence.status, true, 5)
+        .setProgressBar("#00FFFF", "COLOR")
+        .setUsername(user.username, color)
+        .setDiscriminator(user.discriminator)
+        .setBackground(
+          "IMAGE",image||
+          "https://cdn.discordapp.com/attachments/816254133353840660/819965380406673475/IMG-20201117-WA0142.jpg"
+        );
+      ran.build().then(data => {
+        const attachment = new Discord.MessageAttachment(data, "Rankcard.png");
+        const EmbedLevel = new Discord.MessageEmbed()
+          .setColor("RANDOM")
+          .setAuthor(user.username, message.guild.iconURL())
+          .setTimestamp()
+          .setDescription(
+            `**LEVEL UP** - ${User.level}
+**XP UP** - ${User.xp}/${neededXp}`
+          )
+          .setImage("attachment://Rankcard.png")
+          .attachFiles(attachment);
+
+        levelchannel.send(EmbedLevel);
+      });
+      const Level_Roles_Storage = fs.readFileSync("Storages/Level-Roles.json");
+      const Level_Roles = JSON.parse(Level_Roles_Storage.toString());
+      const Guild_Check = Level_Roles.find(guild => {
+        return guild.guildID === `${message.guild.id}`;
+      });
+      if (!Guild_Check) return;
+      const Guild_Roles = Level_Roles.filter(guild => {
+        return guild.guildID === `${message.guild.id}`;
+      });
+      //For Loop Works for Checking
+      for (let i = 0; i < Guild_Roles.length; i++) {
+        const User = await Levels.fetch(message.author.id, message.guild.id);
+        if (User.level == parseInt(Guild_Roles[i].Level_To_Reach)) {
+          const AuthorID = message.guild.members.cache.get(message.author.id);
+          const Given_Level_Role = Guild_Roles[i].Level_Role_ID;
+          return AuthorID.roles.add(Given_Level_Role); // .then(console.log('success'))
+        }
+      }
+    }
+  });
   client.on("message", async message => {
     if (message.author.bot || !message.guild || message.webhookID) return;
     let status = db.get(`afkstatus_${message.guild.id}_${message.author.id}`);
@@ -231,7 +304,7 @@ client.on("messageDelete", function(message, channel) {
   //<SETUP>
   client.on("message", async message => {
     if (message.author.bot || !message.guild || message.webhookID) return;
-    xp(message);
+    //   xp(message);
     let Prefix = await client.data.get(`Prefix_${message.guild.id}`);
     if (!Prefix) Prefix = Default_Prefix;
     const escapeRegex = str =>
@@ -377,7 +450,7 @@ client.on("messageDelete", function(message, channel) {
 
       client.error(error);
     }
-  });
+  }); /*
   async function xp(message) {
     if (message.author.bot || !message.guild || message.webhookID) return;
     const randomnumber = Math.floor(Math.random() * 10) + 15;
@@ -460,7 +533,8 @@ client.on("messageDelete", function(message, channel) {
         });
       }
     }
-  }
+  }*/
+
   //<Chat Bot>
   client.on("message", async message => {
     if (message.author.bot || !message.guild || message.webhookID) return;
@@ -552,3 +626,4 @@ client.on("messageDelete", function(message, channel) {
 }
 
 // Load settings file.
+
