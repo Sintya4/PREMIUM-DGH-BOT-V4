@@ -210,8 +210,6 @@ client.on("messageDelete", function(message, channel) {
       let image = await client.data.get(`levelimg_${message.guild.id}`);
       let user = message.author;
       let levelchannel = client.channels.cache.get(channel_id);
-      let color = message.member.hoistRole.hexColor;//message.member.displayHexColor;
-    //  if (color == "#000000") color = message.member.hoistRole.hexColor;
       const neededXp = Levels.xpFor(parseInt(User.level) + 1);
 
       const ran = new canvacord.Rank()
@@ -222,7 +220,7 @@ client.on("messageDelete", function(message, channel) {
         .setRank(0, "a", false)
         .setStatus(user.presence.status, true, 5)
         .setProgressBar("#00FFFF", "COLOR")
-        .setUsername(user.username, color)
+        .setUsername(user.username, "#1FF768")
         .setDiscriminator(user.discriminator)
         .setBackground(
           "IMAGE",image||
@@ -242,27 +240,8 @@ client.on("messageDelete", function(message, channel) {
           .attachFiles(attachment);
 
         levelchannel.send(EmbedLevel);
-      });
-      const Level_Roles_Storage = fs.readFileSync("Storages/Level-Roles.json");
-      const Level_Roles = JSON.parse(Level_Roles_Storage.toString());
-      const Guild_Check = Level_Roles.find(guild => {
-        return guild.guildID === `${message.guild.id}`;
-      });
-      if (!Guild_Check) return;
-      const Guild_Roles = Level_Roles.filter(guild => {
-        return guild.guildID === `${message.guild.id}`;
-      });
-      //For Loop Works for Checking
-      for (let i = 0; i < Guild_Roles.length; i++) {
-        const User = await Levels.fetch(message.author.id, message.guild.id);
-        if (User.level == parseInt(Guild_Roles[i].Level_To_Reach)) {
-          const AuthorID = message.guild.members.cache.get(message.author.id);
-          const Given_Level_Role = Guild_Roles[i].Level_Role_ID;
-          return AuthorID.roles.add(Given_Level_Role); // .then(console.log('success'))
-        }
-      }
-    }
-  });
+      
+  })}});
   client.on("message", async message => {
     if (message.author.bot || !message.guild || message.webhookID) return;
     let status = db.get(`afkstatus_${message.guild.id}_${message.author.id}`);

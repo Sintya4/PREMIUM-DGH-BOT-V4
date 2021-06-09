@@ -17,7 +17,7 @@ module.exports = {
     const User = await Levels.fetch(user.user.id, message.guild.id);
     const LevelUp = new Discord.MessageEmbed();
     let image = await client.data.get(`levelimg_${message.guild.id}`);
-    let color = user.hoistRole.hexColor;//user.displayHexColor;
+  //  let color = user.hoistRole.hexColor;//user.displayHexColor;
     const newxp = Levels.xpFor(parseInt(User.level) + 1);
   //  if (color == "#000000") color = user.hoistRole.hexColor || "";
     let rak;
@@ -27,7 +27,7 @@ module.exports = {
       .setRequiredXP(newxp)
       .setStatus(user.presence.status, true, 5)
       .setProgressBar("#00FFFF", "COLOR")
-      .setUsername(user.user.username, color)
+      .setUsername(user.user.username, "#1FF768")
       .setDiscriminator(user.user.discriminator)
       .setLevel(User.level);
     rak.setBackground(
