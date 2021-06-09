@@ -18,7 +18,7 @@ module.exports = async client => {
       if (User.level == parseInt(Guild_Roles[i].Level_To_Reach)) {
         const AuthorID = message.guild.members.cache.get(message.author.id);
         const Given_Level_Role = Guild_Roles[i].Level_Role_ID;
-        return AuthorID.roles.add(Given_Level_Role).then(console.log('success'))
+        return AuthorID.roles.add(Given_Level_Role);//.then(console.log('success'))
       }
     }
   });

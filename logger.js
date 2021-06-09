@@ -467,6 +467,6 @@ async function send_log(c, guild, color, title, description, thumb) {
       return;
     }
   } catch (e) {
-    console.log(e);
+  return;
   }
 }
