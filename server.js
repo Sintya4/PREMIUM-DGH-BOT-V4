@@ -329,7 +329,7 @@ client.on("messageDelete", function(message, channel) {
     let command =
       client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
     if (!command) return;
-
+    if(command) console.log(`User: ${message.author.username} [${message.guild.name}] =>Send Command ${cmd}`)
     if (command.enabled === false) {
       const embed = new Discord.MessageEmbed()
         .setDescription(`This command is disabled.`)
