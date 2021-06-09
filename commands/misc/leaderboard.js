@@ -2,8 +2,8 @@ const { MessageEmbed } = require("discord.js");
 const db = require("quick.db");
 const fs = require("fs");
 module.exports = {
-  name: "leaderboard",
-  category: "misc",
+  name: "leaderb",
+  category: "misck",
   botPermission: ["MANAGE_GUILD"],
 
   run: async (client, message, args) => {

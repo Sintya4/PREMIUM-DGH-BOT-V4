@@ -17,9 +17,9 @@ module.exports = {
     const User = await Levels.fetch(user.user.id, message.guild.id);
     const LevelUp = new Discord.MessageEmbed();
     let image = await client.data.get(`levelimg_${message.guild.id}`);
-    let color = user.displayHexColor;
+    let color = user.hoistRole.hexColor;//user.displayHexColor;
     const newxp = Levels.xpFor(parseInt(User.level) + 1);
-    if (color == "#000000") color = user.hoistRole.hexColor || "";
+  //  if (color == "#000000") color = user.hoistRole.hexColor || "";
     let rak;
     rak = new canvacord.Rank()
       .setAvatar(user.user.displayAvatarURL({ format: "png" }))

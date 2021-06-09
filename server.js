@@ -210,8 +210,8 @@ client.on("messageDelete", function(message, channel) {
       let image = await client.data.get(`levelimg_${message.guild.id}`);
       let user = message.author;
       let levelchannel = client.channels.cache.get(channel_id);
-      let color = message.member.displayHexColor;
-      if (color == "#000000") color = message.member.hoistRole.hexColor;
+      let color = message.member.hoistRole.hexColor;//message.member.displayHexColor;
+    //  if (color == "#000000") color = message.member.hoistRole.hexColor;
       const neededXp = Levels.xpFor(parseInt(User.level) + 1);
 
       const ran = new canvacord.Rank()
