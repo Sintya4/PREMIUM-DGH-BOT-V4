@@ -1,6 +1,7 @@
 const discord = require("discord.js");
 const { MessageEmbed } = require("discord.js");
 const db = require("quick.db");
+const ms = require("ms");
 module.exports = {
   name: "tempban",
   aliases: ["tb", "tban"],
@@ -32,11 +33,19 @@ module.exports = {
       const regex = args.splice(1).join(" ");
 
       var reason = args.slice(2).join(" ");
-      
+
       if (!banMember.bannable)
         return message.channel.send("**Cant Kick That User**");
       try {
-        message.guild.members.ban(banMember);
+        message.guild.members.ban(banMember).then(() => {
+          setTimeout(function() {
+            message.guild.members.unban(banMember.id);
+            message.channel.send(
+              `<@${banMember.user.username}> has been unbanned after the tempban of ${regex}`
+            );
+          }, ms(regex));
+          return undefined;
+        });
         banMember
           .send(
             `**Hello, You Have Been Banned From ${
@@ -45,20 +54,28 @@ module.exports = {
           )
           .catch(() => null);
       } catch {
-        message.guild.members.ban(banMember);
+        message.guild.members.ban(banMember).then(() => {
+          setTimeout(function() {
+            message.guild.members.unban(banMember.id);
+            message.channel.send(
+              `<@${banMember.user.username}> has been unbanned after the tempban of ${regex}`
+            );
+          }, ms(regex));
+          return undefined;
+        });
       }
       if (reason) {
         var sembed = new MessageEmbed()
-         .setColor("GREEN")
+          .setColor("GREEN")
           .setDescription(
-            `**${banMember.user.username}** has been banned for ${reason}`
+            `**${banMember.user.username}** has been banned for ${reason} - Time ${regex}`
           );
-         message.channel.send(sembed);
+        message.channel.send(sembed);
       } else {
         var sembed2 = new MessageEmbed()
           .setColor("GREEN")
           .setDescription(
-            `**${banMember.user.username}** has been banned `
+            `**${banMember.user.username}** has been banned - Time ${regex}`
           );
         message.channel.send(sembed2);
       }
@@ -72,9 +89,10 @@ module.exports = {
         .setColor("#ff0000")
         .setThumbnail(banMember.user.displayAvatarURL({ dynamic: true }))
         .setFooter(message.guild.name, message.guild.iconURL())
-        .addField("**Moderation**", "ban")
+        .addField("**Moderation**", "tempban")
         .addField("**Banned**", banMember.user.username)
         .addField("**ID**", `${banMember.id}`)
+        .addField("**Time (s)**", `${regex}`)
         .addField("**Banned By**", message.author.username)
         .addField("**Reason**", `${reason || "**No Reason**"}`)
         .addField("**Date**", message.createdAt.toLocaleString())
