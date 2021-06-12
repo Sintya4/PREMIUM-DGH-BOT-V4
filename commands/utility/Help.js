@@ -28,7 +28,7 @@ module.exports = {
      * @param {Message} message
      * @param {Array<string>} args
      */
-    const prefix = db.get(`Prefix_${message.guild.id}`);
+    const prefix = await client.data.get(`Prefix_${message.guild.id}`);
     message.delete().catch(O_o => {}); // eslint-disable-line
     const cc = args[0];
     if (args.length) {
