@@ -25,15 +25,16 @@ module.exports = {
         const List_Of_Level_Roles = Level_Roles.filter(Level_Roles => {
             return Level_Roles.guildID === message.guild.id
         }).map(Roles => {
-            return array.push(`#${Roles + 1} Roles: ${Roles.Level_Role} | Reach: ${Roles.Level_To_Reach} | ID: ${Roles.Level_Role_ID}`)
+            return array.push(
+              `**Roles: ${Roles.Level_Role}\nReach: ${Roles.Level_To_Reach}\nID: ${Roles.Level_Role_ID}**`
+            )
         })
         const Success = new Discord.MessageEmbed()
         .setAuthor(`${message.guild.name}`, `${message.guild.iconURL({ dynamic: true })}`)
-        .setTitle('[ Level Roles ]')
         .addFields(
             {
-                name: '[ Leve Roles',
-                value: List_Of_Level_Roles.join('\n\n'),
+                name: '[ Level Roles ]',
+                value: array.join('\n\n'),
                 inline: true
             }
         )
