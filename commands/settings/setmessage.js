@@ -62,7 +62,7 @@ module.exports = {
     for (let i = 0; i < me.length; i++) {
       if (me[i].id == message.guild.member(message).id) joinPosition = i;
     }
-
+    
     const key = await client.awaitReply(
       message,
       `**Choose what settings you want?\nKey: ${keys.join(
@@ -216,3 +216,18 @@ module.exports = {
     }*/
   }
 };
+function emoji(msg, message){
+  let emojis = msg.match(/(?<=:)([^:\s]+)(?=:)/g);
+    if (!emojis) return;
+    emojis.forEach(m => {
+      let emoji = message.guild.emojis.cache.find(x => x.name === m);
+      if (!emoji) return;
+      let temp = emoji.toString();
+      if (new RegExp(temp, "g").test(msg))
+        msg = msg.replace(new RegExp(temp, "g"), emoji.toString());
+      else msg = msg.replace(new RegExp(":" + m + ":", "g"), emoji.toString());
+      
+      
+    });
+  return msg;
+}
