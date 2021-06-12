@@ -10,7 +10,21 @@ module.exports = {
   category: "misc",
   botPermission: ["MANAGE_GUILD"],
   run: async (client, message, args) => {
-       const canvas = Canvas.createCanvas(1772, 633);
+      const rawLeaderboard = await Levels.fetchLeaderboard(message.guild.id, 10); // We grab top 10 users with most xp in the current server.
+    if (rawLeaderboard.length < 1)
+      return message.reply("Nobody's in leaderboard yet.");
+    const leaderboard = await Levels.computeLeaderboard(
+      client,
+      rawLeaderboard,
+      true
+    ); // We process the leaderboard.
+    const textString4 = leaderboard.map(
+      e =>
+        `#${e.position}. ${e.username}#${
+          e.discriminator
+        } » Level: \`${e.level}\` » XP: \`${e.xp.toLocaleString()}\`**`
+    );
+    const canvas = Canvas.createCanvas(1772, 633);
     const ctx = canvas.getContext("2d");
     //set the Background to the welcome.png
     const background = await Canvas.loadImage(
@@ -19,14 +33,6 @@ module.exports = {
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
     ctx.strokeStyle = "#f2f2f2";
     ctx.strokeRect(0, 0, canvas.width, canvas.height);
- 
-       var textString4 =
-           ` 
-           Welcome
-           wel
-           wwl wl
-           wel 
-           `;
     ctx.font = "bold 60px Genta";
     ctx.fillStyle = "#f2f2f2";
     ctx.fillText(textString4, 100, canvas.height / 2 - 180);
