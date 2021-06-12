@@ -1,8 +1,8 @@
 module.exports = {
   name: "nqn",
   usage: "nqn <on/off>",
-  description: "add guild custom commands",
-  category: "admin",
+  description: "",
+  category: "settings",
   args: true,
   authorPermission: ["MANAGE_MESSAGES"],
   botPermission: ["MANAGE_MESSAGES"],
