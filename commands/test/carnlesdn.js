@@ -44,17 +44,15 @@ module.exports = {
     ctx.clip()
     const attachment = new Discord.MessageAttachment(
       canvas.toBuffer(),
-      `Leaderboard ${message.guild.name}`
+      `Leaderboard-${message.guild.name}.png`
     );
-    
-      
-    const welcomeembed = new Discord.MessageEmbed()
+    const embed = new Discord.MessageEmbed()
       .setColor("RANDOM")
       .setTimestamp()
-      .setTitle(`Le`)
-      .setImage("attachment://welcome-image.png")
+      .setTitle(`Leaderboard ${message.guild.name}`)
+      .setImage(`attachment://Leaderboard-${message.guild.name}.png`)
       .attachFiles(attachment);
     
-    message.channel.send(attachment);
+    message.channel.send(embed);
     }}
  
