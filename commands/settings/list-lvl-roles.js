@@ -11,7 +11,6 @@ module.exports = {
 
         const Level_Roles_Storage = fs.readFileSync('./Storages/Level-Roles.json')
         const Level_Roles = JSON.parse(Level_Roles_Storage.toString())
-        
         const Guild_Check = Level_Roles.find(reach => {
             return reach.guildID === `${message.guild.id}`
         })
@@ -22,40 +21,19 @@ module.exports = {
             .setTimestamp()
             return message.channel.send(No_Roles)
         }
-
+        let array = [];
         const List_Of_Level_Roles = Level_Roles.filter(Level_Roles => {
             return Level_Roles.guildID === message.guild.id
         }).map(Roles => {
-            return Roles.Level_Role
+            return array.push(`#${Roles + 1} Roles: ${Roles.Level_Role} | Reach: ${Roles.Level_To_Reach} | ID: ${Roles.Level_Role_ID}`)
         })
-        const List_Of_Levels_To_Reach = Level_Roles.filter(Level_Roles => {
-            return Level_Roles.guildID === message.guild.id
-        }).map(Roles => {
-            return Roles.Level_To_Reach
-        })
-        const List_Of_IDs = Level_Roles.filter(Level_Roles => {
-            return Level_Roles.guildID === message.guild.id
-        }).map(Roles => {
-            return Roles.Level_Role_ID
-        })
-
         const Success = new Discord.MessageEmbed()
         .setAuthor(`${message.guild.name}`, `${message.guild.iconURL({ dynamic: true })}`)
         .setTitle('[ Level Roles ]')
         .addFields(
             {
-                name: 'Name',
-                value: List_Of_Level_Roles.join('\n'),
-                inline: true
-            },
-            {
-                name: 'Level To Reach',
-                value: `${List_Of_Levels_To_Reach.join('\n')}`,
-                inline: true
-            },
-            {
-                name: 'ID',
-                value: `${List_Of_IDs.join('\n')}`,
+                name: '[ Leve Roles',
+                value: List_Of_Level_Roles.join('\n\n'),
                 inline: true
             }
         )
