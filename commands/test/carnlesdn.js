@@ -25,7 +25,7 @@ module.exports = {
         } » XP: ${e.xp.toLocaleString()}`
     );
    
-    const canvas = Canvas.createCanvas(1400, 1633);
+    const canvas = Canvas.createCanvas(1400, 633);
     const ctx = canvas.getContext("2d");
     //set the Background to the welcome.png
     const background = await Canvas.loadImage(
@@ -35,47 +35,26 @@ module.exports = {
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
     ctx.strokeStyle = "#f2f2f2";
     ctx.strokeRect(0, 0, canvas.width, canvas.height);
-    ctx.font = "bold 60px Genta";
+    ctx.font = "bold 40px Genta";
     ctx.fillStyle = "#f2f2f2";
-    ctx.fillText(textString4.join("\n"), 100, canvas.height / 2 - 180);
+    ctx.fillText(textString4.join("\n"), 100, 100);
     ctx.beginPath();
     ctx.arc(315, canvas.height / 2, 250, 0, Math.PI * 2, true); //position of img
     ctx.closePath();
     ctx.clip()
     const attachment = new Discord.MessageAttachment(
       canvas.toBuffer(),
-      "welcome-image.gif"
+      `Leaderboard ${message.guild.name}`
     );
-  
+    
+      
+    const welcomeembed = new Discord.MessageEmbed()
+      .setColor("RANDOM")
+      .setTimestamp()
+      .setTitle(`Le`)
+      .setImage("attachment://welcome-image.png")
+      .attachFiles(attachment);
+    
     message.channel.send(attachment);
-    
-    
-    
-    
-    
-    
-    
-    
     }}
- /*   const rawLeaderboard = await Levels.fetchLeaderboard(message.guild.id, 10); // We grab top 10 users with most xp in the current server.
-    if (rawLeaderboard.length < 1)
-      return message.reply("Nobody's in leaderboard yet.");
-    const leaderboard = await Levels.computeLeaderboard(
-      client,
-      rawLeaderboard,
-      true
-    ); // We process the leaderboard.
-    const lb = leaderboard.map(
-      e =>
-        `__**${e.position}.**__ ** ${e.username}#${
-          e.discriminator
-        } » Level: \`${e.level}\` » XP: \`${e.xp.toLocaleString()}\`**`
-    ); // We map the outputs.
-    const embed = new MessageEmbed()
-      .setTitle(`**Leaderboard ${message.guild.name}**`)
-      .setColor("#efcb83")
-      .setDescription(`${lb.join("\n")}`);
-    message.inlineReply(embed);
-  }
-};
-*/
+ 
