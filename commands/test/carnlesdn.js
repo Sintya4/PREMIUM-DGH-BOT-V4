@@ -25,7 +25,7 @@ module.exports = {
         } » XP: ${e.xp.toLocaleString()}`
     );
    
-    const canvas = Canvas.createCanvas(1772, 633);
+    const canvas = Canvas.createCanvas(1400, 1633);
     const ctx = canvas.getContext("2d");
     //set the Background to the welcome.png
     const background = await Canvas.loadImage(
