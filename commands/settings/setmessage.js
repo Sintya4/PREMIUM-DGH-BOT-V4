@@ -94,11 +94,11 @@ module.exports = {
 
       if (welcome.content === "cancel")
         return message.channel.send("Exiting setup...");
-
+      let Msg = welcome.content
       client.data.set(`welmsg_${message.guild.id}`, welcome.content);
       client.send(
         `**Done** From now on I will send\n\`${
-          welcome.content
+          Msg
         }\`\n\nView:\n${welcome.content
           .split(`{member}`)
           .join(message.author) // Member mention substitution
@@ -226,8 +226,5 @@ function emoji(msg, message){
       if (new RegExp(temp, "g").test(msg))
         msg = msg.replace(new RegExp(temp, "g"), emoji.toString());
       else msg = msg.replace(new RegExp(":" + m + ":", "g"), emoji.toString());
-      
-      
     });
-  return msg;
 }
