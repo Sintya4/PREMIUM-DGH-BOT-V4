@@ -22,7 +22,7 @@ module.exports = {
       e =>
         `#${e.position}. ${e.username}#${
           e.discriminator
-        } » Level: \`${e.level}\` » XP: \`${e.xp.toLocaleString()}\`**`
+        } » XP: ${e.xp.toLocaleString()}`
     );
     const canvas = Canvas.createCanvas(1772, 633);
     const ctx = canvas.getContext("2d");
@@ -30,12 +30,16 @@ module.exports = {
     const background = await Canvas.loadImage(
       "https://cdn.discordapp.com/attachments/824570294198599685/853153027425959946/Discord_IAP_KeyVisuals_Header_01.gif"
     );
+    
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
     ctx.strokeStyle = "#f2f2f2";
     ctx.strokeRect(0, 0, canvas.width, canvas.height);
     ctx.font = "bold 60px Genta";
     ctx.fillStyle = "#f2f2f2";
-    ctx.fillText(textString4, 100, canvas.height / 2 - 180);
+    if(textString4.length === 6 ) {
+    ctx.fillText(textString4.slice(5).join("****"), 150, canvas.height / 2 - 180);
+    }
+    ctx.fillText(textString4.join("\n"), 100, canvas.height / 2 - 180);
     ctx.beginPath();
     ctx.arc(315, canvas.height / 2, 250, 0, Math.PI * 2, true); //position of img
     ctx.closePath();
