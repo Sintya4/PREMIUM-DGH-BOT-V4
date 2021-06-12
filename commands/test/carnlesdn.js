@@ -6,8 +6,8 @@ const fs = require("fs");
 const Canvas = require("canvas");
 const Levels = require("discord-xp");
 module.exports = {
-  name: "lea",
-  category: "misc",
+  name: "lekke",
+  category: "mis",
   botPermission: ["MANAGE_GUILD"],
   run: async (client, message, args) => {
       const rawLeaderboard = await Levels.fetchLeaderboard(message.guild.id, 10); // We grab top 10 users with most xp in the current server.
@@ -44,13 +44,13 @@ module.exports = {
     ctx.clip()
     const attachment = new Discord.MessageAttachment(
       canvas.toBuffer(),
-      `Leaderboard-${message.guild.name}.png`
+      `Leaderboard.png`
     );
     const embed = new Discord.MessageEmbed()
       .setColor("RANDOM")
       .setTimestamp()
       .setTitle(`Leaderboard ${message.guild.name}`)
-      .setImage(`attachment://Leaderboard-${message.guild.name}.png`)
+      .setImage(`attachment://Leaderboard.png`)
       .attachFiles(attachment);
     
     message.channel.send(embed);
