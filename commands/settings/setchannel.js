@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const db = require("quick.db");
+const fs = require("fs");
 const Guild = require("../../models/log"); //require our log model
 const mongoose = require("mongoose");
 
@@ -319,7 +320,10 @@ module.exports = {
         );
       if (!channel || channel.type !== "news")
         return client.send("**Please Enter A Valid News Channel!**");
-      client.data.set(`Announcement_${message.guild.id}`, channel.id);
+     
+      let Ch;
+      Ch.push({Channel_ID: channel.id,Guild_Name: message.guild.name})
+      client.data.set(`Announcement`, Ch);
       client.send(
         `**Done** From now on I will send Auto Public Channel Announcement in ${channel}`,
         message
