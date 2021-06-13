@@ -45,14 +45,14 @@ module.exports = {
     );
     if (!key)
       return message.channel.send("No response was given, Exiting setup...");
-    if (key.content === "cancel")
+    if (key.content.toLocaleLowerCase() === "cancel")
       return message.channel.send("Exiting setup...");
-    if (!keys.includes(key.content)) {
+    if (!keys.includes(key.content.toLocaleLowerCase())) {
       client.send("Error: Invalid Key provided, Please try again.", message);
     }
 
     //Setup
-    if (key.content === "welcome") {
+    if (key.content.toLocaleLowerCase() === "welcome") {
       let welcome = await client.awaitReply(
         message,
         `**Please give a channel to welcomer\nI'm not allowed to channel the Voice or Category
@@ -63,19 +63,130 @@ module.exports = {
       if (!welcome)
         return message.channel.send("No response was given, Exiting setup...");
 
-      if (welcome.content === "cancel")
+      if (welcome.content.toLocaleLowerCase() === "cancel")
         return message.channel.send("Exiting setup...");
       const channel =
         welcome.mentions.channels.first() ||
         client.guilds.cache.get(message.guild.id).channels.cache.get(args[0]) ||
-        message.guild.channels.cache.find(
-          c => c.name.toLowerCase() === args.join(" ").toLocaleLowerCase()
+        welcome.guild.channels.cache.find(
+          c => c.name.toLowerCase() === welcome.content.toLocaleLowerCase()
         );
       if (!channel || channel.type !== "text")
         return client.send("**Please Enter A Valid Text Channel!**");
-
       client.data.set(`welchannel_${message.guild.id}`, channel.id);
       client.send(
+        `**Done** From now on I will send welcome message in ${channel}`,
+        message
+      );
+    }
+    
+    if (key.content.toLocaleLowerCase() === "leave") {
+      let content = await client.awaitReply(
+        message,
+        `**Please give a channel to Leave\nI'm not allowed to channel the Voice or Category
+        \nType \`cancel\` to stop setup**`,
+        180000,
+        true
+      );
+      if (!content)
+        return message.channel.send("No response was given, Exiting setup...");
+
+      if (content.content.toLocaleLowerCase() === "cancel")
+        return message.channel.send("Exiting setup...");
+      const channel =
+        content.mentions.channels.first() ||
+        client.guilds.cache.get(message.guild.id).channels.cache.get(args[0]) ||
+        content.guild.channels.cache.find(
+          c => c.name.toLowerCase() === content.content.toLocaleLowerCase()
+        );
+      if (!channel || channel.type !== "text")
+        return client.send("**Please Enter A Valid Text Channel!**");
+       client.data.set(`levchannel_${message.guild.id}`, channel.id);
+       client.send(
+        `**Done** From now on I will send welcome message in ${channel}`,
+        message
+      );
+    }
+    
+    if (key.content.toLocaleLowerCase() === "level") {
+      let content = await client.awaitReply(
+        message,
+        `**Please give a channel to Level\nI'm not allowed to channel the Voice or Category
+        \nType \`cancel\` to stop setup**`,
+        180000,
+        true
+      );
+      if (!content)
+        return message.channel.send("No response was given, Exiting setup...");
+
+      if (content.content.toLocaleLowerCase() === "cancel")
+        return message.channel.send("Exiting setup...");
+      const channel =
+        content.mentions.channels.first() ||
+        client.guilds.cache.get(message.guild.id).channels.cache.get(args[0]) ||
+        content.guild.channels.cache.find(
+          c => c.name.toLowerCase() === content.content.toLocaleLowerCase()
+        );
+      if (!channel || channel.type !== "text")
+        return client.send("**Please Enter A Valid Text Channel!**");
+       client.data.set(`levelch_${message.guild.id}`, channel.id);
+       client.send(
+        `**Done** From now on I will send welcome message in ${channel}`,
+        message
+      );
+    }
+   
+    if (key.content.toLocaleLowerCase() === "report") {
+      let content = await client.awaitReply(
+        message,
+        `**Please give a channel to Report\nI'm not allowed to channel the Voice or Category
+        \nType \`cancel\` to stop setup**`,
+        180000,
+        true
+      );
+      if (!content)
+        return message.channel.send("No response was given, Exiting setup...");
+
+      if (content.content.toLocaleLowerCase() === "cancel")
+        return message.channel.send("Exiting setup...");
+      const channel =
+        content.mentions.channels.first() ||
+        client.guilds.cache.get(message.guild.id).channels.cache.get(args[0]) ||
+        content.guild.channels.cache.find(
+          c => c.name.toLowerCase() === content.content.toLocaleLowerCase()
+        );
+      if (!channel || channel.type !== "text")
+        return client.send("**Please Enter A Valid Text Channel!**");
+          client.data.set(`reports_${message.guild.id}`, channel.id);
+       client.send(
+        `**Done** From now on I will send welcome message in ${channel}`,
+        message
+      );
+    }
+  
+    if (key.content.toLocaleLowerCase() === "") {
+      let content = await client.awaitReply(
+        message,
+        `**Please give a channel to Report\nI'm not allowed to channel the Voice or Category
+        \nType \`cancel\` to stop setup**`,
+        180000,
+        true
+      );
+      if (!content)
+        return message.channel.send("No response was given, Exiting setup...");
+
+      if (content.content.toLocaleLowerCase() === "cancel")
+        return message.channel.send("Exiting setup...");
+      const channel =
+        content.mentions.channels.first() ||
+        client.guilds.cache.get(message.guild.id).channels.cache.get(args[0]) ||
+        content.guild.channels.cache.find(
+          c => c.name.toLowerCase() === content.content.toLocaleLowerCase()
+        );
+      if (!channel || channel.type !== "text")
+        return client.send("**Please Enter A Valid Text Channel!**");
+          client.data.set(`reports_${message.guild.id}`, channel.id);
+       client.send(
         `**Done** From now on I will send welcome message in ${channel}`,
         message
       );
@@ -83,39 +194,10 @@ module.exports = {
   }
 };
 
-/*  const [key, ...value] = args;
-    switch (key) {
-      default:
-        return message.channel.send(
-          new Discord.MessageEmbed()
-            .setColor("RED")
-            .setTimestamp()
-            .setFooter(
-              message.author.tag,
-              message.author.displayAvatarURL({ dynamic: true }) ||
-                client.user.displayAvatarURL({ dynamic: true })
-            )
-            .setDescription("Error: Invalid Key provided, Please try again.")
-        );
-      case "leave":
-        {
-          if (!channel) {
-            return message.channel.send(
-              `${client.emotes.error}Pls Give Invalid channel... Try again...`
-            );
-          }
-          client.data.set(`levchannel_${message.guild.id}`, channel.id);
-          const leave = new Discord.MessageEmbed()
-            .setDescription(
-              `**Done** From now on I will send welcome message in ${channel} when someone leaves the server`
-            )
-            .setColor("RED");
-          message.channel
-            .send(leave)
-            .then(m => m.delete({ timeout: 5000 }).catch(e => {}));
-        }
-        break;
-      case "chat-bot":
+
+/*
+
+case "chat-bot":
         {
           if (!channel) {
             return message.channel.send(

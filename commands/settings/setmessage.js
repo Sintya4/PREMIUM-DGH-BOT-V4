@@ -72,14 +72,14 @@ module.exports = {
     );
     if (!key)
       return message.channel.send("No response was given, Exiting setup...");
-    if (key.content === "cancel")
+    if (key.content.toLocaleLowerCase() === "cancel")
       return message.channel.send("Exiting setup...");
-    if (!keys.includes(key.content)) {
+    if (!keys.includes(key.content.toLocaleLowerCase())) {
       client.send("Error: Invalid Key provided, Please try again.", message);
     }
 
     //Setup
-    if (key.content === "welcome") {
+    if (key.content.toLocaleLowerCase() === "welcome") {
       let welcome = await client.awaitReply(
         message,
         `**Please give a message to welcomer?\nCode: ${welcomes.join(
@@ -91,7 +91,7 @@ module.exports = {
       if (!welcome)
         return message.channel.send("No response was given, Exiting setup...");
 
-      if (welcome.content === "cancel")
+      if (welcome.content.toLocaleLowerCase() === "cancel")
         return message.channel.send("Exiting setup...");
       let msg = await emoji(welcome.content, message);
       client.data.set(`welmsg_${message.guild.id}`, msg);
@@ -115,7 +115,7 @@ module.exports = {
       );
     }
 
-    if (key.content === "leave") {
+    if (key.content.toLocaleLowerCase() === "leave") {
       let leave = await client.awaitReply(
         message,
         `**Please give a message to leaver?\nCode: ${leaves.join(
@@ -126,7 +126,7 @@ module.exports = {
       );
       if (!leave)
         return message.channel.send("No response was given, Exiting setup...");
-      if (leave.content === "cancel")
+      if (leave.content.toLocaleLowerCase() === "cancel")
         return message.channel.send("Exiting setup...");
       let msg = await emoji(leave.content, message);
       client.data.set(`levmsg_${message.guild.id}`, msg);
@@ -149,7 +149,7 @@ module.exports = {
         message
       );
     }
-    if (key.content === "anti-swear") {
+    if (key.content.toLocaleLowerCase() === "anti-swear") {
       let words = await client.awaitReply(
         message,
         `**Please give a message to Warning Anti-swear?\nCode: ${wards.join(
@@ -160,7 +160,7 @@ module.exports = {
       );
       if (!words)
         return message.channel.send("No response was given, Exiting setup...");
-      if (words.content === "cancel")
+      if (words.content.toLocaleLowerCase() === "cancel")
         return message.channel.send("Exiting setup...");
 
       let msg = await emoji(words.content, message);
