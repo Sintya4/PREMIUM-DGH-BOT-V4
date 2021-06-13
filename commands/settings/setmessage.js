@@ -96,9 +96,10 @@ module.exports = {
         return message.channel.send("Exiting setup...");
       let msg = welcome.content;
       let emojis = msg.match(/(?<=:)([^:\s]+)(?=:)/g);
-      if (!emojis) return welcome.content;
-      let temp;
-      emojis.forEach(m => {
+       if (!emojis) welcome.content;
+       let temp;
+     if(emojis){
+        emojis.forEach(m => {
         let emoji = message.guild.emojis.cache.find(x => x.name === m);
         if (!emoji) return;
         temp = emoji.toString();
@@ -106,7 +107,7 @@ module.exports = {
           msg = msg.replace(new RegExp(temp, "g"), emoji.toString());
         else
           msg = msg.replace(new RegExp(":" + m + ":", "g"), emoji.toString());
-      });
+      })};
 
       client.data.set(`welmsg_${message.guild.id}`, msg);
       client.send(
