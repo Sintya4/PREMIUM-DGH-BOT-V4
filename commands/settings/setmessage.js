@@ -93,7 +93,7 @@ module.exports = {
 
       if (welcome.content.toLocaleLowerCase() === "cancel")
         return message.channel.send("Exiting setup...");
-      let msg = await emoji(welcome.content, message);
+      let msg = await client.EEemoji(welcome.content, client);
       client.data.set(`welmsg_${message.guild.id}`, msg);
       client.send(
         `**Done** From now on I will send\n\`${msg}\`\n\nView:\n${welcome.content
@@ -128,7 +128,7 @@ module.exports = {
         return message.channel.send("No response was given, Exiting setup...");
       if (leave.content.toLocaleLowerCase() === "cancel")
         return message.channel.send("Exiting setup...");
-      let msg = await emoji(leave.content, message);
+      let msg = await client.EEemoji(leave.content, client);
       client.data.set(`levmsg_${message.guild.id}`, msg);
       client.send(
         `**Done** From now on I will send\n\`${msg}\`\n\nView:\n${leave.content
@@ -163,7 +163,7 @@ module.exports = {
       if (words.content.toLocaleLowerCase() === "cancel")
         return message.channel.send("Exiting setup...");
 
-      let msg = await emoji(words.content, message);
+      let msg = await client.EEemoji(words.content, client);
       client.data.set(`message_${message.guild.id}`, msg);
       client.send(
         `**Done** From now on I will send\n\`${msg}\`\n\nView:\n${words.content
@@ -217,19 +217,3 @@ module.exports = {
     }*/
   }
 };
-function emoji(msg, message) {
-  let emojis = msg.match(/(?<=:)([^:\s]+)(?=:)/g);
-  if (!emojis) msg;
-  let temp;
-  if (emojis) {
-    emojis.forEach(m => {
-      let emoji = message.guild.emojis.cache.find(x => x.name === m);
-      if (!emoji) return;
-      temp = emoji.toString();
-      if (new RegExp(temp, "g").test(msg))
-        msg = msg.replace(new RegExp(temp, "g"), emoji.toString());
-      else msg = msg.replace(new RegExp(":" + m + ":", "g"), emoji.toString());
-    });
-  }
-  return msg;
-}

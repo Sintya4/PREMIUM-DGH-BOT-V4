@@ -320,10 +320,7 @@ module.exports = {
         );
       if (!channel || channel.type !== "news")
         return client.send("**Please Enter A Valid News Channel!**");
-     
-      let Ch;
-      Ch.push({Channel_ID: channel.id,Guild_Name: message.guild.name})
-      client.data.set(`Announcement`, Ch);
+      client.data.push(`Announcement_${message.guild.id}`,channel.id);
       client.send(
         `**Done** From now on I will send Auto Public Channel Announcement in ${channel}`,
         message

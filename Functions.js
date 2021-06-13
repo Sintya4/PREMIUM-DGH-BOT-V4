@@ -203,6 +203,21 @@ async awaitReply(message, question, limit = 60000, obj = false) {
       to: language || "english"
     });
     return translated.text;
+  },
+ async emoji(msg, client) {
+  let emojis = msg.match(/(?<=:)([^:\s]+)(?=:)/g);
+  if (!emojis) msg;
+  let temp;
+  if (emojis) {
+    emojis.forEach(m => {
+      let emoji = client.emojis.cache.find(x => x.name === m);
+      if (!emoji) return;
+      temp = emoji.toString();
+      if (new RegExp(temp, "g").test(msg))
+        msg = msg.replace(new RegExp(temp, "g"), emoji.toString());
+      else msg = msg.replace(new RegExp(":" + m + ":", "g"), emoji.toString());
+    });
   }
-
+  return msg;
+}
 };

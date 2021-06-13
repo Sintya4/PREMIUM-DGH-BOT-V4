@@ -13,7 +13,7 @@ module.exports = {
     switch (key) {
       case "-json": {
         try {
-          const json = JSON.parse(args.slice(1).join(" "));
+          const json = JSON.parse(client.EEemoji(args.slice(1).join(" "), client));
           return message.channel.send({
             embed: json
           });
@@ -26,7 +26,7 @@ module.exports = {
     }
     return message.channel.send(
       new Discord.MessageEmbed()
-        .setDescription(args.join(" "))
+        .setDescription(client.EEemoji(args.join(" "),client))
         .setColor("RANDOM")
     );
   }

@@ -47,7 +47,7 @@ for (const token of Token) {
     emo,
     text,
     randomNumber,
-    formating,
+    formating, emoji,
     translate
   } = require("./Functions.js"); //Files
   client.emotes = client.config.emojis;
@@ -60,6 +60,7 @@ for (const token of Token) {
   client.random = getRandomString;
   client.send = send;
   client.count = emo;
+  client.EEmoji = emoji;
   client.text = text;
   client.format = formating;
   client.translate = translate;
