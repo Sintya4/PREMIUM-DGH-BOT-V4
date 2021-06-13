@@ -94,21 +94,7 @@ module.exports = {
 
       if (welcome.content === "cancel")
         return message.channel.send("Exiting setup...");
-      let msg = welcome.content;
-      let emojis = msg.match(/(?<=:)([^:\s]+)(?=:)/g);
-       if (!emojis) welcome.content;
-       let temp;
-     if(emojis){
-        emojis.forEach(m => {
-        let emoji = message.guild.emojis.cache.find(x => x.name === m);
-        if (!emoji) return;
-        temp = emoji.toString();
-        if (new RegExp(temp, "g").test(msg))
-          msg = msg.replace(new RegExp(temp, "g"), emoji.toString());
-         else
-          msg = msg.replace(new RegExp(":" + m + ":", "g"), emoji.toString());
-     })};
-
+      let msg = await emoji(welcome.content, message);
       client.data.set(`welmsg_${message.guild.id}`, msg);
       client.send(
         `**Done** From now on I will send\n\`${msg}\`\n\nView:\n${welcome.content
@@ -143,12 +129,10 @@ module.exports = {
         return message.channel.send("No response was given, Exiting setup...");
       if (leave.content === "cancel")
         return message.channel.send("Exiting setup...");
-
-      client.data.set(`levmsg_${message.guild.id}`, leave.content);
+      let msg = await emoji(leave.content, message);
+      client.data.set(`levmsg_${message.guild.id}`, msg);
       client.send(
-        `**Done** From now on I will send\n\`${
-          leave.content
-        }\`\n\nView:\n${leave.content
+        `**Done** From now on I will send\n\`${msg}\`\n\nView:\n${leave.content
           .split(`{member}`)
           .join(message.author) // Member mention substitution
           .split(`{username}`)
@@ -180,11 +164,10 @@ module.exports = {
       if (words.content === "cancel")
         return message.channel.send("Exiting setup...");
 
-      client.data.set(`message_${message.guild.id}`, words.content);
+      let msg = await emoji(words.content, message);
+      client.data.set(`message_${message.guild.id}`, msg);
       client.send(
-        `**Done** From now on I will send\n\`${
-          words.content
-        }\`\n\nView:\n${words.content
+        `**Done** From now on I will send\n\`${msg}\`\n\nView:\n${words.content
           .split("{user-mention}")
           .join("<@" + message.author.id + ">")
           .split("{server-name}")
@@ -237,14 +220,17 @@ module.exports = {
 };
 function emoji(msg, message) {
   let emojis = msg.match(/(?<=:)([^:\s]+)(?=:)/g);
-  if (!emojis) return;
+  if (!emojis) msg;
   let temp;
-  emojis.forEach(m => {
-    let emoji = message.guild.emojis.cache.find(x => x.name === m);
-    if (!emoji) return;
-    temp = emoji.toString();
-    if (new RegExp(temp, "g").test(msg))
-      msg = msg.replace(new RegExp(temp, "g"), emoji.toString());
-    else msg = msg.replace(new RegExp(":" + m + ":", "g"), emoji.toString());
-  });
+  if (emojis) {
+    emojis.forEach(m => {
+      let emoji = message.guild.emojis.cache.find(x => x.name === m);
+      if (!emoji) return;
+      temp = emoji.toString();
+      if (new RegExp(temp, "g").test(msg))
+        msg = msg.replace(new RegExp(temp, "g"), emoji.toString());
+      else msg = msg.replace(new RegExp(":" + m + ":", "g"), emoji.toString());
+    });
+  }
+  return msg;
 }
