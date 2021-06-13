@@ -534,10 +534,9 @@ client.on("messageDelete", function(message, channel) {
         .replace(/@(here)/gi, "here");
       message.channel.stopTyping();
       message.channel.startTyping();
-      let content =await translate(message.content, message)
       let data = await fetch(
-        `https://api.affiliateplus.xyz/api/chatbot?message=${encodeURIComponent(
-        content)}&botname=${client.user.username}&ownername=dgh`
+        `https://api.affiliateplus.xyz/api/chatbot?message=${message.content
+ }&botname=${client.user.username}&ownername=dgh`
       ).then(res => res.json());
 
       const translated = await translate(data.message, {

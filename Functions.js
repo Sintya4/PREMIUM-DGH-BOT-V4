@@ -218,9 +218,9 @@ module.exports = {
     let language = await database.get(`LANG_${message.guild.id}`);
     let translate = require("@k3rn31p4nic/google-translate-api");
     const translated = await translate(text, {
-      to: language || "english"
+      to: language
     });
-    return translated.text;
+    rwaitanslated.text;
   },
   async emoji(msg, client) {
     let emojis = msg.match(/(?<=:)([^:\s]+)(?=:)/g);
@@ -237,7 +237,7 @@ module.exports = {
           msg = msg.replace(new RegExp(":" + m + ":", "g"), emoji.toString());
       });
     }
-    return msg;
+   return msg;
   }
 };
 /* let emojis = msg.match(/(?<=:)([^:\s]+)(?=:)/g);
