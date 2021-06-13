@@ -105,9 +105,9 @@ module.exports = {
         temp = emoji.toString();
         if (new RegExp(temp, "g").test(msg))
           msg = msg.replace(new RegExp(temp, "g"), emoji.toString());
-        else
+         else
           msg = msg.replace(new RegExp(":" + m + ":", "g"), emoji.toString());
-      })};
+     })};
 
       client.data.set(`welmsg_${message.guild.id}`, msg);
       client.send(
