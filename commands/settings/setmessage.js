@@ -94,12 +94,11 @@ module.exports = {
 
       if (welcome.content === "cancel")
         return message.channel.send("Exiting setup...");
-      let Msg = welcome.content
+    //  let Msg = await emoji(welcome.content(), message)
       client.data.set(`welmsg_${message.guild.id}`, welcome.content);
       client.send(
         `**Done** From now on I will send\n\`${
-          Msg
-        }\`\n\nView:\n${welcome.content
+       welcome.content.toString() }\`\n\nView:\n${welcome.content
           .split(`{member}`)
           .join(message.author) // Member mention substitution
           .split(`{username}`)
@@ -219,12 +218,14 @@ module.exports = {
 function emoji(msg, message){
   let emojis = msg.match(/(?<=:)([^:\s]+)(?=:)/g);
     if (!emojis) return;
+  let temp;
     emojis.forEach(m => {
       let emoji = message.guild.emojis.cache.find(x => x.name === m);
       if (!emoji) return;
-      let temp = emoji.toString();
-      if (new RegExp(temp, "g").test(msg))
+      temp = emoji.toString();
+        if (new RegExp(temp, "g").test(msg))
         msg = msg.replace(new RegExp(temp, "g"), emoji.toString());
       else msg = msg.replace(new RegExp(":" + m + ":", "g"), emoji.toString());
     });
+
 }
