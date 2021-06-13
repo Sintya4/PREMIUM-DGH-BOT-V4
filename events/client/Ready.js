@@ -1,3 +1,6 @@
+const mongoose = require("mongoose");
+let { mongodb, Default_Prefix } = require ("../../config.js")
+module.exports = async client => {
 client.on("ready", async () => {
     await mongoose.connect(mongodb, {
       useNewUrlParser: true,
@@ -36,4 +39,4 @@ client.on("ready", async () => {
   });
   //send msg if connection lost to mongodb
 
-  
+  }

@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const { Default_Prefix } = require("../config.js");
+const { Default_Prefix } = require("../../config.js");
 const MessageEmbed = require("discord.js");
 const db = require("quick.db");
 const moment = require("moment");
