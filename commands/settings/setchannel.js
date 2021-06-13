@@ -6,9 +6,6 @@ const mongoose = require("mongoose");
 module.exports = {
   name: "setchannel",
   category: "settings",
-  args: true,
-  usage:
-    "setchannel <key //welcome/leave/report/level/modlog/modlogserver/chat-bot/starboard> <channel>",
   description: "Set the channel",
   botPermission: [
     "VIEW_CHANNEL",
@@ -36,15 +33,12 @@ module.exports = {
       "log-server",
       "chat-bot",
       "starboard",
-      "auto-publich",
-      ];
-    
-    
-   const channel = message.mentions.channels.first();
-   const key = await client.awaitReply(
+      "auto-publich"
+    ];
+    const key = await client.awaitReply(
       message,
       `**Choose what settings you want?\nKey: ${keys.join(
-        " |"
+        " | "
       )}\nType \`cancel\` to stop setup**`,
       180000,
       true
@@ -56,13 +50,12 @@ module.exports = {
     if (!keys.includes(key.content)) {
       client.send("Error: Invalid Key provided, Please try again.", message);
     }
-    
+
     //Setup
-    
-     if (key.content === "welcome") {
+    if (key.content === "welcome") {
       let welcome = await client.awaitReply(
         message,
-        `**Please give a Channel to welcomer\nI'm not allowed to channel the Voice or Category
+        `**Please give a channel to welcomer\nI'm not allowed to channel the Voice or Category
         \nType \`cancel\` to stop setup**`,
         180000,
         true
@@ -72,138 +65,23 @@ module.exports = {
 
       if (welcome.content === "cancel")
         return message.channel.send("Exiting setup...");
-   }
-  
-     if (key.content === "leave") {
-      let welcome = await client.awaitReply(
-        message,
-        `**Please give a Channel to welcomer\nI'm not allowed to channel the Voice or Category
-        \nType \`cancel\` to stop setup**`,
-        180000,
-        true
-      );
-      if (!welcome)
-        return message.channel.send("No response was given, Exiting setup...");
+      const channel =
+        welcome.mentions.channels.first() ||
+        client.guilds.cache.get(message.guild.id).channels.cache.get(args[0]) ||
+        message.guild.channels.cache.find(
+          c => c.name.toLowerCase() === args.join(" ").toLocaleLowerCase()
+        );
+      if (!channel || channel.type !== "text")
+        return client.send("**Please Enter A Valid Text Channel!**");
 
-      if (welcome.content === "cancel")
-        return message.channel.send("Exiting setup...");
-   }
-     if (key.content === "report") {
-      let welcome = await client.awaitReply(
-        message,
-        `**Please give a Channel to welcomer\nI'm not allowed to channel the Voice or Category
-        \nType \`cancel\` to stop setup**`,
-        180000,
-        true
+      client.data.set(`welchannel_${message.guild.id}`, channel.id);
+      client.send(
+        `**Done** From now on I will send welcome message in ${channel}`,
+        message
       );
-      if (!welcome)
-        return message.channel.send("No response was given, Exiting setup...");
-
-      if (welcome.content === "cancel")
-        return message.channel.send("Exiting setup...");
-   }
-     if (key.content === "starboard") {
-      let welcome = await client.awaitReply(
-        message,
-        `**Please give a Channel to welcomer\nI'm not allowed to channel the Voice or Category
-        \nType \`cancel\` to stop setup**`,
-        180000,
-        true
-      );
-      if (!welcome)
-        return message.channel.send("No response was given, Exiting setup...");
-
-      if (welcome.content === "cancel")
-        return message.channel.send("Exiting setup...");
-   }
-     if (key.content === "welcome") {
-      let welcome = await client.awaitReply(
-        message,
-        `**Please give a Channel to welcomer\nI'm not allowed to channel the Voice or Category
-        \nType \`cancel\` to stop setup**`,
-        180000,
-        true
-      );
-      if (!welcome)
-        return message.channel.send("No response was given, Exiting setup...");
-
-      if (welcome.content === "cancel")
-        return message.channel.send("Exiting setup...");
-   }
-     if (key.content === "welcome") {
-      let welcome = await client.awaitReply(
-        message,
-        `**Please give a Channel to welcomer\nI'm not allowed to channel the Voice or Category
-        \nType \`cancel\` to stop setup**`,
-        180000,
-        true
-      );
-      if (!welcome)
-        return message.channel.send("No response was given, Exiting setup...");
-
-      if (welcome.content === "cancel")
-        return message.channel.send("Exiting setup...");
-   }
-     if (key.content === "welcome") {
-      let welcome = await client.awaitReply(
-        message,
-        `**Please give a Channel to welcomer\nI'm not allowed to channel the Voice or Category
-        \nType \`cancel\` to stop setup**`,
-        180000,
-        true
-      );
-      if (!welcome)
-        return message.channel.send("No response was given, Exiting setup...");
-
-      if (welcome.content === "cancel")
-        return message.channel.send("Exiting setup...");
-   }
-     if (key.content === "welcome") {
-      let welcome = await client.awaitReply(
-        message,
-        `**Please give a Channel to welcomer\nI'm not allowed to channel the Voice or Category
-        \nType \`cancel\` to stop setup**`,
-        180000,
-        true
-      );
-      if (!welcome)
-        return message.channel.send("No response was given, Exiting setup...");
-
-      if (welcome.content === "cancel")
-        return message.channel.send("Exiting setup...");
-   }
-     if (key.content === "welcome") {
-      let welcome = await client.awaitReply(
-        message,
-        `**Please give a Channel to welcomer\nI'm not allowed to channel the Voice or Category
-        \nType \`cancel\` to stop setup**`,
-        180000,
-        true
-      );
-      if (!welcome)
-        return message.channel.send("No response was given, Exiting setup...");
-
-      if (welcome.content === "cancel")
-        return message.channel.send("Exiting setup...");
-   }
-     if (key.content === "welcome") {
-      let welcome = await client.awaitReply(
-        message,
-        `**Please give a Channel to welcomer\nI'm not allowed to channel the Voice or Category
-        \nType \`cancel\` to stop setup**`,
-        180000,
-        true
-      );
-      if (!welcome)
-        return message.channel.send("No response was given, Exiting setup...");
-
-      if (welcome.content === "cancel")
-        return message.channel.send("Exiting setup...");
-   }}
+    }
+  }
 };
-
-
-
 
 /*  const [key, ...value] = args;
     switch (key) {

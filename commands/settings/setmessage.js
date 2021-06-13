@@ -17,8 +17,7 @@ module.exports = {
     "MANAGE_CHANNELS",
     "MANAGE_GUILD"
   ],
-  usage: "setmsg <welcome/leave> <msg>",
-  description: "Set the welcome",
+  description: "Set the Message",
   run: async (client, message, args) => {
     message.delete();
     let keys = ["welcome", "leave", "anti-swear"];
@@ -66,7 +65,7 @@ module.exports = {
     const key = await client.awaitReply(
       message,
       `**Choose what settings you want?\nKey: ${keys.join(
-        " |"
+        " | "
       )}\nType \`cancel\` to stop setup**`,
       180000,
       true
