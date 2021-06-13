@@ -2,12 +2,12 @@ module.exports = async client => {
   client.on("message", async message => {
     let auto = await client.data.get(`Announcement_${message.guild.id}`);
     if (!auto) return;
-    const sender = await client.channels.cache.get(auto);
+    const sender = client.channels.cache.get(auto);
     if (!sender) return;
     client.on("message", message => {
       const { channel } = message;
 
-      if (channel.name === auto.name) {
+      if (channel.name === sender.name) {
         message.crosspost().catch(error => {
           console.log(error);
           message.author

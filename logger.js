@@ -219,8 +219,6 @@ module.exports = c => {
     });
 
     c.on("messageDelete", function(message) {
-      if (message.author.bot) return;
-
       if (message.channel.type !== "text") return;
 
       send_log(
@@ -253,8 +251,6 @@ ${message.attachments.map(x => x.proxyURL)}
     });
 
     c.on("messageUpdate", function(oldMessage, newMessage) {
-      if (oldMessage.author.bot) return;
-
       if (oldMessage.channel.type !== "text") return;
       if (newMessage.channel.type !== "text") return;
 
