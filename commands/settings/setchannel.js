@@ -32,8 +32,7 @@ module.exports = {
       "moderation-log",
       "log-server",
       "chat-bot",
-      "starboard",
-      "auto-public"
+      "starboard"
     ];
     const key = await client.awaitReply(
       message,
@@ -300,7 +299,7 @@ module.exports = {
       );
     }
 
-    if (key.content.toLocaleLowerCase() === "auto-public") {
+    if (key.content.toLocaleLowerCase() === "auto-publico") {
       let content = await client.awaitReply(
         message,
         `**Please give a channel to Auto Public Channel Announcement\nType \`cancel\` to stop setup**`,

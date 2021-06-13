@@ -6,18 +6,19 @@ module.exports = async client => {
     if (!sender) return;
     client.on("message", message => {
       const { channel } = message;
-
-      if (channel.name === sender.name) {
-        message.crosspost().catch(error => {
-          console.log(error);
-          message.author
-            .send(`Failed to Post Message On ${message.channel}`)
-            .then(
-              message.author.send(
-                `Successfully Post Message On ${message.channel}`
-              )
-            );
-        });
+      for (const name of sender.name) {
+        if (channel.name === name) {
+          message.crosspost().catch(error => {
+            console.log(error);
+            message.author
+              .send(`Failed to Post Message On ${message.channel}`)
+              .then(
+                message.author.send(
+                  `Successfully Post Message On ${message.channel}`
+                )
+              );
+          });
+        }
       }
     });
   });
