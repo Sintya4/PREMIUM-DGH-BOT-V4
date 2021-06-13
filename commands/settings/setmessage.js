@@ -21,7 +21,7 @@ module.exports = {
   description: "Set the welcome",
   run: async (client, message, args) => {
     message.delete();
-    let keys = ["welcome", "leave","anti-swear"];
+    let keys = ["welcome", "leave", "anti-swear"];
     let welcomes = [
       "{member}",
       "{username}",
@@ -54,7 +54,7 @@ module.exports = {
       "{server-name}",
       "{user-tag}",
       "{user-username}"
-     ];
+    ];
     var date = moment.tz("Asia/Jakarta");
     let joinPosition;
     const me = message.guild.members.cache.array();
@@ -62,7 +62,7 @@ module.exports = {
     for (let i = 0; i < me.length; i++) {
       if (me[i].id == message.guild.member(message).id) joinPosition = i;
     }
-    
+
     const key = await client.awaitReply(
       message,
       `**Choose what settings you want?\nKey: ${keys.join(
@@ -94,11 +94,23 @@ module.exports = {
 
       if (welcome.content === "cancel")
         return message.channel.send("Exiting setup...");
-    //  let Msg = await emoji(welcome.content(), message)
-      client.data.set(`welmsg_${message.guild.id}`, welcome.content);
+      let msg = welcome.content;
+      let emojis = msg.match(/(?<=:)([^:\s]+)(?=:)/g);
+      if (!emojis) return welcome.content;
+      let temp;
+      emojis.forEach(m => {
+        let emoji = message.guild.emojis.cache.find(x => x.name === m);
+        if (!emoji) return;
+        temp = emoji.toString();
+        if (new RegExp(temp, "g").test(msg))
+          msg = msg.replace(new RegExp(temp, "g"), emoji.toString());
+        else
+          msg = msg.replace(new RegExp(":" + m + ":", "g"), emoji.toString());
+      });
+
+      client.data.set(`welmsg_${message.guild.id}`, msg);
       client.send(
-        `**Done** From now on I will send\n\`${
-       welcome.content.toString() }\`\n\nView:\n${welcome.content
+        `**Done** From now on I will send\n\`${msg}\`\n\nView:\n${welcome.content
           .split(`{member}`)
           .join(message.author) // Member mention substitution
           .split(`{username}`)
@@ -167,17 +179,24 @@ module.exports = {
       if (words.content === "cancel")
         return message.channel.send("Exiting setup...");
 
-     client.data.set(`message_${message.guild.id}`, words.content )
-     client.send(
+      client.data.set(`message_${message.guild.id}`, words.content);
+      client.send(
         `**Done** From now on I will send\n\`${
           words.content
         }\`\n\nView:\n${words.content
-        .split("{user-mention}").join("<@"+message.author.id+">").split("{server-name}").join(message.guild.name).split("{user-tag}").join(message.author.tag).split("{user-username}").join(message.author.username)}`,
+          .split("{user-mention}")
+          .join("<@" + message.author.id + ">")
+          .split("{server-name}")
+          .join(message.guild.name)
+          .split("{user-tag}")
+          .join(message.author.tag)
+          .split("{user-username}")
+          .join(message.author.username)}`,
         message
       );
- } 
+    }
     //Soon
-/*
+    /*
     if (key.content.toLowerCase() === "level") {
       let level = await client.awaitReply(
         message,
@@ -215,17 +234,16 @@ module.exports = {
     }*/
   }
 };
-function emoji(msg, message){
+function emoji(msg, message) {
   let emojis = msg.match(/(?<=:)([^:\s]+)(?=:)/g);
-    if (!emojis) return;
+  if (!emojis) return;
   let temp;
-    emojis.forEach(m => {
-      let emoji = message.guild.emojis.cache.find(x => x.name === m);
-      if (!emoji) return;
-      temp = emoji.toString();
-        if (new RegExp(temp, "g").test(msg))
-        msg = msg.replace(new RegExp(temp, "g"), emoji.toString());
-      else msg = msg.replace(new RegExp(":" + m + ":", "g"), emoji.toString());
-    });
-
+  emojis.forEach(m => {
+    let emoji = message.guild.emojis.cache.find(x => x.name === m);
+    if (!emoji) return;
+    temp = emoji.toString();
+    if (new RegExp(temp, "g").test(msg))
+      msg = msg.replace(new RegExp(temp, "g"), emoji.toString());
+    else msg = msg.replace(new RegExp(":" + m + ":", "g"), emoji.toString());
+  });
 }
