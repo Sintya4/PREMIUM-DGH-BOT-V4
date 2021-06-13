@@ -33,7 +33,7 @@ module.exports = {
       "log-server",
       "chat-bot",
       "starboard",
-      "auto-publich"
+      "auto-public"
     ];
     const key = await client.awaitReply(
       message,
@@ -271,167 +271,89 @@ module.exports = {
         }
       );
     }
-  }
-};
 
-/*
+    if (key.content.toLocaleLowerCase() === "starboard") {
+      let content = await client.awaitReply(
+        message,
+        `**Please give a channel to Starboard\nI'm not allowed to channel the Voice or Category
+        \nType \`cancel\` to stop setup**`,
+        180000,
+        true
+      );
+      if (!content)
+        return message.channel.send("No response was given, Exiting setup...");
 
-case "chat-bot":
-        {
-          if (!channel) {
-            return message.channel.send(
-              `${client.emotes.error}Pls Give Invalid channel... Try again...`
-            );
-          }
-          client.data.set(`chatbot_${message.guild.id}`, channel.id);
-          const chat = new Discord.MessageEmbed()
-            .setDescription(
-              `**Done** From now on I will send Chatbot in ${channel}`
-            )
-            .setColor("RED");
-          message.channel
-            .send(chat)
-            .then(m => m.delete({ timeout: 5000 }).catch(e => {}));
-        }
-        break;
-      case "starboard":
-        {
-          if (!channel) {
-            return message.channel.send(
-              `${client.emotes.error}Pls Give Invalid channel... Try again...`
-            );
-          }
-          client.data.set(`starboard_${message.guild.id}`, channel.id);
-          const chat = new Discord.MessageEmbed()
-            .setDescription(
-              `**Done** From now on I will send Starboard in ${channel}`
-            )
-            .setColor("RED");
-          message.channel
-            .send(chat)
-            .then(m => m.delete({ timeout: 5000 }).catch(e => {}));
-        }
-        break;
-      case "welcome":
-        {
-          if (!channel) {
-            return message.channel.send(
-              `${client.emotes.error}Pls Give Invalid channel... Try again...`
-            );
-          }
-          client.data.set(`welchannel_${message.guild.id}`, channel.id);
-          const welcome = new Discord.MessageEmbed()
-            .setDescription(
-              `**Done** From now on I will send welcome message in ${channel} when someone joins the server`
-            )
-            .setColor("RED");
-          message.channel
-            .send(welcome)
-            .then(m => m.delete({ timeout: 5000 }).catch(e => {}));
-        }
-        break;
-      case "report":
-        {
-          if (!channel) {
-            return message.channel.send(
-              `${client.emotes.error}Pls Give Invalid channel... Try again...`
-            );
-          }
-          client.data.set(`reports_${message.guild.id}`, channel.id);
-          const welcome = new Discord.MessageEmbed()
-            .setDescription(
-              `**Done** From now on I will send reports member in ${channel}`
-            )
-            .setColor("RED");
-          message.channel
-            .send(welcome)
-            .then(m => m.delete({ timeout: 5000 }).catch(e => {}));
-        }
+      if (content.content.toLocaleLowerCase() === "cancel")
+        return message.channel.send("Exiting setup...");
+      const channel =
+        content.mentions.channels.first() ||
+        client.guilds.cache.get(message.guild.id).channels.cache.get(args[0]) ||
+        content.guild.channels.cache.find(
+          c => c.name.toLowerCase() === content.content.toLocaleLowerCase()
+        );
+      if (!channel || channel.type !== "text")
+        return client.send("**Please Enter A Valid Text Channel!**");
+      client.data.set(`starboard_${message.guild.id}`, channel.id);
+      client.send(
+        `**Done** From now on I will send Starboard in ${channel}`,
+        message
+      );
+    }
 
-        break;
-      case "level":
-        {
-          if (!channel) {
-            return message.channel.send(
-              `${client.emotes.error}Pls Give Invalid channel... Try again...`
-            );
-          }
-          client.data.set(`levelch_${message.guild.id}`, channel.id);
-          const welcome = new Discord.MessageEmbed()
-            .setDescription(
-              `**Done** From now on I will send level up in ${channel}`
-            )
-            .setColor("RED");
-          message.channel
-            .send(welcome)
-            .then(m => m.delete({ timeout: 5000 }).catch(e => {}));
-        }
-        break;
-      case "modlogserver":
-        {
-          const channel = await message.mentions.channels.first();
-          if (!channel)
-            return message.channel
-              .send(
-                "I cannot find that channel. Please mention a channel within this server."
-              ) // if the user do not mention a channel
-              .then(m => m.delete({ timeout: 5000 }));
-              }
-            }
-          );
-        }
-        break;
-      case "modlog": {
-        const bot = client;
-        if (!args[0]) {
-          let b = await client.data.fetch(`modlog_${message.guild.id}`);
-          let channelName = message.guild.channels.cache.get(b);
-          if (message.guild.channels.cache.has(b)) {
-            return message.channel.send(
-              `**Modlog Channel Set In This Server Is \`${channelName.name}\`!**`
-            );
-          } else
-            return message.channel.send(
-              "**Please Enter A Channel Name or ID To Set!**"
-            );
-        }
-        let channel =
-          message.mentions.channels.first() ||
-          bot.guilds.cache.get(message.guild.id).channels.cache.get(args[0]) ||
-          message.guild.channels.cache.find(
-            c => c.name.toLowerCase() === args.join(" ").toLocaleLowerCase()
-          );
+    if (key.content.toLocaleLowerCase() === "auto-public") {
+      let content = await client.awaitReply(
+        message,
+        `**Please give a channel to Auto Public Channel Announcement\nI'm not allowed to channel the Voice or Category
+        \nType \`cancel\` to stop setup**`,
+        180000,
+        true
+      );
+      if (!content)
+        return message.channel.send("No response was given, Exiting setup...");
 
-        if (!channel || channel.type !== "text")
-          return message.channel.send("**Please Enter A Valid Text Channel!**");
+      if (content.content.toLocaleLowerCase() === "cancel")
+        return message.channel.send("Exiting setup...");
+      const channel =
+        content.mentions.channels.first() ||
+        client.guilds.cache.get(message.guild.id).channels.cache.get(args[0]) ||
+        content.guild.channels.cache.find(
+          c => c.name.toLowerCase() === content.content.toLocaleLowerCase()
+        );
+      if (!channel || channel.type !== "news")
+        return client.send("**Please Enter A Valid News Channel!**");
+      client.data.set(`Announcement_${message.guild.id}`, channel.id);
+      client.send(
+        `**Done** From now on I will send Auto Public Channel Announcement in ${channel}`,
+        message
+      );
+    }
 
-        try {
-          let a = await client.data.fetch(`modlog_${message.guild.id}`);
+    if (key.content.toLocaleLowerCase() === "chat-bot") {
+      let content = await client.awaitReply(
+        message,
+        `**Please give a channel to Chat Bot\nI'm not allowed to channel the Voice or Category
+        \nType \`cancel\` to stop setup**`,
+        180000,
+        true
+      );
+      if (!content)
+        return message.channel.send("No response was given, Exiting setup...");
 
-          if (channel.id === a) {
-            return message.channel.send(
-              "**This Channel is Already Set As Modlog Channel!**"
-            );
-          } else {
-            bot.guilds.cache
-              .get(message.guild.id)
-              .channels.cache.get(channel.id)
-              .send("**Modlog Channel Set!**");
-            client.data.set(`modlog_${message.guild.id}`, channel.id);
-
-            message.channel
-              .send(
-                `**Modlog Channel Has Been Set Successfully in \`${channel.name}\`!**`
-              )
-              .then(m => m.delete({ timeout: 5000 }).catch(e => {}));
-          }
-        } catch {
-          return message.channel.send(
-            "**Error - `Missing Permissions Or Channel Is Not A Text Channel!`**"
-          );
-        }
-      }
+      if (content.content.toLocaleLowerCase() === "cancel")
+        return message.channel.send("Exiting setup...");
+      const channel =
+        content.mentions.channels.first() ||
+        client.guilds.cache.get(message.guild.id).channels.cache.get(args[0]) ||
+        content.guild.channels.cache.find(
+          c => c.name.toLowerCase() === content.content.toLocaleLowerCase()
+        );
+      if (!channel || channel.type !== "text")
+        return client.send("**Please Enter A Valid Text Channel!**");
+      client.data.set(`chatbot_${message.guild.id}`, channel.id);
+      client.send(
+        `**Done** From now on I will send Chat-bot in ${channel}`,
+        message
+      );
     }
   }
 };
-*/
