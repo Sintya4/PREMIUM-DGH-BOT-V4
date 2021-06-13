@@ -26,7 +26,34 @@ module.exports = {
     "MANAGE_GUILD"
   ],
   run: async (client, message, args) => {
-    const channel = message.mentions.channels.first();
+    message.delete();
+    let keys = [
+      "welcome",
+      "leave",
+      "report",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ];
+    const key = await client.awaitReply(
+      message,
+      `**Choose what settings you want?\nKey: ${keys.join(
+        " |"
+      )}\nType \`cancel\` to stop setup**`,
+      180000,
+      true
+    );
+    if (!key)
+      return message.channel.send("No response was given, Exiting setup...");
+    if (key.content === "cancel")
+      return message.channel.send("Exiting setup...");
+    if (!keys.includes(key.content)) {
+      client.send("Error: Invalid Key provided, Please try again.", message);
+    }
+  }
+}; /*   const channel = message.mentions.channels.first();
     const [key, ...value] = args;
     switch (key) {
       default:
@@ -269,3 +296,4 @@ module.exports = {
     }
   }
 };
+*/
