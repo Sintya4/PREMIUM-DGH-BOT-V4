@@ -1,9 +1,9 @@
 //I WILL BE BACK AFTER 5 min
-const ytdl = require('ytdl-core');
+const ytdl = require("ytdl-core");
 const { MessageEmbed, Client } = require("discord.js");
 const { QUEUE_LIMIT, COLOR } = require("./config.js");
-const yes = ['yes', 'y', 'ye', 'yea', 'correct'];
-const no = ['no', 'n', 'nah', 'nope', 'fuck off'];
+const yes = ["yes", "y", "ye", "yea", "correct"];
+const no = ["no", "n", "nah", "nope", "fuck off"];
 const { Database } = require("quickmongo");
 const Discord = require("discord.js");
 let { mongodb } = require("./config.js");
@@ -12,16 +12,13 @@ const format = require(`humanize-duration`);
 module.exports = {
   async play(song, message) {
     const queue = message.client.queue.get(message.guild.id);
-    let embed = new MessageEmbed()
-      .setColor(COLOR);
+    let embed = new MessageEmbed().setColor(COLOR);
 
     if (!song) {
       queue.channel.leave();
       message.client.queue.delete(message.guild.id);
-      embed.setAuthor("MUSIC QUEUE IS ENDED NOW :/")
-      return queue.textChannel
-        .send(embed)
-        .catch(console.error);
+      embed.setAuthor("MUSIC QUEUE IS ENDED NOW :/");
+      return queue.textChannel.send(embed).catch(console.error);
     }
 
     try {
@@ -56,36 +53,54 @@ module.exports = {
       .on("error", console.error);
 
     dispatcher.setVolumeLogarithmic(queue.volume / 100); //VOLUME
-    embed.setAuthor("Started Playing Song", message.client.user.displayAvatarURL())
+    embed
+      .setAuthor("Started Playing Song", message.client.user.displayAvatarURL())
       .setDescription(`**[${song.title}](${song.url})**\n${song.description}`)
       .setImage(song.thumbnail)
       .setThumbnail(song.avatar)
-      .setFooter(`${song.author} | ${song.duration}m | ${song.date}`)
+      .setFooter(`${song.author} | ${song.duration}m | ${song.date}`);
 
     queue.textChannel
       .send(embed)
       .catch(err => message.channel.send("UNABLE TO PLAY SONG"));
   },
-async awaitReply(message, question, limit = 60000, obj = false) {
-        const filter = m => m.author.id === message.author.id;
-      let con = await message.channel.send({
-      embed: { description: question, color: "BLUE","footer": {
-    "text": `Time: ${format(limit)}`
-  } }
-    })
-        try {
-            const collected = await message.channel.awaitMessages(filter, { max: 1, time: limit, errors: ['time'] });
-            if (obj)return collected.first();
-            return collected.first().content;
-        } catch (e) {
-            return false;
+  async awaitReply(message, question, limit = 60000, obj = false) {
+    const filter = m => m.author.id === message.author.id;
+    let con = await message.channel.send({
+      embed: {
+        description: question,
+        color: "BLUE",
+        footer: {
+          text: `Time: ${format(limit)}`
         }
-    },
-    async verify(channel, user, { time = 30000, extraYes = [], extraNo = [] } = {}) {
+      }
+    });
+    try {
+      const collected = await message.channel.awaitMessages(filter, {
+        max: 1,
+        time: limit,
+        errors: ["time"]
+      });
+      if (obj) return collected.first();
+      return collected.first().content;
+    } catch (e) {
+      return false;
+    }
+  },
+  async verify(
+    channel,
+    user,
+    { time = 30000, extraYes = [], extraNo = [] } = {}
+  ) {
     const filter = res => {
       const value = res.content.toLowerCase();
-      return (user ? res.author.id === user.id : true)
-        && (yes.includes(value) || no.includes(value) || extraYes.includes(value) || extraNo.includes(value));
+      return (
+        (user ? res.author.id === user.id : true) &&
+        (yes.includes(value) ||
+          no.includes(value) ||
+          extraYes.includes(value) ||
+          extraNo.includes(value))
+      );
     };
     const verify = await channel.awaitMessages(filter, {
       max: 1,
@@ -97,11 +112,13 @@ async awaitReply(message, question, limit = 60000, obj = false) {
     if (no.includes(choice) || extraNo.includes(choice)) return false;
     return false;
   },
-  async list(arr, conj = 'and') {
+  async list(arr, conj = "and") {
     const len = arr.length;
-    if (len === 0) return '';
+    if (len === 0) return "";
     if (len === 1) return arr[0];
-    return `${arr.slice(0, -1).join(', ')}${len > 1 ? `${len > 2 ? ',' : ''} ${conj} ` : ''}${arr.slice(-1)}`;
+    return `${arr.slice(0, -1).join(", ")}${
+      len > 1 ? `${len > 2 ? "," : ""} ${conj} ` : ""
+    }${arr.slice(-1)}`;
   },
   async randomNumber(min, max) {
     min = Math.ceil(min);
@@ -176,28 +193,28 @@ async awaitReply(message, question, limit = 60000, obj = false) {
     if (!user) user = this.users.fetch(search).catch(() => {});
     return user;
   },
- async formating(ms) {
-  let days, daysms, hours, hoursms, minutes, minutesms, sec;
-  days = Math.floor(ms / (24 * 60 * 60 * 1000));
-  daysms = ms % (24 * 60 * 60 * 1000);
-  hours = Math.floor(daysms / (60 * 60 * 1000));
-  hoursms = ms % (60 * 60 * 1000);
-  minutes = Math.floor(hoursms / (60 * 1000));
-  minutesms = ms % (60 * 1000);
-  sec = Math.floor(minutesms / 1000);
+  async formating(ms) {
+    let days, daysms, hours, hoursms, minutes, minutesms, sec;
+    days = Math.floor(ms / (24 * 60 * 60 * 1000));
+    daysms = ms % (24 * 60 * 60 * 1000);
+    hours = Math.floor(daysms / (60 * 60 * 1000));
+    hoursms = ms % (60 * 60 * 1000);
+    minutes = Math.floor(hoursms / (60 * 1000));
+    minutesms = ms % (60 * 1000);
+    sec = Math.floor(minutesms / 1000);
 
-  return (
-    days +
-    " Days, " +
-    hours +
-    " Hours, " +
-    minutes +
-    " Minutes, " +
-    sec +
-    " Seconds."
-  );
-},
- async translate(text, message) {
+    return (
+      days +
+      " Days, " +
+      hours +
+      " Hours, " +
+      minutes +
+      " Minutes, " +
+      sec +
+      " Seconds."
+    );
+  },
+  async translate(text, message) {
     let language = await database.get(`LANG_${message.guild.id}`);
     let translate = require("@k3rn31p4nic/google-translate-api");
     const translated = await translate(text, {
@@ -205,13 +222,22 @@ async awaitReply(message, question, limit = 60000, obj = false) {
     });
     return translated.text;
   },
- async emoji(msg, client) {
+  async emoji(msg, client) {
     let emojis = msg.match(/(?<=:)([^:\s]+)(?=:)/g);
-  emojis.forEach(emote => {
-    let customemoji = Discord.Util.parseEmoji(msg);
-    if(!customemoji) msg;
- }  
- }
+    if (!emojis) msg;
+    if (emojis) {
+      emojis.forEach(emote => {
+        let emoji = Discord.Util.parseEmoji(emote);
+        if (emoji.id) {
+          let temp = `<a:${emoji.name}:${emoji.id}>`;
+          if (new RegExp(temp, "g").test(msg))
+            msg = msg.replace(new RegExp(temp, "g"), temp.toString());
+        }
+      });
+    }
+    return msg;
+  }
+};
 /* let emojis = msg.match(/(?<=:)([^:\s]+)(?=:)/g);
   if (!emojis) msg;
   let temp;
