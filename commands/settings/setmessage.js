@@ -93,7 +93,7 @@ module.exports = {
 
       if (welcome.content.toLocaleLowerCase() === "cancel")
         return message.channel.send("Exiting setup...");
-      let msg = await client.EEemoji(welcome.content, client);
+      let msg = await client.EEmoji(welcome.content, client);
       client.data.set(`welmsg_${message.guild.id}`, msg);
       client.send(
         `**Done** From now on I will send\n\`${msg}\`\n\nView:\n${welcome.content
@@ -128,7 +128,7 @@ module.exports = {
         return message.channel.send("No response was given, Exiting setup...");
       if (leave.content.toLocaleLowerCase() === "cancel")
         return message.channel.send("Exiting setup...");
-      let msg = await client.EEemoji(leave.content, client);
+      let msg = await client.EEmoji(leave.content, client);
       client.data.set(`levmsg_${message.guild.id}`, msg);
       client.send(
         `**Done** From now on I will send\n\`${msg}\`\n\nView:\n${leave.content
@@ -163,7 +163,7 @@ module.exports = {
       if (words.content.toLocaleLowerCase() === "cancel")
         return message.channel.send("Exiting setup...");
 
-      let msg = await client.EEemoji(words.content, client);
+      let msg = await client.EEmoji(words.content, client);
       client.data.set(`message_${message.guild.id}`, msg);
       client.send(
         `**Done** From now on I will send\n\`${msg}\`\n\nView:\n${words.content

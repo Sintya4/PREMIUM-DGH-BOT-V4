@@ -1,10 +1,11 @@
 //I WILL BE BACK AFTER 5 min
 const ytdl = require('ytdl-core');
-const { MessageEmbed, Client } = require("discord.js")
+const { MessageEmbed, Client } = require("discord.js");
 const { QUEUE_LIMIT, COLOR } = require("./config.js");
 const yes = ['yes', 'y', 'ye', 'yea', 'correct'];
 const no = ['no', 'n', 'nah', 'nope', 'fuck off'];
 const { Database } = require("quickmongo");
+const Discord = require("discord.js");
 let { mongodb } = require("./config.js");
 let database = new Database(mongodb);
 const format = require(`humanize-duration`);
@@ -205,7 +206,13 @@ async awaitReply(message, question, limit = 60000, obj = false) {
     return translated.text;
   },
  async emoji(msg, client) {
-  let emojis = msg.match(/(?<=:)([^:\s]+)(?=:)/g);
+    let emojis = msg.match(/(?<=:)([^:\s]+)(?=:)/g);
+  emojis.forEach(emote => {
+    let customemoji = Discord.Util.parseEmoji(msg);
+    if(!customemoji) msg;
+ }  
+ }
+/* let emojis = msg.match(/(?<=:)([^:\s]+)(?=:)/g);
   if (!emojis) msg;
   let temp;
   if (emojis) {
@@ -219,5 +226,4 @@ async awaitReply(message, question, limit = 60000, obj = false) {
     });
   }
   return msg;
-}
-};
+}*/
