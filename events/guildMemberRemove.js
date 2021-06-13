@@ -47,7 +47,7 @@ module.exports = async client => {
     ctx.drawImage(avatar, 65, canvas.height / 2 - 250, 500, 500);
     const attachment = new Discord.MessageAttachment(
       canvas.toBuffer(),
-      "welcome-image.png"
+      "leave-image.png"
     );
     var date = moment.tz("Asia/Jakarta");
     let chx = await client.data.get(`levchannel_${member.guild.id}`);
@@ -71,7 +71,7 @@ module.exports = async client => {
       .setColor("RANDOM")
       .setTimestamp()
       .setDescription(ch)
-      .setImage("attachment://welcome-image.png")
+      .setImage("attachment://leave-image.png")
       .attachFiles(attachment);
     const sender = await client.channels.cache.get(chx);
     if (!sender) return;
