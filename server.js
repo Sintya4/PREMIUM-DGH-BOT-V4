@@ -66,44 +66,6 @@ for (const token of Token) {
   client.translate = translate;
   require("./index.js");
   require("./logger")(client);
-  client.on("ready", async () => {
-    await mongoose.connect(mongodb, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true
-    });
-    let users = 0;
-    client.guilds.cache.forEach(x => {
-      users += x.memberCount;
-    });
-    console.clear();
-    console.log(`Bot Is Ready To Go!\nTag: ${client.user.tag}`);
-    client.user
-      .setPresence({
-        activity: {
-          type: "WATCHING",
-          name: `Commands: ${Default_Prefix}help\n ${client.guilds.cache.size} Server | ${users} User`
-        },
-        status: "idle"
-      })
-      .then(console.log)
-      .catch(console.error);
-  });
-
-  mongoose.connection.on("connected", () => {
-    console.log("Mongoose has successfully connected!");
-  });
-  // send msg if successfull connection to mongodb
-  mongoose.connection.on("err", err => {
-    console.error(`Mongoose connection error: \n${err.stack}`);
-  });
-  // send msg if error on connection
-  mongoose.connection.on("disconnected", () => {
-    console.warn("Mongoose connection lost");
-  });
-  //send msg if connection lost to mongodb
-
   const { readdirSync } = require("fs");
   readdirSync("./commands/").forEach(dir => {
     const commands = readdirSync(`./commands/${dir}/`).filter(file =>
@@ -120,11 +82,14 @@ for (const token of Token) {
       }
     }
   });
-  for (let file of fs.readdirSync("./events/")) {
-    if (file.endsWith(".js")) {
+  readdirSync("./events/").forEach(dir => {
+    const evals = readdirSync(`./events/${dir}/`).filter(file =>
+      file.endsWith(".js")
+    );
+  for (let file of evals) {
+      let events = require(`./events/${dir}/${file}`);
       let fileName = file.substring(0, file.length - 3);
-      let fileContents = require(`./events/${file}`);
-      fileContents(client);
+     events(client);
       const description = {
         name: fileName,
         filename: file,
@@ -134,7 +99,8 @@ for (const token of Token) {
         `⬜️ Module: ${description.name} | Loaded version ${description.version} | form("${description.filename}")`
       );
     }
-  }
+  
+  })
   //-------------------------------------------- S N I P E -------------------------------------------
 
   /*client.snipe = new Map();
