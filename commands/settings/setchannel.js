@@ -303,8 +303,7 @@ module.exports = {
     if (key.content.toLocaleLowerCase() === "auto-public") {
       let content = await client.awaitReply(
         message,
-        `**Please give a channel to Auto Public Channel Announcement\nI'm not allowed to channel the Voice or Category
-        \nType \`cancel\` to stop setup**`,
+        `**Please give a channel to Auto Public Channel Announcement\nType \`cancel\` to stop setup**`,
         180000,
         true
       );
