@@ -418,7 +418,7 @@ NEW PERMISSIONS: ${
       }
     });
   } catch (e) {
-    console.log(String(e.stack).yellow);
+return;
   }
 };
 
