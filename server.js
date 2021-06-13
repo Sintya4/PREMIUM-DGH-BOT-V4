@@ -4,7 +4,6 @@ const { Client } = require("discord.js");
 const db = require("quick.db");
 const format = require(`humanize-duration`);
 const ms = require("pretty-ms");
-const canvacord = require("canvacord");
 const { MessageEmbed } = require("discord.js");
 let { Token } = require("./config.js");
 for (const token of Token) {
@@ -114,60 +113,7 @@ client.on("messageDelete", function(message, channel) {
 });*/
 
   //-------------------------------------------- A N T I  S W E A R -------------------------------------------
-
- 
-  let Levels = require("discord-xp");
-  Levels.setURL(mongodb); //can be putten in .env too and then imported//Add this to your main file (example: index.js or main.js)
-  client.on("message", async message => {
-    if (message.author.bot === true) return;
-    const randomXp = Math.floor(Math.random() * 34) + 1;
-    const hasLeveledUp = await Levels.appendXp(
-      message.author.id,
-      message.guild.id,
-      randomXp
-    );
-    if (hasLeveledUp) {
-      const User = await Levels.fetch(message.author.id, message.guild.id);
-      let channel_id = await client.data.get(`levelch_${message.guild.id}`);
-      if (channel_id === null)
-        return message.reply(`You Have Leveled Up To Level **${User.level}**`);
-
-      let image = await client.data.get(`levelimg_${message.guild.id}`);
-      let user = message.author;
-      let levelchannel = client.channels.cache.get(channel_id);
-      const neededXp = Levels.xpFor(parseInt(User.level) + 1);
-
-      const ran = new canvacord.Rank()
-        .setAvatar(user.displayAvatarURL({ dynamic: false, format: "png" }))
-        .setCurrentXP(User.xp)
-        .setRequiredXP(neededXp)
-        .setLevel(User.level)
-        .setRank(0, "a", false)
-        .setStatus(user.presence.status, true, 5)
-        .setProgressBar("#00FFFF", "COLOR")
-        .setUsername(user.username, "#1FF768")
-        .setDiscriminator(user.discriminator)
-        .setBackground(
-          "IMAGE",image||
-          "https://cdn.discordapp.com/attachments/816254133353840660/819965380406673475/IMG-20201117-WA0142.jpg"
-        );
-      ran.build().then(data => {
-        const attachment = new Discord.MessageAttachment(data, "Rankcard.png");
-        const EmbedLevel = new Discord.MessageEmbed()
-          .setColor("RANDOM")
-          .setAuthor(user.username, message.guild.iconURL())
-          .setTimestamp()
-          .setDescription(
-            `**LEVEL UP** - ${User.level}
-**XP UP** - ${User.xp}/${neededXp}`
-          )
-          .setImage("attachment://Rankcard.png")
-          .attachFiles(attachment);
-
-        levelchannel.send(EmbedLevel);
-      
-  })}});
-  client.on("message", async message => {
+ client.on("message", async message => {
     if (message.author.bot || !message.guild || message.webhookID) return;
     let status = db.get(`afkstatus_${message.guild.id}_${message.author.id}`);
     let reason;
