@@ -1,16 +1,17 @@
 module.exports = async client => {
-  client.on("message", async (message) => {
+  client.on("message", async message => {
     let auto = client.data.get(`Announcement_${message.guild.id}`);
-     const sender = client.channels.cache.get(auto);
+    const sender = client.channels.cache.get(auto);
     if (!sender) return;
-    if(message.channel.name === sender.name){
-        message.crosspost().then(message.author.send("").catch(error => message.
-    }
-    
-    
-    
-    
-    
-    
-  });
+      sender.crosspost()
+        .then(
+          message.author
+            .send(`Successfully Post Message On ${message.channel}`)
+            .catch(
+              message.author.send(
+                `Failed to Post Message On ${message.channel}`
+              )
+            )
+        );
+   });
 };
