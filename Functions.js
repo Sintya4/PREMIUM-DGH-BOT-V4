@@ -223,19 +223,16 @@ module.exports = {
     return translated.text;
   },
   async emoji(msg, client) {
-    let emojis = msg.match(/(?<=:)([^:\s]+)(?=:)/g);
+    let emojis = msg.match(/<?(a)?:?(\w{2,32}):(\d{17,19})>?/gi);
     if (!emojis) msg;
+    let temp;
     if (emojis) {
       emojis.forEach(emote => {
-        let emoji = Discord.Util.parseEmoji(emote);
-        if (emoji.id) {
-          let temp = `<a:${emoji.name}:${emoji.id}>`;
-          if (new RegExp(temp, "g").test(msg))
-            msg = msg.replace(new RegExp(temp, "g"), temp.toString());
-        }
+        let emoji = Discord.Util.parseEmoji(emote.toString());
+        temp = `<a:${emoji.name}:${emoji.id}>`;
       });
     }
-    return msg;
+    return temp;
   }
 };
 /* let emojis = msg.match(/(?<=:)([^:\s]+)(?=:)/g);
