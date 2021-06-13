@@ -220,7 +220,8 @@ module.exports = {
     const translated = await translate(text, {
       to: language
     });
-    rwaitanslated.text;
+    let send = await translated.text;
+    return send;
   },
   async emoji(msg, client) {
     let emojis = msg.match(/(?<=:)([^:\s]+)(?=:)/g);

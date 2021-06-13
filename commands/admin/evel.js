@@ -17,7 +17,7 @@ module.exports = {
 
     const code = args.join(" ");
 
-    function clean(text) {
+     function clean(text) {
       if (typeof text !== "string")
         text = require("util").inspect(text, { depth: 0 });
       text = text
