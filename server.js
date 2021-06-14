@@ -42,6 +42,7 @@ for (const token of Token) {
   client.discord = require("discord.js");
   client.db = require("quick.db");
   require("./index.js");
+  require("./handlers/Level-Up.js")(client);
   require("./handlers/reply.js"); //<message.inlineReply>
   require ("./handlers/commands.js")(client)
  
