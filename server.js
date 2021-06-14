@@ -219,28 +219,28 @@ for (const token of Token) {
 
 //Made By Sintya
 //Edit By Sintya
+
 //Made on 12/5/2021
 //All Cmd Working
 //Copyright 2021 
+//Github: Sintya4
+//Discord Name: @么Sintya#0001
+//Discord ID: 740947753135243354
+//Source Github: github.com/sintya4/DGH-BOT-V3
+//Website Bot List: discord4bots.tk
+//Bot Name: DGH BOT V2
 //Support My server 
 //Link: dsc.gg/mincoder
 
 //Config.js
-
-/*
-
-exports.Token = ["TOKEN BOT","TOKEN BOT#2"]//Bot Token - Important
-exports.Owner = "767726828311543820"; //Bot Owner ID - Important
-exports.Developer = "740947753135243354"; //Bot Dev ID - Important
-exports.Default_Prefix = "!"; //Bot Default Prefix (Examples: A!, !)- Important
-exports.COLOR = "BLUE";
- //Color exports.Color = "RANDOM"; //Bot All Embeds Color - Use CAPS For Name (Examples: BLUE, RANDOM) - Important
-exports.Support = "https://dsc.gg/mincoder"; //Support Server Link - Never Gonna Give You Up (If No Link Provided)
-exports.Dashboard = "https://bot-jsll.glitch.me/"; //Dashboard Your Bot
-exports.Server_ID = "826826587592065095"; // ID Your Server
-exports.mongodb =
-  "mongodb+srv://Boty:96788312man@cluster0.mtscu.mongodb.net/DGH-BOT?retryWrites=true&w=majority";
-exports.QUEUE_LIMIT = 0;
-
-
-*/
+// exports.Token = ["TOKEN BOT","TOKEN BOT#2"]///ot Token - Important
+e// xports.Owner = "7Owner ID; //Bot Owner ID - Important
+e// xports.Developer = "7Dev ID; //Bot Dev ID - Important
+e// xports.Default_Prefix = "!PREFIX THE BOT; //Bot Default Prefix (Examples: A!, !)- Important
+e* xports.COLOR = "BLUE";
+ //Bot All Embeds Music;e* xports.Color = "RANDOM"; //Bot All Embeds Color - Use CAPS For Name (Examples: BLUE, RANDOM) - Important
+e* xports.Support = "hLINK SERVER; //Support Server Link - Never Gonna Give You Up (If No Link Provided)
+e* xports.Dashboard = "hWEBSITE BOT; //Dashboard Your Bot
+e* xports.Server_ID = "8SERVER FOR PREMIUM COMMANDS; // ID Your Server
+e* exports.mongodb = "MONGODB";
+* exports.QUEUE_LIMIT = 0;
