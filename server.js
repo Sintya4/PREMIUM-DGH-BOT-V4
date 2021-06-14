@@ -6,33 +6,16 @@ const format = require(`humanize-duration`);
 const ms = require("pretty-ms");
 const { MessageEmbed } = require("discord.js");
 const fetch = require("node-fetch");
-let { Token } = require("./config.js");
+let { Token , mongodb , Default_Prefix, Server_ID, Support} = require("./config.js");
+const Discord4Bots = require("discord4bots");
+const { Database } = require("quickmongo");
+ 
+
 for (const token of Token) {
   const client = new Client({
     disableEveryone: "everyone",
     partials: ["REACTION", "MESSAGE", "CHANNEL"]
   });
-  const Discord4Bots = require("discord4bots");
-  const dbl = new Discord4Bots("yhiJwowjQneauWvPaZnDfGHY", client);
-  const { Database } = require("quickmongo");
-  require("./reply"); //<message.inlineReply>
-  const {
-    Default_Prefix,
-    Token,
-    Support,
-    id,
-    Color,
-    mongodb,
-    Server_ID,
-    DateDat,
-    Dashboard
-  } = require("./config.js");
-  client.commands = new Discord.Collection();
-  client.aliases = new Discord.Collection();
-  const cooldowns = new Discord.Collection();
-  client.queue = new Map();
-  client.vote = new Map();
-  client.config = require("./emoji/emojis");
   let {
     awaitReply,
     resolveUser,
@@ -44,6 +27,14 @@ for (const token of Token) {
     formating, emoji,
     translate
   } = require("./Functions.js"); //Files
+  const dbl = new Discord4Bots("yhiJwowjQneauWvPaZnDfGHY", client);
+  const cooldowns = new Discord.Collection();
+  client.commands = new Discord.Collection();
+  client.aliases = new Discord.Collection();
+  
+  client.queue = new Map();
+  client.vote = new Map();
+  client.config = require("./emoji/emojis");
   client.emotes = client.config.emojis;
   client.db = require("quick.db");
   client.data = new Database(mongodb);
@@ -59,25 +50,11 @@ for (const token of Token) {
   client.format = formating;
   client.translate = translate;
   require("./index.js");
+  require("./handlers/reply.js"); //<message.inlineReply>
   require ("./handlers/commands.js")(client)
-  //-------------------------------------------- S N I P E -------------------------------------------
-
-  /*client.snipe = new Map();
-client.on("messageDelete", function(message, channel) {
-  client.snipe.set(message.channel.id, {
-    content: message.content,
-    author: message.author.username,
-    image: message.attachments.first()
-      ? message.attachments.first().proxyURL
-      : null
-  });
-});*/
-
-  //-------------------------------------------- A N T I  S W E A R -------------------------------------------
   //<SETUP>
   client.on("message", async message => {
     if (message.author.bot || !message.guild || message.webhookID) return;
-    //   xp(message);
     let Prefix = await client.data.get(`Prefix_${message.guild.id}`);
     if (!Prefix) Prefix = Default_Prefix;
     const escapeRegex = str =>
@@ -117,7 +94,7 @@ client.on("messageDelete", function(message, channel) {
       if (!server.members.cache.find(r => r.id === message.author.id)) {
         const embed = new Discord.MessageEmbed()
           .setDescription(
-            `This command is Premium\nPlease Join [Server](https://dsc.gg/mincoder) To Get Premium Command`
+            `This command is Premium\nPlease Join [Server](${Support}) To Get Premium Command`
           )
           .setColor("GOLD")
           .setTimestamp();

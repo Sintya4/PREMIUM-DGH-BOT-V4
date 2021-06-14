@@ -1,7 +1,7 @@
  module.exports = async client => {
  const { readdirSync } = require("fs");
-  readdirSync("../commands/").forEach(dir => {
-    const commands = readdirSync(`../commands/${dir}/`).filter(file =>
+  readdirSync("./commands/").forEach(dir => {
+    const commands = readdirSync(`./commands/${dir}/`).filter(file =>
       file.endsWith(".js")
     );
     for (let file of commands) {
@@ -15,8 +15,8 @@
       }
     }
   });
-  readdirSync("././events/").forEach(dir => {
-    const evals = readdirSync(`../events/${dir}/`).filter(file =>
+  readdirSync("./events/").forEach(dir => {
+    const evals = readdirSync(`./events/${dir}/`).filter(file =>
       file.endsWith(".js")
     );
   for (let file of evals) {
