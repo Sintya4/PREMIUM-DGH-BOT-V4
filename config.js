@@ -1,7 +1,4 @@
-exports.Token = [
-  "9ODQ5OTAzMDc3NjkwNTcyODAw.YLh77A.uRmX80VeK0uhOe_MwJXh9yMkOps",
-  "9NzkwOTM3MDI0OTQxMTI5NzU5.X-H3gQ.D463oUvtRY5Gp5x-TCqpVCwZp0s"
-]; //Bot Token - Important
+exports.Token = ["TOKEN BOT"]; //Bot Token - Important
 exports.Owner = "767726828311543820"; //Bot Owner ID - Important
 exports.Developer = "740947753135243354"; //Bot Dev ID - Important
 exports.Default_Prefix = "!"; //Bot Default Prefix (Examples: A!, !)- Important
