@@ -1,10 +1,9 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const Guild = require("./models/log");
+const Guild = require("../../models/log");
 const mongoose = require("mongoose");
 
 module.exports = c => {
-  console.log("Loaded Logger Module");
   try {
     c.on("channelCreate", function(channel) {
       send_log(
