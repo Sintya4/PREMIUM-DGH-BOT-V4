@@ -27,19 +27,27 @@ for (const token of Token) {
     formating, emoji,
     translate
   } = require("./Functions.js"); //Files
+  
+  //<NEW COLLECTION>
   const dbl = new Discord4Bots("yhiJwowjQneauWvPaZnDfGHY", client);
   const cooldowns = new Discord.Collection();
   client.commands = new Discord.Collection();
   client.aliases = new Discord.Collection();
-  
+  client.data = new Database(mongodb);
   client.queue = new Map();
   client.vote = new Map();
+  
+//<Require Files>
   client.config = require("./emoji/emojis");
-  client.emotes = client.config.emojis;
-  client.db = require("quick.db");
-  client.data = new Database(mongodb);
-  client.data2 = client.data;
   client.discord = require("discord.js");
+  client.db = require("quick.db");
+  require("./index.js");
+  require("./handlers/reply.js"); //<message.inlineReply>
+  require ("./handlers/commands.js")(client)
+ 
+//<New Client>
+  client.data2 = client.data;
+  client.emotes = client.config.emojis;
   client.resolveUser = resolveUser;
   client.awaitReply = awaitReply;
   client.random = getRandomString;
@@ -49,9 +57,8 @@ for (const token of Token) {
   client.text = text;
   client.format = formating;
   client.translate = translate;
-  require("./index.js");
-  require("./handlers/reply.js"); //<message.inlineReply>
-  require ("./handlers/commands.js")(client)
+ 
+  
   //<SETUP>
   client.on("message", async message => {
     if (message.author.bot || !message.guild || message.webhookID) return;
@@ -118,14 +125,11 @@ for (const token of Token) {
       );
     }
     //-------------------------------------------- P E R M I S S I O N -------------------------------------------
-
     if (command.botPermission) {
       let neededPerms = [];
-
       command.botPermission.forEach(p => {
         if (!message.guild.me.hasPermission(p)) neededPerms.push("`" + p + "`");
       });
-
       if (neededPerms.length)
         return message.channel.send(
           new MessageEmbed()
@@ -138,10 +142,8 @@ for (const token of Token) {
             )
         );
     }
-
     if (command.authorPermission) {
       let neededPerms = [];
-
       command.authorPermission.forEach(p => {
         if (!message.member.hasPermission(p)) neededPerms.push("`" + p + "`");
       });
@@ -157,6 +159,8 @@ for (const token of Token) {
             )
         );
     }
+    
+    //-------------------------------------------- C O O L  D O W N S -------------------------------------------
     if (!cooldowns.has(command.name)) {
       cooldowns.set(command.name, new Discord.Collection());
     }
@@ -201,6 +205,8 @@ for (const token of Token) {
       client.error(error);
     }
   });
+    //-------------------------------------------- B O T  L O G I N -------------------------------------------
+  
   client
     .login(token)
     .catch(() =>
@@ -208,5 +214,33 @@ for (const token of Token) {
     );
 }
 
-// Load settings file.
+//-------------------------------------------- I N F O R M A T I O N -------------------------------------------
+ 
 
+//Made By Sintya
+//Edit By Sintya
+//Made on 12/5/2021
+//All Cmd Working
+//Copyright 2021 
+//Support My server 
+//Link: dsc.gg/mincoder
+
+//Config.js
+
+/*
+
+exports.Token = ["TOKEN BOT","TOKEN BOT#2"]//Bot Token - Important
+exports.Owner = "767726828311543820"; //Bot Owner ID - Important
+exports.Developer = "740947753135243354"; //Bot Dev ID - Important
+exports.Default_Prefix = "!"; //Bot Default Prefix (Examples: A!, !)- Important
+exports.COLOR = "BLUE";
+ //Color exports.Color = "RANDOM"; //Bot All Embeds Color - Use CAPS For Name (Examples: BLUE, RANDOM) - Important
+exports.Support = "https://dsc.gg/mincoder"; //Support Server Link - Never Gonna Give You Up (If No Link Provided)
+exports.Dashboard = "https://bot-jsll.glitch.me/"; //Dashboard Your Bot
+exports.Server_ID = "826826587592065095"; // ID Your Server
+exports.mongodb =
+  "mongodb+srv://Boty:96788312man@cluster0.mtscu.mongodb.net/DGH-BOT?retryWrites=true&w=majority";
+exports.QUEUE_LIMIT = 0;
+
+
+*/
