@@ -8,5 +8,5 @@ exports.Support = "https://dsc.gg/mincoder"; //Support Server Link - Never Gonna
 exports.Dashboard = "https://bot-jsll.glitch.me/"; //Dashboard Your Bot
 exports.Server_ID = "826826587592065095"; // ID Your Server
 exports.mongodb =
-  "mongodb+srv://Boty:96788312man@cluster0.mtscu.mongodb.net/DGH-BOT?retryWrites=true&w=majority";
+  "MONGODB URL";
 exports.QUEUE_LIMIT = 0;
