@@ -1,40 +1,35 @@
+# DGH BOT V2
 
- ### Setup
-- Download / Export This Repository & Make Sure To Install [Node.js](https://nodejs.org/en/) & [Visual Studio Code (Only If You Don't Have Any Code Editor)](https://code.visualstudio.com/)
-- Open Project In Visual Studio Code (Editor) & To Open Console / Terminal - **Ctrl + A**
-- In Your Project Terminal / Console Type This - **npm i**
-- And Wait For Them (Packages) To Install...
-- After Installing Done, Go To Config.js And
-- Fill Information & After That Type This In Your Terminal / Console - **_node ._** Or **_node server.js_**
-- When Bot Is Ready, You Will See A Message In Console
-- Enjoy <3
+//Made By Sintya
+//Edit By Sintya
 
-### Credits
-- [Github (Filters :D)](https://github.com)
-- [Stackoverflow (Lyrics)](https://stackoverflow.com)
-- [Node Package Manager (Discord.js, Etc)](https://www.npmjs.com/)
-- [Google (Friend)](https://google.com)
+//Made on 12/5/2021
+//All Cmd Working
+//Copyright 2021 
+//Github: Sintya4
+//Discord Name: @么Sintya#0001
+//Discord ID: 740947753135243354
+//Source Github: [DGH BOT V2](https://github.com/Sintya4/PREMIUM-DGH-BOT-V2)
+//Website Bot List: discord4bots.tk
+//My website: [click](https://dgh-bot.ddns.net)
+//Bot Name: DGH BOT V2
+//Support My server 
+//Link: dsc.gg/mincoder
+//Link Discord4bots: discord4bots.tk/dc
 
-### Information
-- This command has additional features
-
-| Name | Description | Usage It works |
-| :--- | :--- | :--- |
-| **args** | Activate command usage, and commands Description | `args: false/true,` |  
-| **owner** | This can only be used by the owner | `owner: false/true` |  
-| **permissions** | This gives permission to cmd | `premissons: Name permission` |  
-| **cooldown** | This gives permission to cooldown the command | `cooldown: 3` |  
-| **guildOnly** | this can only be on the server not on dm | `guildOnly: false/true` | 
-
-Your Ass If You Ever Say **This Is My Bot & Coded By Me Or Smth**, Make Sure To Give Credit (In Bot Or Commands) :D
-[![DevServer](https://discordapp.com/api/guilds/773194751411355698/widget.png?style=shield)](https://discord.gg/MKwyk4qdeb)
-- Author - 𝙁𝘾 么 Glitch Editz#5631 
-- Support - [Click Me](https://dsc.gg/mincoder) 
-- create cmd - 𝙁𝘾 么 Glitch Editz#5631
-- for cmd music - Legendary Emoji#1742
-- for additional feature settings - 𝙁𝘾 么 Glitch Editz#5631ttps://discord.gg/MKwyk4qdeb)
-- Channel - [Mit](https://www.youtube.com/channel/UCpLctSYrYYQm58ul219kMwg)
-
-- Thank you for supporting my server.
-- every day these commands will be updated - I will tell you, never
- update the name wio.get. because this will be abet on cmd
+//Config.js
+```js
+exports.Token = ["TOKEN BOT","TOKEN BOT#2"]///ot Token - Important
+exports.Owner = "Owner ID; //Bot Owner ID - Important
+exports.Developer = "Dev ID; //Bot Dev ID - Important
+exports.Default_Prefix = "!"//Bot Default Prefix (Examples: A!, !)- Important
+exports.Color = "RANDOM"; //Bot All Embeds Color - Use CAPS For Name (Examples: BLUE, RANDOM) - Important
+exports.Support = "LINK SERVER; //Support Server Link - Never Gonna Give You Up (If No Link Provided)
+exports.Dashboard = "WEBSITE BOT; //Dashboard Your Bot
+exports.Server_ID = "SERVER FOR PREMIUM COMMANDS; // ID Your Server
+exports.mongodb = "MONGODB";
+```
+<a href="https://discord4bots.tk/bot/849903077690572800">
+<img src="https://discord4bots.tk/bot/849903077690572800/widget"/>
+ </a>
+    
