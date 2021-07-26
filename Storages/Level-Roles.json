@@ -1,0 +1,26 @@
+[
+    {
+        "guildID": "789758719533252618",
+        "Level_Role": "Muted",
+        "Level_Role_ID": "824292114488754226",
+        "Level_To_Reach": 2
+    },
+    {
+        "guildID": "824570293942484992",
+        "Level_Role": "Moderator",
+        "Level_Role_ID": "824570293942484996",
+        "Level_To_Reach": 1
+    },
+    {
+        "guildID": "824570293942484992",
+        "Level_Role": "Staff Member",
+        "Level_Role_ID": "824570293942484995",
+        "Level_To_Reach": 2
+    },
+    {
+        "guildID": "824570293942484992",
+        "Level_Role": "Automation",
+        "Level_Role_ID": "824570293942484994",
+        "Level_To_Reach": 3
+    }
+]
