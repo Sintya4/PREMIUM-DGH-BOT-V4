@@ -1,13 +1,18 @@
-exports.Token = ["YOU BOT TOKEN"];
-exports.Owner = ""; //Bot Owner ID - Important
-exports.Developer = ""; //Bot Dev ID - Important
-exports.Default_Prefix = ""; //Bot Default Prefix (Examples: A!, !)- Important
-exports.Color = ""; //Bot All Embeds Color - Use CAPS For Name (Examples: BLUE, RANDOM) - Important
+exports.Token = [
+  "ODQ5OTAzMDc3NjkwNTcyODAw.YLh77A.T3pyKwkZ3NP3Vk5PQSgF_eBtkjY",
+  "NzkwOTM3MDI0OTQxMTI5NzU5.X-H3gQ.Nxz2nNOKtjU63Mx27ByFQp1unc8"
+];
+exports.Owner = "767726828311543820"; //Bot Owner ID - Important
+exports.Developer = "740947753135243354"; //Bot Dev ID - Important
+exports.Default_Prefix = "!"; //Bot Default Prefix (Examples: A!, !)- Important
+exports.Color = "RANDOM"; //Bot All Embeds Color - Use CAPS For Name (Examples: BLUE, RANDOM) - Important
 exports.Support = "https://dsc.gg/mincoder"; //Support Server Link - Never Gonna Give You Up (If No Link Provided)
 exports.Dashboard = ""; //Dashboard Your Bot
-exports.Server_ID = ""; // ID Your Server
-exports.mongodb = "";
-exports.url_uptime = "";
+exports.Server_ID = "826826587592065095"; // ID Your Server
+exports.mongodb =
+  "mongodb+srv://Boty:96788312man@cluster0.mtscu.mongodb.net/DGH-BOT?retryWrites=true&w=majority";
+exports.QUEUE_LIMIT = 0;
+exports.url_uptime = "https://flax-deluxe-brontomerus.glitch.me/";
 exports.Image_welcome =
   "https://cdn.glitch.com/02e867ae-7c7c-4637-ace7-66ea251fe9d5%2Fwelcome.png?v=1613195262594";
 exports.Image_leave =
