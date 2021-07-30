@@ -29,8 +29,8 @@ exports.Dashboard = "WEBSITE BOT; //Dashboard Your Bot
 exports.Server_ID = "SERVER FOR PREMIUM COMMANDS; // ID Your Server
 exports.mongodb = "MONGODB";
 ```
-<a href="https://discord4bots.tk/bot/849903077690572800">
-<img src="https://discord4bots.tk/bot/849903077690572800/widget"/>
+<a href="https://discord4bots.ddns.net/bot/849903077690572800">
+<img src="https://discord4bots.ddns.net/bot/849903077690572800/widget"/>
  </a>  
 
 > # 💨 Run the projects
