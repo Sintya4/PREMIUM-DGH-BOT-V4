@@ -22,10 +22,10 @@ module.exports = {
         .setTitle("🙏Thanks🙏")
         .addField(
           "Invite Me",
-          `[Click Me](https://discord.com/oauth2/authorize?client_id=849903077690572800&scope=bot&permissions=9&redirect_uri=https%3A%2F%2Fdiscord.gg%2FrZ2Qa5wWFV)`)
-        .addField(
+         `[Click Me](https://discord.com/api/oauth2/authorize?client_id=849903077690572800&permissions=261929959351&redirect_uri=https%3A%2F%2Fdgh-bot.ddns.net%2Flogin&response_type=code&scope=applications.commands%20bot%20identify%20guilds%20guilds.join)`)
+         .addField(
           "Vote",
-          `[Click Me](https://discord4bots.tk/bot/849903077690572800/)`
+          `[Click Me](https://discord4bots.ddns.net/bot/849903077690572800/)`
         )
         .addField("Support Server", `[Click Me](${Support})`)
         if(Dashboard) embed.addField("Dashboard", `[Click Me](${Dashboard})`);

@@ -8,6 +8,8 @@ const Discord4Bots = require("discord4bots");
 const { Database } = require("quickmongo");
 let dd = require('discord-buttons-plugins');
 const YoutubePoster = require("discord-yt-poster");
+let ddl = require('discord-buttons');
+
 const { Owner, Developer, Support, Dashboard, Server_ID } = require("./config.js");
 let { Token, mongodb } = require("./config.js")
 for (const token of Token) {
@@ -30,10 +32,10 @@ let {
   const dbl = new Discord4Bots("yhiJwowjQneauWvPaZnDfGHY", client);
   client.commands = new Discord.Collection();
   client.aliases = new Discord.Collection();
+  client.slashcommands = new Discord.Collection();
   client.data = new Database(mongodb);
   client.queue = new Map();
   client.vote = new Map();
-  
 //<Require Files>
   client.config = require("./emoji/emojis");
   client.discord = require("discord.js");
@@ -58,7 +60,8 @@ let {
   client.text = text;
   client.format = formating;
   client.translate = translate;
- 
+  global.client = client;
+  
   //-------------------------------------------- B O T  L O G I N -------------------------------------------
   
   client

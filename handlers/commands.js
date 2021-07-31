@@ -9,7 +9,7 @@ module.exports = async client => {
       if (command.name && command.category) {
         client.commands.set(command.name, command);
         console.log(`🟩 CMD: ${command.name} | ${command.category} | ${file}`
-        );
+     );
       } else {
         console.warn(
           `🟥 CMD: ${command.name || "ERROR NAME"} | ${command.category || "ERROR CATEGORY"} | ${file}`
