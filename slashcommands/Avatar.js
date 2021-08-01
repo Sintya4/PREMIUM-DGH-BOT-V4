@@ -13,7 +13,7 @@ module.exports = {
 ,
   global: true,
   async execute(client, message, user, args) {
-    const target = (await client.resolveUser(args[0].value)) || user.user;
+    const target = (await client.resolveUser(args[0].value || user.id));
     let embed = new discord.MessageEmbed()
       .setColor("BLUE")
       .setAuthor(`${target.username}'s Avatar`, client.user.displayAvatarURL())
