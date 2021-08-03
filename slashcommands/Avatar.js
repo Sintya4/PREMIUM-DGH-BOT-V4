@@ -4,6 +4,7 @@ module.exports = {
   description: "View Avatar",
   commandOptions: [
     {
+<<<<<<< HEAD
       type: 6,
       name: "user",
       description: "Get User Avatar",
@@ -14,6 +15,18 @@ module.exports = {
   async execute(client, message, user, args) {
     user.type();
     const target = await client.resolveUser(args[0].value || user.id);
+=======
+      "type": 6,
+      "name": "user",
+      "description": "Get User Avatar",
+      "required": false
+    }
+  ]
+,
+  global: true,
+  async execute(client, message, user, args) {
+    const target = (await client.resolveUser(args[0].value || user.id));
+>>>>>>> 40a0d60820f21ff6e88c4b0d57ecc93cfe16cae2
     let embed = new discord.MessageEmbed()
       .setColor("BLUE")
       .setAuthor(`${target.username}'s Avatar`, client.user.displayAvatarURL())
