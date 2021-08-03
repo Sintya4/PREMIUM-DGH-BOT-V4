@@ -128,7 +128,7 @@ module.exports = {
         true
       )
       .addField(
-        `${client.emotes.add || "📣"} Youtube Poster`,
+        `${client.emotes.yt || "📣"} Youtube Poster`,
         `\`yt_poster\``,
         true
       )

@@ -15,7 +15,7 @@ module.exports = {
     }
   ],
   global: true,
-  async execute(client, message, user, args) {
+   async execute(client, message, user, args){
     if (owner.includes(user.user.id) === false) {
       return message(
         `<@!${user.user.id}>, Dude only bot owner can use this command.`,

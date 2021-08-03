@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-
+let ticket = [];
 module.exports = {
   name: "ticket",
   category: "ticket",
@@ -35,7 +35,7 @@ module.exports = {
         `tickets_${message.guild.id}_${button.clicker.user.id}`
       );
       if (ch) {
-        button.channel.send(
+        button.reply(
           "Your ticket is already there click <#" + ch + "> to see your ticket",
           { flags: 64 }
         );
@@ -110,6 +110,9 @@ Ticket ID: ${button.clicker.user.id}`,
             setTimeout(function() {
               client.db.delete(
                 `tickets_${message.guild.id}_${button.clicker.user.id}`
+              );
+              client.db.delete(
+                `tickets_user_${message.guild.id}_${buttons.channel.id}`
               );
               buttons.channel.delete();
             }, 5000);

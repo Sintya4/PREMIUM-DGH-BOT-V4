@@ -41,11 +41,13 @@ let {
   client.discord = require("discord.js");
   client.db = require("quick.db");
   client.button = new dd(client)
+  client.SlashButton = require("./handlers/slashbutton.js");
   client.request = new (require("rss-parser"))();
   require("./index.js");
   require("./handlers/Level-Up.js")(client);
   require("./handlers/reply.js"); //<message.inlineReply>
   require ("./handlers/commands.js")(client)
+  require ("./handlers/Slash-Commands.js")(client)
   client.YTP = new YoutubePoster(client);
  
 //<New Client>

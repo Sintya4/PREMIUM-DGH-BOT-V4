@@ -1,6 +1,6 @@
 module.exports = {
   name: "dashboard",
-  description: "Dashboard DGH BOT",
+  description: "ashboard DGH BOT",
   aliases: ["db"],
   category: "admin",
   run: async (client, message, args) => {
