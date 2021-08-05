@@ -15,7 +15,7 @@
 - Bot Name: DGH BOT V2
 - Support My server 
 - Link: dsc.gg/mincoder
-- Link Discord4bots: discord.gg/cwkhan
+- Link Discord4bots: discordbots.tk/dc
 
 //Config.js
 ```js
