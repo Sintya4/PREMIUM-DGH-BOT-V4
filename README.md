@@ -5,7 +5,7 @@
 
 - Made on 12/5/2021
 - All Cmd Working
-- Copyright 2021 
+- Copyright 2021 CW khan 👀
 - Github: Sintya4
 - Discord Name: @么Sintya#0001
 - Discord ID: 740947753135243354
@@ -15,7 +15,7 @@
 - Bot Name: DGH BOT V2
 - Support My server 
 - Link: dsc.gg/mincoder
-- Link Discord4bots: discord4bots.tk/dc
+- Link Discord4bots: discord.gg/cwkhan
 
 //Config.js
 ```js
