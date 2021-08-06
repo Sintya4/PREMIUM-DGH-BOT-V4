@@ -15,7 +15,7 @@
 - Bot Name: DGH BOT V2
 - Support My server 
 - Link: dsc.gg/mincoder
-- Link Discord4bots: discordbots.ddns.net/dc
+- Link Discord4bots: discord4bots.ddns.net/dc
 - Owner: [👑] 么Sintya#0001 [@Sintya4](https://github.com/Sintya4)
 - Dev: [🔧] </ Cw khan >#6174 [@Khanmanan](https://github.com/Khanmanan)
 
