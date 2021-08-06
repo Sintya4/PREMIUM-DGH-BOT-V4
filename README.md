@@ -5,7 +5,7 @@
 
 - Made on 12/5/2021
 - All Cmd Working
-- Copyright 2021 CW khan 👀
+- Copyright 2021
 - Github: Sintya4
 - Discord Name: @么Sintya#0001
 - Discord ID: 740947753135243354
@@ -15,13 +15,16 @@
 - Bot Name: DGH BOT V2
 - Support My server 
 - Link: dsc.gg/mincoder
-- Link Discord4bots: discordbots.tk/dc
+- Link Discord4bots: discordbots.ddns.net/dc
+- Dev:
+[👑] 么Sintya#0001 @Sintya4
+[🔧] </ Cw khan >#6174
 
 //Config.js
 ```js
 exports.Token = ["TOKEN BOT","TOKEN BOT#2"]///ot Token - Important
-exports.Owner = "Owner ID; //Bot Owner ID - Important
-exports.Developer = "Dev ID; //Bot Dev ID - Important
+exports.Owner = "Owner ID"; //Bot Owner ID - Important
+exports.Developer = "Dev ID"; //Bot Dev ID - Important
 exports.Default_Prefix = "!"//Bot Default Prefix (Examples: A!, !)- Important
 exports.Color = "RANDOM"; //Bot All Embeds Color - Use CAPS For Name (Examples: BLUE, RANDOM) - Important
 exports.Support = "LINK SERVER; //Support Server Link - Never Gonna Give You Up (If No Link Provided)
