@@ -16,9 +16,8 @@
 - Support My server 
 - Link: dsc.gg/mincoder
 - Link Discord4bots: discordbots.ddns.net/dc
-- Dev:
-[👑] 么Sintya#0001 @Sintya4
-[🔧] </ Cw khan >#6174
+- Owner: [👑] 么Sintya#0001 [@Sintya4](https://github.com/Sintya4)
+- Dev: [🔧] </ Cw khan >#6174 [@Khanmanan](https://github.com/Khanmanan)
 
 //Config.js
 ```js
