@@ -9,7 +9,7 @@ module.exports = {
   category: "misc",
   usage: "math 1+1",
   args: true,
-  
+
   run: async (client, message, args) => {
     message.delete();
     try {
@@ -20,16 +20,11 @@ module.exports = {
         .setTitle(`Result`)
         .setDescription(math.evaluate(args.join(" ")))
         .setTimestamp();
-      message.channel.send(embed).then(m => {
-        m.react("798526789114134548");
-
-        m.react("798526823976796161");
-      });
+      message.channel.send(embed);
     } catch (error) {
       message.channel
         .send(`Please Give Me Valid Equation | Try Again Later!`)
         .then(() => console.log(error));
-
     }
   }
 };

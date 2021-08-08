@@ -21,7 +21,7 @@ module.exports = {
     if (urls.length < 8)
       return message
         .reply(
-          "<a:failed:798526823976796161> https is too short to reach - 8 limit"
+          "https is too short to reach - 8 limit"
         )
         .then(m => m.delete({ timeout: 9000 }).catch(e => {}));
 

@@ -189,7 +189,7 @@ module.exports = {
       Link: Song.video_url,
       Duration: await FD(Song.lengthSeconds),
       Seconds: Song.lengthSeconds,
-      Thumbnail: Song.thumbnail.thumbnails[0].url,
+      Thumbnail: Song.thumbnail.thumbnails[0].url ? Song.thumbnails[0].url : null ,
       Author: Song.ownerChannelName,
       AuthorLink: Song.ownerProfileUrl,
       Upload: Song.uploadDate,
@@ -375,7 +375,7 @@ module.exports = {
     let send = await translated.text;
     return send;
   },
-  async emoji(msg, client) {
+  async Emoji(msg, client) {
     let emojis = msg.match(/(?<=:)([^:\s]+)(?=:)/g);
     if (!emojis) msg;
     let temp;
@@ -393,18 +393,3 @@ module.exports = {
     return msg;
   }
 };
-/* let emojis = msg.match(/(?<=:)([^:\s]+)(?=:)/g);
-  if (!emojis) msg;
-  let temp;
-  if (emojis) {
-    emojis.forEach(m => {
-      let emoji = client.emojis.cache.find(x => x.name === m);
-      if (!emoji) return;
-      temp = emoji.toString();
-      if (new RegExp(temp, "g").test(msg))
-        msg = msg.replace(new RegExp(temp, "g"), emoji.toString());
-      else msg = msg.replace(new RegExp(":" + m + ":", "g"), emoji.toString());
-    });
-  }
-  return msg;
-}*/

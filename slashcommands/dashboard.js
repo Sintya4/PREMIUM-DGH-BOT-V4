@@ -5,14 +5,14 @@ module.exports = {
   commandOptions: null,
   global: true,
   async execute(client, message, user, args){
+ await user.type()
   user.perms(["ADMINISTRATOR"])
   user.botperms(["ADMINISTRATOR"])
-  user.type()
     let embed = new client.discord.MessageEmbed()
       .setTitle("My Dashboard")
       .setColor("RANDOM")
       .setDescription(
-        `[Your Administrator](https://dgh-bot.ddns.net/${user.guild.id})`
+        `[Your Administrator](https://dgh-bot.ddns.net/server/${user.guild.id})`
       );
     message(null, {
       embed: embed,

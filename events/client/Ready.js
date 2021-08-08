@@ -23,15 +23,15 @@ module.exports = async client => {
       .setPresence({
         activity: {
           type: "WATCHING",
-          name: `Commands: ${Default_Prefix}help | ${client.user.username}\nIn ${client.guilds.cache.size} Servers | with ${users} Users | in ${client.channels.cache.size} Channels`
+          name: `Commands: ${Default_Prefix}help | ${client.user.username}\nIn ${client.guilds.cache.size} Servers | with ${users} Users | in ${client.channels.cache.size} Channels\nUpdate Command`
         },
         status: "idle"
       })
       .then(console.log)
       .catch(console.error);
-    
+
     //Slash Cmd
-    require("../../handlers/Slash-ready.js")(client)
+    require("../../handlers/Slash-ready.js")(client);
   });
 
   mongoose.connection.on("connected", () => {

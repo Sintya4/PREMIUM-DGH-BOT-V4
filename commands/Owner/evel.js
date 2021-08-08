@@ -17,7 +17,7 @@ module.exports = {
 
     const code = args.join(" ");
 
-     function clean(text) {
+    function clean(text) {
       if (typeof text !== "string")
         text = require("util").inspect(text, { depth: 0 });
       text = text
@@ -34,9 +34,10 @@ module.exports = {
         evalEmbed.setDescription(`\`\`\`\n${evaled}\n\`\`\``);
       else evalEmbed.setDescription(`\`\`\`js\n${evaled}\n\`\`\``);
       const newEmbed = new Discord.MessageEmbed()
-        .addField("📤 Login", `\`\`\`javascript\n${code}\n\`\`\``)
-        .addField("📥 Exit", `\`\`\`js\n${evaled}\`\`\``)
-        .setColor('RANDOM');
+        .setDescription(
+          `📤 Login\n\`\`\`javascript\n${code}\n\`\`\`\n📥 Exit\n\`\`\`js\n${evaled}\`\`\``
+        )
+        .setColor("RANDOM");
       message.channel.send(newEmbed);
     } catch (err) {
       evalEmbed.addField("There was an error;", `\`\`\`js\n${err}\n\`\`\``);

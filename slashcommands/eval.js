@@ -41,10 +41,11 @@ module.exports = {
         evalEmbed.setDescription(`\`\`\`\n${evaled}\n\`\`\``);
       else evalEmbed.setDescription(`\`\`\`js\n${evaled}\n\`\`\``);
       const newEmbed = new Discord.MessageEmbed()
-        .addField("📤 Login", `\`\`\`javascript\n${code}\n\`\`\``)
-        .addField("📥 Exit", `\`\`\`js\n${evaled}\`\`\``)
+        .setDescription(
+          `📤 Login\n\`\`\`javascript\n${code}\n\`\`\`\n📥 Exit\n\`\`\`js\n${evaled}\`\`\``
+        )
         .setColor("RANDOM");
-      message(null, { flags: 64, embed: newEmbed });
+       message(null, { flags: 64, embed: newEmbed });
     } catch (err) {
       evalEmbed.addField("There was an error;", `\`\`\`js\n${err}\n\`\`\``);
       evalEmbed.setColor("#FF0000");

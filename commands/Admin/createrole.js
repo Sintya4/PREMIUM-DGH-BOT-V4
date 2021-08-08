@@ -12,23 +12,17 @@ module.exports = {
   run: async (client, message, args) => {
     const name = args.slice(1).join(" ");
     const regex = !/[^a-zA-Z0-9]+/g.test(name);
-    if (!message.member.hasPermission("MANAGE_ROLES")) {
-      return message.channel.send("You don't have enough Permissions");
-    }
-    if (!message.guild.me.hasPermission("MANAGE_ROLES")) {
-      return message.channel.send("I don't have enough permissions to do this");
-    }
     if (!name) {
-      return message.channel.send("You need to specify a name for your Role");
+      return client.send(client.emoji("DGH_error") + " You need to specify a name for your Role", message);
     }
     if (regex === false) {
-      return message.channel.send(
-        "That is not valid role name. It can contain only letters and numbers"
+      return client.send(
+        await client.emoji("DGH_error") +" That is not valid role name. It can contain only letters and numbers",message
       );
     }
     if (name.length > 100) {
-      return message.channel.send(
-        "Your role can't be more than 100 characters long"
+      return client.send(
+        await client.emoji("DGH_error") +" Your role can't be more than 100 characters long", message
       );
     }
    const rr = await message.guild.roles.create({

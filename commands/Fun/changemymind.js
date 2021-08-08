@@ -8,15 +8,11 @@ module.exports = {
   category: "fun",
  run: async (client , message, args) => {
     const text = args.join(" ");
-
     if (!text) return message.channel.send("Please provide text");
-
     const sendMsg = await message.channel.send("⚙ Processing Image..");
-
     const data = await fetch(
       `https://nekobot.xyz/api/imagegen?type=changemymind&text=${text}`
     ).then((res) => res.json());
-
     sendMsg.delete();
     const embed = new MessageEmbed()
       .setFooter(message.author.username)

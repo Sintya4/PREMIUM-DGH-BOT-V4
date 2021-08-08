@@ -19,8 +19,7 @@ module.exports = {
     const filter1 = (reaction, user) =>
       (reaction.emoji.name === Name) & (user.id === message.author.id);
     await m.react(ID);
-
-    const collector1 = await m.createReactionCollector(filter1);
+  const collector1 = await m.createReactionCollector(filter1);
     collector1.on("collect", async (reaction, user) => {
       reaction.users.remove(client.user.id); // <<== This removes also the bot reaction
     });

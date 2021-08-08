@@ -10,14 +10,9 @@ module.exports = {
   description: "Get advance stats of given person or yourself",
   run: async (client, message, args) => {
     let user;
-
     if (!args.length) {
-      // Display info about the calling user
-
       user = message.guild.member(message.author);
     } else {
-      // Display info about the user specified by the first argument
-
       user = message.guild.member(
         message.mentions.members.first() ||
           (await message.guild.members.fetch(args[0]))
@@ -25,8 +20,8 @@ module.exports = {
     }
 
     if (!user) {
-      return message.channel.send(
-        "<a:failed:798526823976796161> Unable to find this person!"
+      return client.send(
+        "Unable to find this person!"
       );
     }
 
@@ -62,19 +57,19 @@ module.exports = {
     badges = await badges.toArray();
 
     const emoji = {
-      brigade: "<:Employee:840602452797685780>",
-      partner: "<:Partner:840602641444110347>",
-      events: "<:hypesquad:840602824387723315>",
-      brillance: "<:hypesquadbrillance:840602991161376768>",
-      bravery: "<:hypesquadbravery:840603157524643881>",
-      balance: "<:hypesquadbalance:840603270140526624>",
-      hunter_gold: "<:huntergold:840603369998778398>",
-      hunter: "<:hunter:840603456975667201>",
-      support: "<:support:840603570826772531>",
-      developers: "<:developers:840603705958072340>",
-      nitro: "<:nitro:840603857351737394>",
-      boost: "<:boosts:840603943033241610>",
-      bot: "<:botclassic:840604043306074142>"
+      brigade: await client.emoji("DGH_Employee"),
+      partner:await client.emoji("DGH_Partner"),
+      events: await client.emoji("DGH_hypesquad"),
+      brillance: await client.emoji("DGH_hypesquadbrillance"),
+      bravery: await client.emoji("DGH_hypesquadbravery"),
+      balance: await client.emoji("DGH_hypesquadbalance"),
+      hunter_gold: await client.emoji("DGH_huntergold"),
+      hunter: await client.emoji("DGH_hunter"),
+      support: await client.emoji("DGH_support"),
+      developers: await client.emoji("DGH_developers"),
+      nitro: await client.emoji("DGH_nitro"),
+      boost: await client.emoji("DGH_boosts"),
+      bot: await client.emoji("DGH_botclassic")
     };
 
     let newbadges = [];
@@ -179,9 +174,9 @@ Position: ${joinPosition || 1}
       .addField("Permissions", `**\`${permissions.join("\n")}\`**`)
       .setFooter(user.user.presence.status, stat[user.user.presence.status]);
 
-    return message.channel.send(embed).catch(err => {
-      return message.channel.send(
-        "<a:failed:798526823976796161> Error : " + err
+    return message.channel.send(embed).catch(async err => {
+      return message.channel.send(await client.emoji("DGH_error") +
+        "Error : " + err
       );
     });
   }

@@ -7,11 +7,7 @@ module.exports = {
   usage: "addroleall <Roles>",
   botPermission: ["MANAGE_ROLES"],
   authorPermission: ["MANAGE_ROLES"],
-  run: (client, message, args) => {
-    if (!message.guild.me.hasPermission("MANAGE_ROLES"))
-      return message.channel.send(
-        "I don't have enough permission to do that !"
-      );
+  run: async (client, message, args) => {
     const role =
       message.guild.roles.cache.find(
         role => role.name === args.join(" ").slice(1)
@@ -20,25 +16,24 @@ module.exports = {
       message.guild.roles.cache.get(args.join(" ").slice(1));
 
     if (message.guild.me.roles.highest.comparePositionTo(role) < 0) {
-      return message.channel.send(
-        `My role is not high enough than **${role.name}** role!`
+      return client.send(
+        `${await client.emoji("DGH_error")} My role is not high enough than **${role.name}** role!`, message
       );
     }
 
     if (message.member.roles.highest.comparePositionTo(role) < 0) {
-      return message.channel.send(
-        `Your role must be higher than **${role.name}** role!`
+      return client.send(
+        `${await client.emoji("DGH_error")} Your role must be higher than **${role.name}** role!`,message
       );
     }
 
     if (!role) {
-      return message.channel.send("Please provide a valid role");
+      return client.send(await client.emoji("DGH_info") + "Please provide a valid role");
     }
 
     message.guild.members.cache.forEach(member => member.roles.add(role));
-
-    message.channel.send(
-      `${client.emotes.success} Successfully Added **${role.name}** to Everyone`
+    client.send(
+      `${await client.emoji("DGH_success")} Successfully Added **${role.name}** to Everyone`, message
     );
   }
 };

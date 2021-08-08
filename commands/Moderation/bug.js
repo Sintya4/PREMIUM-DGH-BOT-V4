@@ -10,6 +10,7 @@ module.exports = {
   run: async (client, message, args) => {
     // again make this fit your command handler style 😀
     args = args.join(" ");
+    message.delete();
     const channels = message.channel;
     let check;
     if (args[0] === "temp") {
@@ -27,8 +28,8 @@ module.exports = {
     } else {
       check2 = "0";
     }
-    message.reply(
-      "Thanks for submitting a bug!, we will check your report\nwe will DM you when this bug is resolved\nplease also activate DM permissions all"
+    client.send(
+      "Thanks for submitting a bug!", message
     );
     channels
       .createInvite({

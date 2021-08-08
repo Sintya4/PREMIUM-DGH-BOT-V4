@@ -107,33 +107,33 @@ module.exports = {
         `🛡️ Join our for help and updates!\n\`\`\`xl\n${prefix || "!"}help [Category]\n\`\`\``
       )
       .addField(
-        `${client.emotes.moderation || "⚙️"} Moderation`,
+        `${await client.emoji("DGH_mod")} Moderation`,
         `\`moderation\``,
         true
       )
       .addField(
-        `${client.emotes.settings || "🔧"} Settings`,
+        `${await client.emoji("DGH_setting")} Settings`,
         `\`settings\``,
         true
       )
-      .addField(`${client.emotes.admin || "🔗"} Admin`, `\`admin\``, true)
-      .addField(`${client.emotes.ticket || "🎟️"} Ticket`, `\`ticket\``, true)
-      .addField(`${client.emotes.utility || "📜"} Utility`, `\`utility\``, true)
-      .addField(`${client.emotes.search || "🔍"} Search`, `\`search\``, true)
-      .addField(`${client.emotes.misc || "📋"} Misc`, `\`misc\``, true)
-      .addField(`${client.emotes.music || "🎶"} Music`, `\`music\``, true)
+      .addField(`${await client.emoji("DGH_admin")} Admin`, `\`admin\``, true)
+      .addField(`${await client.emoji("DGH_ticket")} Ticket`, `\`ticket\``, true)
+      .addField(`${await client.emoji("DGH_util")} Utility`, `\`utility\``, true)
+      .addField(`${await client.emoji("DGH_search")} Search`, `\`search\``, true)
+      .addField(`${await client.emoji("DGH_misc")} Misc`, `\`misc\``, true)
+      .addField(`${await client.emoji("DGH_music")} Music`, `\`music\``, true)
       .addField(
-        `${client.emotes.add || "✅"} Reaction Roles`,
+        `${await client.emoji("DGH_rr")} Reaction Roles`,
         `\`reaction\``,
         true
       )
       .addField(
-        `${client.emotes.yt || "📣"} Youtube Poster`,
+        `${await client.emoji("DGH_yt")} Youtube Poster`,
         `\`yt_poster\``,
         true
       )
       .addField(`🤐 Anti Swear`, `\`anti-swear\``, true)
-      .addField(`${client.emotes.fun || "😂"} Fun`, `\`fun\``, true);
+      .addField(`${await client.emoji("DGH_fun")} Fun`, `\`fun\``, true);
      if (database && database.length) {
        em.addField("➖ Custom Commands", `\`custom\``, true);
     }

@@ -17,7 +17,7 @@ module.exports = async client => {
       const User = await Levels.fetch(message.author.id, message.guild.id);
       let channel_id = await client.data.get(`levelch_${message.guild.id}`);
       if (channel_id === null)
-        return message.reply(`You Have Leveled Up To Level **${User.level}**`);
+        return client.send(`You Have Leveled Up To Level **${User.level}**`, message);
 
       let image = await client.data.get(`levelimg_${message.guild.id}`);
       let user = message.author;

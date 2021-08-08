@@ -67,7 +67,7 @@ module.exports = {
             let embed = new Discord.MessageEmbed()
               .setColor("0x#00ffff")
               .setDescription(
-                `✅  Cleared **${m.size}**/**${amount}** messages!`
+                `${await client.emoji("DGH_success")} Cleared **${m.size}**/**${amount}** messages!`
               );
 
             message.channel
@@ -102,7 +102,7 @@ module.exports = {
                   embed = new Discord.MessageEmbed()
                     .setColor("0x#00ffff")
                     .setDescription(
-                      `✅  Cleared **${m.size}**/**${amount}** messages!`
+                      `${await client.emoji("DGH_success")} Cleared **${m.size}**/**${amount}** messages!`
                     );
 
                   message.channel
@@ -133,7 +133,7 @@ module.exports = {
                   embed = new Discord.MessageEmbed()
                     .setColor("0x#00ffff")
                     .setDescription(
-                      `✅  Cleared **${m.size}**/**${amount}** messages!`
+                      `${await client.emoji("DGH_success")} Cleared **${m.size}**/**${amount}** messages!`
                     );
 
                   message.channel
@@ -164,7 +164,7 @@ module.exports = {
                   embed = new Discord.MessageEmbed()
                     .setColor("0x#00ffff")
                     .setDescription(
-                      `✅  Cleared **${m.size}**/**${amount}** messages!`
+                      `${await client.emoji("DGH_success")} Cleared **${m.size}**/**${amount}** messages!`
                     );
 
                   message.channel
@@ -195,7 +195,7 @@ module.exports = {
                   embed = new Discord.MessageEmbed()
                     .setColor("0x#00ffff")
                     .setDescription(
-                      `✅  Cleared **${m.size}**/**${amount}** messages!`
+                      `${await client.emoji("DGH_success")} Cleared **${m.size}**/**${amount}** messages!`
                     );
 
                   message.channel
@@ -227,7 +227,7 @@ module.exports = {
                   embed = new Discord.MessageEmbed()
                     .setColor("0x#00ffff")
                     .setDescription(
-                      `✅  Cleared **${m.size}**/**${amount}** messages!`
+                      `${await client.emoji("DGH_success")} Cleared **${m.size}**/**${amount}** messages!`
                     );
 
                   message.channel
@@ -265,7 +265,7 @@ module.exports = {
                   embed = new Discord.MessageEmbed()
                     .setColor("0x#00ffff")
                     .setDescription(
-                      `✅  Cleared **${m.size}**/**${amount}** messages!`
+                      `${await client.emoji("DGH_success")} Cleared **${m.size}**/**${amount}** messages!`
                     );
 
                   message.channel
@@ -296,7 +296,7 @@ module.exports = {
                   embed = new Discord.MessageEmbed()
                     .setColor("0x#00ffff")
                     .setDescription(
-                      `✅  Cleared **${m.size}**/**${amount}** messages!`
+                      `${await client.emoji("DGH_success")} Cleared **${m.size}**/**${amount}** messages!`
                     );
 
                   message.channel
@@ -329,7 +329,7 @@ module.exports = {
                   embed = new Discord.MessageEmbed()
                     .setColor("0x#00ffff")
                     .setDescription(
-                      `✅  Cleared **${m.size}**/**${amount}** messages!`
+                      `${await client.emoji("DGH_success")} Cleared **${m.size}**/**${amount}** messages!`
                     );
 
                   message.channel
@@ -362,7 +362,7 @@ module.exports = {
                   embed = new Discord.MessageEmbed()
                     .setColor("0x#00ffff")
                     .setDescription(
-                      `✅  Cleared **${m.size}**/**${amount}** messages!`
+                      `${await client.emoji("DGH_success")} Cleared **${m.size}**/**${amount}** messages!`
                     );
 
                   message.channel
@@ -398,7 +398,7 @@ module.exports = {
                   embed = new Discord.MessageEmbed()
                     .setColor("0x#00ffff")
                     .setDescription(
-                      `✅  Cleared **${m.size}**/**${amount}** messages!`
+                      `${await client.emoji("DGH_success")} Cleared **${m.size}**/**${amount}** messages!`
                     );
 
                   message.channel
@@ -431,7 +431,7 @@ module.exports = {
                   embed = new Discord.MessageEmbed()
                     .setColor("0x#00ffff")
                     .setDescription(
-                      `✅  Cleared **${m.size}**/**${amount}** messages!`
+                      `${await client.emoji("DGH_success")} Cleared **${m.size}**/**${amount}** messages!`
                     );
 
                   message.channel

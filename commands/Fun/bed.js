@@ -4,6 +4,7 @@ module.exports = {
   name: "bed",
   description: "",
   usage: "bed <user>",
+  args: true,
   category: "fun",
   run: async (client, message, args) => {
     const Member =

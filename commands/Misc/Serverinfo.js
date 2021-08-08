@@ -46,22 +46,29 @@ module.exports = {
       .replace(/eu-central/gi, `${flags.europe} Central Europe`)
       .replace(/eu-west/gi, `${flags.europe} Western Europe`);
       
-    let guildFeatures = message.guild.features.join("\n")
-            .replace(/animated_icon/ig, `${client.emotes.success}Animated Icon`)
-            .replace(/banner/ig, `${client.emotes.success}Banner`)
-            .replace(/commerce/ig, `${client.emotes.success}Commerce`)
-            .replace(/community/ig, `${client.emotes.success}Community`)
-            .replace(/discoverable/ig, `${client.emotes.success}Discoverable`)
-            .replace(/featurable/ig, `${client.emotes.success}Featurable`)
-            .replace(/invite_splash/ig, `${client.emotes.success}Invite Splash`)
-            .replace(/news/ig, `${client.emotes.success}News`)
-            .replace(/partnered/ig, `${client.emotes.success}Partnered`)
-            .replace(/relay_enabled/ig, `${client.emotes.success}Relay Enabled`)
-            .replace(/vanity_url/ig, `${client.emotes.success}Vanity Link`)
-            .replace(/verified/ig, `${client.emotes.success}Verified`)
-            .replace(/vip_regions/ig, `${client.emotes.success}VIP Regions`)
-            .replace(/welcome_screen_enabled/ig, `${client.emotes.success}Welcome Screen Enabled`) || "None"
-
+    let guildFeatures = message.guild.features.join(`\n${await client.emoji("DGH_success")}: `)
+            .replace(/animated_icon/ig, `Animated Icon`)
+            .replace(/banner/ig, `Banner`)
+            .replace(/commerce/ig, `Commerce`)
+            .replace(/community/ig, `Community`)
+            .replace(/discoverable/ig, `Discoverable`)
+            .replace(/featurable/ig, `Featurable`)
+            .replace(/invite_splash/ig, `Invite Splash`)
+            .replace(/news/ig, `News`)
+            .replace(/THREE_DAY_THREAD_ARCHIVE/ig, `Three Day Thread Archive`)
+            .replace(/SEVEN_DAY_THREAD_ARCHIVE/ig, `Seven Day Thread Archive`)
+            .replace(/PRIVATE_THREADS/ig, `Private`)
+            .replace(/more_stickers/ig, `More Stickers`)
+            .replace(/monetization_enabled/ig, `Monetization`)
+            .replace(/ticketed_events_enabled/ig, `Ticketed Events`)
+            .replace(/preview_enabled/ig, `Preview`)
+            .replace(/member_verification_gate_enabled/ig, `Member Verification Gate`)
+            .replace(/partnered/ig, `Partnered`)
+            .replace(/relay_enabled/ig, `Relay Enabled`)
+            .replace(/vanity_url/ig, `Vanity Link`)
+            .replace(/verified/ig, `Verified`)
+            .replace(/vip_regions/ig, `VIP Regions`)
+            .replace(/welcome_screen_enabled/ig, `Welcome Screen`) || "None";
     let guildCreatedAt = moment(message.guild.createdAt).format("lll");
     let guildCreatedAtFromNow = moment(
       message.guild.createdAt,
@@ -92,7 +99,7 @@ module.exports = {
     let guildMemberCount = message.guild.memberCount;
     let guildOwner = message.guild.owner.user.tag; // await message.guild.members.fetch(message.guild.ownerID)
     let fetchedMembers = await message.guild.members.fetch();
-
+  
     let onlineMembers = fetchedMembers.filter(
         c => c.presence.status === "online"
       ).size,
@@ -104,7 +111,9 @@ module.exports = {
         .size,
       bots = fetchedMembers.filter(c => c.user.bot).size,
       humans = fetchedMembers.filter(c => !c.user.bot).size;
-
+    let humanPercent = Math.round((message.guild.members.cache.filter(m => !m.user.bot).size / message.guild.memberCount) * 100);
+    let botPercent = Math.round((message.guild.members.cache.filter(m => m.user.bot).size / message.guild.memberCount) * 100);
+  
     let embed = new Discord.MessageEmbed()
 
       .setColor("RANDOM")
@@ -115,36 +124,36 @@ module.exports = {
       .addField(
         "Members:",
         `**${guildMemberCount} Members**` +
-        `\n🤖 ${bots} Bots` +
-        `\n👋 ${humans} Humans`,
+        `\n🤖 ${bots} Bots (**\`${botPercent}%\`**)` +
+        `\n👋 ${humans} Humans (**\`${humanPercent}%\`**)`,
         true
       )
       .addField(
         `Presences:`,
-        `${client.emotes.on}${onlineMembers} Online` +
-          `\n${client.emotes.off}${offlineMembers} Offline` +
-          `\n${client.emotes.dnd}${dndMembers} DND` +
-          `\n${client.emotes.idle}${idleMembers} Idle`,
+        `${await client.emoji("DGH_on")} ${onlineMembers} Online` +
+          `\n${await client.emoji("DGH_off")} ${offlineMembers} Offline` +
+          `\n${await client.emoji("DGH_dnd")} ${dndMembers} DND` +
+          `\n${await client.emoji("DGH_idle")} ${idleMembers} Idle`,
         true
       )
       .addField(
         "Guild:",
         `:id: Guild: ${guildName}` +
-          `\n🕰️Created At: ${guildCreatedAt} (${guildCreatedAtFromNow})` +
-          `\n👑Owner: [${guildOwner}](https://discord.com/users/${message.guild.ownerID} 'ID: ${message.guild.ownerID}.` +
-          `\nCreated At: ${message.guild.owner.user.createdAt}')` +
-          `\n📍Region: ${guildRegion}` +
-          `\n⌨️ AFK Channel: ${afkChannel}`,
+          `\n${await client.emoji("DGH_create_at") || "🕰️"} Created At: ${guildCreatedAt} (${guildCreatedAtFromNow})` +
+          `\n${await client.emoji("DGH_owner_guild") || "👑"} Owner: [${guildOwner}](https://discord.com/users/${message.guild.ownerID} 'ID: ${message.guild.ownerID}.` +
+          `\n${await client.emoji("DGH_create_at") || "🕰️"} Created At: ${message.guild.owner.user.createdAt}')` +
+          `\n${await client.emoji("DGH_region") || "📍"}Region: ${guildRegion}` +
+          `\n${await client.emoji("DGH_afk") || "⌨️"} AFK Channel: ${afkChannel}`,
         true
       )
-      .addField("Server Features", guildFeatures, true)
+      .addField("Server Features", await client.emoji("DGH_success") + ": "+ guildFeatures, true)
       .addField(
         "Misc",
-        `${client.emotes.misc} ${roleSize} Roles` +
+        `${await client.emoji("DGH_role")} ${roleSize} Roles` +
           `\n${channelSize} **Channels**:` +
-          `\n${client.emotes.text} ${textChannels} Text Channels` +
-          `\n${client.emotes.vc} ${voiceChannels} Voice Channels` +
-          `\n🙂 ${emojiSize} Emojis`,
+          `\n${await client.emoji("DGH_text")} ${textChannels} Text Channels` +
+          `\n${await client.emoji("DGH_vc")} ${voiceChannels} Voice Channels` +
+          `\n${await client.emoji("DGH_emoji")|| "🙂"} ${emojiSize} Emojis`,
         true
       )
       .setFooter(client.user.username, client.user.displayAvatarURL())

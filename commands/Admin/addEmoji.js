@@ -15,7 +15,7 @@ module.exports = {
   run: async (client, message, args) => {
     const emoji = args[0];
     const name = args.slice(1).join(" ").replace(" ","_").replace("'","_").replace("-","_").replace(".","_").replace("+","_");
-    if(!name){return message.channel.send("Pls Give Name Emoji")}
+    if(!name){return client.send(await client.emoji("DGH_error")+ " Pls Give Name Emoji")}
     message.guild.emojis.create(`${emoji}`, `${name}`);
     const Added = new MessageEmbed()
       .setTitle(`Emoji Added`)

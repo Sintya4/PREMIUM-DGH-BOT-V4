@@ -24,9 +24,9 @@ module.exports = {
         }`;
         message.guild.emojis
           .create(`${Link}`, `${`${emoji.name}`}`)
-          .then(em => message.channel.send(`Emoji Has Been Added! | Emoji : ${em.toString()}`))
-          .catch(error => {
-            message.channel.send(":x: | an Error occured");
+          .then(async em => client.send(`${await client.emoji("DGH_success")} Emoji Has Been Added! | Emoji : ${em.toString()}`, message))
+          .catch(async error => {
+            client.send(await client.emoji("DGH_error")+" | an Error occured",message);
             console.log(error);
           });
       }

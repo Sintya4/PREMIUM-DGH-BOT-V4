@@ -9,7 +9,7 @@ module.exports = {
  botPermission: ['VIEW_CHANNEL','EMBED_LINKS','ATTACH_FILES','MANAGE_CHANNELS','MANAGE_GUILD'],
   authorPermission: ['VIEW_CHANNEL','EMBED_LINKS','ATTACH_FILES','MANAGE_CHANNELS','MANAGE_GUILD'],
    description: "Set the background",
-  run: (client, message, args) => {
+  run: async(client, message, args) => {
     function isURL(url) {
       if (!url) return false;
       var pattern = new RegExp(
@@ -43,12 +43,12 @@ module.exports = {
           const n = args.slice(1).join(" ");
           if (!n) {
             return message.channel.send(
-              `${client.emotes.error} Given Url image is invalid, Make sure you send working URL`
+              `${await client.emoji("DGH_error")} Given Url image is invalid, Make sure you send working URL`
             );
           }
           if (!isURL(n)) {
             return message.channel.send(
-              `${client.emotes.error} Given Url image is invalid, Make sure you send working URL`
+              `${await client.emoji("DGH_error")} Given Url image is invalid, Make sure you send working URL`
             );
           }
           client.data.set(`levimage_${message.guild.id}`, n);
@@ -65,12 +65,12 @@ module.exports = {
           const n2 = args.slice(1).join(" ");
           if (!n2) {
             return message.channel.send(
-              `${client.emotes.error} Given Url image is invalid, Make sure you send working URL`
+              `${await client.emoji("DGH_error")} Given Url image is invalid, Make sure you send working URL`
             );
           }
           if (!isURL(n2)) {
             return message.channel.send(
-              `${client.emotes.error} Given Url is invalid, Make sure you send working URL`
+              `${await client.emoji("DGH_error")} Given Url is invalid, Make sure you send working URL`
             );
           }
           client.data.set(`welimage_${message.guild.id}`, n2);
@@ -86,12 +86,12 @@ module.exports = {
         const n = args.slice(1).join(" ");
         if (!n) {
           return message.channel.send(
-            `${client.emotes.error} Given Url image is invalid, Make sure you send working URL`
+            `${await client.emoji("DGH_error")} Given Url image is invalid, Make sure you send working URL`
           );
         }
         if (!isURL(n)) {
           return message.channel.send(
-            `${client.emotes.error} Given Url image is invalid, Make sure you send working URL`
+            `${await client.emoji("DGH_error")} Given Url image is invalid, Make sure you send working URL`
           );
         }
         client.data.set(`levelimg_${message.guild.id}`, n);

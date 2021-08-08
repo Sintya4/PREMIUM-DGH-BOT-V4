@@ -14,7 +14,7 @@ module.exports = {
             title: 'Snake Game',
             color: "BLUE",
             timestamp: true,
-            gameOverTitle: "<a:GameOver:848086959293202462> Game Over"
+            gameOverTitle: client.emoji("DGH_game") +"<a:GameOver:848086959293202462> Game Over"
         });
         return snakeGame.newGame(message);
     }

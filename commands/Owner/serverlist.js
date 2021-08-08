@@ -9,11 +9,9 @@ module.exports = {
   cooldown: 2,
   run: async (client, message, args) => {
     const owner = ["740947753135243354", "767726828311543820"];
-
     if (owner.includes(message.author.id) === false) {
       return;
     }
-    //code
     message.delete();
     const bot = client;
     let i0 = 0;

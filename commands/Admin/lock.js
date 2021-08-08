@@ -4,13 +4,10 @@ module.exports = {
    name: "lock",
    description: "Locks a Channel",
    usage: "lock",
- category: "admin",
-  botPermission: ['MANAGE_SERVER', 'MANAGE_CHANNELS'],
-  authorPermission: ['MANAGE_SERVER', 'MANAGE_CHANNELS'],
+   category: "admin",
+   botPermission: ['MANAGE_SERVER', 'MANAGE_CHANNELS'],
+   authorPermission: ['MANAGE_SERVER', 'MANAGE_CHANNELS'],
    run: async(client, message, args) => {
-   if (!message.member.hasPermission('MANAGE_SERVER', 'MANAGE_CHANNELS')) {
-   return message.channel.send("You don't have enough Permissions")
-   }
    message.channel.overwritePermissions([
      {
         id: message.guild.id,

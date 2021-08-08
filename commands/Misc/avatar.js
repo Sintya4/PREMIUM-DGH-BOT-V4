@@ -20,7 +20,7 @@ module.exports = {
         .setColor("RANDOM")
         .setAuthor(target.tag, target.displayAvatarURL({ dynamic: true }))
         .setImage(target.displayAvatarURL({ dynamic: true }))
-        .setFooter(target.presence.status.replace("o","O").replace("idle","Idle").replace("dnd","Dnd"), stat[target.presence.status])
+        .setFooter(target.presence.status, stat[target.presence.status])
     );
   }
 };

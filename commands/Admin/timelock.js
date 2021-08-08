@@ -11,14 +11,6 @@ module.exports = {
   authorPermission: ["MANAGE_SERVER", "MANAGE_CHANNELS"],
   run: async (client, message, args) => {
     const time = args.join(" ");
-    if (!time) {
-      return message.channel.send(
-        "Enter a valid time period in `Seconds`, `Minutes` or `Hours`"
-      );
-    }
-    if (!message.member.hasPermission("MANAGE_SERVER", "MANAGE_CHANNELS")) {
-      return message.channel.send(`You don't have enough Permisions`);
-    }
     message.channel.overwritePermissions([
       {
         id: message.guild.id,

@@ -35,13 +35,10 @@ module.exports = {
           user.id === message.author.id
         );
       };
-
       m.awaitReactions(filter, { max: 1, time: 300000, errors: ["time"] }).then(
         collected => {
           const reaction = collected.array()[collected.size - 1];
-
           if (!reaction.message.guild) return; // If the user was reacting something but not in the guild/server, ignore them.
-
           if (reaction.emoji.name === "❌") {
             m.delete();
           }
@@ -50,6 +47,3 @@ module.exports = {
     });
   }
 };
-// message.channel.send("If there is a new delete message, you can use this command").then(m=>m.delete({timeout:12000}).catch(e=>{}))
-
-// }})}})

@@ -10,7 +10,7 @@
 - Discord Name: @么Sintya#0001
 - Discord ID: 740947753135243354
 - Source Github: [DGH BOT V2](https://github.com/Sintya4/PREMIUM-DGH-BOT-V2)
-- Website Bot List: discord4bots.tk
+- Website Bot List: discord4bots.ddns.net
 - My website: [click](https://dgh-bot.ddns.net)
 - Bot Name: DGH BOT V2
 - Support My server 

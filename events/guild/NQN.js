@@ -1,7 +1,8 @@
 let { Default_Prefix } = require("../../config.js");
 module.exports = async client => {
   client.on("message", async message => {
-    if (message.author.bot || !message.guild || message.webhookID) return;
+   if (!message.guild.me.hasPermission("MANAGE_WEBHOOKS")) return;
+   if (message.author.bot || !message.guild || message.webhookID) return;
     let enambed = await client.data.get(`nqn_${message.guild.id}`);
     if (!enambed) return;
     let Prefix = await client.data.get(`Prefix_${message.guild.id}`);

@@ -20,7 +20,7 @@ module.exports = {
     let matches = emojis.filter(s => s.title == q || s.title.includes(q));
 
     let noResult = new discord.MessageEmbed()
-      .setDescription(`| :x: No Results found for ${args.join(" ")}!`)
+      .setDescription(`| ${await client.emoji("DGH_error")} No Results found for ${args.join(" ")}!`)
       .setColor("FF2052");
 
     if (!matches.length) return message.channel.send(noResult);
@@ -117,7 +117,7 @@ module.exports = {
           doing = false;
           break;
         }
-        message.channel.send(`Successfully added ${created}!`);
+        client.send(`${await client.emoji("DGH_success")} Successfully added ${created}!`, message);
         rmsg.reactions
           .resolve(reaction.emoji.name)
           .users.remove(message.author.id)

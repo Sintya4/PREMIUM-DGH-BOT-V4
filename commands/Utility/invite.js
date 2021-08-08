@@ -22,7 +22,7 @@ module.exports = {
         .setTitle("🙏Thanks🙏")
         .addField(
           "Invite Me",
-         `[Click Me](https://discord.com/api/oauth2/authorize?client_id=849903077690572800&permissions=261929959351&redirect_uri=https%3A%2F%2Fdgh-bot.ddns.net%2Flogin&response_type=code&scope=applications.commands%20bot%20identify%20guilds%20guilds.join)`)
+         `[Click Me](https://discord.com/api/oauth2/authorize?client_id=849903077690572800&permissions=4232052735&redirect_uri=https%3A%2F%2Fdgh-bot.ddns.net%2Flogin&response_type=code&scope=applications.commands%20bot%20identify%20guilds%20guilds.join)`)
          .addField(
           "Vote",
           `[Click Me](https://discord4bots.ddns.net/bot/849903077690572800/)`

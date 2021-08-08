@@ -145,7 +145,7 @@ module.exports = async client => {
             .setColor("RED")
             .setTimestamp()
             .setDescription(
-              `${client.emotes.error} Please wait **${ms(
+              `${await client.emoji("DGH_error")} Please wait **${ms(
                 timeLeft
               )}** before reusing the command again.`
             )

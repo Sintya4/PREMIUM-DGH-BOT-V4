@@ -17,8 +17,8 @@ module.exports = {
         message.guild.roles.cache.get(args[0]) ||
         message.guild.roles.cache.find((r) => r.name == args[0]);
       if (!roleDelete)
-        return message.channel.send(
-          `You did not specify the name or id of the role you wish to delete!`
+        return client.send(
+          `${await client.emoji("DGH_error")} You did not specify the name or id of the role you wish to delete!`
         );
       roleDelete.delete();
     let embed = new Discord.MessageEmbed()
