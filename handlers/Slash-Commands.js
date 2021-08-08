@@ -1,3 +1,10 @@
+let {
+  Token,
+  mongodb,
+  Default_Prefix,
+  Server_ID,
+  Support
+} = require("../config.js");
 module.exports = async client => {
   client.ws.on("INTERACTION_CREATE", async interaction => {
     if (!client.slashcommands.has(interaction.data.name)) return;
@@ -17,6 +24,30 @@ module.exports = async client => {
       member: interaction.guild
         ? interaction.guild.members.resolve(interaction.member.user.id)
         : undefined,
+      premium: async () => {
+        let server = client.guilds.cache.get(Server_ID);
+        if (!server) return;
+        if (
+          !server.members.cache.find(r => r.id === interaction.member.user.id)
+        ) {
+          const yes = new client.button.MessageButton()
+            .setStyle("green")
+            .setLabel("Join Our Support Server!")
+            .setURL(Support);
+          const embed = new client.discord.MessageEmbed()
+            .setDescription(
+              `This command is Premium\nPlease Join Server To Get Premium Command`
+            )
+            .setColor("GOLD")
+            .setTimestamp();
+          message(null, {
+            embed: embed,
+            buttons: [[yes]],
+            flags: 64
+          });
+          return;
+        }
+      },
       type: async () => {
         if (client.channels.cache.get(interaction.channel_id).type === "dm") {
           let embed = new client.discord.MessageEmbed()
