@@ -120,7 +120,7 @@ module.exports = {
       }
     } else {
       try {
-        await Sr.searchOne(args.join(" ")).then(async Info => {
+        await Sr.search(args.join(" ")).then(async Info => {
            const YtInfo = await Ytdl.getInfo(`https://www.youtube.com/watch?v=${Info.id}`);
           SongInfo = YtInfo.videoDetails;
           Song = await Objector(SongInfo, message);
