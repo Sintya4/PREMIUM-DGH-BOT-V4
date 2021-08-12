@@ -25,7 +25,7 @@ let {
     emo,
     text,
     randomNumber,
-    formating, emoji,
+    formating, Emoji,
     translate
   } = require("./Functions.js"); //Files
   //<NEW COLLECTION>
@@ -49,8 +49,24 @@ let {
   require ("./handlers/commands.js")(client)
   require ("./handlers/Slash-Commands.js")(client)
   client.YTP = new YoutubePoster(client);
+  let emoji = async function(m, n) {
+    if(n === "id"){
+    let emojis = client.emojis.cache.find(x => x.name === m);
+    return emojis.id
+    }
+    if(n === "name"){
+    let emojis = client.emojis.cache.find(x => x.name === m);
+    return emojis.name
+    }
+    let emojis = client.emojis.cache.find(x => x.name === m);
+    if (!emojis) return m;
+    if (emojis) {
+      let temp = emojis.toString();
+      return m.split(new RegExp(m, "g")).join(emojis.toString()).split(" ").join("_");
+    }
+   };
  
-//<New Client>
+  //<New Client>
   client.data2 = client.data;
   client.emotes = client.config.emojis;
   client.resolveUser = resolveUser;
@@ -58,7 +74,8 @@ let {
   client.random = getRandomString;
   client.send = send;
   client.count = emo;
-  client.EEmoji = emoji;
+  client.emoji = emoji;
+  client.EEmoji = Emoji;
   client.text = text;
   client.format = formating;
   client.translate = translate;
