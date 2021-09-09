@@ -42,3 +42,4 @@ exports.mongodb = "MONGODB";
 [![Watching](https://img.shields.io/github/watchers/sintya4/PREMIUM-DGH-BOT-V2?style=for-the-badge)](/)
 [![Stars](https://img.shields.io/github/stars/sintya4/PREMIUM-DGH-BOT-V2?style=for-the-badge)](/)
 [![Forks](https://img.shields.io/github/forks/Sintya4/PREMIUM-DGH-BOT-V2?style=for-the-badge)](/)
+[![ISSUES](https://img.shields.io/github/issues-raw/sintya4/PREMIUM-DGH-BOT-V2?color=blue&logo=github&style=for-the-badge)](/issues)
