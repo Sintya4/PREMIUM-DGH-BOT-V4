@@ -29,7 +29,11 @@ module.exports = async client => {
         )
         .setTitle(`Jump to message`)
         .setURL(fetchMsg.url)
-        .setImage(url || fetchMsg.embeds[0].image.proxyURL)
+        .setImage(
+          url || fetchMsg.embeds[0].image?.proxyURL
+            ? fetchMsg.embeds[0].image.proxyURL
+            : null
+        )
         .setFooter("⭐ | ID: " + fetchMsg.id);
 
       const msgs = await starboard.messages.fetch({ limit: 100 });
@@ -104,7 +108,11 @@ module.exports = async client => {
           )
           .setTitle(`Jump to message`)
           .setURL(fetchMsg.url)
-          .setImage(url || fetchMsg.embeds[0].image.proxyURL)
+          .setImage(
+            url || fetchMsg.embeds[0].image?.proxyURL
+              ? fetchMsg.embeds[0].image.proxyURL
+              : null
+          )
           .setFooter("⭐ | ID: " + fetchMsg.id);
 
         const msgs = await starboard.messages.fetch({ limit: 100 });
