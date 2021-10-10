@@ -1,0 +1,73 @@
+module.exports = async client => {
+  client.on("guildMemberAdd", async member => {
+    let channel = await client.data.get(`wel_channel__${member.guild.id}`);
+    let msg1 = await client.data.get(`msg_welcome_${member.guild.id}`);
+    if (!channel) {
+      return;
+    } else {
+      if (!msg1) msg1 = "Welcome {user}";
+      if (msg1) {
+        msg1 = msg1.replace(/{user}/g, member);
+        msg1 = msg1.replace(/{server}/g, member.guild.name);
+        msg1 = msg1.replace(/{membercount}/g, member.guild.memberCount);
+        msg1 = msg1.replace(/{username}/g, member.user.tag);
+        msg1 = msg1.replace(
+          /{member_join}/g,
+          `<t:${Math.floor(member.joinedTimestamp / 1000)}:R>`
+        );
+        msg1 = msg1.replace(
+          /{member_at}/g,
+          `<t:${Math.floor(member.user.createdTimestamp / 1000)}:R>`
+        );
+        let matches = msg1.match(/{:([a-zA-Z0-9]+)}/g);
+        if (!matches) matches = msg1;
+        for (const match of matches) {
+          const rep = await member.guild.emojis.cache.find(
+            emoji => emoji.name === match.substring(2, match.length - 1)
+          );
+          if (rep) msg1 = msg1.replace(match, rep);
+        }
+      }
+      const embed = new client.Discord.MessageEmbed()
+        .setColor("RANDOM")
+        .setDescription(msg1);
+      client.channels.cache
+        .get(channel)
+        .send({ embeds: [embed] })
+        .catch(() => null);
+    }
+  });
+  client.on("guildMemberRemove", async member => {
+  let channel = await client.data.get(`lev_channel__${member.guild.id}`);
+    let msg1 = await client.data.get(`msg_leave_${member.guild.id}`);
+    if (!channel) {
+      return;
+    } else {
+      if (!msg1) msg1 = "Goodbye {user}";
+      if (msg1) {
+        msg1 = msg1.replace(/{user}/g, member);
+        msg1 = msg1.replace(/{server}/g, member.guild.name);
+        msg1 = msg1.replace(/{membercount}/g, member.guild.memberCount);
+        msg1 = msg1.replace(/{username}/g, member.user.tag);
+        msg1 = msg1.replace(
+          /{member_leave}/g,
+          `<t:${Math.floor(Date.now() / 1000)}:R>`
+        );
+        let matches = msg1.match(/{:([a-zA-Z0-9]+)}/g);
+        if (!matches) matches = msg1;
+        for (const match of matches) {
+          const rep = await member.guild.emojis.cache.find(
+            emoji => emoji.name === match.substring(2, match.length - 1)
+          );
+          if (rep) msg1 = msg1.replace(match, rep);
+        }
+      }
+      const embed = new client.Discord.MessageEmbed()
+        .setColor("RANDOM")
+        .setDescription(msg1);
+      client.channels.cache
+        .get(channel)
+        .send({ embeds: [embed] })
+        .catch(() => null);
+    }});
+};

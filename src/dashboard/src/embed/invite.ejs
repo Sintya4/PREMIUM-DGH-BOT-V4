@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Home » <%= bot.user.username %></title>
+<meta property="og:site_name" content="Add Me To Your server">
+<meta property="og:title" content="<%= bot.user.username %>">
+<meta property="og:image" content="<%= bot.user.displayAvatarURL({dynamic: true, size: 128}) %>">
+<meta property="og:description" content="Thank you for adding me to your server">
+<meta property="twitter:card" content="summary">
+<meta property="twitter:title" content="<%= bot.user.username %> ">
+<meta property="twitter:image" content="<%= bot.user.displayAvatarURL({dynamic: true, size: 128}) %>">
+<meta property="twitter:description" content="Thank you for adding me to your server">
+<meta name="theme-color" content="#7289da">
+<meta http-equiv="refresh" content="0; url=<%= bot.config.bot.invite %>">
+</html>
+  

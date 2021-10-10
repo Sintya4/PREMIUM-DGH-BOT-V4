@@ -1,0 +1,24 @@
+<%- include("parts/head") %>
+<title>Home » <%= bot.user.username %> Dashboard</title>
+<div class="container text-center text-light" style="padding-top: 110px; padding-bottom: 20px;">
+  <% if (user) { %>
+        <img class="img-fluid rounded" src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>" width="128px" height="auto">
+        <br>
+        <br>
+        <h1>Hello, <%= user.username %>!</h1>
+        <p>Where do you like to go?</p>   
+        <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+            <a href="/servers" type="button" class="btn btn-primary"><i class="fas fa-server"></i> Servers</a>
+            <a href="/profile" type="button" class="btn btn-success"><i class="fas fa-id-card"></i> My Profile</a>
+            <a href="/logout" type="button" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+        </div>
+    <% } else { %>
+        <img class="img-fluid rounded" src="<%= bot.user.displayAvatarURL({dynamic: true, size: 128}) %>" width="128px" height="auto">
+        <br>
+        <br>
+        <h1><%= bot.user.username %> Dashboard</h1>
+        <p>Click below to login.</p>   
+        <a href="/login" type="button" class="btn btn-light"><i class="fab fa-discord"></i> Login with Discord</a>
+    <% } %>
+  </div>
+<%- include("parts/foot") %>

@@ -1,0 +1,98 @@
+<%- include("../parts/head") %>
+<%- include("../parts/manage") %>
+<% if(value=== "home") {%>
+<div class="container text-light">
+    <form role="form" action="/server/<%= guild.id %>/home" method="POST">
+        <div class="mb-3">
+            <label for="prefix" class="form-label text-light">Prefix</label>
+            <input type="text" class="form-control" name="prefix" placeholder="<%= settings.prefix %>">
+            <br>
+            <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Save Changes</button>
+            <br>
+         </div>
+        <br>
+        <br>
+    </form>
+</div>
+<% } else if(value=== "mod") {%>
+<div class="container text-light">
+    <form role="form" action="/server/<%= guild.id %>/mod" method="POST">
+        <div class="mb-3">
+            <label for="prefix" class="form-label text-light">Prefix</label>
+            <input type="text" class="form-control" name="prefix" placeholder="<%= settings.prefix %>">
+            <br>
+            <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Save Changes</button>
+            <br>
+            <small>Page 2 will reload after clicking the save button.</small>
+        </div>
+        <br>
+        <br>
+    </form>
+</div>
+<% } else if(value=== "set") {%>
+<div class="container text-light">
+    <form role="form" action="/server/<%= guild.id %>/set" method="POST">
+        <div class="mb-3">
+            <label for="prefix" class="form-label text-light">Prefix</label>
+            <input type="text" class="form-control" name="prefix" placeholder="<%= settings.prefix %>">
+            <br>
+            <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Save Changes</button>
+            <br>
+            <small>Page 3 will reload after clicking the save button.</small>
+        </div>
+        <br>
+        <br>
+    </form>
+</div>
+<% } else if(value=== "stats") {%>
+<div class="container text-light">
+
+<div class="container" style="padding-top: 20px; padding-bottom: 20px;">
+<table class="table text-light">
+    <thead class="thead text-center text-light mdb-color lighten-1 lighten-1">
+        <tr>
+          <th style="font-size: 20px;" scope="col">Type</th>
+          <th style="font-size: 20px;" scope="col">Data</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="text-center">
+            <td style="font-size: 20px;"><i class="fas fa-users"></i> Users</td>
+            <td style="font-size: 20px;"><%= guild.members.cache.size || 0 %> (<%= guild.members.cache.filter(a => a.user.bot === true).size %> Members and <%= guild.members.cache.filter(a => a.user.bot === false).size %> Bots)</td>
+          </tr>
+          <tr class="text-center">
+            <td style="font-size: 20px;"><i class="fas fa-hashtag"></i> Channels</td>
+            <td style="font-size: 20px;"><%= guild.channels.cache.size || 0 %> (<%= guild.channels.cache.filter(c => c.type === 'GUILD_TEXT').size %> Text and <%= guild.channels.cache.filter(c => c.type === 'GUILD_VOICE').size %> Voice)</td>
+          </tr>
+          <tr class="text-center">
+            <td style="font-size: 20px;"><i class="fas fa-laugh"></i> Emojis</td>
+            <td style="font-size: 20px;"><%= guild.emojis.cache.size || 0 %> (<%= guild.emojis.cache.filter(e => e.animated === false).size %> Normal and <%= guild.emojis.cache.filter(e => e.animated === true).size %> Animated)</td>
+          </tr>
+        </tbody>
+  </table>
+</div>      
+</div>
+<% } else if(value === "leaderboard") { %>
+  <% if(!raw) { %>
+  <ul class="list-group container mt-5">
+       No Leaderboard Here 
+    </ul>
+  <% } else if(raw) { %>
+  <ul class="list-group container mt-5">
+   <% leaderboard.map(e => { %>
+    <li class="list-group-item">
+          <span>
+            <strong class="round mr-3"><%=e.position%></strong>
+            <span class="lead"><%=e.username%></span>
+            <span class="text-muted"><%e.discriminator%></span>
+           </span>
+          <span class="float-right pt-2"><%=e.xp.toLocaleString()%><i class="fas fa-coins text-warning"></i>
+         </span>
+      </li>
+    <% })%>
+   </ul>
+  <% } %>
+<% } %>
+
+<br>
+<%- include("../parts/foot") %>

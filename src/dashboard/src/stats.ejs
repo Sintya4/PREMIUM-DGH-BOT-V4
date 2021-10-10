@@ -1,0 +1,63 @@
+<%- include("parts/head") %>
+<title>Bot Stats » <%= bot.user.username %> Dashboard</title>
+<div class="bg-light text-dark text-center" style="padding-top: 65px;">
+    <div class="p-5">
+        <div class="container">
+            <h1 class="mb-3">Bot Statistics</h1>
+        </div>
+    </div>
+</div>
+<div class="container" style="padding-top: 20px; padding-bottom: 20px;">
+<table class="table text-light">
+    <thead class="thead text-center text-light mdb-color lighten-1 lighten-1">
+        <tr>
+          <th style="font-size: 20px;" scope="col">Type</th>
+          <th style="font-size: 20px;" scope="col">Data</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="text-center">
+            <td style="font-size: 20px;"><i class="fas fa-users"></i> Users</td>
+            <td style="font-size: 20px;"><%= bot.users.cache.size || 0 %></td>
+          </tr>
+          <tr class="text-center">
+            <td style="font-size: 20px;"><i class="fas fa-server"></i> Servers</td>
+            <td style="font-size: 20px;"><%= bot.guilds.cache.size || 0 %></td>
+          </tr>
+          <tr class="text-center">
+            <td style="font-size: 20px;"><i class="fas fa-hashtag"></i> Channels</td>
+            <td style="font-size: 20px;"><%= bot.channels.cache.size || 0 %> (<%= bot.channels.cache.filter(c => c.type === 'GUILD_TEXT').size %> Text and <%= bot.channels.cache.filter(c => c.type === 'GUILD_VOICE').size %> Voice)</td>
+          </tr>
+          <tr class="text-center">
+            <td style="font-size: 20px;"><i class="fas fa-laugh"></i> Emojis</td>
+            <td style="font-size: 20px;"><%= bot.emojis.cache.size || 0 %> (<%= bot.emojis.cache.filter(e => e.animated === false).size %> Normal and <%= bot.emojis.cache.filter(e => e.animated === true).size %> Animated)</td>
+          </tr>
+          <tr class="text-center">
+            <td style="font-size: 20px;"><i class="fab fa-discord"></i> Uptime</td>
+            <td style="font-size: 20px;"><%= uptime %></td>
+          </tr>
+          <tr class="text-center">
+            <td style="font-size: 20px;"><i class="fas fa-table-tennis"></i> Ping (Latency)</td>
+            <td style="font-size: 20px;"><%= bot.ws.ping || 0 %>ms</td>
+          </tr>
+          <tr class="text-center">
+            <td style="font-size: 20px;"><i class="fab fa-discord"></i> Discord.js Version</td>
+            <td style="font-size: 20px;">v<%= version %></td>
+          </tr>
+          <tr class="text-center">
+            <td style="font-size: 20px;"><i class="fab fa-node"></i> Node.js Version</td>
+            <td style="font-size: 20px;"><%= process.version %></td>
+          </tr>
+          <tr class="text-center">
+            <td style="font-size: 20px;"><i class="fas fa-laptop"></i> Usage</td>
+            <td style="font-size: 20px;">
+                <ul>
+                    <li>Memory: <%= (process.memoryUsage().rss / 1024 / 1024).toFixed(2) %> MB</li>
+                    <li>CPU: <%= (process.cpuUsage().system / 1024 / 1024).toFixed(2) %>%</li>
+                    <li>Node CPU: <%= (process.cpuUsage().user / 1024 / 1024).toFixed(2) %>%</li>
+                </ul>
+            </td>
+          </tr>                                   
+      </tbody>
+  </table>
+</div>

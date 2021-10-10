@@ -1,0 +1,65 @@
+{
+  "name": "DGH-BOT-V3",
+  "version": "0.0.3",
+  "description": "A simple Node app built on Express, instantly up and running.",
+  "main": "src/index",
+  "scripts": {
+    "start": "node src/index"
+  },
+  "dependencies": {
+    "discord-yt-poster": "^3.1.2",
+    "quickmongo": "^3.0.2",
+    "chalk": "^4.1.2",
+    "moment": "^2.29.1",
+    "humanize-duration": "^3.27.0",
+    "canvas": "^2.8.0",
+    "node-superfetch": "^0.2.3",
+    "br": "git+https://github.com/Sintya4/discord-image-generation-v",
+    "canvacord": "^5.2.3",
+    "one-liner-joke": "^1.2.2",
+    "something-random-on-discord": "^3.4.4",
+    "https": "^1.0.0",
+    "fs": "^0.0.2",
+    "axios": "^0.21.1",
+    "discord-xp": "^1.1.16",
+    "util": "^0.12.4",
+    "ms": "^2.1.3",
+    "common-tags": "^1.8.0",
+    "lodash": "^4.17.21",
+    "quick.db": "^7.1.3",
+    "merge-options": "^3.0.4",
+    "events": "^3.3.0",
+    "glob": "^7.1.7",
+    "path": "^0.12.7",
+    "express": "^4.17.1",
+    "discord-giveaways": "^5.0.0",
+    "gifencoder": "^2.0.1",
+    "node-fetch": "^2.6.1",
+    "body-parser": "^1.19.0",
+    "express-session": "^1.17.2",
+    "passport-discord": "^0.1.4",
+    "passport": "^0.4.1",
+    "ejs": "^3.1.6",
+    "http": "^0.0.0",
+    "sourcebin_js": "^0.0.2",
+    "discord-backup": "^3.0.1",
+    "youtube-sr": "^4.1.6",
+    "ytdl-core": "^4.9.1",
+    "ytsr": "^3.5.3",
+    "yt-search": "^2.10.0",
+    "dblist.api": "^1.1.1",
+    "discord.js": "*"
+  },
+  "engines": {
+    "node": "16.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/hello-express"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ]
+}
