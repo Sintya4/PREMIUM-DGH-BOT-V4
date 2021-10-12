@@ -1,6 +1,8 @@
 module.exports = async client => {
   client.on("guildMemberAdd", async member => {
     let channel = await client.data.get(`wel_channel__${member.guild.id}`);
+    let nick = await client.data.get(`nick_auto_${member.guild.id}`);
+    let roles = await client.data.get(`roles_auto_${member.guild.id}`);
     let msg1 = await client.data.get(`msg_welcome_${member.guild.id}`);
     if (!channel) {
       return;
@@ -35,10 +37,28 @@ module.exports = async client => {
         .get(channel)
         .send({ embeds: [embed] })
         .catch(() => null);
+      if (roles) {
+        roles.map(x =>
+          member.roles.set(x).catch(() => {
+            null;
+          })
+        );
+      } else {
+        null;
+      }
+      if (nick) {
+        member
+          .setNickname(nick.split("{username}").join(member.user.username))
+          .catch(() => {
+            null;
+          });
+      } else {
+        null;
+      }
     }
   });
   client.on("guildMemberRemove", async member => {
-  let channel = await client.data.get(`lev_channel__${member.guild.id}`);
+    let channel = await client.data.get(`lev_channel__${member.guild.id}`);
     let msg1 = await client.data.get(`msg_leave_${member.guild.id}`);
     if (!channel) {
       return;
@@ -69,5 +89,6 @@ module.exports = async client => {
         .get(channel)
         .send({ embeds: [embed] })
         .catch(() => null);
-    }});
+    }
+  });
 };
