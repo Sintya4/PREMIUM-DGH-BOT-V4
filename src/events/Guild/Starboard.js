@@ -13,29 +13,38 @@ module.exports = async client => {
       if (!starboard) throw new Error("INVALID_CHANNEL_ID");
       if (reaction.message.channel.name.toLowerCase() === starboard.name)
         return;
-
       const attachment = fetchMsg.attachments.first();
       const url = attachment ? attachment.url : null;
-
-      const embed = new Discord.MessageEmbed()
-        .setAuthor(fetchMsg.author.tag, fetchMsg.author.displayAvatarURL())
-        .setColor("#FFC83D")
-        .setDescription(
-          `${
-            fetchMsg?.content
-              ? `\`\`\`\n${fetchMsg.content.replace(/`/g, "'")}\n\`\`\``
-              : fetchMsg.embeds[0].description
-          }`
-        )
-        .setTitle(`Jump to message`)
-        .setURL(fetchMsg.url)
-        .setImage(
-          url || fetchMsg.embeds[0].image?.proxyURL
-            ? fetchMsg.embeds[0].image.proxyURL
-            : null
-        )
-        .setFooter("⭐ | ID: " + fetchMsg.id);
-
+      let embed;
+      if (fetchMsg.embeds.length !== 0) {
+        embed = new Discord.MessageEmbed()
+          .setAuthor(fetchMsg.author.tag, fetchMsg.author.displayAvatarURL())
+          .setColor("#FFC83D")
+          .setDescription(
+            fetchMsg.embeds[0]?.description
+              ? fetchMsg.embeds[0].description
+              : "Invaild Embed"
+          )
+          .setTitle(`Jump to message`)
+          .setURL(fetchMsg.url)
+          .setImage(
+            fetchMsg.embeds[0].image?.proxyURL
+              ? fetchMsg.embeds[0].image.proxyURL
+              : null
+          )
+          .setFooter("⭐ | ID: " + fetchMsg.id);
+      } else {
+        embed = new Discord.MessageEmbed()
+          .setAuthor(fetchMsg.author.tag, fetchMsg.author.displayAvatarURL())
+          .setColor("#FFC83D")
+          .setDescription(
+            `\`\`\`\n${fetchMsg.content.replace(/`/g, "'")}\n\`\`\``
+          )
+          .setTitle(`Jump to message`)
+          .setURL(fetchMsg.url)
+          .setImage(url)
+          .setFooter("⭐ | ID: " + fetchMsg.id);
+      }
       const msgs = await starboard.messages.fetch({ limit: 100 });
 
       const existingMsg = msgs.find(async msg => {
@@ -95,25 +104,36 @@ module.exports = async client => {
 
         const attachment = fetchMsg.attachments.first();
         const url = attachment ? attachment.url : null;
-
-        const embed = new Discord.MessageEmbed()
-          .setAuthor(fetchMsg.author.tag, fetchMsg.author.displayAvatarURL())
-          .setColor("#FFC83D")
-          .setDescription(
-            `${
-              fetchMsg?.content
-                ? `\`\`\`\n${fetchMsg.content.replace(/`/g, "'")}\n\`\`\``
-                : fetchMsg.embeds[0].description
-            }`
-          )
-          .setTitle(`Jump to message`)
-          .setURL(fetchMsg.url)
-          .setImage(
-            url || fetchMsg.embeds[0].image?.proxyURL
-              ? fetchMsg.embeds[0].image.proxyURL
-              : null
-          )
-          .setFooter("⭐ | ID: " + fetchMsg.id);
+        let embed;
+        if (fetchMsg.embeds.length !== 0) {
+          embed = new Discord.MessageEmbed()
+            .setAuthor(fetchMsg.author.tag, fetchMsg.author.displayAvatarURL())
+            .setColor("#FFC83D")
+            .setDescription(
+              fetchMsg.embeds[0]?.description
+                ? fetchMsg.embeds[0].description
+                : "Invaild Embed"
+            )
+            .setTitle(`Jump to message`)
+            .setURL(fetchMsg.url)
+            .setImage(
+              fetchMsg.embeds[0].image?.proxyURL
+                ? fetchMsg.embeds[0].image.proxyURL
+                : null
+            )
+            .setFooter("⭐ | ID: " + fetchMsg.id);
+        } else {
+          embed = new Discord.MessageEmbed()
+            .setAuthor(fetchMsg.author.tag, fetchMsg.author.displayAvatarURL())
+            .setColor("#FFC83D")
+            .setDescription(
+              `\`\`\`\n${fetchMsg.content.replace(/`/g, "'")}\n\`\`\``
+            )
+            .setTitle(`Jump to message`)
+            .setURL(fetchMsg.url)
+            .setImage(url)
+            .setFooter("⭐ | ID: " + fetchMsg.id);
+        }
 
         const msgs = await starboard.messages.fetch({ limit: 100 });
 
