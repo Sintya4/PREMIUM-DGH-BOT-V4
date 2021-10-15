@@ -9,8 +9,7 @@
 - Github: Sintya4
 - Discord Name: @么Sintya#0001
 - Discord ID: 740947753135243354
-- Source Github: [DGH BOT V2](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3)
-- Website Bot List: discord4bots.ddns.net
+- Source Github: [DGH BOT V3](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3)
 - My website: [click](https://dgh-bot.ddns.net)
 - Bot Name: DGH BOT V2
 - Support My server 
@@ -19,8 +18,8 @@
 - Owner: [👑] 么Sintya#0001 [@Sintya4](https://github.com/Sintya4)
 - Dev: [🔧] </ Cw khan >#6174 [@Khanmanan](https://github.com/Khanmanan)
 
-<a href="https://discord4bots.ddns.net/bot/849903077690572800">
-<img src="https://discord4bots.ddns.net/bot/849903077690572800/widget"/>
+<a href="https://dblist.ddns.net/bots/849903077690572800">
+<img src="https://dblist.ddns.net/api/embed/849903077690572800"/>
  </a>  
 
 > # 💨 Run the projects
