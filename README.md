@@ -27,3 +27,7 @@
 
 [![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/import/github/sintya4/PREMIUM-DGH-BOT-V3)<br>
 [![Run on Repl.it](https://repl.it/badge/github/vcodes-xyz/bot-list)](https://repl.it/github/sintya4/PREMIUM-DGH-BOT-V3)<br>
+[![Watching](https://img.shields.io/github/watchers/sintya4/PREMIUM-DGH-BOT-V3?style=for-the-badge)](/)
+[![Stars](https://img.shields.io/github/stars/sintya4/PREMIUM-DGH-BOT-V3?style=for-the-badge)](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3/stargazers)
+[![Forks](https://img.shields.io/github/forks/Sintya4/PREMIUM-DGH-BOT-V3?style=for-the-badge)](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3/network/members)
+[![ISSUES](https://img.shields.io/github/issues-raw/sintya4/PREMIUM-DGH-BOT-V3?color=blue&logo=github&style=for-the-badge)](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3/issues)
