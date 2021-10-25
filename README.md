@@ -11,11 +11,11 @@
 - Source Github: [DGH BOT V3](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3)
 
 - Bot Name: DGH BOT V3
-- Dashboard: [Click](https://dghbot.ddns.net)
+- Dashboard: [Click](http://dghbot.ddns.net)
 - Support My server 
-- Link: https://dghbot.ddns.net/dc
+- Link: http://dghbot.ddns.net/dc
 - Owner: [👑] 么Sintya#0001
-- [@Sintya4](https://github.com/Sintya4)
+- [@Sintya4](http://github.com/Sintya4)
 
 <a href="https://dblist.ddns.net/bots/849903077690572800">
 <img src="https://dblist.ddns.net/api/embed/849903077690572800"/>
