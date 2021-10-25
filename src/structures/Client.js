@@ -66,7 +66,7 @@ module.exports = class DGH_BOT_CLIENT extends Client {
 
   //=================== F U N C T I O N ===================
   async start() {
-    const dbl = new dblist("cqbo0TTCIr44KVlPu4Al", this);
+    const dbl = new dblist("API", this);
     const { init } = require("./mongoose");
     require("./verifyConfig")(this.config);
     init();
