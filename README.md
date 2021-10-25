@@ -1,7 +1,7 @@
 # DGH BOT V3
 
 - Made By Sintya
-- Edit By Sintya
+
 - Made on 12/5/2021
 - All Cmd Working
 - Copyright 2021
@@ -9,12 +9,12 @@
 - Discord Name: @么Sintya#0001
 - Discord ID: 740947753135243354
 - Source Github: [DGH BOT V3](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3)
-- Dashboard: [Click](https://dgh-bot.ddns.net)
+
+- Dashboard: [Click](https://dghbot.ddns.net)
 - Bot Name: DGH BOT V3
-- My website: [click](https://dgh-bot.ddns.net)
-- Bot Name: DGH BOT V2
+- My website: [click](https://dghbot.ddns.net)
 - Support My server 
-- Link: https://dgh-bot.ddns.net/dc
+- Link: https://dghbot.ddns.net/dc
 - Owner: [👑] 么Sintya#0001 [@Sintya4](https://github.com/Sintya4)
 
 <a href="https://dblist.ddns.net/bots/849903077690572800">
@@ -29,3 +29,9 @@
 [![Stars](https://img.shields.io/github/stars/sintya4/PREMIUM-DGH-BOT-V3?style=for-the-badge)](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3/stargazers)
 [![Forks](https://img.shields.io/github/forks/Sintya4/PREMIUM-DGH-BOT-V3?style=for-the-badge)](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3/network/members)
 [![ISSUES](https://img.shields.io/github/issues-raw/sintya4/PREMIUM-DGH-BOT-V3?color=blue&logo=github&style=for-the-badge)](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3/issues)
+
+# Stargazers
+[![Stargazers repo roster for @Sintya4/PREMIUM-DGH-BOT-V3](https://reporoster.com/stars/dark/notext/Sintya4/PREMIUM-DGH-BOT-V3)](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3/stargazers)
+
+# Forkers
+[![Forkers repo roster for @Sintya4/PREMIUM-DGH-BOT-V3](https://reporoster.com/forks/dark/notext/Sintya4/PREMIUM-DGH-BOT-V3)](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3/network/members)
