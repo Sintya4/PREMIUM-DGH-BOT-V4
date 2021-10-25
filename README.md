@@ -10,12 +10,12 @@
 - Discord ID: 740947753135243354
 - Source Github: [DGH BOT V3](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3)
 
-- Dashboard: [Click](https://dghbot.ddns.net)
 - Bot Name: DGH BOT V3
-- My website: [click](https://dghbot.ddns.net)
+- Dashboard: [Click](https://dghbot.ddns.net)
 - Support My server 
 - Link: https://dghbot.ddns.net/dc
-- Owner: [👑] 么Sintya#0001 [@Sintya4](https://github.com/Sintya4)
+- Owner: [👑] 么Sintya#0001
+- [@Sintya4](https://github.com/Sintya4)
 
 <a href="https://dblist.ddns.net/bots/849903077690572800">
 <img src="https://dblist.ddns.net/api/embed/849903077690572800"/>
