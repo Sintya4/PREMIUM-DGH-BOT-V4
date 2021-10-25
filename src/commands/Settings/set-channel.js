@@ -7,7 +7,8 @@ module.exports = {
   run: async (client, message, args) => {
     let embed = new client.Discord.MessageEmbed()
       .setColor("GREEN")
-      .setDescription("Choose, Which one do you want to set?");
+      .setDescription("Choose, Which one do you want to set?").setFooter(client.user.username + ` |`)
+          .setTimestamp();
     let buts = new client.Discord.MessageActionRow().addComponents(
       new client.Discord.MessageSelectMenu()
         .setCustomId("opt")
@@ -21,75 +22,144 @@ module.exports = {
           { label: "Starboard", value: "S-B", description: "" }
         ])
     );
-    var array = [];
-    let channels = await message.guild.channels.cache.filter(
-      x => x.type === "GUILD_TEXT"
-    );
-    if (channels) {
-      let c = channels.map(c => c);
-
-      for (const channel of c) {
-        array.push({ label: "#" + channel.name, value: channel.id });
-      }
-    }
-
-    let buts_channel = new client.Discord.MessageActionRow().addComponents(
-      new client.Discord.MessageSelectMenu()
-        .setCustomId("opt")
-        .setPlaceholder("Choose the Channel")
-        .addOptions(array)
-    );
     let msg = await message.channel.send({
       embeds: [embed],
       components: [buts]
     });
     let filter = i => i.user.id === message.author.id;
+    let filter2 = i => i.author.id === message.author.id;
     let col = msg.createMessageComponentCollector({
       filter
     });
-    let type = null;
     col.on("collect", async i => {
       if (i.values[0] === "wel") {
-        embed.setDescription("Choose the channel for welcome");
-        msg.edit({ embeds: [embed], components: [buts_channel] });
-        type = "wel";
+        embed.setDescription("Please provide a channel for welcome");
+        msg.edit({ embeds: [embed], components: [] });
+        let d1 = await msg.channel.awaitMessages({
+          filter: filter2,
+          max: 1
+        });
+        d1.first().delete;
+        let msg2 = d1.first().content;
+        let msg1 = msg2?.match(/^<#!?(\d+)>$/)
+          ? msg2.match(/^<#!?(\d+)>$/)[1]
+          : null;
+        if (message.guild.channels.cache.get(msg1)) {
+          client.data.set(`wel_channel__${message.guild.id}`, msg1);
+          embed.setDescription(`Done, I will send on channel <#${msg1}>`);
+          msg.edit({ embeds: [embed], components: [] });
+        } else {
+          embed.setDescription("Error: Invalid Channel");
+          msg.edit({ embeds: [embed], components: [] });
+        }
       }
       if (i.values[0] === "lev") {
-        embed.setDescription("Choose the channel for leave");
-        msg.edit({ embeds: [embed], components: [buts_channel] });
-        type = "lev";
+        embed.setDescription("Please provide a channel for leave");
+        msg.edit({ embeds: [embed], components: [] });
+        let d1 = await msg.channel.awaitMessages({
+          filter: filter2,
+          max: 1
+        });
+        d1.first().delete;
+        let msg2 = d1.first().content;
+        let msg1 = msg2?.match(/^<#!?(\d+)>$/)
+          ? msg2.match(/^<#!?(\d+)>$/)[1]
+          : null;
+        if (message.guild.channels.cache.get(msg1)) {
+          client.data.set(`lev_channel__${message.guild.id}`, msg1);
+          embed.setDescription(`Done, I will send on channel <#${msg1}>`);
+          msg.edit({ embeds: [embed], components: [] });
+        } else {
+          embed.setDescription("Error: Invalid Channel");
+          msg.edit({ embeds: [embed], components: [] });
+        }
       }
       if (i.values[0] === "lvl") {
-        embed.setDescription("Choose the channel for level");
-        msg.edit({ embeds: [embed], components: [buts_channel] });
-        type = "lvl";
+        embed.setDescription("Please provide a channel for level");
+        msg.edit({ embeds: [embed], components: [] });
+        let d1 = await msg.channel.awaitMessages({
+          filter: filter2,
+          max: 1
+        });
+        d1.first().delete;
+        let msg2 = d1.first().content;
+        let msg1 = msg2?.match(/^<#!?(\d+)>$/)
+          ? msg2.match(/^<#!?(\d+)>$/)[1]
+          : null;
+        if (message.guild.channels.cache.get(msg1)) {
+          client.data.set(`lvl_channel__${message.guild.id}`, msg1);
+          embed.setDescription(`Done, I will send on channel <#${msg1}>`);
+          msg.edit({ embeds: [embed], components: [] });
+        } else {
+          embed.setDescription("Error: Invalid Channel");
+          msg.edit({ embeds: [embed], components: [] });
+        }
       }
       if (i.values[0] === "S-L") {
-        embed.setDescription("Choose the channel for Server Logs");
-        msg.edit({ embeds: [embed], components: [buts_channel] });
-        type = "S-L";
+        embed.setDescription("Please provide a channel for Server logs");
+        msg.edit({ embeds: [embed], components: [] });
+        let d1 = await msg.channel.awaitMessages({
+          filter: filter2,
+          max: 1
+        });
+        d1.first().delete;
+        let msg2 = d1.first().content;
+        let msg1 = msg2?.match(/^<#!?(\d+)>$/)
+          ? msg2.match(/^<#!?(\d+)>$/)[1]
+          : null;
+        if (message.guild.channels.cache.get(msg1)) {
+          client.data.set(`S-L_channel__${message.guild.id}`, msg1);
+          embed.setDescription(`Done, I will send on channel <#${msg1}>`);
+          msg.edit({ embeds: [embed], components: [] });
+        } else {
+          embed.setDescription("Error: Invalid Channel");
+          msg.edit({ embeds: [embed], components: [] });
+        }
       }
       if (i.values[0] === "M-L") {
-        embed.setDescription("Choose the channel for Moderation Logs");
-        msg.edit({ embeds: [embed], components: [buts_channel] });
-        type = "modlog";
+        embed.setDescription("Please provide a channel for Moderation logs");
+        msg.edit({ embeds: [embed], components: [] });
+        let d1 = await msg.channel.awaitMessages({
+          filter: filter2,
+          max: 1
+        });
+        d1.first().delete;
+        let msg2 = d1.first().content;
+        let msg1 = msg2?.match(/^<#!?(\d+)>$/)
+          ? msg2.match(/^<#!?(\d+)>$/)[1]
+          : null;
+        if (message.guild.channels.cache.get(msg1)) {
+          client.data.set(`modlog_${message.guild.id}`, msg1);
+          embed.setDescription(`Done, I will send on channel <#${msg1}>`);
+          msg.edit({ embeds: [embed], components: [] });
+        } else {
+          embed.setDescription("Error: Invalid Channel");
+          msg.edit({ embeds: [embed], components: [] });
+        }
       }
       if (i.values[0] === "S-B") {
-        embed.setDescription("Choose the channel for Starboard Logs");
-        msg.edit({ embeds: [embed], components: [buts_channel] });
-        type = "starboard";
-      }
-
-      if (message.guild.channels.cache.get(i.values[0])) {
-        if (type === "modlog") {
-          client.data.set(`${type}_${message.guild.id}`, i.values[0]);
-        } else {
-          client.data.set(`${type}_channel__${message.guild.id}`, i.values[0]);
-        }
-        embed.setDescription(`Done, I will send on channel <#${i.values[0]}>`);
+        embed.setDescription("Please provide a channel for starboard");
         msg.edit({ embeds: [embed], components: [] });
-      } else {
-        null;
+        let d1 = await msg.channel.awaitMessages({
+          filter: filter2,
+          max: 1
+        });
+        d1.first().delete;
+        let msg2 = d1.first().content;
+        let msg1 = msg2?.match(/^<#!?(\d+)>$/)
+          ? msg2.match(/^<#!?(\d+)>$/)[1]
+          : null;
+        if (message.guild.channels.cache.get(msg1)) {
+          client.data.set(
+            `starboard_channel__${message.guild.id}`,
+            msg1
+          );
+          embed.setDescription(`Done, I will send on channel <#${msg1}>`);
+          msg.edit({ embeds: [embed], components: [] });
+        } else {
+          embed.setDescription("Error: Invalid Channel");
+          msg.edit({ embeds: [embed], components: [] });
+        }
       }
     });
   }

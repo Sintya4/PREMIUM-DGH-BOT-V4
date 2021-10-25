@@ -11,8 +11,10 @@ module.exports = {
   ],
   execute: async (client, interaction) => {
     const j = interaction.options.getString("bug");
-    client.channels.cache.get(client.config.logs.botreport).send({
-      embeds: [
+    client.sendhook(null, {
+      channel: client.config.logs.botreport,
+      name: "REPORT BUGS",
+      embed: [
         new client.Discord.MessageEmbed()
           .setTitle("New Report Bug")
           .addField(
@@ -27,8 +29,7 @@ module.exports = {
       ]
     });
     interaction.reply({
-      content:
-        "Thank you for sending bugs, we will fix it as soon as possible",
+      content: "Thank you for sending bugs, we will fix it as soon as possible",
       ephemeral: true
     });
   }

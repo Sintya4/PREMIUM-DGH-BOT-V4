@@ -12,7 +12,6 @@ module.exports = {
     const prefix = await client.data.get(`Prefix_${message.guild.id}`);
     const database = await client.data.get(`cmd_${message.guild.id}`);
     const c_private = ["owner"];
-    const flead = [];
     const category = new Discord.Collection();
     const menus = [];
     const c_cmd = {
@@ -27,15 +26,10 @@ module.exports = {
       games: await client.emoji("DGH_games"),
       search: await client.emoji("DGH_search"),
       custom: await client.emoji("DGH_add"),
+      slash: await client.emoji("DGH_SLASH_CMD"),
+      backup: await client.emoji("DGH_backup"),
       anti_swear: "🤬"
     };
-    menus.push({
-      label: `MENU HELP`,
-      description: `back to main menu`,
-      value: "help-menu",
-      emoji: "🏠"
-    });
-
     readdirSync("./src/commands/").forEach(dir => {
       if (c_private.includes(dir.toLowerCase())) return;
       if (!c_cmd[dir.toLowerCase()]) return;
@@ -43,24 +37,22 @@ module.exports = {
         dir.toLowerCase(),
         `${c_cmd[dir.toLowerCase()]} **\`${dir
           .toLowerCase()
-          .split("_")
-          .join(" ")}\`** Command`
+          .replace(/_/g, " ")
+          .replace(/\w\S*/g, txt => {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          })}\`** Command`
       );
       const name = `${c_cmd[dir.toLowerCase()]} ${dir
         .toUpperCase()
         .split("_")
         .join(" ")}`;
-      flead.push({
-        name: name,
-        value: `\`${prefix ||
-          client.config.bot.prefix}help ${dir.toLowerCase()}\``,
-        inline: true
-      });
       menus.push({
         label: `${dir
-          .toUpperCase()
-          .split("_")
-          .join(" ")} CATEGORY`,
+          .toLowerCase()
+          .replace(/_/g, " ")
+          .replace(/\w\S*/g, txt => {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          })} Category`,
         description: `${dir.toLowerCase()} Commands`,
         value: dir.toLowerCase(),
         emoji: c_cmd[dir.toLowerCase()] || null
@@ -69,21 +61,24 @@ module.exports = {
     if (database && database.length) {
       let array = [];
       database.forEach(m => {
-        array.push("`" + m.name + "`");
+        array.push("`" + m?.name ? m.name : "null" + "`");
       });
-      category.set("custom", `${c_cmd["custom"]} **\`custom\`** Command`);
-      flead.push({
-        name: `${c_cmd["custom"]} Custom Command`,
-        value: `\`${prefix || client.config.bot.prefix}help custom\``,
-        inline: true
-      });
+      category.set("custom", `${c_cmd["custom"]} **\`Custom\`** Command`);
       menus.push({
-        label: `CUSTOM CATEGORY`,
+        label: `Custom Category`,
         description: `Custom Commands`,
         value: `custom`,
         emoji: c_cmd["custom"] || null
       });
     }
+    category.set("slash", `${c_cmd["slash"]} **\`Slash\`** Command`);
+    menus.push({
+      label: `Slash Command Category`,
+      description: `Slash Commands`,
+      value: `slash`,
+      emoji: c_cmd["slash"] || null
+    });
+
     if (args.length) {
       if (database && database.length && args[0] === "custom") {
         let embed = new Discord.MessageEmbed()
@@ -103,6 +98,27 @@ module.exports = {
             dynamic: true
           })
         );
+        return message.channel.send({ embeds: [embed] });
+      } else if (args[0] === "slash") {
+        let embed = new Discord.MessageEmbed()
+          .setColor("RANDOM")
+          .setTimestamp()
+          .setDescription(
+            `${category.get(args[0])}\n\`\`\`xl\n${prefix ||
+              client.config.bot.prefix}help [Command]\n\`\`\``
+          )
+          .addField(
+            `Commands:`,
+            `${client.slashs
+              .map(command => `\`/${command.name}\``)
+              .join(", ")}` || `\u200b`
+          )
+          .setFooter(
+            `Total Of: - ${client.commands.size} Commands`,
+            message.author.displayAvatarURL({
+              dynamic: true
+            })
+          );
         return message.channel.send({ embeds: [embed] });
       } else if (category.has(args[0])) {
         let embed = new Discord.MessageEmbed()
@@ -175,12 +191,17 @@ module.exports = {
     }
     let em = new Discord.MessageEmbed()
       .setColor("GREEN")
-      .setAuthor("Help Menu", client.user.displayAvatarURL())
+      .setTitle("Choose your option!")
+      .setThumbnail(client.user.displayAvatarURL())
       .setDescription(
-        `🛡️ Join our for help and updates!\n\`\`\`xl\n${prefix ||
-          client.config.bot.prefix}help [Category]\n\`\`\``
+        `**TYPE Recommends for full list of commands\n${await client.emoji(
+          "DGH_arrow"
+        )} [Support](${client.config.server.invite})\n${await client.emoji(
+          "DGH_arrow"
+        )} [Invite Me](${client.config.bot.invite})\n${await client.emoji(
+          "DGH_arrow"
+        )} [My Source](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3)\n**`
       )
-      .addFields(flead)
       .setImage(client.config.image.help)
       .setFooter(client.user.username, client.user.displayAvatarURL())
       .setTimestamp();
@@ -189,18 +210,6 @@ module.exports = {
         .setCustomId("help-menu")
         .setPlaceholder(`Choose the command category`)
         .addOptions(menus)
-    );
-    let button = new MessageActionRow().addComponents(
-      new client.Discord.MessageButton()
-        .setURL("https://dgh-bot.ddns.net/dc")
-        .setStyle("LINK")
-        .setEmoji(await client.emoji("DGH_link"))
-        .setLabel("Support"),
-      new client.Discord.MessageButton()
-        .setURL("https://dgh-bot.ddns.net/invite")
-        .setStyle("LINK")
-        .setEmoji(await client.emoji("DGH_link"))
-        .setLabel("Invite Me")
     );
     let button_for_owner = new MessageActionRow().addComponents(
       new client.Discord.MessageButton()
@@ -212,18 +221,18 @@ module.exports = {
     if (client.config.bot.owners.includes(message.author.id) === true) {
       msg = await message.channel.send({
         embeds: [em],
-        components: [raw, button, button_for_owner]
+        components: [raw, button_for_owner]
       });
     } else {
       msg = await message.channel.send({
         embeds: [em],
-        components: [raw, button]
+        components: [raw]
       });
     }
     let filter = i => i.user.id === message.author.id;
     let col = msg.createMessageComponentCollector({
       filter,
-      time: 40000
+      time: 60000
     });
     col.on("collect", async i => {
       if (i.customId === "owner") {
@@ -231,7 +240,9 @@ module.exports = {
           .setColor("RANDOM")
           .setTimestamp()
           .setDescription(
-            `${await client.emoji("DGH_owner_guild")}**\`owner\`** Command\n\`\`\`xl\n${prefix ||
+            `${await client.emoji(
+              "DGH_owner_guild"
+            )}**\`Owner\`** Command\n\`\`\`xl\n${prefix ||
               client.config.bot.prefix}help [Command]\n\`\`\``
           )
           .addField(
@@ -254,8 +265,27 @@ module.exports = {
         return msg.edit({ embeds: [embed] });
       }
       if (i.customId === "help-menu") {
-        if (i.values[0] === "help-menu") {
-          return msg.edit({ embeds: [em] });
+        if (i.values[0] === "slash") {
+          let embed = new Discord.MessageEmbed()
+            .setColor("RANDOM")
+            .setTimestamp()
+            .setDescription(
+              `${category.get(i.values[0])}\n\`\`\`xl\n${prefix ||
+                client.config.bot.prefix}help [Command]\n\`\`\``
+            )
+            .addField(
+              `Commands:`,
+              `${client.slashs
+                .map(command => `\`/${command.name}\``)
+                .join(", ")}` || `\u200b`
+            )
+            .setFooter(
+              `Total Of: - ${client.commands.size} Commands`,
+              message.author.displayAvatarURL({
+                dynamic: true
+              })
+            );
+          return msg.edit({ embeds: [embed] });
         } else if (database && database.length && i.values[0] === "custom") {
           let embed = new Discord.MessageEmbed()
             .setColor("RANDOM")
@@ -306,7 +336,7 @@ module.exports = {
     });
     col.on("end", async i => {
       raw.components[0].setDisabled(true);
-      return msg.edit({ components: [raw, button] });
+      return msg.edit({ embeds: [em], components: [raw] });
     });
   }
 };

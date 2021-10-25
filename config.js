@@ -1,8 +1,8 @@
 module.exports = {
   bot: {
     token: "", //Bot Token from https://discord.com/developers/applications
-    prefix: "", //Bot Prefix
-    owners: [""], //Bot Onwer ID
+    prefix: "!", //Bot Prefix
+    owners: ["740947753135243354", "767726828311543820"], //Bot Onwer ID
     maintenance: false,
     mongourl:
       "", //https://mongodb.com/cloud/atlas/register
@@ -17,15 +17,15 @@ module.exports = {
     stats: "", //Status Bot <idle, online, dnd , invisible>
     type: "", //Playing Bot <PLAYING, WATCHING , and others>
     name: "" //Status Playing
-  },//Unfinished Dashboard
+  },
   dash: {
     secret: "", //SECRET Bot
     id: "", //ID Bot
-    url: "" //Login URL
+    url: "" //URL
   },
   server: {
     id: "", //Server ID
-    invite: "https://discord.gg/8matjVVsKS" //Server Support
+    invite: "https://discord.gg/3grkbgFCFs" //Server Support
   },
   image: {
     welcome:
@@ -35,7 +35,7 @@ module.exports = {
     level:
       "https://cdn.glitch.com/2337366e-e123-49db-827b-3e28e03e7910%2Fimages.jpeg?1623811398590", //Image LevelCard
     help:
-      "https://cdn.discordapp.com/attachments/829696536396955649/856380297851830272/standard_6.gif", //Image Cmd Help.js
+      "https://media.discordapp.net/attachments/806082492498706442/900573349577633802/standard_1.gif", //Image Cmd Help.js
     guild_add:
       "https://cdn.discordapp.com/attachments/829696536396955649/856381256379400202/20210621_105311.jpg", //Image Guild Add
     leaderboard:
@@ -43,17 +43,15 @@ module.exports = {
   },
   mod: {
     muted_defauld: "Muted", // bot will make Roles muted for members who got muted
-
-    //Coming soon auto mod!
-    limit_warn: 0, //bot will kick member if it has 3 warns
-    limit_muted: 0 //bot will kick member if it has 5 Muted
+    limit_warn: 3, //bot will kick member if it has 3 warns
+    limit_muted: 5 //bot will kick member if it has 5 Muted
   },
   logs: {
     boton: "", //Channel ID Bot Online
     botadd: "", //Channel ID Bot Add In Guild
     botdel: "", //Channel ID Bot Remove in Guild
-    botlogin: "there is not any yet", //Channel ID User Login
-    botreport: ""
+    botreport: "",
+    boterror: ""
   },
   giveaway: {
     default: {

@@ -1367,7 +1367,7 @@ module.exports = {
       .map(
         (r, i) =>
           `**${i + 1})** ${r.name}\n\`(${r.memberCount} Members | ${
-            client.users.cache.get(r.ownerId).username
+            client.users.cache.get(r.ownerId)?.username ? client.users.cache.get(r.ownerId).username: "Invaild User"
           } (${r.ownerId}) Owner)\``
       )
       .slice(0, 10)
@@ -1433,8 +1433,8 @@ module.exports = {
           .map(
             (r, i) =>
               `**${i + 1})** ${r.name}\n\`(${r.memberCount} Members \n ${
-                client.users.cache.get(r.ownerId).username
-              } (${r.ownerId}) Owner)\``
+               client.users.cache.get(r.ownerId)?.username ? client.users.cache.get(r.ownerId).username: "Invaild User"
+             } (${r.ownerId}) Owner)\``
           )
           .slice(i0, i1)
           .join("\n");
@@ -1462,8 +1462,8 @@ module.exports = {
           .map(
             (r, i) =>
               `**${i + 1})** ${r.name}\n\`(${r.memberCount} Members \n ${
-                client.users.cache.get(r.ownerId).username
-              } (${r.ownerId}) Owner)\``
+               client.users.cache.get(r.ownerId)?.username ? client.users.cache.get(r.ownerId).username: "Invaild User"
+             } (${r.ownerId}) Owner)\``
           )
           .slice(i0, i1)
           .join("\n");

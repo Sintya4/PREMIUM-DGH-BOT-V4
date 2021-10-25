@@ -7,7 +7,7 @@ module.exports = async client => {
     if (!Prefix) Prefix = client.config.bot.prefix;
     if (message.content.startsWith(Prefix + "afk")) return;
     let status = db.get(`afkstatus_${message.guild.id}_${message.author.id}`);
-    let reason;
+    let reason; 
     if (status === true) {
       let nick = db.get(`nick_${message.guild.id}_${message.author.id}`);
       db.set(`afkstatus_${message.guild.id}_${message.author.id}`, false);

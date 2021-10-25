@@ -8,7 +8,9 @@ module.exports = {
   run: async (client, message, args) => {
     let embed = new client.Discord.MessageEmbed()
       .setColor("GREEN")
-      .setDescription("Choose, Which one do you want to set?");
+      .setDescription("Choose, Which one do you want to set?")
+      .setFooter(client.user.username + ` |`)
+      .setTimestamp();
     let buts = new client.Discord.MessageActionRow().addComponents(
       new client.Discord.MessageSelectMenu()
         .setCustomId("opt")
@@ -42,6 +44,9 @@ module.exports = {
 **{server}** - Gives Server Name.
 **{membercount}** - Gets Server Member Count.
 **{member_at}** - View the time a member created an account.
+**{invite}** - See which members join using what link.
+**{inviter}** - Get members who invite new members.
+**{inviter-username}** - Inviter Username With Tag!
 **{member_join}** - See when members join the server.
 **{:emoji}** - Show a server emoji by replacing with name. Ex. \`{:Alix}\``
           )
@@ -63,6 +68,9 @@ module.exports = {
           .setDescription(`Previous\n\`\`\`\n${msg1}\n\`\`\``);
         if (msg1) {
           msg1 = msg1.replace(/{user}/g, message.author);
+          msg1 = msg1.replace(/{invite}/g, "https://discord.com/invite/<code>/");
+          msg1 = msg1.replace(/{inviter}/g, client.user);
+          msg1 = msg1.replace(/{inviter-username}/g, client.user.tag);
           msg1 = msg1.replace(/{server}/g, message.guild.name);
           msg1 = msg1.replace(/{membercount}/g, message.guild.memberCount);
           msg1 = msg1.replace(/{username}/g, message.author.tag);

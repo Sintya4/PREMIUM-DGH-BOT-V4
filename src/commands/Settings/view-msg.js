@@ -8,7 +8,9 @@ module.exports = {
   run: async (client, message, args) => {
     let embed = new client.Discord.MessageEmbed()
       .setColor("GREEN")
-      .setDescription("Choose, Which tone wants to see the message");
+      .setDescription("Choose, Which tone wants to see the message")
+      .setFooter(client.user.username + ` |`)
+      .setTimestamp();
     let buts = new client.Discord.MessageActionRow().addComponents(
       new client.Discord.MessageSelectMenu()
         .setCustomId("opt")

@@ -6,7 +6,7 @@ module.exports = {
   category: "moderation",
   usage: "warnings <@user>",
   P_user: ["ADMINISTRATOR"],
-  P_bot: ["ADMINISTRATOR"],
+  P_bot: ["VIEW_CHANNELS"],
   arga: true,
   run: async(client, message, args) => {
     const user = message.mentions.members.first() || message.author;

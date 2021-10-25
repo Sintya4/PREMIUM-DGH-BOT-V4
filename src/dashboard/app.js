@@ -1,259 +1,359 @@
-const express = require("express");
-const app = express();
-const bodyparser = require("body-parser");
-const session = require("express-session");
-const path = require("path");
-const ejs = require("ejs");
-const passport = require("passport");
-const { Strategy } = require("passport-discord");
-const { version } = require("discord.js");
-const moment = require("moment");
-const Levels = require("discord-xp");
-
+const DBD = require("discord-dashboard-dgh");
+const CaprihamTheme = require("dbd-capriham-theme-dgh");
+const Discord = require("discord.js");
 module.exports = async client => {
-  app.use(bodyparser.json());
-  app.use(bodyparser.urlencoded({ extended: true }));
-  app.engine("html", ejs.renderFile);
-  app.set("view engine", "ejs");
-  const templateDir = path.resolve(
-    `${process.cwd()}${path.sep}src/dashboard/src`
-  );
-
-  const render = (res, req, template, data = {}) => {
-    const baseData = {
-      bot: client,
-      path: req.path,
-      user: req.user || null,
-      uptime: moment
-        .duration(client.uptime)
-        .format(" D [days], H [hours], m [minutes], s [seconds]"),
-      version: version
-    };
-    res.render(
-      path.resolve(`${templateDir}${path.sep}${template}`),
-      Object.assign(baseData, data)
-    );
+  let cmd = [];
+  let options = {
+    description:
+      "DGH BOT is a multiple purpose bot including extraordinary features such as Moderation, Leveling System, Welcomer, Search, Misc and other commands!",
+    image:
+      "https://www.geeklawblog.com/wp-content/uploads/sites/528/2018/12/liprofile-656x369.png"
   };
-  const checkAuth = (req, res, next) => {
-    if (req.isAuthenticated()) return next();
-    req.session.backURL = req.url;
-    res.redirect("/login");
-  };
-  app.use(
-    "/css",
-    express.static(path.resolve(`${templateDir}${path.sep}assets/css`))
-  );
-  app.use(
-    "/js",
-    express.static(path.resolve(`${templateDir}${path.sep}assets/js`))
-  );
-  app.use(
-    session({
-      secret: "DGH_BOT_DASHBOARD",
-      resave: false,
-      saveUninitialized: false
+  client.commands.map(command =>
+    cmd.push({
+      commandName: `!${command.name}`,
+      commandUsage: command.usage || "No Usage",
+      commandDescription: command.description || "No Description"
     })
   );
-
-  app.use(passport.initialize());
-  app.use(passport.session());
-
-  passport.serializeUser((user, done) => {
-    done(null, user);
-  });
-  passport.deserializeUser((obj, done) => {
-    done(null, obj);
-  });
-  passport.use(
-    new Strategy(
-      {
-        clientID: client.config.dash.id,
-        clientSecret: client.config.dash.secret,
-        callbackURL: client.config.dash.url,
-        scope: ["identify", "guilds"]
+  const Dashboard = new DBD.Dashboard({
+    port: 3000,
+    client: {
+      id: client.config.dash.id,
+      secret: client.config.dash.secret
+    },
+    redirectUri: `${client.config.dash.url}/discord/callback`,
+    domain: client.config.dash.url,
+    inv: `
+<!DOCTYPE html>
+<html>
+<head>
+<title>${client.user.username}</title>
+<meta property="og:site_name" content="Add Me To Your server">
+<meta property="og:title" content="${client.user.username}">
+<meta property="og:image" content="${client.user.avatarURL()}">
+<meta property="og:description" content="Thank you for adding me to your server">
+<meta property="twitter:card" content="summary">
+<meta property="twitter:title" content="${client.user.username}">
+<meta property="twitter:image" content="${client.user.avatarURL()}">
+<meta property="twitter:description" content="Thank you for adding me to your server">
+<meta name="theme-color" content="#7289da">
+<meta http-equiv="refresh" content="0; url=${client.config.bot.invite}">
+</html>
+  `,
+    noCreateServer: false,
+    supportServer: {
+      slash: "/dc",
+      inviteUrl: client.config.server.invite
+    },
+    bot: client,
+    theme: CaprihamTheme({
+      websiteName: client.user.username,
+      description: "឵DGH BOT is a multiple purpose bot including extraordinary features such as Moderation, Leveling System, Welcomer, Search, Misc and other commands!",
+      color: "",
+      site_name: "DGH BOT DASHBOARD",
+      footer: "឵",
+      iconURL: client.user.avatarURL(),
+      index: {
+        card: {
+          title: client.user.username,
+          description: options.description,
+          image: options.image
+        },
+        information: {
+          title: "Information",
+          description:
+            "To manage your bot, go to the <a href='/manage'>Server Management page</a>.<br><br>For a list of commands, go to the <a href='/commands'>Commands page</a>."
+        },
+        feeds: {
+          title: "Feeds",
+          list: [
+            {
+              icon: "fa fa-user",
+              text: "New user registered",
+              timeText: "Just now",
+              bg: "bg-light-info"
+            },
+            {
+              icon: "fa fa-server",
+              text: "Server issues",
+              timeText: "3 minutes ago",
+              bg: "bg-light-danger"
+            }
+          ]
+        }
       },
-      function(accessToken, refreshToken, profile, done) {
-        console.log(profile);
-        process.nextTick(function() {
-          return done(null, profile);
-        });
+      commands: {
+        pageTitle: "Commands",
+        table: {
+          title: "List Commands",
+          subTitle: "All Command",
+          list: cmd
+        }
       }
-    )
-  );
-  //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- RENDER WEB =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-  app.get("/login", (req, res) => {
-    render(res, req, "embed/login.ejs");
-  });
-  app.get(
-    "/callback",
-    passport.authenticate("discord", {
-      failureRedirect: "/?error=true&message=Error Login To Discord"
     }),
-    async function(req, res) {
-      if (!req.user.id || !req.user.guilds) {
-        res.redirect("/");
-      } else res.redirect(req.session.backURL || "/");
-    }
-  );
-  app.get("/logout", async function(req, res) {
-    req.session.destroy(() => {
-      req.logout();
-      res.redirect("/");
-    });
-  });
-
-  app.listen(process.env.PORT, rr => {
-    console.log("✅ DASHBOARD DGH BOT READY");
-  });
-  app.get("/", (req, res) => {
-    render(res, req, "index");
-  });
-  app.get("/stats", (req, res) => {
-    render(res, req, "stats");
-  });
-  app.get("/invite", (req, res) => {
-    render(res, req, "embed/invite");
-  });
-  app.get("/servers", checkAuth, (req, res) => {
-    render(res, req, "./manage/servers", {
-      guilds: req.user.guilds.filter(
-        u => (u.permissions & 2146958591) === 2146958591
-      )
-    });
-  });
-
-  app.get("/server/:guildID/:value", checkAuth, async (req, res) => {
-    let server = client.guilds.cache.get(req.params.guildID);
-    if (
-      !server &&
-      req.user.guilds
-        .filter(u => (u.permissions & 2146958591) === 2146958591)
-        .map(u => u.id)
-        .includes(req.params.guildID)
-    ) {
-      return res.redirect(
-        `${client.config.bot.invite}&guild_id=${req.params.guildID}`
-      );
-    } else if (!server) {
-      return res.redirect(
-        `/servers?error=true&message=Invalid Guild&url=servers`
-      );
-    }
-    if (
-      req.params.value === "invite" &&
-      req.user.guilds
-        .filter(u => (u.permissions & 2146958591) === 2146958591)
-        .map(u => u.id)
-        .includes(req.params.guildID)
-    ) {
-      return res.redirect(
-        `${client.config.bot.invite}&guild_id=${req.params.guildID}`
-      );
-    }
-    let settings = {
-      prefix:
-        (await client.data.get(`Prefix_${req.params.guildID}`)) ||
-        client.config.bot.prefix,
-      welmsg:
-        (await client.data.get(`msg_wel_${req.params.guildID}`)) || "None",
-      levmsg:
-        (await client.data.get(`msg_lev_${req.params.guildID}`)) || "None",
-      levelmsg:
-        (await client.data.get(`msg_lvl_${req.params.guildID}`)) || "None",
-      welch:
-        (await client.data.get(`channel_wel_${req.params.guildID}`)) || "None",
-      levch:
-        (await client.data.get(`channel_lev_${req.params.guildID}`)) || "None",
-      levelch:
-        (await client.data.get(`channel_lvl_${req.params.guildID}`)) || "None",
-      modch:
-        (await client.data.get(`channel_mod_${req.params.guildID}`)) || "None",
-      logch:
-        (await client.data.get(`channel_log_${req.params.guildID}`)) || "None",
-      imglev:
-        (await client.data.get(`img_lev_${req.params.guildID}`)) ||
-        client.config.image.leave,
-      imgwel:
-        (await client.data.get(`img_wel_${req.params.guildID}`)) ||
-        client.config.image.welcome,
-      imglevel:
-        (await client.data.get(`img_level_${req.params.guildID}`)) ||
-        client.config.image.level
-    };
-    let raw = true;
-    const rawLeaderboard = await Levels.fetchLeaderboard(server.id, 10); // We grab top 10 users with most xp in the current server.
-    if (rawLeaderboard.length < 1) raw = false;
-    const leaderboard = await Levels.computeLeaderboard(
-      client,
-      rawLeaderboard,
-      true
-    );
-    render(res, req, "./manage/setting", {
-      guild: server,
-      value: req.params.value,
-      leaderboard,
-      raw,
-      settings,
-      createdAt: moment(req.user.createdAt).format("lll")
-    });
-  });
-  app.post("/server/:guildID/:value", checkAuth, async (req, res) => {
-    let server = client.guilds.cache.get(req.params.guildID);
-    if (!server)
-      return res.redirect(
-        `/servers?error=true&message=Invalid Guild&url=servers`
-      );
-    if (
-      !client.guilds.cache
-        .get(req.params.guildID)
-        .members.cache.get(req.user.id)
-        .permissions.has("MANAGE_GUILD")
-    )
-      return res.redirect(
-        `/servers?error=true&message=You do not have MANAGE_GUILD permissions.&url=servers`
-      );
-    let data = req.body;
-    let settings = {
-      prefix:
-        (await client.data.get(`Prefix_${req.params.guildID}`)) ||
-        client.config.bot.prefix,
-      welmsg:
-        (await client.data.get(`msg_wel_${req.params.guildID}`)) || "None",
-      levmsg:
-        (await client.data.get(`msg_lev_${req.params.guildID}`)) || "None",
-      levelmsg:
-        (await client.data.get(`msg_lvl_${req.params.guildID}`)) || "None",
-      welch:
-        (await client.data.get(`channel_wel_${req.params.guildID}`)) || "None",
-      levch:
-        (await client.data.get(`channel_lev_${req.params.guildID}`)) || "None",
-      levelch:
-        (await client.data.get(`channel_lvl_${req.params.guildID}`)) || "None",
-      modch:
-        (await client.data.get(`channel_mod_${req.params.guildID}`)) || "None",
-      logch:
-        (await client.data.get(`channel_log_${req.params.guildID}`)) || "None",
-      imglev:
-        (await client.data.get(`img_lev_${req.params.guildID}`)) ||
-        client.config.image.leave,
-      imgwel:
-        (await client.data.get(`img_wel_${req.params.guildID}`)) ||
-        client.config.image.welcome,
-      imglevel:
-        (await client.data.get(`img_level_${req.params.guildID}`)) ||
-        client.config.image.level
-    };
-    if (req.params.value === "home") {
-      if (data.hasOwnProperty("prefix")) {
-        let newprefix;
-        if (data.prefix.length > 0) newprefix = data.prefix;
-        if (newprefix)
-          client.data.set(`Prefix_${req.params.guildID}`, newprefix);
+    settings: [
+      {
+        categoryId: "setup",
+        categoryName: "Setup",
+        categoryDescription: "Setup your bot with default settings!",
+        categoryOptionsList: [
+          {
+            optionId: "prefix",
+            optionName: "Prefix",
+            optionDescription: "The prefix on the current server is;",
+            optionType: DBD.formTypes.input("Bot Prefix", 1, 3, false, true),
+            getActualSet: async ({ guild }) => {
+              return (await client.data.get(`Prefix_${guild.id}`)) || false;
+            },
+            setNew: async ({ guild, newData }) => {
+              await client.data.set(`Prefix_${guild.id}`, newData);
+              return;
+            }
+          },
+          {
+            optionId: "nickname",
+            optionName: "Nickname",
+            optionDescription: "Bot's nickname on the guild;",
+            optionType: DBD.formTypes.input("Bot username", 1, 16, false, true),
+            getActualSet: async ({ guild }) => {
+              return (
+                client.guilds.cache
+                  .get(guild.id)
+                  .members.cache.get(client.user.id).displayName || false
+              );
+            },
+            setNew: async ({ guild, newData }) => {
+              await client.guilds.cache
+                .get(guild.id)
+                .members.cache.get(client.user.id)
+                .setNickname(newData);
+              return;
+            }
+          },
+          {
+            optionId: "auto-roles",
+            optionName: "Auto Roles",
+            optionDescription: `Auto Roles For new members to enter the server;`,
+            optionType: DBD.formTypes.rolesSelect(false, true),
+            getActualSet: async ({ guild }) => {
+              return (await client.data.get(`roles_auto_${guild.id}`)) || false;
+            },
+            setNew: async ({ guild, newData }) => {
+              let ty = null;
+              try {
+                JSON.parse(newData);
+                ty = true;
+              } catch (e) {
+                ty = false;
+              }
+              if (ty) {
+                await client.data.set(`roles_auto_${guild.id}`, [newData]);
+                return;
+              } else {
+                await client.data.set(`roles_auto_${guild.id}`, newData);
+                return;
+              }
+            }
+          },
+          {
+            optionId: "auto-nickname",
+            optionName: "Auto Nickname",
+            optionDescription:
+              "Auto Nickname For new members to enter the server;",
+            optionType: DBD.formTypes.input(
+              "[Member] {username}",
+              1,
+              20,
+              false,
+              true
+            ),
+            getActualSet: async ({ guild }) => {
+              return (await client.data.get(`nick_auto_${guild.id}`)) || false;
+            },
+            setNew: async ({ guild, newData }) => {
+              await client.data.set(`nick_auto_${guild.id}`, newData);
+              return;
+            }
+          }
+        ]
+      },
+      {
+        categoryId: "settings_ch",
+        categoryName: "Setting Channel",
+        categoryDescription: "Setup your bot with default settings!",
+        categoryOptionsList: [
+          {
+            optionId: "ch-welcome",
+            optionName: "Channel Welcome",
+            optionDescription:
+              "Notify that there is a new member on the server;",
+            optionType: DBD.formTypes.channelsSelect(false, false),
+            getActualSet: async ({ guild }) => {
+              return (
+                (await client.data.get(`wel_channel__${guild.id}`)) || false
+              );
+            },
+            setNew: async ({ guild, newData }) => {
+              await client.data.set(`wel_channel__${guild.id}`, newData);
+              return;
+            }
+          },
+          {
+            optionId: "ch-leave",
+            optionName: "Channel Leave",
+            optionDescription: "Notifying that a member has left the server;",
+            optionType: DBD.formTypes.channelsSelect(false, false),
+            getActualSet: async ({ guild }) => {
+              return (
+                (await client.data.get(`lev_channel__${guild.id}`)) || false
+              );
+            },
+            setNew: async ({ guild, newData }) => {
+              await client.data.set(`lev_channel__${guild.id}`, newData);
+              return;
+            }
+          },
+          {
+            optionId: "ch-level",
+            optionName: "Channel Level Up",
+            optionDescription:
+              "Notifying that the member has leveled up on the server;",
+            optionType: DBD.formTypes.channelsSelect(false, false),
+            getActualSet: async ({ guild }) => {
+              return (
+                (await client.data.get(`lvl_channel__${guild.id}`)) || false
+              );
+            },
+            setNew: async ({ guild, newData }) => {
+              await client.data.set(`lvl_channel__${guild.id}`, newData);
+              return;
+            }
+          },
+          {
+            optionId: "ch-modlog",
+            optionName: "Channel Moderation Logs",
+            optionDescription:
+              "Notify that the staff is warning members or others;",
+            optionType: DBD.formTypes.channelsSelect(false, false),
+            getActualSet: async ({ guild }) => {
+              return (await client.data.get(`modlog_${guild.id}`)) || false;
+            },
+            setNew: async ({ guild, newData }) => {
+              await client.data.set(`modlog_${guild.id}`, newData);
+              return;
+            }
+          },
+          {
+            optionId: "ch-star",
+            optionName: "Channel Starboard",
+            optionDescription:
+              "Notifying that anyone react message with ⭐ eats on send on server;",
+            optionType: DBD.formTypes.channelsSelect(false, false),
+            getActualSet: async ({ guild }) => {
+              return (
+                (await client.data.get(`starboard_channel__${guild.id}`)) ||
+                false
+              );
+            },
+            setNew: async ({ guild, newData }) => {
+              await client.data.set(`starboard_channel__${guild.id}`, newData);
+              return;
+            }
+          }
+        ]
+      },
+      {
+        categoryId: "settings_msg",
+        categoryName: "Setting Message",
+        categoryDescription: "Setup your bot with default settings!",
+        categoryOptionsList: [
+          {
+            optionId: "msg-welcome",
+            optionName: "Message Welcome",
+            optionDescription:
+              "Text to be changed; {user} / {username}, {server}, {invite}, {inviter} / {inviter-username}, {member_join}, {member_at}, {membercount}, {:name_emoji}",
+            optionType: DBD.formTypes.textarea(
+              "Welcome {user}",
+              15,
+              20881,
+              false,
+              false
+            ),
+            getActualSet: async ({ guild }) => {
+              return (
+                (await client.data.get(`msg_welcome_${guild.id}`)) || false
+              );
+            },
+            setNew: async ({ guild, newData }) => {
+              await client.data.set(`msg_welcome_${guild.id}`, newData);
+              return;
+            }
+          },
+          {
+            optionId: "msg-lev",
+            optionName: "Message Leave",
+            optionDescription:
+              "Text to be changed; {user} / {username}, {server}, {member_leave}, {membercount}, {:name_emoji}",
+            optionType: DBD.formTypes.textarea(
+              "Goodbye {user}",
+              15,
+              20881,
+              false,
+              false
+            ),
+            getActualSet: async ({ guild }) => {
+              return (await client.data.get(`msg_leave_${guild.id}`)) || false;
+            },
+            setNew: async ({ guild, newData }) => {
+              await client.data.set(`msg_leave_${guild.id}`, newData);
+              return;
+            }
+          },
+          {
+            optionId: "msg-lvl",
+            optionName: "Message Level",
+            optionDescription:
+              "Text to be changed; {user} / {username}, {server}, {member_level}, {member_xp}, {:name_emoji}",
+            optionType: DBD.formTypes.textarea(
+              "You Have Leveled Up To Level **{member_level}**",
+              8,
+              129,
+              false,
+              false
+            ),
+            getActualSet: async ({ guild }) => {
+              return (await client.data.get(`msg_level_${guild.id}`)) || false;
+            },
+            setNew: async ({ guild, newData }) => {
+              await client.data.set(`msg_level_${guild.id}`, newData);
+              return;
+            }
+          },
+          {
+            optionId: "msg-word",
+            optionName: "Message Badword",
+            optionDescription:
+              "Text to be changed; {user} / {username}, {server}, {:name_emoji}",
+            optionType: DBD.formTypes.textarea(
+              "❌ | **{user}, The Word You said is blacklisted!**",
+              8,
+              129,
+              false,
+              false
+            ),
+            getActualSet: async ({ guild }) => {
+              return (await client.data.get(`msg_word_${guild.id}`)) || false;
+            },
+            setNew: async ({ guild, newData }) => {
+              await client.data.set(`msg_word_${guild.id}`, newData);
+              return;
+            }
+          }
+        ]
       }
-      await res.redirect(`?success=true&message=saved successfully&url=home`);
-    }
+    ]
   });
-  app.use((req, res) => {
-    res.status(404).redirect("/?error=true&message=404 Not Found");
-  });
+
+  Dashboard.init();
 };

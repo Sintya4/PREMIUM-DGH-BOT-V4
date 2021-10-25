@@ -41,7 +41,10 @@ module.exports = client => {
       }
       return;
     }
-    if (client.config.maintenance && client.config.bot.owners.includes(message.author.id) === false) {
+    if (
+      client.config.maintenance &&
+      client.config.bot.owners.includes(message.author.id) === false
+    ) {
       let ownerOnly = new client.Discord.MessageEmbed().setDescription(
         `*${await client.emoji(
           "DGH_error"
@@ -142,6 +145,12 @@ module.exports = client => {
             return message.channel
               .send({ embeds: [errrr], ephemeral: true })
               .then(m => {
+                client.sendhook(null, {
+                  channel: client.config.logs.boterror,
+                  embed: [errrr],
+                  name: "Notifications DGH BOT"
+                });
+
                 setTimeout(() => m.delete(), 13000);
               })
               .catch(e => {
@@ -160,6 +169,12 @@ module.exports = client => {
         return message.channel
           .send({ embeds: [errrr], ephemeral: true })
           .then(m => {
+            client.sendhook(null, {
+              channel: client.config.logs.boterror,
+              embed: [errrr],
+              name: "Notifications DGH BOT"
+            });
+
             setTimeout(() => m.delete(), 13000);
           })
           .catch(e => {

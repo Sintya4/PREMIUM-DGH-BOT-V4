@@ -1,6 +1,6 @@
 {
-  "name": "DGH-BOT-V3",
-  "version": "0.0.3",
+  "name": "hello-express",
+  "version": "0.0.1",
   "description": "A simple Node app built on Express, instantly up and running.",
   "main": "src/index",
   "scripts": {
@@ -48,7 +48,11 @@
     "ytsr": "^3.5.3",
     "yt-search": "^2.10.0",
     "dblist.api": "^1.1.1",
-    "discord.js": "*"
+    "discord.js": "*",
+    "@koenie06/discord.js-music": "^1.2.9",
+    "@discordjs/rest": "^0.1.1-canary.0",
+    "discord-dashboard-dgh": "^1.3.3-rm",
+    "dbd-capriham-theme-dgh": "^1.4.0"
   },
   "engines": {
     "node": "16.x"

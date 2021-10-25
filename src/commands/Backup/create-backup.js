@@ -4,7 +4,7 @@ module.exports = {
   name: "create-backup",
   description: "Create Backup Servers",
   P_user: ["ADMINISTRATOR"],
-  P_bot: ["ADMINISTRATOR"],
+  P_bot: ["MANAGE_ROLES","MANAGE_GUILD","MANAGE_EMOJIS","MANAGE_CHANNELS","VIEW_CHANNEL","SEND_MESSAGES","MANAGE_WEBHOOKS"],
   category: "backup",
   run: async (client, message, args) => {
     let backupData = await backup.create(message.guild, {

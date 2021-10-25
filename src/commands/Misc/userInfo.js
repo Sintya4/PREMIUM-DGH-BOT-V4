@@ -22,9 +22,8 @@ module.exports = {
     const permissions = user.permissions.toArray().map(perm => {
       return perm
         .toLowerCase()
-        .replace(/_/g, " ") // Replace all underscores with spaces
+        .replace(/_/g, " ")
         .replace(/\w\S*/g, txt => {
-          // Capitalize the first letter of each word
           return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         });
     });

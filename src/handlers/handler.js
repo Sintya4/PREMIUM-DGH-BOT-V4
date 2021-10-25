@@ -41,12 +41,11 @@ module.exports = async client => {
   const buttonCommandsFiles = glob.sync("./src/interaction/buttons/**/**/*.js");
   for (const file of buttonCommandsFiles) {
     const buttonCommand = require(path.resolve(file));
-    client.buttons.set(buttonCommand.name+"button", buttonCommand);
+    client.buttons.set(buttonCommand.name, buttonCommand);
   }
   const selectEventFiles = glob.sync("./src/interaction/selects/**/**/*.js");
   for (const file of selectEventFiles) {
     const selectEvent = require(path.resolve(file));
-    client.selects.set(selectEvent.name+"select", selectEvent);
+    client.selects.set(selectEvent.name, selectEvent);
   }
-  
 };

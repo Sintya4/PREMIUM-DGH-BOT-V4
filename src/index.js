@@ -4,4 +4,3 @@ const client = new DGH_BOT();
 client.start();
 require("./structures/antiCrash")(client);
 require("./handlers/handler")(client);
-require("./handlers/interaction")(client);

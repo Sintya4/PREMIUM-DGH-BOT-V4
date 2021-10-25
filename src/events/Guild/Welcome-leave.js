@@ -1,5 +1,5 @@
 module.exports = async client => {
-  client.on("guildMemberAdd", async member => {
+  client.on("inviteJoin", async (member, invite, inviter) => {
     let channel = await client.data.get(`wel_channel__${member.guild.id}`);
     let nick = await client.data.get(`nick_auto_${member.guild.id}`);
     let roles = await client.data.get(`roles_auto_${member.guild.id}`);
@@ -10,6 +10,9 @@ module.exports = async client => {
       if (!msg1) msg1 = "Welcome {user}";
       if (msg1) {
         msg1 = msg1.replace(/{user}/g, member);
+        msg1 = msg1.replace(/{invite}/g, invite);
+        msg1 = msg1.replace(/{inviter-username}/g, inviter.tag);
+        msg1 = msg1.replace(/{inviter}/g, inviter);
         msg1 = msg1.replace(/{server}/g, member.guild.name);
         msg1 = msg1.replace(/{membercount}/g, member.guild.memberCount);
         msg1 = msg1.replace(/{username}/g, member.user.tag);
@@ -33,9 +36,11 @@ module.exports = async client => {
       const embed = new client.Discord.MessageEmbed()
         .setColor("RANDOM")
         .setDescription(msg1);
-      client.channels.cache
-        .get(channel)
-        .send({ embeds: [embed] })
+      client
+        .sendhook(null, {
+          channel,
+          embed: [embed], name: "BOT WELCOME"
+        })
         .catch(() => null);
       if (roles) {
         roles.map(x =>
@@ -85,9 +90,11 @@ module.exports = async client => {
       const embed = new client.Discord.MessageEmbed()
         .setColor("RANDOM")
         .setDescription(msg1);
-      client.channels.cache
-        .get(channel)
-        .send({ embeds: [embed] })
+      client
+        .sendhook(null, {
+          channel,
+          embed: [embed], name: "BOT WELCOME"
+        })
         .catch(() => null);
     }
   });

@@ -3,7 +3,7 @@ module.exports = client => {
     if (!interaction.isCommand()) return;
     console.log(interaction);
     try {
-      const command = client.slashs.get(interaction.commandName+"slash");
+      const command = client.slashs.get(interaction.commandName);
       if (!command) {
         interaction.reply({
           content:
@@ -14,15 +14,18 @@ module.exports = client => {
           .delete(interaction.commandId)
           .catch(() => {});
       }
-        if (client.config.maintenance && client.config.bot.owners.includes(interaction.user.id) === false) {
-          let ownerOnly = new client.Discord.MessageEmbed().setDescription(
-            `*${await client.emoji(
-              "DGH_error"
-            )} Command is in progress, you can't use cmd Now*`
-          );
-          return interaction.reply({ embeds: [ownerOnly], ephemeral: true });
-        }
-       if (command.ownerOnly) {
+      if (
+        client.config.maintenance &&
+        client.config.bot.owners.includes(interaction.user.id) === false
+      ) {
+        let ownerOnly = new client.Discord.MessageEmbed().setDescription(
+          `*${await client.emoji(
+            "DGH_error"
+          )} Command is in progress, you can't use cmd Now*`
+        );
+        return interaction.reply({ embeds: [ownerOnly], ephemeral: true });
+      }
+      if (command.ownerOnly) {
         if (client.config.bot.owners.includes(interaction.user.id) === false) {
           let ownerOnly = new client.Discord.MessageEmbed().setDescription(
             `*${await client.emoji(
@@ -78,12 +81,31 @@ module.exports = client => {
             ]
           });
       }
-      await command.execute(
-        client,
-        interaction,
-        interaction.options._hoistedOptions
-      );
+      await command
+        .execute(client, interaction, interaction.options._hoistedOptions)
+        .catch(e => {
+          client.sendhook(
+            `Error Slash Command\n\`${e.message ? e.message : e}\``,
+            {
+              channel: client.config.logs.boterror,
+              name: "Notifications DGH BOT SLASH"
+            }
+          );
+          interaction.reply({
+            content:
+              "There was an error while executing this command, please try again and If this continues to happen talk to the bot owner.",
+            ephemeral: true
+          });
+          console.error(e);
+        });
     } catch (error) {
+      client.sendhook(
+        `Error Slash Command:\n\`${error.message ? error.message : error}\``,
+        {
+          channel: client.config.logs.boterror,
+          name: "Notifications DGH BOT SLASH"
+        }
+      );
       interaction.reply({
         content:
           "There was an error while executing this command, please try again and If this continues to happen talk to the bot owner.",
@@ -99,11 +121,23 @@ module.exports = client => {
     let buttonID = interaction.customId;
     if (!buttonID) return;
     try {
-      const SelectEvent = client.selects.get(buttonID+"select");
+      const SelectEvent = client.selects.get(buttonID);
       if (!SelectEvent) return;
       await interaction.deferUpdate();
-      await SelectEvent.execute(client, interaction);
+      await SelectEvent.execute(client, interaction).catch(e => {
+        client.sendhook(`Error SELECTS:\n\`${e.message ? e.message : e}\``, {
+          channel: client.config.logs.boterror,
+          name: "Notifications DGH BOT SELECTS"
+        });
+      });
     } catch (error) {
+      client.sendhook(
+        `Error SELECTS:\n\`${error.message ? error.message : error}\``,
+        {
+          channel: client.config.logs.boterror,
+          name: "Notifications DGH BOT SELECTS"
+        }
+      );
       interaction.followUp({
         content:
           "There was an error while executing this select event, please try again and If this continues to happen talk to the bot owner.",
@@ -118,11 +152,23 @@ module.exports = client => {
     let buttonID = interaction.customId;
     if (!buttonID) return;
     try {
-      const buttonEvent = client.buttons.get(buttonID+"button");
+      const buttonEvent = client.buttons.get(buttonID);
       if (!buttonEvent) return;
       await interaction.deferUpdate();
-      await buttonEvent.execute(client, interaction);
+      await buttonEvent.execute(client, interaction).catch(e => {
+        client.sendhook(`Error BUTTON:\n\`${e.message ? e.message : e}\``, {
+          channel: client.config.logs.boterror,
+          name: "Notifications DGH BOT BUTTONS"
+        });
+      });
     } catch (error) {
+      client.sendhook(
+        `Error BUTTON:\n\`${error.message ? error.message : error}\``,
+        {
+          channel: client.config.logs.boterror,
+          name: "Notifications DGH BOT BUTTONS"
+        }
+      );
       interaction.followUp({
         content:
           "There was an error while executing this button event, please try again and If this continues to happen talk to the bot owner.",

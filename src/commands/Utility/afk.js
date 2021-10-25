@@ -8,13 +8,10 @@ module.exports = {
     );
     switch (status) {
       case true:
-        client.db
-          .set(`afkstatus_${message.author.id}`, false)
+        client.db.set(`afkstatus_${message.author.id}`, false);
         break;
       case false:
-        let reason;
-        if (args[0]) reason = args.join(" ");
-        reason = reason ? reason : "No reason specified";
+        let reason = args.join(" ") || "No reason specified";
         client.db.set(`afk_${message.guild.id}_${message.author.id}`, reason);
         client.db.set(
           `nick_${message.guild.id}_${message.author.id}`,
@@ -35,9 +32,7 @@ module.exports = {
 
         break;
       case null:
-        let reason2;
-        if (args[0]) reason2 = args.join(" ");
-        reason = reason2 ? reason2 : "No reason specified";
+        let reason2 = args.join(" ") || "No reason specified";
         client.db.set(`afk_${message.guild.id}_${message.author.id}`, reason2);
         client.db.set(
           `nick_${message.guild.id}_${message.author.id}`,

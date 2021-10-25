@@ -3,7 +3,7 @@ module.exports = {
   name: "load-backup",
   description: "load a saved backup, yeah some of them may not saved",
   P_user: ["ADMINISTRATOR"],
-  P_bot: ["ADMINISTRATOR"],
+  P_bot: ["MANAGE_ROLES","MANAGE_GUILD","MANAGE_EMOJIS","MANAGE_CHANNELS","VIEW_CHANNEL","SEND_MESSAGES","MANAGE_WEBHOOKS"],
   args: true,
   usage: "load-backup <id_backup>",
   category: "backup",

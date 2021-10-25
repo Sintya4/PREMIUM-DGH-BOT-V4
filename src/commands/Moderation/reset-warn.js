@@ -7,7 +7,7 @@ module.exports = {
   args: true,
   category: "moderation",
   P_user: ["ADMINISTRATOR"],
-  P_bot: ["ADMINISTRATOR"],
+  P_bot: ["VIEW_CHANNELS"],
   description: "Reset warnings of mentioned person",
   run: async (client, message, args) => {
     const user = message.mentions.members.first();

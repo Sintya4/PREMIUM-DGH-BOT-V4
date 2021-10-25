@@ -5,13 +5,13 @@ module.exports = {
   options: [
     {
       type: "STRING",
-      name: "title",
+      name: "name_code",
       description: "What is the name of the source?",
       required: true
     },
     {
       type: "STRING",
-      name: "language",
+      name: "language_code",
       description: "What is the language in the source?",
       required: true,
       choices: [
@@ -55,13 +55,13 @@ module.exports = {
     },
     {
       type: "STRING",
-      name: "code",
+      name: "code_type",
       description: "What's the source?",
       required: true
     },
     {
       type: "STRING",
-      name: "description",
+      name: "description_code",
       description: "What is the description of the source?",
       required: false
     }

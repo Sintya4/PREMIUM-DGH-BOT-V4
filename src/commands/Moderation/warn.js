@@ -7,7 +7,7 @@ module.exports = {
   usage: "warn <@mention> <reason>",
   args: true,
   P_user: ["ADMINISTRATOR"],
-  P_bot: ["ADMINISTRATOR"],
+  P_bot: ["VIEW_CHANNELS"],
   description: "Warn anyone who do not obey the rules",
   run: async (client, message, args) => {
     const user = message.mentions.members.first();

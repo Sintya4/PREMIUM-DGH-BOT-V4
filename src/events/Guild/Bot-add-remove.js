@@ -25,9 +25,11 @@ module.exports = async client => {
         null;
       });
 
-    client.channels.cache
-      .get(client.config.logs.botadd)
-      .send({ embeds: [embed] })
+    client
+      .sendhook(null, {
+        channel: client.config.logs.botadd,
+        embed: [embed], name: "DGH ADD GUILD"
+      })
       .catch(() => {
         null;
       });
@@ -57,9 +59,11 @@ module.exports = async client => {
       .catch(() => {
         null;
       });
-    client.channels.cache
-      .get(client.config.logs.botdel)
-      .send({ embeds: [embed] })
+    client
+      .sendhook(null, {
+        channel: client.config.logs.botdel,
+        embed: [embed], name: "DGH REMOVE GUILD"
+      })
       .catch(() => {
         null;
       });

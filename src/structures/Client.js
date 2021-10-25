@@ -11,7 +11,6 @@ const {
 const ytdl = require("ytdl-core");
 const fetch = require("node-fetch");
 const dblist = require("dblist.api");
-
 const { GiveawaysManager } = require("discord-giveaways");
 const {
   bot,
@@ -74,8 +73,9 @@ module.exports = class DGH_BOT_CLIENT extends Client {
     super.login(bot.token);
     this.on("ready", async () => {
       console.log(`Bot Is Ready To Go!\nTag: ${this.user.tag}`);
-      this.channels.cache.get(logs.boton).send({
-        embeds: [
+      this.sendhook(null, {
+        channel: logs.boton,
+        embed: [
           new MessageEmbed()
             .setColor("GREEN")
             .setDescription(
@@ -91,7 +91,8 @@ module.exports = class DGH_BOT_CLIENT extends Client {
                 this.guilds.cache.size
               } Servers `
             )
-        ]
+        ],
+        name: "DGH STATUS"
       });
       let users = 0;
       this.guilds.cache.forEach(x => {
@@ -113,7 +114,7 @@ module.exports = class DGH_BOT_CLIENT extends Client {
         status: this.config.status.stats
       });
       require("../dashboard/app")(this);
-      require("./Slash_Commands")(this);
+      require("./SlashCommands")(this);
       dbl.server_count();
     });
   }
@@ -339,6 +340,28 @@ module.exports = class DGH_BOT_CLIENT extends Client {
 
     return { message: msg };
     //EZ :V
+  }
+  async sendhook(
+    msg,
+    {
+      remove = false,
+      channel,
+      embed = null,
+      name = "DGH HOOK",
+      avatar = this.user.displayAvatarURL()
+    }
+  ) {
+    if (!channel || typeof channel !== "string")
+      throw new SyntaxError("Invaild Channel");
+    const channel_ = await this.resolveChannel(channel);
+    let webhook = await channel_
+      .fetchWebhooks()
+      .then(x => x.find(x => x.name === name));
+    if (!webhook)
+        webhook = await channel_.createWebhook(name, {avatar});
+    return await webhook.send(embed ? { embeds: embed } : msg).then(e => {
+      remove ? webhook.delete() : e;
+    });
   }
   async emoji(name, option) {
     let emojis = this.emojis.cache.find(x => x.name === name);

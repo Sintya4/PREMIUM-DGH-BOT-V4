@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports = {
-  name: "createembed",
+  name: "create-embed",
   category: "admin",
   description: "create a embed a command in a certain channel. supports embed!",
   P_user: ["MANAGE_MESSAGES"],

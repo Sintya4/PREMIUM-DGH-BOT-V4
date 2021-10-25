@@ -7,7 +7,9 @@ module.exports = {
   run: async (client, message, args) => {
     let embed = new client.Discord.MessageEmbed()
       .setColor("GREEN")
-      .setDescription("Choose, Which one do you want to set?");
+      .setDescription("Choose, Which one do you want to set?")
+      .setFooter(client.user.username + ` |`)
+      .setTimestamp();
     let buts = new client.Discord.MessageActionRow().addComponents(
       new client.Discord.MessageSelectMenu()
         .setCustomId("opt")
@@ -17,20 +19,6 @@ module.exports = {
           { label: "Auto Nickname", value: "nick", description: "" }
         ])
     );
-    let c = [];
-    message.guild.roles.cache
-      .filter(x => x.position < message.guild.me.roles.highest.position)
-      .filter(x => !x.tags && x.name !== "@everyone")
-      .map(x => c.push({ label: x.name, value: x.id, description: "" }));
-    let buts_roles = new client.Discord.MessageActionRow().addComponents(
-      new client.Discord.MessageSelectMenu()
-        .setCustomId("opt")
-        .setPlaceholder("Choose the Roles")
-        .addOptions(c)
-        .setMaxValues(4)
-        .setMinValues(1)
-    );
-
     let msg = await message.channel.send({
       embeds: [embed],
       components: [buts]
@@ -42,8 +30,30 @@ module.exports = {
     });
     col.on("collect", async i => {
       if (i.values[0] === "roles") {
-        embed.setDescription("Choose the Roles below");
-        msg.edit({ embeds: [embed], components: [buts_roles] });
+        embed.setDescription(
+          "Please Give Roles For Member Join Later\nExample: @roles,@roles,@roles etc..."
+        );
+        msg.edit({ embeds: [embed], components: [] });
+        let d1 = await msg.channel.awaitMessages({
+          filter: filter2,
+          max: 1
+        });
+        d1.first().delete;
+        let msg2 = d1.first().content;
+        let msg1 = msg2
+          .match(/<(@&(\d{17,21}))\d+>/g)
+          .map(x => x.match(/^<@&!?(\d+)>$/)[1]);
+        if (message.guild.roles.cache.get(msg1[0])) {
+          client.data.set(`roles_auto_${message.guild.id}`, msg1);
+          embed.setDescription(
+            `Done, Now Auto Roles has been set with ${msg1.map(x =>
+              x ? `<@&${x}>` : ""
+            )}`
+          );
+          msg.edit({ embeds: [embed], components: [] });
+        } else {
+          null;
+        }
       }
       if (i.values[0] === "nick") {
         embed.setDescription(
@@ -65,17 +75,6 @@ module.exports = {
           embeds.addField("NickName", msg1).setFooter("This Are For Example!");
           msg.edit({ embeds: [embeds], components: [] });
         }
-      }
-      if (message.guild.roles.cache.get(i.values[0])) {
-        client.data.set(`roles_auto_${message.guild.id}`, i.values);
-        embed.setDescription(
-          `Done, Now Auto Roles has been set with ${i.values.map(x =>
-            x ? `<@&${x}>` : ""
-          )}`
-        );
-        msg.edit({ embeds: [embed], components: [] });
-      } else {
-        null;
       }
     });
   }
