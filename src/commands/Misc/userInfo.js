@@ -79,10 +79,10 @@ module.exports = {
     let embed = new MessageEmbed().setThumbnail(
       user.user.displayAvatarURL({ dynamic: true })
     );
-
+    let status_time = user.presence?.activities[0]?.createdTimestamp ?user.presence.activities[0].createdTimestamp : Date.now()
     //ACTIVITY
     let array = [];
-    if (user.presence.activities.length) {
+    if (user.presence?.activities.length ? user.presence.activities.length : null) {
       let data = user.presence.activities;
 
       for (let i = 0; i < data.length; i++) {
@@ -144,9 +144,7 @@ ID: ${user.user.id}
 Discriminator: ${user.user.discriminator}
 Bot: ${user.user.bot}
 Deleted User: ${user.deleted}
-Online Time:\`** <t:${Math.floor(
-          message.member.presence.activities[0].createdTimestamp / 1000
-        )}:R>
+Online Time:\`** <t:${Math.floor(status_time / 1000)}:R>
       `
       );
     let xxx = user.user.avatarURL({ dynamic: true });
@@ -160,7 +158,7 @@ Online Time:\`** <t:${Math.floor(
     embed
       .addField("Roles", roles)
       .addField("Permissions", `**\`${permissions.join(", ")}\`**`)
-      .setFooter(user.presence.status, stat[user.presence.status]);
+      .setFooter(user.presence?.status ? user.presence.status : "offline", stat[user.presence?.status ? user.presence.status : "offline"]);
 
     return message.channel.send({ embeds: [embed] });
   }
