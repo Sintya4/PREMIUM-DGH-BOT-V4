@@ -1,15 +1,23 @@
 {
-  "name": "hello-express",
-  "version": "0.0.1",
-  "description": "A simple Node app built on Express, instantly up and running.",
-  "main": "src/index",
+  "name": "tungsted-accordion",
+  "version": "1.0.0",
+  "description": "- Made By Sintya - Edit By Sintya - Made on 12/5/2021 - All Cmd Working - Copyright 2021 - Github: Sintya4 - Discord Name: @么Sintya#0001 - Discord ID: 740947753135243354 - Source Github: [DGH BOT V3](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3) - Dashboard: [Click](https://dgh-bot.ddns.net) - Bot Name: DGH BOT V3 - Support My server  - Link: https://dgh-bot.ddns.net/dc - Owner: [👑] 么Sintya#0001 [@Sintya4](https://github.com/Sintya4)",
+  "main": "src/index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index"
   },
+  "keywords": [],
+  "engines": {
+    "node": "16.x"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
+    "discord.js": "^13.2.0",
+    "discord.js-akinator": "^3.3.0",
     "discord-yt-poster": "^3.1.2",
     "quickmongo": "^3.0.2",
-    "chalk": "^4.1.2",
     "moment": "^2.29.1",
     "humanize-duration": "^3.27.0",
     "canvas": "^2.8.0",
@@ -33,40 +41,18 @@
     "path": "^0.12.7",
     "express": "^4.17.1",
     "discord-giveaways": "^5.0.0",
-    "gifencoder": "^2.0.1",
     "node-fetch": "^2.6.1",
     "body-parser": "^1.19.0",
     "express-session": "^1.17.2",
-    "passport-discord": "^0.1.4",
-    "passport": "^0.4.1",
-    "ejs": "^3.1.6",
     "http": "^0.0.0",
     "sourcebin_js": "^0.0.2",
     "discord-backup": "^3.0.1",
     "youtube-sr": "^4.1.6",
-    "ytdl-core": "^4.9.1",
     "ytsr": "^3.5.3",
     "yt-search": "^2.10.0",
     "dblist.api": "^1.1.1",
-    "discord.js": "*",
     "@koenie06/discord.js-music": "^1.2.9",
-    "@discordjs/rest": "^0.1.1-canary.0",
     "discord-dashboard-dgh": "^1.3.3-rm",
     "dbd-capriham-theme-dgh": "^1.4.0"
-  },
-  "engines": {
-    "node": "16.x"
-  },
-  "devDependencies": {
-    "node": "^16.6.1"
-  },
-  "repository": {
-    "url": "https://glitch.com/edit/#!/hello-express"
-  },
-  "license": "MIT",
-  "keywords": [
-    "node",
-    "glitch",
-    "express"
-  ]
+  }
 }
