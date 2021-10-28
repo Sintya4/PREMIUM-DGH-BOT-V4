@@ -1,6 +1,5 @@
 module.exports = async client => {
   client.on("guildCreate", async guild => {
-    if (!guild.available) return;
     let newserverEmbedw = new client.Discord.MessageEmbed()
       .setTitle(`Hello, I'm ${client.user.username}!`)
       .setDescription(
@@ -18,18 +17,14 @@ module.exports = async client => {
       .setColor("#ff0000")
       .setThumbnail(guild.iconURL({ dynamic: true }))
       .setFooter(guild.name, guild.iconURL({ dynamic: true }));
-    client
+    client.sendhook(null, {
+      channel: client.config.logs.botadd,
+      embed: [embed],
+      name: "DGH ADD GUILD"
+    });
+    return client
       .resolveUser(guild.ownerId)
       .then(user => user.send({ embeds: [newserverEmbedw] }))
-      .catch(() => {
-        null;
-      });
-
-    client
-      .sendhook(null, {
-        channel: client.config.logs.botadd,
-        embed: [embed], name: "DGH ADD GUILD"
-      })
       .catch(() => {
         null;
       });
@@ -53,17 +48,14 @@ module.exports = async client => {
       .setColor("#ff0000")
       .setThumbnail(guild.iconURL({ dynamic: true }))
       .setFooter(guild.name, guild.iconURL({ dynamic: true }));
-    client
+    client.sendhook(null, {
+      channel: client.config.logs.botdel,
+      embed: [embed],
+      name: "DGH REMOVE GUILD"
+    });
+    return client
       .resolveUser(guild.ownerId)
       .then(user => user.send({ embeds: [newserverEmbedw] }))
-      .catch(() => {
-        null;
-      });
-    client
-      .sendhook(null, {
-        channel: client.config.logs.botdel,
-        embed: [embed], name: "DGH REMOVE GUILD"
-      })
       .catch(() => {
         null;
       });
