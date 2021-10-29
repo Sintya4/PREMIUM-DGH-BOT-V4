@@ -133,7 +133,7 @@ module.exports = {
               .createdAt
           }')` +
           `\n${(await client.emoji("DGH_afk")) ||
-            "⌨️"} AFK Channel: ${afkChannel}`,
+            "⌨️"} AFK Channel: ${afkChannel}\n${(await client.emoji("DGH_boosts"))} Boost Tier: ${message.guild.premiumTier.toString()}\n${(await client.emoji("DGH_boosts"))} Boosts: ${message.guild.premiumSubscriptionCount}`,
         true
       )
       .addField(
