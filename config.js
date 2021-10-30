@@ -38,6 +38,7 @@ module.exports = {
       "https://media.discordapp.net/attachments/806082492498706442/900573349577633802/standard_1.gif", //Image Cmd Help.js
     guild_add:
       "https://cdn.discordapp.com/attachments/829696536396955649/856381256379400202/20210621_105311.jpg", //Image Guild Add
+    guild_remove: "",
     leaderboard:
       "https://i.pinimg.com/736x/d1/00/7b/d1007b46e6175f49f53712f16e4f6a3c.jpg" //Image Leaderboard Card
   },
