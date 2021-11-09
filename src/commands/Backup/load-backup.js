@@ -26,7 +26,7 @@ module.exports = {
               message
             }
           );
-        if (cc[0] === "confirm") {
+        if (cc === "confirm") {
           backup
             .load(args[0], message.guild)
             .then(async () => {
