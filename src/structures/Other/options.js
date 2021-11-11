@@ -1,3 +1,5 @@
+// ALL OF THESE COMMANDS ARE MADE BY Rahuletto#0243, So go check him out - https://simplyd.js.org
+
 const Discord = require("discord.js");
 const { MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
 module.exports = {
