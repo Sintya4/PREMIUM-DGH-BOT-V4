@@ -15,7 +15,7 @@ module.exports = async client => {
     if (hasLeveledUp) {
       const User = await Levels.fetch(message.author.id, message.guild.id);
       const newxp = Levels.xpFor(parseInt(User.level) + 1);
-      let channel_id = await client.data.get(`lvl_channel_${message.guild.id}`);
+      let channel_id = await client.data.get(`lvl_channel__${message.guild.id}`);
       let msg1 = await client.data.get(`msg_level_${message.guild.id}`);
       if (msg1) {
         msg1 = msg1.replace(/{user}/g, message.author);
