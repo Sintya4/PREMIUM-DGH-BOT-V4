@@ -1,30 +1,31 @@
-const DBD = require("discord-dashboard-dgh");
-const CaprihamTheme = require("dbd-capriham-theme-dgh");
+const DBD = require("discord-dashboard");
+const CaprihamTheme = require("dbd-capriham-theme");
 const Discord = require("discord.js");
-module.exports = async client => {
+module.exports = async (client) => {
   let cmd = [];
   let options = {
     description:
       "DGH BOT is a multiple purpose bot including extraordinary features such as Moderation, Leveling System, Welcomer, Search, Misc and other commands!",
     image:
-      "https://www.geeklawblog.com/wp-content/uploads/sites/528/2018/12/liprofile-656x369.png"
+      "https://media.discordapp.net/attachments/850346094520434720/908270754443976704/DGH_BOT_V3.png",
   };
-  client.commands.map(command =>
+  client.commands.map((command) =>
     cmd.push({
       commandName: `!${command.name}`,
       commandUsage: command.usage || "No Usage",
-      commandDescription: command.description || "No Description"
+      commandDescription: command.description || "No Description",
     })
   );
   const Dashboard = new DBD.Dashboard({
     port: 3000,
     client: {
       id: client.config.dash.id,
-      secret: client.config.dash.secret
+      secret: client.config.dash.secret,
     },
     redirectUri: `${client.config.dash.url}/discord/callback`,
     domain: client.config.dash.url,
-    inv: `
+    invite: {
+      custom: `
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,29 +42,27 @@ module.exports = async client => {
 <meta http-equiv="refresh" content="0; url=${client.config.bot.invite}">
 </html>
   `,
+    },
     noCreateServer: false,
     supportServer: {
       slash: "/dc",
-      inviteUrl: client.config.server.invite
+      inviteUrl: client.config.server.invite,
     },
     bot: client,
     theme: CaprihamTheme({
       websiteName: client.user.username,
-      description: "឵DGH BOT is a multiple purpose bot including extraordinary features such as Moderation, Leveling System, Welcomer, Search, Misc and other commands!",
-      color: "",
-      site_name: "DGH BOT DASHBOARD",
       footer: "឵",
       iconURL: client.user.avatarURL(),
       index: {
         card: {
           title: client.user.username,
           description: options.description,
-          image: options.image
+          image: options.image,
         },
         information: {
           title: "Information",
           description:
-            "To manage your bot, go to the <a href='/manage'>Server Management page</a>.<br><br>For a list of commands, go to the <a href='/commands'>Commands page</a>."
+            "To manage your bot, go to the <a href='/manage'>Server Management page</a>.<br><br>For a list of commands, go to the <a href='/commands'>Commands page</a>.",
         },
         feeds: {
           title: "Feeds",
@@ -72,25 +71,25 @@ module.exports = async client => {
               icon: "fa fa-user",
               text: "New user registered",
               timeText: "Just now",
-              bg: "bg-light-info"
+              bg: "bg-light-info",
             },
             {
               icon: "fa fa-server",
               text: "Server issues",
               timeText: "3 minutes ago",
-              bg: "bg-light-danger"
-            }
-          ]
-        }
+              bg: "bg-light-danger",
+            },
+          ],
+        },
       },
       commands: {
         pageTitle: "Commands",
         table: {
           title: "List Commands",
           subTitle: "All Command",
-          list: cmd
-        }
-      }
+          list: cmd,
+        },
+      },
     }),
     settings: [
       {
@@ -109,7 +108,7 @@ module.exports = async client => {
             setNew: async ({ guild, newData }) => {
               await client.data.set(`Prefix_${guild.id}`, newData);
               return;
-            }
+            },
           },
           {
             optionId: "nickname",
@@ -129,32 +128,20 @@ module.exports = async client => {
                 .members.cache.get(client.user.id)
                 .setNickname(newData);
               return;
-            }
+            },
           },
           {
             optionId: "auto-roles",
             optionName: "Auto Roles",
             optionDescription: `Auto Roles For new members to enter the server;`,
-            optionType: DBD.formTypes.rolesSelect(false, true),
+            optionType: DBD.formTypes.rolesMultiSelect(false, true),
             getActualSet: async ({ guild }) => {
               return (await client.data.get(`roles_auto_${guild.id}`)) || false;
             },
             setNew: async ({ guild, newData }) => {
-              let ty = null;
-              try {
-                JSON.parse(newData);
-                ty = true;
-              } catch (e) {
-                ty = false;
-              }
-              if (ty) {
-                await client.data.set(`roles_auto_${guild.id}`, [newData]);
-                return;
-              } else {
-                await client.data.set(`roles_auto_${guild.id}`, newData);
-                return;
-              }
-            }
+              await client.data.set(`roles_auto_${guild.id}`, newData);
+              return;
+            },
           },
           {
             optionId: "auto-nickname",
@@ -174,9 +161,9 @@ module.exports = async client => {
             setNew: async ({ guild, newData }) => {
               await client.data.set(`nick_auto_${guild.id}`, newData);
               return;
-            }
-          }
-        ]
+            },
+          },
+        ],
       },
       {
         categoryId: "settings_ch",
@@ -197,7 +184,7 @@ module.exports = async client => {
             setNew: async ({ guild, newData }) => {
               await client.data.set(`wel_channel__${guild.id}`, newData);
               return;
-            }
+            },
           },
           {
             optionId: "ch-leave",
@@ -212,7 +199,7 @@ module.exports = async client => {
             setNew: async ({ guild, newData }) => {
               await client.data.set(`lev_channel__${guild.id}`, newData);
               return;
-            }
+            },
           },
           {
             optionId: "ch-level",
@@ -228,7 +215,7 @@ module.exports = async client => {
             setNew: async ({ guild, newData }) => {
               await client.data.set(`lvl_channel__${guild.id}`, newData);
               return;
-            }
+            },
           },
           {
             optionId: "ch-modlog",
@@ -242,7 +229,7 @@ module.exports = async client => {
             setNew: async ({ guild, newData }) => {
               await client.data.set(`modlog_${guild.id}`, newData);
               return;
-            }
+            },
           },
           {
             optionId: "ch-star",
@@ -259,9 +246,9 @@ module.exports = async client => {
             setNew: async ({ guild, newData }) => {
               await client.data.set(`starboard_channel__${guild.id}`, newData);
               return;
-            }
-          }
-        ]
+            },
+          },
+        ],
       },
       {
         categoryId: "settings_msg",
@@ -288,7 +275,7 @@ module.exports = async client => {
             setNew: async ({ guild, newData }) => {
               await client.data.set(`msg_welcome_${guild.id}`, newData);
               return;
-            }
+            },
           },
           {
             optionId: "msg-lev",
@@ -308,7 +295,7 @@ module.exports = async client => {
             setNew: async ({ guild, newData }) => {
               await client.data.set(`msg_leave_${guild.id}`, newData);
               return;
-            }
+            },
           },
           {
             optionId: "msg-lvl",
@@ -328,7 +315,7 @@ module.exports = async client => {
             setNew: async ({ guild, newData }) => {
               await client.data.set(`msg_level_${guild.id}`, newData);
               return;
-            }
+            },
           },
           {
             optionId: "msg-word",
@@ -348,12 +335,11 @@ module.exports = async client => {
             setNew: async ({ guild, newData }) => {
               await client.data.set(`msg_word_${guild.id}`, newData);
               return;
-            }
-          }
-        ]
-      }
-    ]
+            },
+          },
+        ],
+      },
+    ],
   });
-
   Dashboard.init();
 };
