@@ -17,7 +17,7 @@
     "discord.js": "^13.2.0",
     "discord.js-akinator": "^3.3.0",
     "discord-yt-poster": "^3.1.2",
-    "quickmongo": "^3.0.2",
+    "quickmongo": "^5.1.2",
     "moment": "^2.29.1",
     "humanize-duration": "^3.27.0",
     "canvas": "^2.8.0",
