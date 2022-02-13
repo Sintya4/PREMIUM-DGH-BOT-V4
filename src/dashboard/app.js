@@ -136,7 +136,7 @@ module.exports = async (client) => {
             optionDescription: `Auto Roles For new members to enter the server;`,
             optionType: DBD.formTypes.rolesMultiSelect(false, true),
             getActualSet: async ({ guild }) => {
-              return (await client.data.get(`roles_auto_${guild.id}`)) || false;
+              return (await client.data.get(`roles_auto_${guild.id}`)) || [];
             },
             setNew: async ({ guild, newData }) => {
               await client.data.set(`roles_auto_${guild.id}`, newData);
