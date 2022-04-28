@@ -28,7 +28,7 @@
     "something-random-on-discord": "^3.4.4",
     "https": "^1.0.0",
     "fs": "^0.0.2",
-    "axios": "^0.24.0",
+    "axios": "^0.27.2",
     "discord-xp": "^1.1.16",
     "util": "^0.12.4",
     "ms": "^2.1.3",
