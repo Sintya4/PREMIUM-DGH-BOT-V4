@@ -41,7 +41,7 @@
     "path": "^0.12.7",
     "express": "^4.17.1",
     "discord-giveaways": "^5.0.0",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^3.2.9",
     "body-parser": "^1.19.0",
     "express-session": "^1.17.2",
     "http": "^0.0.0",
