@@ -8,9 +8,9 @@
 - Github: Sintya4
 - Discord Name: @么Sintya#0001
 - Discord ID: 740947753135243354
-- Source Github: [DGH BOT V3](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3)
+- Source Github: [DGH BOT](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3)
 
-- Bot Name: DGH BOT V3
+- Bot Name: DGH BOT
 - Dashboard: [Click](http://dghbot.ddns.net)
 - Support My server 
 - Link: http://dghbot.ddns.net/dc
