@@ -21,7 +21,7 @@
     "moment": "^2.29.1",
     "humanize-duration": "^3.27.0",
     "canvas": "^2.8.0",
-    "node-superfetch": "^0.2.3",
+    "node-superfetch": "^0.3.0",
     "br": "git+https://github.com/Sintya4/discord-image-generation-v",
     "canvacord": "^5.2.3",
     "one-liner-joke": "^1.2.2",
