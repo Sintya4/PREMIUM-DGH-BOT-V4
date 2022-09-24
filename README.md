@@ -1,37 +1,175 @@
-# DGH BOT V3
+<h1 align="center">Hi 👋, I'm DGH BOT</h1>
+<h3 align="center">
+  DGH BOT is a multipurpose bot including awesome features like Moderation,
+  Leveling System, Welcoming, Search, Miscellaneous and other commands!
+</h3>
 
-- Made By Sintya
+- Website Bot: [Link](https://dghbot.ddns.net/) 
 
-- Made on 12/5/2021
-- All Cmd Working
-- Copyright 2021
-- Github: Sintya4
-- Discord Name: @么Sintya#0001
-- Discord ID: 740947753135243354
-- Source Github: [DGH BOT](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3)
+- Public Bot: [Link](https://dghbot.ddns.net/invite) 
 
-- Bot Name: DGH BOT
-- Dashboard: [Click](http://dghbot.ddns.net)
-- Support My server 
-- Link: http://dghbot.ddns.net/dc
-- Owner: [👑] 么Sintya#0001
-- [@Sintya4](http://github.com/Sintya4)
+- Support Server: [Link](http://dghbot.ddns.net/dc) 
 
-<a href="https://dblist.ddns.net/bots/849903077690572800">
-<img src="https://dblist.ddns.net/api/embed/849903077690572800"/>
- </a>  
+- Privacy Policy: [Link](http://dghbot.surge.sh/privacy) 
 
-> # 💨 Run the projects
+- Terms and Conditions: [Link](https://dghbot.surge.sh/terms) 
 
-[![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/import/github/sintya4/PREMIUM-DGH-BOT-V3)<br>
-[![Run on Repl.it](https://repl.it/badge/github/vcodes-xyz/bot-list)](https://repl.it/github/sintya4/PREMIUM-DGH-BOT-V3)<br>
-[![Watching](https://img.shields.io/github/watchers/sintya4/PREMIUM-DGH-BOT-V3?style=for-the-badge)](/)
-[![Stars](https://img.shields.io/github/stars/sintya4/PREMIUM-DGH-BOT-V3?style=for-the-badge)](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3/stargazers)
-[![Forks](https://img.shields.io/github/forks/Sintya4/PREMIUM-DGH-BOT-V3?style=for-the-badge)](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3/network/members)
-[![ISSUES](https://img.shields.io/github/issues-raw/sintya4/PREMIUM-DGH-BOT-V3?color=blue&logo=github&style=for-the-badge)](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3/issues)
+- Credit DGH BOT: [Sintya4](http://github.com/Sintya4)
 
-# Stargazers
-[![Stargazers repo roster for @Sintya4/PREMIUM-DGH-BOT-V3](https://reporoster.com/stars/dark/notext/Sintya4/PREMIUM-DGH-BOT-V3)](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3/stargazers)
+<h3 align="left">Languages and Tools:</h3>
+<p align="left">
+  <a href="https://www.gnu.org/software/bash/" target="_blank" rel="noreferrer">
+    <img
+      src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-icon.svg"
+      alt="bash"
+      width="40"
+      height="40"
+    />
+  </a>
+  <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer">
+    <img
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg"
+      alt="css3"
+      width="40"
+      height="40"
+    />
+  </a>
+  <a href="https://expressjs.com" target="_blank" rel="noreferrer">
+    <img
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg"
+      alt="express"
+      width="40"
+      height="40"
+    />
+  </a>
+  <a href="https://heroku.com" target="_blank" rel="noreferrer">
+    <img
+      src="https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg"
+      alt="heroku"
+      width="40"
+      height="40"
+    />
+  </a>
+  <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer">
+    <img
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg"
+      alt="html5"
+      width="40"
+      height="40"
+    />
+  </a>
+  <a
+    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <img
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
+      alt="javascript"
+      width="40"
+      height="40"
+    />
+  </a>
+  <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer">
+    <img
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg"
+      alt="mongodb"
+      width="40"
+      height="40"
+    />
+  </a>
+  <a href="https://nodejs.org" target="_blank" rel="noreferrer">
+    <img
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg"
+      alt="nodejs"
+      width="40"
+      height="40"
+    />
+  </a>
+  <a href="https://www.sqlite.org/" target="_blank" rel="noreferrer">
+    <img
+      src="https://www.vectorlogo.zone/logos/sqlite/sqlite-icon.svg"
+      alt="sqlite"
+      width="40"
+      height="40"
+    />
+  </a>
+</p>
 
-# Forkers
-[![Forkers repo roster for @Sintya4/PREMIUM-DGH-BOT-V3](https://reporoster.com/forks/dark/notext/Sintya4/PREMIUM-DGH-BOT-V3)](https://github.com/Sintya4/PREMIUM-DGH-BOT-V3/network/members)
+<h3 align="left">Run the projects:</h3>
+<p align="left">
+  <a
+    href="https://glitch.com/edit/#!/import/github/sintya4/PREMIUM-DGH-BOT-V3"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <img
+      src="https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg"
+      alt="Glitch"
+    /> </a
+  ><br />
+  <a
+    href="https://repl.it/github/sintya4/PREMIUM-DGH-BOT-V3"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <img
+      src="https://repl.it/badge/github/vcodes-xyz/bot-list"
+      alt="Replit"
+    /> </a
+  ><br />
+  <a href="/" rel="noreferrer">
+    <img
+      src="https://img.shields.io/github/watchers/sintya4/PREMIUM-DGH-BOT-V3?style=for-the-badge"
+      alt="Watching"
+    /> </a
+  ><a
+    href="https://github.com/Sintya4/PREMIUM-DGH-BOT-V3/stargazers"
+    rel="noreferrer"
+  >
+    <img
+      src="https://img.shields.io/github/stars/sintya4/PREMIUM-DGH-BOT-V3?style=for-the-badge"
+      alt="Stars"
+    /> </a
+  ><a
+    href="https://github.com/Sintya4/PREMIUM-DGH-BOT-V3/network/members"
+    rel="noreferrer"
+  >
+    <img
+      src="https://img.shields.io/github/forks/Sintya4/PREMIUM-DGH-BOT-V3?style=for-the-badge"
+      alt="Forks"
+    /> </a
+  ><a
+    href="https://github.com/Sintya4/PREMIUM-DGH-BOT-V3/issues"
+    rel="noreferrer"
+  >
+    <img
+      src="https://img.shields.io/github/issues-raw/sintya4/PREMIUM-DGH-BOT-V3?color=blue&logo=github&style=for-the-badge"
+      alt="ISSUES"
+    />
+  </a>
+</p>
+<h3 align="left">Stargazers:</h3>
+<p align="left">
+  <a
+    href="https://github.com/Sintya4/PREMIUM-DGH-BOT-V3/stargazers"
+    rel="noreferrer"
+  >
+    <img
+      src="https://reporoster.com/stars/dark/notext/Sintya4/PREMIUM-DGH-BOT-V3"
+      alt="Stargazers repo roster for @Sintya4/PREMIUM-DGH-BOT-V3"
+    />
+  </a>
+</p>
+<h3 align="left">Forkers:</h3>
+<p align="left">
+  <a
+    href="https://github.com/Sintya4/PREMIUM-DGH-BOT-V3/network/members"
+    rel="noreferrer"
+  >
+    <img
+      src="https://reporoster.com/forks/dark/notext/Sintya4/PREMIUM-DGH-BOT-V3"
+      alt="Forkers repo roster for @Sintya4/PREMIUM-DGH-BOT-V3"
+    />
+  </a>
+</p>
