@@ -1,24 +1,40 @@
-<h1 align="center">Hi 👋, I'm DGH BOT<br>
-  <img src="https://img.shields.io/github/package-json/v/Sintya4/PREMIUM-DGH-BOT-V3?style=flat-square&logo=github&label=Version&color=%2334D058" alt="DGHBOT Version" />
-  <img src="https://img.shields.io/badge/Discord.js-v13-%2334d058?style=flat-square&logo=npm&logoColor=fff" alt="DJS Version" />
+<h1 align="center">
+  Hi 👋, I'm DGH BOT<br />
+  <img
+    src="https://img.shields.io/github/package-json/v/Sintya4/PREMIUM-DGH-BOT-V3?style=flat-square&logo=github&label=Version&color=%2334D058"
+    alt="DGHBOT Version"
+  />
+  <img
+    src="https://img.shields.io/badge/Discord.js-v13-%2334d058?style=flat-square&logo=npm&logoColor=fff"
+    alt="DJS Version"
+  />
 </h1>
 <h3 align="center">
   DGH BOT is a multipurpose bot including awesome features like Moderation,
   Leveling System, Welcoming, Search, Miscellaneous and other commands!
 </h3>
-
-- Website Bot: [Link](https://dghbot.ddns.net/) 
-
-- Public Bot: [Link](https://dghbot.ddns.net/invite) 
-
-- Support Server: [Link](http://dghbot.ddns.net/dc) 
-
-- Privacy Policy: [Link](http://dghbot.surge.sh/privacy) 
-
-- Terms and Conditions: [Link](https://dghbot.surge.sh/terms) 
-
-- Credit DGH BOT: [Sintya4](http://github.com/Sintya4)
-
+<ul>
+  <li>
+    <p>Website Bot: <a href="https://dghbot.ddns.net/">Link</a></p>
+  </li>
+  <li>
+    <p>Public Bot: <a href="https://dghbot.ddns.net/invite">Link</a></p>
+  </li>
+  <li>
+    <p>Support Server: <a href="http://dghbot.ddns.net/dc">Link</a></p>
+  </li>
+  <li>
+    <p>Privacy Policy: <a href="http://dghbot.surge.sh/privacy">Link</a></p>
+  </li>
+  <li>
+    <p>
+      Terms and Conditions: <a href="https://dghbot.surge.sh/terms">Link</a>
+    </p>
+  </li>
+  <li>
+    <p>Credit DGH BOT: <a href="http://github.com/Sintya4">Sintya4</a></p>
+  </li>
+</ul>
 <h3 align="left">Languages and Tools:</h3>
 <p align="left">
   <a href="https://www.gnu.org/software/bash/" target="_blank" rel="noreferrer">
