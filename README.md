@@ -1,5 +1,9 @@
 <h1 align="center">
-  Hi 👋, I'm DGH BOT<br />
+  <img
+    src="https://cdn.discordapp.com/avatars/849903077690572800/34a2f72944e4b8ef4e3cd96631b11948.png"
+    alt="AVATAR DGH BOT"
+  /><br />
+  DGH BOT<br />
   <img
     src="https://img.shields.io/github/package-json/v/Sintya4/PREMIUM-DGH-BOT-V3?style=flat-square&logo=github&label=Version&color=%2334D058"
     alt="DGHBOT Version"
@@ -35,6 +39,45 @@
     <p>Credit DGH BOT: <a href="http://github.com/Sintya4">Sintya4</a></p>
   </li>
 </ul>
+<h4 align="center">
+  InfinityBots.gg Vote
+  <a
+    href="https://infinitybots.gg/bots/849903077690572800"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <img
+      src="https://infinitybots.gg/bots/849903077690572800/widget?size=medium"
+      alt="Vote In InfinityBots.gg"
+    />
+  </a>
+</h4>
+<h4 align="center">
+  DBLIST.DDNS.NET Vote
+  <a
+    href="https://infinitybots.gg/bots/849903077690572800"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <img
+      src="https://dblist.ddns.net/api/embed/849903077690572800"
+      alt="Vote In DBLIST.DDNS.NET"
+    />
+  </a>
+</h4>
+<h4 align="center">
+  DiscordBotList Vote
+  <a
+    href="https://discordbotlist.com/bots/dgh-bot-v3"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <img
+      src="https://discordbotlist.com/_nuxt/img/default-splash.9e9b81a.svg"
+      alt="Vote In DiscordBotList"
+    />
+  </a>
+</h4>
 <h3 align="left">Languages and Tools:</h3>
 <p align="left">
   <a href="https://www.gnu.org/software/bash/" target="_blank" rel="noreferrer">
@@ -114,7 +157,6 @@
     />
   </a>
 </p>
-
 <h3 align="left">Run the projects:</h3>
 <p align="left">
   <a
