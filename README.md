@@ -47,7 +47,7 @@
     rel="noreferrer"
   >
     <img
-      src="https://infinitybots.gg/bots/849903077690572800/widget?size=medium"
+      src="https://infinitybots.gg/bots/849903077690572800/widget?size=medium/"
       alt="Vote In InfinityBots.gg"
     />
   </a>
