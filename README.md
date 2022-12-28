@@ -40,7 +40,7 @@
   </li>
 </ul>
 <h4 align="center">
-  InfinityBots.gg Vote
+  InfinityBots.gg Vote</br>
   <a
     href="https://infinitybots.gg/bots/849903077690572800"
     target="_blank"
@@ -53,7 +53,7 @@
   </a>
 </h4>
 <h4 align="center">
-  DBLIST.DDNS.NET Vote
+  DBLIST.DDNS.NET Vote</br>
   <a
     href="https://infinitybots.gg/bots/849903077690572800"
     target="_blank"
@@ -66,7 +66,7 @@
   </a>
 </h4>
 <h4 align="center">
-  DiscordBotList Vote
+  DiscordBotList Vote</br>
   <a
     href="https://discordbotlist.com/bots/dgh-bot-v3"
     target="_blank"
