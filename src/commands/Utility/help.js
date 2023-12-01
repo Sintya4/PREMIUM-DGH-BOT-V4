@@ -15,19 +15,19 @@ module.exports = {
     const category = new Discord.Collection();
     const menus = [];
     const c_cmd = {
-      fun: await client.emoji("DGH_fun"),
-      utility: await client.emoji("DGH_util"),
-      info: await client.emoji("DGH_info"),
-      levels: await client.emoji("DGH_level_up"),
-      admin: await client.emoji("DGH_admin"),
-      settings: await client.emoji("DGH_setting"),
-      moderation: await client.emoji("DGH_mod"),
-      misc: await client.emoji("DGH_misc"),
-      games: await client.emoji("DGH_games"),
-      search: await client.emoji("DGH_search"),
-      custom: await client.emoji("DGH_add"),
-      slash: await client.emoji("DGH_SLASH_CMD"),
-      backup: await client.emoji("DGH_backup"),
+      fun: "😄",
+      utility: "🔧",
+      info: "ℹ️",
+      levels: "🆙",
+      admin: "🔒",
+      settings: "⚙️",
+      moderation: "🛠️",
+      misc: "🌀",
+      games: "🎮",
+      search: "🔍",
+      custom: "➕",
+      slash: "🪓",
+      backup: "🔗",
       anti_swear: "🤬"
     };
     readdirSync("./src/commands/").forEach(dir => {
